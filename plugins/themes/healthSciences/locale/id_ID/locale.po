@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-04-23T10:23:45+00:00\n"
+"PO-Revision-Date: 2020-04-23T10:23:45+00:00\n"
+"Language: \n"
+
+msgid "plugins.themes.healthSciences.name"
+msgstr "Health Sciences Theme"
+
+msgid "plugins.themes.healthSciences.description"
+msgstr "Ojs Theme dengan Tema Putih Sederhana."
+
+msgid "plugins.themes.healthSciences.option.colour.label"
+msgstr "Warna Utama"
+
+msgid "plugins.themes.healthSciences.option.colour.description"
+msgstr "Pilih Warna Utama untuk Jurnal yang Digunakan."
+
+msgid "plugins.themes.healthSciences.nav.toggle"
+msgstr "Toggle Navigasi"
+
+msgid "plugins.themes.healthSciences.language.toggle"
+msgstr "Rubah Bahasa. Bahasa yang digunakan adalah:"
+
+msgid "plugins.themes.healthSciences.currentIssuePublished"
+msgstr "Diterbitkan pada {$date}"
+
+msgid "plugins.themes.healthSciences.issueDescription"
+msgstr "Deskripsi Terbitan"
+
+msgid "plugins.themes.healthSciences.issuePubId"
+msgstr "{$pubIdType}: {$pubId}"
+
+msgid "plugins.themes.healthSciences.more"
+msgstr "{$text}…"
+
+msgid "plugins.themes.healthSciences.article.authorBio"
+msgstr "Riwayat Hidup"
+
+msgid "plugins.themes.healthSciences.article.supplementaryFiles"
+msgstr "File Lampiran untuk Artikel"
+
+msgid "plugins.themes.healthSciences.register.haveAccount"
+msgstr "Sudahkah Memiliki Akun?"
+
+msgid "plugins.themes.healthSciences.register.loginHere"
+msgstr "Login Di Sini"
+
+msgid "plugins.themes.healthSciences.register.noAccount"
+msgstr "Tidak Punya Akun?"
+
+msgid "plugins.themes.healthSciences.register.registerHere"
+msgstr "Daftarkan Anda Di Sini"
+
+msgid "plugins.themes.healthSciences.search.resultsFor"
+msgstr "Hasil Pencarian untuk <em>{$query}</em>"
+
+msgid "plugins.themes.healthSciences.search.params"
+msgstr "Parameter Pencarian"
+
