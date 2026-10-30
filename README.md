@@ -1,5 +1,5 @@
 #data-staging
-bCKUP_OJS33_PDN_2026-10-29.SQL.GZ
+BACKUP_OJS33_PDN_2026-10-29.SQL.GZ
 
 # Open Journal Systems
 
