@@ -58,6 +58,18 @@ Licensed under GPLv3. See LICENSE.txt for details.
 
 Use the Plugin Gallery from within your PKP application to install the plugin. For further information refer to [PKP|DOCS](https://docs.pkp.sfu.ca/orcid/en/installation-setup).
 
+### Setting a custom redirect URI
+
+In case your Orcid redirect URI does not correspond to your journal base Url (e.g. you may use a centralized redirect server if you have one institutional Orcid account but are running multiple journals on different domains)
+you may add a variable to the OJS config.inc.php file to overwrite the default redirect base Url as in the follwoing example
+
+
+```
+[orcid]
+orcid_redirect_base_url = "https://my_orcid_redirect.url/"
+
+```
+
 ## Debugging/Testing
 
 ### Settings

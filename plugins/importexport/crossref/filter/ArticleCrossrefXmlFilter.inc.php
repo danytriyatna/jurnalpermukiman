@@ -93,77 +93,112 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 		$journalArticleNode = $doc->createElementNS($deployment->getNamespace(), 'journal_article');
 		$journalArticleNode->setAttribute('publication_type', 'full_text');
 		$journalArticleNode->setAttribute('metadata_distribution_opts', 'any');
+		$journalArticleNode->setAttribute('language', PKPLocale::getIso1FromLocale($locale));
 
 
 		// title
-		$titlesNode = $doc->createElementNS($deployment->getNamespace(), 'titles');
-		$titlesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'title', htmlspecialchars($publication->getData('title', $locale), ENT_COMPAT, 'UTF-8')));
-		if ($subtitle = $publication->getData('subtitle', $locale)) $titlesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'subtitle', htmlspecialchars($subtitle, ENT_COMPAT, 'UTF-8')));
-		$journalArticleNode->appendChild($titlesNode);
+		$titleLanguages = array_keys($publication->getTitles());
+		// Crossref 4.3.6 limits to 20 titles maximum, ensure the primary locale is first
+		$primaryLanguageIndex = array_search($locale, $titleLanguages);
+		if ($primaryLanguageIndex) {
+			unset($titleLanguages[$primaryLanguageIndex]);
+			array_unshift($titleLanguages, $locale);
+		}
+		$languageCounter = 1;
+		foreach ($titleLanguages as $lang) {
+			$titlesNode = $doc->createElementNS($deployment->getNamespace(), 'titles');
+			$titlesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'title', htmlspecialchars($publication->getLocalizedTitle($lang), ENT_COMPAT, 'UTF-8')));
+			if ($subtitle = $publication->getData('subtitle', $lang)) {
+				$titlesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'subtitle', htmlspecialchars($subtitle, ENT_COMPAT, 'UTF-8')));
+			}
+			$journalArticleNode->appendChild($titlesNode);
+			$languageCounter++;
+			if ($languageCounter > 20) {
+				break;
+			}
+		}
 
 		// contributors
-		$contributorsNode = $doc->createElementNS($deployment->getNamespace(), 'contributors');
 		$authors = $publication->getData('authors');
-		$isFirst = true;
-		foreach ($authors as $author) { /** @var $author Author */
-			$personNameNode = $doc->createElementNS($deployment->getNamespace(), 'person_name');
-			$personNameNode->setAttribute('contributor_role', 'author');
+		if (!empty($authors)) {
+			$contributorsNode = $doc->createElementNS($deployment->getNamespace(), 'contributors');
+			$isFirst = true;
+			foreach ($authors as $author) { /** @var $author Author */
+				$personNameNode = $doc->createElementNS($deployment->getNamespace(), 'person_name');
+				$personNameNode->setAttribute('contributor_role', 'author');
 
-			if ($isFirst) {
-				$personNameNode->setAttribute('sequence', 'first');
-			} else {
-				$personNameNode->setAttribute('sequence', 'additional');
-			}
-
-			$familyNames = $author->getFamilyName(null);
-			$givenNames = $author->getGivenName(null);
-
-			// Check if both givenName and familyName is set for the submission language.
-			if (!empty($familyNames[$locale]) && !empty($givenNames[$locale])) {
-				$personNameNode->setAttribute('language', PKPLocale::getIso1FromLocale($locale));
-				$personNameNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'given_name', htmlspecialchars(ucfirst($givenNames[$locale]), ENT_COMPAT, 'UTF-8')));
-				$personNameNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'surname', htmlspecialchars(ucfirst($familyNames[$locale]), ENT_COMPAT, 'UTF-8')));
-				$hasAltName = false;
-
-				if ($author->getData('orcid')) {
-					$personNameNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'ORCID', $author->getData('orcid')));
+				if ($isFirst) {
+					$personNameNode->setAttribute('sequence', 'first');
+				} else {
+					$personNameNode->setAttribute('sequence', 'additional');
 				}
 
-				foreach($familyNames as $otherLocal => $familyName) {
-					if ($otherLocal != $locale && isset($familyName) && !empty($familyName)) {
-						if (!$hasAltName) {
-							$altNameNode = $doc->createElementNS($deployment->getNamespace(), 'alt-name');
-							$personNameNode->appendChild($altNameNode);
+				$familyNames = $author->getFamilyName(null);
+				$givenNames = $author->getGivenName(null);
 
-							$hasAltName = true;
-						}
+				// Check if both givenName and familyName is set for the submission language.
+				if (!empty($familyNames[$locale]) && !empty($givenNames[$locale])) {
+					$personNameNode->setAttribute('language', PKPLocale::getIso1FromLocale($locale));
+					$personNameNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'given_name', htmlspecialchars($givenNames[$locale], ENT_COMPAT, 'UTF-8')));
+					$personNameNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'surname', htmlspecialchars($familyNames[$locale], ENT_COMPAT, 'UTF-8')));
+					$hasAltName = false;
 
-						$nameNode = $doc->createElementNS($deployment->getNamespace(), 'name');
-						$nameNode->setAttribute('language', PKPLocale::getIso1FromLocale($otherLocal));
-
-						$nameNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'surname', htmlspecialchars(ucfirst($familyName), ENT_COMPAT, 'UTF-8')));
-						if (isset($givenNames[$otherLocal]) && !empty($givenNames[$otherLocal])) {
-							$nameNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'given_name', htmlspecialchars(ucfirst($givenNames[$otherLocal]), ENT_COMPAT, 'UTF-8')));
-						}
-
-						$altNameNode->appendChild($nameNode);
+					if ($author->getData('orcid')) {
+						$personNameNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'ORCID', $author->getData('orcid')));
 					}
+
+					foreach($familyNames as $otherLocal => $familyName) {
+						if ($otherLocal != $locale && isset($familyName) && !empty($familyName)) {
+							if (!$hasAltName) {
+								$altNameNode = $doc->createElementNS($deployment->getNamespace(), 'alt-name');
+								$personNameNode->appendChild($altNameNode);
+
+								$hasAltName = true;
+							}
+
+							$nameNode = $doc->createElementNS($deployment->getNamespace(), 'name');
+							$nameNode->setAttribute('language', PKPLocale::getIso1FromLocale($otherLocal));
+
+							$nameNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'surname', htmlspecialchars($familyName, ENT_COMPAT, 'UTF-8')));
+							if (isset($givenNames[$otherLocal]) && !empty($givenNames[$otherLocal])) {
+								$nameNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'given_name', htmlspecialchars($givenNames[$otherLocal], ENT_COMPAT, 'UTF-8')));
+							}
+
+							$altNameNode->appendChild($nameNode);
+						}
+					}
+
+				} else {
+					$personNameNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'surname', htmlspecialchars($givenNames[$locale], ENT_COMPAT, 'UTF-8')));
 				}
 
-			} else {
-				$personNameNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'surname', htmlspecialchars(ucfirst($givenNames[$locale]), ENT_COMPAT, 'UTF-8')));
+				$contributorsNode->appendChild($personNameNode);
+				$isFirst = false;
 			}
-
-			$contributorsNode->appendChild($personNameNode);
-			$isFirst = false;
+			$journalArticleNode->appendChild($contributorsNode);
 		}
-		$journalArticleNode->appendChild($contributorsNode);
 
 		// abstract
-		if ($abstract = $publication->getData('abstract', $locale)) {
-			$abstractNode = $doc->createElementNS($deployment->getJATSNamespace(), 'jats:abstract');
-			$abstractNode->appendChild($node = $doc->createElementNS($deployment->getJATSNamespace(), 'jats:p', htmlspecialchars(html_entity_decode(strip_tags($abstract), ENT_COMPAT, 'UTF-8'), ENT_COMPAT, 'UTF-8')));
-			$journalArticleNode->appendChild($abstractNode);
+		$abstractLanguages = array_keys((array) $publication->getData('abstract'));
+		// Crossref 4.3.6 limits to 10 abstracts maximum, ensure the primary locale is first
+		$primaryLanguageIndex = array_search($locale, $abstractLanguages);
+		if ($primaryLanguageIndex) {
+			unset($abstractLanguages[$primaryLanguageIndex]);
+			array_unshift($abstractLanguages, $locale);
+		}
+		$languageCounter = 1;
+		foreach ($abstractLanguages as $lang) {
+			if ($abstract = $publication->getData('abstract', $lang)) {
+				$abstractNode = $doc->createElementNS($deployment->getJATSNamespace(), 'jats:abstract');
+				$abstractNode->setAttributeNS($deployment->getXMLNamespace(), 'xml:lang', PKPLocale::getIso1FromLocale($lang));
+				$abstractNode->appendChild($node = $doc->createElementNS($deployment->getJATSNamespace(), 'jats:p', htmlspecialchars(html_entity_decode(strip_tags($abstract), ENT_COMPAT, 'UTF-8'), ENT_COMPAT, 'UTF-8')));
+				$journalArticleNode->appendChild($abstractNode);
+
+				$languageCounter++;
+				if ($languageCounter > 10) {
+					break;
+				}
+			}
 		}
 
 		// publication date
@@ -361,5 +396,3 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 		return $componentListNode;
 	}
 }
-
-

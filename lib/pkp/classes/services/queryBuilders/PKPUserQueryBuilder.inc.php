@@ -129,7 +129,7 @@ class PKPUserQueryBuilder implements EntityQueryBuilderInterface {
 			IDENTITY_SETTING_FAMILYNAME => IDENTITY_SETTING_FAMILYNAME
 		];
 		if (!isset($orderColumns[$column])) {
-			error_log((string) new DomainException("Invalid sort column: ${column}"));
+			error_log((string) new DomainException("Invalid sort column: {$column}"));
 			$column = 'id';
 		}
 		$this->orderColumn = $orderColumns[$column];
@@ -424,12 +424,9 @@ class PKPUserQueryBuilder implements EntityQueryBuilderInterface {
 	 * @copydoc PKP\Services\QueryBuilders\Interfaces\EntityQueryBuilderInterface::getCount()
 	 */
 	public function getCount() {
-		$q = $this->getQuery();
-		// Reset the orderBy
-		$q->orders = [];
-		return $q->select('u.user_id')
-			->get()
-			->count();
+		return $this
+			->getQuery()
+			->getCountForPagination();
 	}
 
 	/**
@@ -628,7 +625,7 @@ class PKPUserQueryBuilder implements EntityQueryBuilderInterface {
 	 */
 	protected function buildSearchFilter(Builder $query): self
 	{
-		if (!strlen($searchPhrase = trim($this->searchPhrase))) {
+		if (!strlen($searchPhrase = trim($this->searchPhrase ?? ''))) {
 			return $this;
 		}
 		$words = array_map(function (string $word) {
@@ -675,14 +672,14 @@ class PKPUserQueryBuilder implements EntityQueryBuilderInterface {
 					foreach ($sortedSettings as $i => $setting) {
 						$aliases = [];
 						foreach ($locales as $j => $locale) {
-							$aliases[] = $alias = "us_${i}_${j}";
+							$aliases[] = $alias = "us_{$i}_{$j}";
 							$query->leftJoin(
-								"user_settings AS ${alias}",
+								"user_settings AS {$alias}",
 								function (JoinClause $join) use ($alias, $setting, $locale) {
 									$join
-										->on("${alias}.user_id", '=', 'u.user_id')
-										->where("${alias}.setting_name", '=', $setting)
-										->where("${alias}.locale", '=', $locale);
+										->on("{$alias}.user_id", '=', 'u.user_id')
+										->where("{$alias}.setting_name", '=', $setting)
+										->where("{$alias}.locale", '=', $locale);
 								}
 							);
 						}
@@ -691,7 +688,7 @@ class PKPUserQueryBuilder implements EntityQueryBuilderInterface {
 					// Build a possibly long CONCAT(COALESCE(given_localeA, given_localeB, [...]), COALESCE(family_localeA, family_localeB, [...])
 					$coalescedSettings = array_map(function (array $aliases) {
 						return 'COALESCE(' . implode(', ', array_map(function (string $alias) {
-							return "${alias}.setting_value";
+							return "{$alias}.setting_value";
 						}, $aliases)) . ", '')";
 					}, $aliasesBySetting);
 					$query->selectRaw('CONCAT(' . implode(', ', $coalescedSettings) . ')');

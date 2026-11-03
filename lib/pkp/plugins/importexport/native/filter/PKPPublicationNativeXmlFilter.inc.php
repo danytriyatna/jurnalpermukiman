@@ -13,6 +13,8 @@
  * @brief Base class that converts a PKPPublication to a Native XML document
  */
 
+use function PHP81_BC\strftime;
+
 import('lib.pkp.plugins.importexport.native.filter.NativeExportFilter');
 
 class PKPPublicationNativeXmlFilter extends NativeExportFilter {
@@ -45,7 +47,7 @@ class PKPPublicationNativeXmlFilter extends NativeExportFilter {
 	 */
 	function &process(&$entity) {
 		// Create the XML document
-		$doc = new DOMDocument('1.0');
+		$doc = new DOMDocument('1.0', 'utf-8');
 		$doc->preserveWhiteSpace = false;
 		$doc->formatOutput = true;
 		$deployment = $this->getDeployment();
@@ -84,17 +86,17 @@ class PKPPublicationNativeXmlFilter extends NativeExportFilter {
 		$isPublished = $entity->getData('status') === STATUS_PUBLISHED;
 		$isPublished ? $entityNode->setAttribute('seq', (int) $entity->getData('seq')) : $entityNode->setAttribute('seq', '0');
 
-		$entityLanguages = $entity->getData('languages');
-		if ($entityLanguages) {
-			$entityNode->setAttribute('language', $entityLanguages);
-		}
-
 		if ($datePublished = $entity->getData('datePublished')) {
 			$entityNode->setAttribute('date_published', strftime('%Y-%m-%d', strtotime($datePublished)));
 		}
 
 		$this->addMetadata($doc, $entityNode, $entity);
-		$this->addAuthors($doc, $entityNode, $entity);
+
+		$authors = $entity->getData('authors');
+		if ($authors && count($authors) > 0) {
+			$this->addAuthors($doc, $entityNode, $entity);
+		}
+
 		$this->addRepresentations($doc, $entityNode, $entity);
 
 		$citationsListNode = $this->createCitationsNode($doc, $deployment, $entity);

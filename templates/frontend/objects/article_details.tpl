@@ -119,7 +119,9 @@
 							{/if}
 							{if $author->getData('orcid')}
 								<span class="orcid">
-									{$orcidIcon}
+									{if $author->getData('orcidAccessToken')}
+										{$orcidIcon}
+									{/if}
 									<a href="{$author->getData('orcid')|escape}" target="_blank">
 										{$author->getData('orcid')|escape}
 									</a>
@@ -175,9 +177,8 @@
 					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
 				</section>
 			{/if}
-				
-			{call_hook name="Templates::Article::Main"}
 
+			{call_hook name="Templates::Article::Main"}
 
 			{* Author biographies *}
 			{assign var="hasBiographies" value=0}
@@ -347,6 +348,7 @@
 										{foreach from=$citationStyles item="citationStyle"}
 											<li>
 												<a
+													rel="nofollow"
 													aria-controls="citationOutput"
 													href="{url page="citationstylelanguage" op="get" path=$citationStyle.id params=$citationArgs}"
 													data-load-citation
@@ -457,13 +459,13 @@
 					{if $publication->getData('licenseUrl')}
 						{if $ccLicenseBadge}
 							{if $publication->getLocalizedData('copyrightHolder')}
-								<p>{translate key="submission.copyrightStatement" copyrightHolder=$publication->getLocalizedData('copyrightHolder') copyrightYear=$publication->getData('copyrightYear')}</p>
+								<p>{translate|escape key="submission.copyrightStatement" copyrightHolder=$publication->getLocalizedData('copyrightHolder') copyrightYear=$publication->getData('copyrightYear')}</p>
 							{/if}
 							{$ccLicenseBadge}
 						{else}
 							<a href="{$publication->getData('licenseUrl')|escape}" class="copyright">
 								{if $publication->getLocalizedData('copyrightHolder')}
-									{translate key="submission.copyrightStatement" copyrightHolder=$publication->getLocalizedData('copyrightHolder') copyrightYear=$publication->getData('copyrightYear')}
+									{translate|escape key="submission.copyrightStatement" copyrightHolder=$publication->getLocalizedData('copyrightHolder') copyrightYear=$publication->getData('copyrightYear')}
 								{else}
 									{translate key="submission.license"}
 								{/if}

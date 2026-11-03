@@ -13,6 +13,8 @@
  * @brief Class to perform automated reminders for reviewers.
  */
 
+use function PHP81_BC\strftime;
+
 import('lib.pkp.classes.scheduledTask.ScheduledTask');
 
 define('REVIEW_REMIND_AUTO', 'REVIEW_REMIND_AUTO');
@@ -56,6 +58,9 @@ class ReviewReminder extends ScheduledTask {
 				break;
 		}
 		$email = new SubmissionMailTemplate($submission, $emailKey, $context->getPrimaryLocale(), $context, false);
+		if (!$email->isEnabled()) {
+			return;
+		}
 		$email->setContext($context);
 		$email->setReplyTo(null);
 		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());

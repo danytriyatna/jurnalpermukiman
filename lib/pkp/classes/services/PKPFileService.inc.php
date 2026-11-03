@@ -116,6 +116,13 @@ class PKPFileService {
 		if ($this->fs->has($path) && !$this->fs->delete($path)) {
 			throw new Exception("Unable to delete file $id at $path.");
 		}
+
+		// Delete dependent data
+		Capsule::table('submission_file_revisions')
+			->where('file_id', '=', $id)
+			->delete();
+
+		// Delete file
 		Capsule::table('files')
 			->where('file_id', '=', $file->id)
 			->delete();
@@ -161,7 +168,7 @@ class PKPFileService {
 		header("Content-Type: $mimetype");
 		header("Content-Length: $filesize");
 		header('Accept-Ranges: none');
-		header('Content-Disposition: ' . ($inline ? 'inline' : 'attachment') . ";filename=\"$encodedFilename\";filename*=UTF-8''$encodedFilename");
+		header('Content-Disposition: ' . ($inline ? 'inline' : 'attachment') . ";filename=$encodedFilename;filename*=UTF-8''$encodedFilename");
 		header('Cache-Control: private'); // Workarounds for IE weirdness
 		header('Pragma: public');
 
@@ -230,8 +237,6 @@ class PKPFileService {
 			case 'image/x-icon':
 			case 'image/x-ico':
 			case 'image/ico':
-			case 'image/svg+xml':
-			case 'image/svg':
 				return DOCUMENT_TYPE_IMAGE;
 			case 'application/x-shockwave-flash':
 			case 'video/x-flv':

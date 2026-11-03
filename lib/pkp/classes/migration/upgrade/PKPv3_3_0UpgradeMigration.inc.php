@@ -12,9 +12,11 @@
  */
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Builder;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\PostgresConnection;
+use Illuminate\Database\Query\JoinClause;
 
 class PKPv3_3_0UpgradeMigration extends Migration {
 	/**
@@ -120,15 +122,20 @@ class PKPv3_3_0UpgradeMigration extends Migration {
 		Capsule::schema()->table('submissions', function (Blueprint $table) {
 			$table->string('locale', 14)->nullable();
 		});
-		$currentPublicationIds = Capsule::table('submissions')->pluck('current_publication_id');
-		$submissionLocales = Capsule::table('publications')
-			->whereIn('publication_id', $currentPublicationIds)
-			->pluck('locale', 'submission_id');
-		foreach ($submissionLocales as $submissionId => $locale) {
+
+		if (Capsule::connection() instanceof PostgresConnection) {
+			Capsule::connection()->unprepared(
+				'UPDATE submissions AS s
+				SET locale = p.locale
+				FROM publications AS p
+				WHERE p.publication_id = s.current_publication_id'
+			);
+		} else {
 			Capsule::table('submissions as s')
-				->where('s.submission_id', '=', $submissionId)
-				->update(['locale' => $locale]);
+				->join('publications as p', 'p.publication_id', '=', 's.current_publication_id')
+				->update(['s.locale' => Capsule::raw('p.locale')]);
 		}
+
 		Capsule::schema()->table('publications', function (Blueprint $table) {
 			$table->dropColumn('locale');
 		});
@@ -328,24 +335,53 @@ class PKPv3_3_0UpgradeMigration extends Migration {
 		// Create entry in files and revisions tables for every submission_file
 		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
-		$rows = Capsule::table('submission_files')
-			->join('submissions', 'submission_files.submission_id', '=', 'submissions.submission_id')
-			->orderBy('file_id')
-			->orderBy('revision')
+		$rows = Capsule::table('submission_files', 'sf')
+			->join('submissions AS s', 'sf.submission_id', '=', 's.submission_id')
+			->leftJoin('review_round_files AS rrf', function (JoinClause $j) {
+				$j->on('rrf.submission_id', '=', 'sf.submission_id')
+					->on('rrf.file_id', '=', 'sf.file_id')
+					->on('rrf.revision', '=', 'sf.revision');
+			})
+			->orderBy('sf.file_id')
+			->orderBy('rrf.review_round_id')
+			->orderBy('sf.revision')
 			->get([
-				'context_id',
-				'file_id',
-				'revision',
-				'submission_files.submission_id',
-				'genre_id',
-				'file_type',
-				'file_stage',
-				'date_uploaded',
-				'original_file_name'
+				's.context_id',
+				'sf.file_id',
+				'sf.revision',
+				'sf.submission_id',
+				'sf.genre_id',
+				'sf.file_type',
+				'sf.file_stage',
+				'sf.date_uploaded',
+				'sf.original_file_name',
+				'rrf.review_round_id'
 			]);
 		$fileService = Services::get('file');
 		$submissionFileService = Services::get('submissionFile');
+		$lastFileId = null;
+		$lastReviewRoundId = null;
+		$lastInsertedFileId = Capsule::table('submission_files')->max('file_id');
+		$fileIdMap = [];
 		foreach ($rows as $row) {
+			// Due to the new database structure, a file_id that spans across N+1 review rounds needs to be forked to a new file_id, to avoid being consolidated later on the upgrade process, which would cause data loss
+			// Statistics, logs, etc. will keep being referenced by the "main" file_id, which is not ideal, but also not possible to address.
+			// This branch will be accessed once the review_round_id gets changed within a group of the same file_ids
+			if ($lastFileId === $row->file_id && $lastReviewRoundId !== $row->review_round_id) {
+				$fileIdMap = [
+					$row->file_id => ++$lastInsertedFileId,
+					'sourceFileId' => $fileIdMap[$row->file_id] ?? $row->file_id
+				];
+				Capsule::table('submission_file_settings')->insertUsing(
+					['file_id', 'locale', 'setting_name', 'setting_value', 'setting_type'],
+					function (Builder $q) use ($row, $lastInsertedFileId) {
+						$q->from('submission_file_settings')
+							->where('file_id', '=', $row->file_id)
+							->select(Capsule::raw($lastInsertedFileId), 'locale', 'setting_name', 'setting_value', 'setting_type');
+					}
+				);
+			}
+
 			// Reproduces the removed method SubmissionFile::_generateFileName()
 			// genre is %s because it can be blank with review attachments
 			$filename = sprintf(
@@ -371,25 +407,39 @@ class PKPv3_3_0UpgradeMigration extends Migration {
 				'path' => $path,
 				'mimetype' => $row->file_type,
 			], 'file_id');
+			$fileId = $fileIdMap[$row->file_id] ?? $row->file_id;
+			$updateData = ['new_file_id' => $newFileId];
+			// If the file_id was forked into a new one, we've got to update the references at the review_round_files and the submission_file itself
+			if ($fileId !== $row->file_id) {
+				$updateData['file_id'] = $fileId;
+				$updateData['source_file_id'] = $fileIdMap['sourceFileId'];
+				Capsule::table('review_round_files')
+					->where('file_id', '=', $row->file_id)
+					->where('revision', '=', $row->revision)
+					->update(['file_id' => $fileId]);
+			}
 			Capsule::table('submission_files')
 				->where('file_id', $row->file_id)
 				->where('revision', $row->revision)
-				->update(['new_file_id' => $newFileId]);
+				->update($updateData);
 			Capsule::table('submission_file_revisions')->insert([
-				'submission_file_id' => $row->file_id,
+				'submission_file_id' => $fileId,
 				'file_id' => $newFileId,
 			]);
 
 			// Update revision data in event logs
-			$eventLogIds = Capsule::table('event_log_settings')
-				->where('setting_name', '=', 'fileId')
-				->where('setting_value', '=', $row->file_id)
-				->pluck('log_id');
-			Capsule::table('event_log_settings')
-				->whereIn('log_id', $eventLogIds)
-				->where('setting_name', 'fileRevision')
-				->where('setting_value', '=', $row->revision)
-				->update(['setting_value' => $newFileId]);
+			Capsule::table('event_log_settings as els')
+				->join('event_log_settings as file_setting', function (JoinClause $join) use ($row) {
+					$join->on('file_setting.log_id', '=', 'els.log_id')
+						->where('file_setting.setting_name', '=', 'fileId')
+						->where('file_setting.setting_value', '=', (string) $row->file_id);
+				})
+				->where('els.setting_name', 'fileRevision')
+				->where('els.setting_value', '=', $row->revision)
+				->update(['els.setting_value' => $newFileId]);
+
+			$lastFileId = $row->file_id;
+			$lastReviewRoundId = $row->review_round_id;
 		}
 
 		// Collect rows that will be deleted because they are old revisions
@@ -441,7 +491,7 @@ class PKPv3_3_0UpgradeMigration extends Migration {
 			// be unique.
 			$count = Capsule::table('review_round_files')
 				->where('file_id', '=', $row->file_id)
-				->count();
+				->getCountForPagination();
 			if ($count > 1) {
 				Capsule::table('review_round_files')
 					->where('file_id', '=', $row->file_id)

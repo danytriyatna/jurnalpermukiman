@@ -122,11 +122,12 @@ class PKPUserHandler extends APIHandler {
 	public function get($slimRequest, $response, $args) {
 		$request = $this->getRequest();
 
-		if (!empty($args['userId'])) {
-			$user = Services::get('user')->get((int) $args['userId']);
+		$userId = $args['userId'] ?? null;
+		if (Validation::canAdminister($userId, $request->getUser()->getId())) {
+			$user = Services::get('user')->get($userId);
 		}
 
-		if (!$user) {
+		if (!isset($user)) {
 			return $response->withStatus(404)->withJsonError('api.404.resourceNotFound');
 		}
 
@@ -321,7 +322,7 @@ class PKPUserHandler extends APIHandler {
 
 		$report = \Services::get('user')->getReport($params);
 		header('content-type: text/comma-separated-values');
-		header('content-disposition: attachment; filename="user-report-' . date('Y-m-d') . '.csv"');
+		header('content-disposition: attachment; filename=user-report-' . date('Y-m-d') . '.csv');
 		$report->serialize(fopen('php://output', 'w+'));
 		exit;
 	}

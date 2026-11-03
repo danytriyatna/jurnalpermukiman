@@ -1661,6 +1661,15 @@ msgstr "The submission file could not be imported"
 msgid "plugins.importexport.native.error.submissionFileSkipped"
 msgstr "The submission file {$id} was skipped because it is attached to a record that will not be imported, such as a review assignment or discussion."
 
+msgid "plugins.importexport.native.error.submissionFileWithoutRevision"
+msgstr "The submission file {$id} was skipped because it does not have a valid revision."
+
+msgid "plugins.importexport.native.error.submissionFileInvalidFileStage"
+msgstr "The submission file {$id} was skipped because it does not have a valid file stage."
+
+msgid "plugins.importexport.native.error.submissionFileRevisionMissing"
+msgstr "The revision {$revision} of the submission file {$id} was skipped because the file was not found at the path \"{$path}\"."
+
 msgid "plugins.importexport.user.importExportErrors"
 msgstr "Import/Export errors:"
 
@@ -1992,6 +2001,12 @@ msgstr "Submissions Received"
 msgid "stats.name.submissionsSkipped"
 msgstr "Other Submissions"
 
+msgid "stats.name.submissionsInProgress"
+msgstr "Submissions In Progress"
+
+msgid "stats.name.submissionsImported"
+msgstr "Imported Submissions"
+
 msgid "stats.name.submissionsAccepted"
 msgstr "Submissions Accepted"
 
@@ -2027,3 +2042,9 @@ msgstr "Desk Reject Rate"
 
 msgid "stats.name.declinedReviewRate"
 msgstr "After Review Reject Rate"
+
+msgid "manager.setup.competingInterests.requireAuthors"
+msgstr "Require submitting Authors to file a Competing Interest (CI) statement with their submission."
+
+msgid "plugins.importexport.common.validation"
+msgstr "Validate XML before the export and registration."

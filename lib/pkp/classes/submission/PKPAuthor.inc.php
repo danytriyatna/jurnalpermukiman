@@ -77,9 +77,9 @@ class PKPAuthor extends Identity {
 	/**
 	 * @copydoc Identity::getFullName()
 	 */
-	function getFullName($preferred = true, $familyFirst = false, $defaultLocale =  null) {
+	function getFullName($preferred = true, $familyFirst = false, $defaultLocale = null, $preferredLocale = null) {
 		if (!isset($defaultLocale)) $defaultLocale = $this->getSubmissionLocale();
-		return parent::getFullName($preferred, $familyFirst, $defaultLocale);
+		return parent::getFullName($preferred, $familyFirst, $defaultLocale, $preferredLocale);
 	}
 
 	//
@@ -222,6 +222,31 @@ class PKPAuthor extends Identity {
 		$userGroup = $this->getUserGroup();
 		return $userGroup->getLocalizedName();
 	}
+
+	/**
+	 * Get competing interests.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getCompetingInterests($locale) {
+		return $this->getData('competingInterests', $locale);
+	}
+
+	/**
+	 * Set competing interests.
+	 * @param $competingInterests string
+	 * @param $locale string
+	 */
+	function setCompetingInterests($competingInterests, $locale) {
+		$this->setData('competingInterests', $competingInterests, $locale);
+	}
+
+	/**
+	 * Get a localized version competing interest statement
+	 * @return string
+	 */
+	function getLocalizedCompetingInterests() {
+		return $this->getLocalizedData('competingInterests');
+	}
+
 }
-
-

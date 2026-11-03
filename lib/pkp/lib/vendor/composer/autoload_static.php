@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6
+class ComposerStaticInit15f56be5d3fc4ed369ed7e2d98d50161
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -34,6 +34,7 @@ class ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '9e71c1459ef1226520e4b26dac3a180d' => __DIR__ . '/..' . '/php81_bc/strftime/src/php-8.1-strftime.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -99,6 +100,7 @@ class ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'PhpOption\\' => 10,
+            'PKP\\' => 4,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
         'O' => 
@@ -328,6 +330,10 @@ class ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
+        'PKP\\' => 
+        array (
+            0 => __DIR__ . '/../../..' . '/classes',
+        ),
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
@@ -468,7 +474,6 @@ class ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'Smarty' => __DIR__ . '/..' . '/smarty/smarty/libs/Smarty.class.php',
-        'SmartyBC' => __DIR__ . '/..' . '/smarty/smarty/libs/SmartyBC.class.php',
         'SmartyCompilerException' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smartycompilerexception.php',
         'SmartyException' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smartyexception.php',
         'Smarty_Autoloader' => __DIR__ . '/..' . '/smarty/smarty/libs/Autoloader.php',
@@ -508,7 +513,6 @@ class ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6
         'Smarty_Internal_Compile_If' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_if.php',
         'Smarty_Internal_Compile_Ifclose' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_if.php',
         'Smarty_Internal_Compile_Include' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_include.php',
-        'Smarty_Internal_Compile_Include_Php' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_include_php.php',
         'Smarty_Internal_Compile_Insert' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_insert.php',
         'Smarty_Internal_Compile_Ldelim' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_ldelim.php',
         'Smarty_Internal_Compile_Make_Nocache' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_make_nocache.php',
@@ -521,7 +525,6 @@ class ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6
         'Smarty_Internal_Compile_Private_Modifier' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_private_modifier.php',
         'Smarty_Internal_Compile_Private_Object_Block_Function' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_private_object_block_function.php',
         'Smarty_Internal_Compile_Private_Object_Function' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_private_object_function.php',
-        'Smarty_Internal_Compile_Private_Php' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_private_php.php',
         'Smarty_Internal_Compile_Private_Print_Expression' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_private_print_expression.php',
         'Smarty_Internal_Compile_Private_Registered_Block' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_private_registered_block.php',
         'Smarty_Internal_Compile_Private_Registered_Function' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_compile_private_registered_function.php',
@@ -602,7 +605,6 @@ class ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6
         'Smarty_Internal_Resource_Extends' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_resource_extends.php',
         'Smarty_Internal_Resource_File' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_resource_file.php',
         'Smarty_Internal_Resource_Php' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_resource_php.php',
-        'Smarty_Internal_Resource_Registered' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_resource_registered.php',
         'Smarty_Internal_Resource_Stream' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_resource_stream.php',
         'Smarty_Internal_Resource_String' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_resource_string.php',
         'Smarty_Internal_Runtime_CacheModify' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_runtime_cachemodify.php',
@@ -649,10 +651,10 @@ class ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit54803414b956c00c155bb1ec5ab8b6d6::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit15f56be5d3fc4ed369ed7e2d98d50161::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit15f56be5d3fc4ed369ed7e2d98d50161::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit15f56be5d3fc4ed369ed7e2d98d50161::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit15f56be5d3fc4ed369ed7e2d98d50161::$classMap;
 
         }, null, ClassLoader::class);
     }

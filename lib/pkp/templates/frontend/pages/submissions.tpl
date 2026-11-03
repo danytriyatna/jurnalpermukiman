@@ -63,14 +63,14 @@
 	{/if}
 
 	{foreach from=$sections item="section"}
-		{if $section->getLocalizedPolicy()}
+		{if !$section->getIsInactive() && $section->getLocalizedPolicy()}
 			<div class="section_policy">
 				<h2>{$section->getLocalizedTitle()|escape}</h2>
 				{$section->getLocalizedPolicy()}
 				{if $isUserLoggedIn}
 					{capture assign="sectionSubmissionUrl"}{url page="submission" op="wizard" sectionId=$section->getId()}{/capture}
 					<p>
-						{translate key="about.onlineSubmissions.submitToSection" name=$section->getLocalizedTitle() url=$sectionSubmissionUrl}
+						{translate key="about.onlineSubmissions.submitToSection" name=$section->getLocalizedTitle()|escape url=$sectionSubmissionUrl}
 					</p>
 				{/if}
 			</div>

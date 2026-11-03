@@ -17,6 +17,10 @@
 		{translate key="user.register"}
 	</h1>
 
+	<p>
+		{translate key="common.requiredField"}
+	</p>
+
 	<form class="cmp_form register" id="register" method="post" action="{url op="register"}">
 		{csrf}
 
@@ -91,7 +95,7 @@
 								<span class="label">
 									{translate key="user.interests"}
 								</span>
-								<input type="text" name="interests" id="interests" value="{$interests|escape}">
+								<input type="text" name="interests" id="interests" value="{$interests|default:""|escape}">
 							</label>
 						</div>
 					</div>
@@ -110,7 +114,7 @@
 						<span class="label">
 							{translate key="user.register.noContextReviewerInterests"}
 						</span>
-						<input type="text" name="interests" id="interests" value="{$interests|escape}">
+						<input type="text" name="interests" id="interests" value="{$interests|default:""|escape}">
 					</label>
 				</div>
 			</div>

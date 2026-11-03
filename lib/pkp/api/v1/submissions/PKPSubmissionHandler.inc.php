@@ -38,7 +38,6 @@ class PKPSubmissionHandler extends APIHandler {
 
 	/** @var array Handlers that must be authorized to write to a publication */
 	public $requiresPublicationWriteAccess = [
-		'addPublication',
 		'editPublication',
 	];
 
@@ -699,12 +698,13 @@ class PKPSubmissionHandler extends APIHandler {
 
 		// Prevent users from editing publications if they do not have permission. Except for admins.
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-		if (!in_array(ROLE_ID_SITE_ADMIN, $userRoles) && !Services::get('submission')->canEditPublication($submission->getId(), $currentUser->getId())) {
+		if (!in_array(ROLE_ID_SITE_ADMIN, $userRoles) && !Services::get('submission')->canEditPublication($submission, $currentUser->getId())) {
 			return $response->withStatus(403)->withJsonError('api.submissions.403.userCantEdit');
 		}
 
 		$params = $this->convertStringsToSchema(SCHEMA_PUBLICATION, $slimRequest->getParsedBody());
 		$params['id'] = $publication->getId();
+		$params['submissionId'] = $submission->getId();
 
 		// Don't allow the status to be modified through the API. The `/publish` and /unpublish endpoints
 		// should be used instead.

@@ -58,7 +58,7 @@ class UserXmlPKPUserFilter extends NativeImportFilter {
 		assert(count($importFilters)==1); // Assert only a single unserialization filter
 		$importFilter = array_shift($importFilters);
 		$importFilter->setDeployment($this->getDeployment());
-		$userGroupDoc = new DOMDocument();
+		$userGroupDoc = new DOMDocument('1.0', 'utf-8');
 		$userGroupDoc->appendChild($userGroupDoc->importNode($node, true));
 		return $importFilter->execute($userGroupDoc);
 	}
@@ -238,7 +238,9 @@ class UserXmlPKPUserFilter extends NativeImportFilter {
 					'userFullName' => htmlspecialchars($user->getFullName()),
 				]);
 				$mail->addRecipient($user->getEmail(), $user->getFullName());
-				$mail->send();
+				if ($mail->isEnabled()) {
+					$mail->send();
+				}
 			}
 		} else {
 			// the username and the email do not match to the one and the same existing user

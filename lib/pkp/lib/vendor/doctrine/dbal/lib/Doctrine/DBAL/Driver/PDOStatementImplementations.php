@@ -33,6 +33,7 @@ if (PHP_VERSION_ID >= 80000) {
          *
          * @return mixed[]
          */
+        #[\ReturnTypeWillChange]
         public function fetchAll($mode = null, ...$args)
         {
             return $this->doFetchAll($mode, ...$args);

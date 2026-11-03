@@ -6,10 +6,10 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/seboettg/citeproc-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/seboettg/citeproc-php/code-structure/master/code-coverage/src/)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/seboettg/citeproc-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/seboettg/citeproc-php/?branch=master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/seboettg/citeproc-php/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
-![PHP](https://img.shields.io/badge/PHP-7.1-green.svg?style=flat)
-![PHP](https://img.shields.io/badge/PHP-7.2-green.svg?style=flat)
 ![PHP](https://img.shields.io/badge/PHP-7.3-green.svg?style=flat)
 ![PHP](https://img.shields.io/badge/PHP-7.4-green.svg?style=flat)
+![PHP](https://img.shields.io/badge/PHP-8.0-green.svg?style=flat)
+![PHP](https://img.shields.io/badge/PHP-8.1-green.svg?style=flat)
 
 citeproc-php is a full-featured CSL 1.0.1 processor that renders bibliographic metadata into html formatted citations or bibliographies using CSL stylesheets. citeproc-php renders bibliographies as well as citations (except of [Citation-specific Options](http://docs.citationstyles.org/en/stable/specification.html#citation-specific-options)).
 
@@ -55,11 +55,11 @@ Add the following lines to your `composer.json` file in order to add required pr
         {
             "type": "package",
             "package": {
-                "name": "citation-style-language/styles-distribution",
+                "name": "citation-style-language/styles",
                 "version":"1.0.0",
                 "source": {
                     "type": "git",
-                    "url": "https://github.com/citation-style-language/styles-distribution.git",
+                    "url": "https://github.com/citation-style-language/styles.git",
                     "reference": "master"
                 }
             }
@@ -67,7 +67,7 @@ Add the following lines to your `composer.json` file in order to add required pr
     ],
     "require": {
         "citation-style-language/locales":"@dev",
-        "citation-style-language/styles-distribution":"@dev",
+        "citation-style-language/styles":"@dev",
         "seboettg/citeproc-php": "^2"
     }
 }
@@ -178,7 +178,7 @@ Since version 2.1 you have also the possibility to apply a filter so that just s
 ```php
 <p>This a wise sentence 
 <?php echo $citeProc->render($data, "citation", json_decode('[{"id":"item-1"}]')); ?>.</p>
-<p>This is the most wise setence 
+<p>This is the most wise sentence 
 <?php echo $citeProc->render($data, "citation", json_decode('[{"id":"item-1"},{"id":"ITEM-2"}]')); ?>.</p>
 ```
 

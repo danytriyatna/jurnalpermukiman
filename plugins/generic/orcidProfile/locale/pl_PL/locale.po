@@ -94,7 +94,7 @@ msgstr "Odmówiono dostępu do ORCID w"
 
 msgid "plugins.generic.orcidProfile.author.accessTokenStored"
 msgstr ""
-"Dostęp do rekordu ORCID przyznany z zakresem {$ orcidAccessScope}, ważny do"
+"Dostęp do rekordu ORCID przyznany z zakresem {$orcidAccessScope}, ważny do"
 
 msgid "plugins.generic.orcidProfile.author.requestAuthorization"
 msgstr "Wyślij email z prośbą o autoryzację"
@@ -179,7 +179,7 @@ msgid "plugins.generic.orcidProfile.about.display.title"
 msgstr "Gdzie wyświetlany jest ORCID ID?"
 
 msgid "plugins.generic.orcidProfile.about.display"
-msgstr "Powiadamianie o używaniu autoryzowanego ID na twoim koncie jest zaznaczone przez wyświetlanie ikony <img src=\"https://orcid.org/sites/default/files/images/orcid_16x16(1).gif\" alt=\"iD icon\" width=\"16\" height=\"16\" border=\"0\"> przy Twoim profilu użytkownika oraz na stronie artykułu. Dowiedz się więcej <a href=\"https://orcid.org/blog/2013/02/22/how-should-orcid-id-be-displayed\">Jak ORCID ID powinien być wyświetlany?</a>"
+msgstr "Powiadamianie o używaniu autoryzowanego ID na twoim koncie jest zaznaczone przez wyświetlanie ikony <img src=\"https://orcid.org/sites/default/files/images/orcid_16x16.png\" alt=\"iD icon\" width=\"16\" height=\"16\" border=\"0\"> przy Twoim profilu użytkownika oraz na stronie artykułu. Dowiedz się więcej <a href=\"https://orcid.org/blog/2013/02/22/how-should-orcid-id-be-displayed\">Jak ORCID ID powinien być wyświetlany?</a>"
 
 msgid "plugins.generic.orcidProfile.about.howAndWhyMemberAPI"
 msgstr ""

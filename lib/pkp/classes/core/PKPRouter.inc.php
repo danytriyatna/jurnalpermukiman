@@ -76,6 +76,8 @@ class PKPRouter {
 	var $_contexts = array();
 	/** @var PKPHandler Handler class */
 	var $_handler;
+	/** @var ?string */
+	var $_indexUrl;
 
 	/**
 	 * Constructor
@@ -542,7 +544,7 @@ class PKPRouter {
 						$additionalParameters[] = $key.($escape?'%5B%5D=':'[]=').rawurlencode($element);
 					}
 				} else {
-					$additionalParameters[] = $key.'='.rawurlencode($value);
+					$additionalParameters[] = $key.'='.rawurlencode($value ?? '');
 				}
 			}
 		}

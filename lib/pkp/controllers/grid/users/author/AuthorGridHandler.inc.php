@@ -256,7 +256,7 @@ class AuthorGridHandler extends GridHandler {
 		if ($submission->getDateSubmitted() == null) return true;
 
 		// The user may not be allowed to edit the metadata
-		if (Services::get('submission')->canEditPublication($submission->getId(), $user->getId())) {
+		if (Services::get('submission')->canEditPublication($submission, $user->getId())) {
 			return true;
 		}
 
@@ -393,6 +393,8 @@ class AuthorGridHandler extends GridHandler {
 		$authorDao->deleteById($authorId);
 		$json = DAO::getDataChangedEvent($authorId);
 		$json->setGlobalEvent('authorsUpdated');
+		$publication = $this->getPublication();
+		$publication = Services::get('publication')->edit($publication, [], Application::get()->getRequest());
 		return $json;
 	}
 

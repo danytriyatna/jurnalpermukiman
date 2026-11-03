@@ -17,6 +17,7 @@
 namespace PKP\Services\QueryBuilders;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\Query\Builder;
 
 abstract class PKPStatsEditorialQueryBuilder {
 
@@ -94,7 +95,7 @@ abstract class PKPStatsEditorialQueryBuilder {
 			$q->where('s.date_submitted', '<=', $this->dateEnd);
 		}
 
-		return $q->count();
+		return $q->getCountForPagination();
 	}
 
 	/**
@@ -164,7 +165,7 @@ abstract class PKPStatsEditorialQueryBuilder {
 	public function countByStatus($status) {
 		return $this->_getObject()
 			->whereIn('s.status', (array) $status)
-			->count();
+			->getCountForPagination();
 	}
 
 	/**
@@ -179,7 +180,7 @@ abstract class PKPStatsEditorialQueryBuilder {
 		return $this->_getObject()
 			->where('s.status', '=', STATUS_QUEUED)
 			->whereIn('s.stage_id', $stages)
-			->count();
+			->getCountForPagination();
 	}
 
 	/**
@@ -213,7 +214,7 @@ abstract class PKPStatsEditorialQueryBuilder {
 			}
 		}
 
-		return $q->count();
+		return $q->getCountForPagination();
 	}
 
 	/**
@@ -316,14 +317,11 @@ abstract class PKPStatsEditorialQueryBuilder {
 	}
 
 	/**
-	 * Generate a query object based on the configured conditions.
-	 *
-	 * The dateStart and dateEnd filters are not handled here because
-	 * the dates must be applied differently for each set of data.
+	 * Generate a base query object with context and section filters.
 	 *
 	 * @return QueryObject
 	 */
-	protected function _getObject() {
+	protected function _getBaseQuery(): Builder {
 		$q = Capsule::table('submissions as s');
 		if (!empty($this->contextIds)) {
 			$q->whereIn('s.context_id', $this->contextIds);
@@ -334,25 +332,42 @@ abstract class PKPStatsEditorialQueryBuilder {
 				->whereNotNull('ps.publication_id');
 		}
 
+		// First publication included to flag imported submissions through heuristics
+		$q->leftJoin('publications as pi', function($q) {
+			$q->where('pi.publication_id', function($q) {
+				$q->from('publications as pi2')
+					->whereColumn('pi2.submission_id', '=', 's.submission_id')
+					->where('pi2.status', '=', STATUS_PUBLISHED)
+					->orderBy('pi2.date_published', 'ASC')
+					->limit(1)
+					->select('pi2.publication_id');
+			});
+		});
+
+		return $q;
+	}
+
+	/**
+	 * Generate a query object based on the configured conditions.
+	 * Incomplete and imported submissions are excluded.
+	 *
+	 * The dateStart and dateEnd filters are not handled here because
+	 * the dates must be applied differently for each set of data.
+	 *
+	 * @return QueryObject
+	 */
+	protected function _getObject() {
+		$q = $this->_getBaseQuery();
+
 		// Exclude incomplete submissions
 		$q->where('s.submission_progress', '=', 0);
 
 		// Exclude submissions when the date_submitted is later
 		// than the first date_published. This prevents imported
 		// submissions from being counted in editorial stats.
-		$q->leftJoin('publications as pi', function($q) {
-			$q->where('pi.publication_id', function($q) {
-				$q->from('publications as pi2')
-					->where('pi2.submission_id', '=', Capsule::raw('s.submission_id'))
-					->where('pi2.status', '=', STATUS_PUBLISHED)
-					->orderBy('pi2.date_published', 'ASC')
-					->limit(1)
-					->select('pi2.publication_id');
-			});
-		})
-		->where(function($q) {
+		$q->where(function($q) {
 			$q->whereNull('pi.date_published')
-				->orWhere('s.date_submitted', '<', Capsule::raw('pi.date_published'));
+				->orWhere(Capsule::raw('CAST(s.date_submitted AS DATE)'), '<=', Capsule::raw('pi.date_published'));
 		});
 
 		\HookRegistry::call('Stats::editorial::queryObject', array(&$q, $this));
@@ -404,19 +419,48 @@ abstract class PKPStatsEditorialQueryBuilder {
 	}
 
 	/**
+	 * Get the count of imported submissions.
+	 * Not counted by static::countSubmissionsReceived().
+	 *
+	 * @return int
+	 */
+	public function countImported() {
+		return $this->_getBaseQuery()
+			->where(Capsule::raw('CAST(s.date_submitted AS DATE)'), '>', Capsule::raw('pi.date_published'))
+			->when($this->dateStart, function (Builder $q) {
+				$q->where('s.date_submitted', '>=', $this->dateStart);
+			})
+			->when($this->dateEnd, function (Builder $q) {
+				$q->where('s.date_submitted', '<=', $this->dateEnd);
+			})
+			->getCountForPagination();
+	}
+
+	/**
+	 * Get the count of incomplete submissions.
+	 * Not counted by static::countSubmissionsReceived().
+	 *
+	 * @return int
+	 */
+	public function countInProgress() {
+		return $this->_getBaseQuery()
+			->where('s.submission_progress', '<>', 0)
+			->when($this->dateStart, function (Builder $q) {
+				$q->where('s.date_submitted', '>=', $this->dateStart);
+			})
+			->when($this->dateEnd, function (Builder $q) {
+				$q->where('s.date_submitted', '<=', $this->dateEnd);
+			})
+			->getCountForPagination();
+	}
+
+	/**
 	 * Get the count of submissions skipped by the other statistics
 	 *
 	 * @return int
 	 */
 	public function countSkipped() {
-		$query = $this->_getObject()
-			->whereColumn('s.submission_id', '=', 'parent.submission_id');
-
-		// Select rows which are not present in the default query
-		$skippedQuery = Capsule::table('submissions AS parent')
-			->addWhereExistsQuery($query, 'and',  true);
-
-		return $skippedQuery->count();
+		return $this->countInProgress() + $this->countImported();
 	}
 
 	/**

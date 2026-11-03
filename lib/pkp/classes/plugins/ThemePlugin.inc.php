@@ -461,6 +461,32 @@ abstract class ThemePlugin extends LazyLoadPlugin {
 	}
 
 	/**
+	 * Get the localized value of an option
+	 *
+	 * Modelled on DataObject::getLocalizedData()
+	 *
+	 * @param string $name The name of the option
+	 */
+	public function getLocalizedOption($name)
+	{
+		$value = $this->getOption($name);
+
+		if (!is_array($value)) {
+			return null;
+		}
+
+		$localePrecedence = AppLocale::getLocalePrecedence();
+		foreach ($localePrecedence as $localeKey) {
+			if (is_array($value) && !empty($value[$localeKey])) {
+				return $value[$localeKey];
+			}
+		}
+
+		// Fallback: Get the first available piece of data
+		return $value[array_key_first($value)];
+	}
+
+	/**
 	 * Get an option's configuration settings
 	 *
 	 * This retrives option settings for any option attached to this theme or
@@ -552,7 +578,7 @@ abstract class ThemePlugin extends LazyLoadPlugin {
 		foreach ($this->options as $optionName => $optionConfig) {
 			$value = isset($values[$optionName]) ? $values[$optionName] : null;
 			// Convert values stored in the db to the type of the default value
-			if (!is_null($optionConfig->default)) {
+			if ($value !== null && $optionConfig->default !== null) {
 				switch (gettype($optionConfig->default)) {
 					case 'boolean':
 						$value = !$value || $value === 'false' ? false : true;
@@ -561,9 +587,25 @@ abstract class ThemePlugin extends LazyLoadPlugin {
 						$value = (int) $value;
 						break;
 					case 'array':
-						$value = $value === null ? [] : unserialize($value);
+						try {
+							$value =  json_decode($value, true, 512, JSON_THROW_ON_ERROR);
+						} catch (Exception $e) {
+							// FIXME: pkp/pkp-lib#6250 Remove after 3.3.x upgrade code is removed (see also pkp/pkp-lib#5772)
+							$value = unserialize($value);
+						}
+						$value = is_array($value) ? $value : [];
 						break;
 				}
+			}
+			// If the value isn't null and it's a multilingual field, then we must ensure it's an array
+			if ($optionConfig->isMultilingual && $value !== null && !is_array($value)) {
+				try {
+					$value =  json_decode((string) $value, true, 512, JSON_THROW_ON_ERROR);
+				} catch (Exception $e) {
+					// FIXME: pkp/pkp-lib#6250 Remove after 3.3.x upgrade code is removed (see also pkp/pkp-lib#5772)
+					$value = unserialize($value);
+				}
+				$value = is_array($value) ? $value : [];
 			}
 			$return[$optionName] = $value;
 		}

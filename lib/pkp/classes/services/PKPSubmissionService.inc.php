@@ -15,6 +15,8 @@
 
 namespace PKP\Services;
 
+use function PHP81_BC\strftime;
+
 use \Core;
 use \DBResultRange;
 use \Application;
@@ -100,8 +102,8 @@ abstract class PKPSubmissionService implements EntityPropertyInterface, EntityRe
 		if (isset($args['offset'])) unset($args['offset']);
 		$submissionListQO = $this->getQueryBuilder($args)->getQuery();
 		$submissionDao = DAORegistry::getDAO('SubmissionDAO'); /* @var $submissionDao SubmissionDAO */
-		$result = $submissionDao->retrieveRange($sql = $submissionListQO->toSql(), $params = $submissionListQO->getBindings(), $range);
-		$queryResults = new DAOResultFactory($result, $submissionDao, '_fromRow', [], $sql, $params, $range);
+		$result = $submissionDao->retrieveRange($submissionListQO->toSql(), $submissionListQO->getBindings(), $range);
+		$queryResults = new DAOResultFactory($result, $submissionDao, '_fromRow', [], $submissionListQO, [], $range);
 
 		return $queryResults->toIterator();
 	}
@@ -249,7 +251,7 @@ abstract class PKPSubmissionService implements EntityPropertyInterface, EntityRe
 			}
 		}
 
-		$values = Services::get('schema')->addMissingMultilingualValues(SCHEMA_SUBMISSION, $values, $request->getContext()->getSupportedSubmissionLocales());
+		$values = Services::get('schema')->addMissingMultilingualValues(SCHEMA_SUBMISSION, $values, $submissionContext->getSupportedSubmissionLocales());
 
 		\HookRegistry::call('Submission::getProperties::values', array(&$values, $submission, $props, $args));
 
@@ -316,6 +318,9 @@ abstract class PKPSubmissionService implements EntityPropertyInterface, EntityRe
 			$request = \Application::get()->getRequest();
 			$currentUser = $request->getUser();
 			$context = $request->getContext();
+			if (!$context || $context->getId() != $submission->getData('contextId')) {
+				$context = Services::get('context')->get($submission->getData('contextId'));
+			}
 			$dateFormatShort = $context->getLocalizedDateFormatShort();
 			$due = is_null($reviewAssignment->getDateDue()) ? null : strftime($dateFormatShort, strtotime($reviewAssignment->getDateDue()));
 			$responseDue = is_null($reviewAssignment->getDateResponseDue()) ? null : strftime($dateFormatShort, strtotime($reviewAssignment->getDateResponseDue()));
@@ -395,6 +400,9 @@ abstract class PKPSubmissionService implements EntityPropertyInterface, EntityRe
 
 		$currentUser = \Application::get()->getRequest()->getUser();
 		$context = \Application::get()->getRequest()->getContext();
+		if (!$context || $context->getId() != $submission->getData('contextId')) {
+			$context = Services::get('context')->get($submission->getData('contextId'));
+		}
 		$contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
 
 		$stages = array();
@@ -784,15 +792,69 @@ abstract class PKPSubmissionService implements EntityPropertyInterface, EntityRe
 	}
 
 	/**
+	 * Check if a user can change the representations (galleys, publication formats)
+	 * of a publication and their files
+	 *
+	 * Editorial users keep the access their stage assignments give them. A user who
+	 * takes part in the submission only as an author may change them while the
+	 * submission has not been submitted, and after that only when they may edit the
+	 * publication's metadata and it is not published or scheduled.
+	 *
+	 * @param Publication $publication
+	 * @param User $user
+	 * @return boolean
+	 */
+	public function canEditRepresentations($publication, $user) {
+		$submission = $this->get($publication->getData('submissionId'));
+		if (!$submission) return false;
+
+		if ($user->hasRole([ROLE_ID_SITE_ADMIN], CONTEXT_SITE)
+			|| $this->_canUserAccessUnassignedSubmissions($submission->getData('contextId'), $user->getId())) {
+			return true;
+		}
+
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$stageAssignments = $stageAssignmentDao->getBySubmissionAndUserIdAndStageId($submission->getId(), $user->getId(), null)->toArray();
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		foreach ($stageAssignments as $stageAssignment) {
+			$userGroup = $userGroupDao->getById($stageAssignment->getUserGroupId());
+			if ($userGroup && $userGroup->getRoleId() != ROLE_ID_AUTHOR) return true;
+		}
+
+		if (!$submission->getData('dateSubmitted')) return true;
+
+		if (in_array($publication->getData('status'), [STATUS_PUBLISHED, STATUS_SCHEDULED])) return false;
+
+		return $this->canEditPublication($submission, $user->getId());
+	}
+
+	/**
 	 * Check if a user can edit a publications metadata
 	 *
-	 * @param int $submissionId
+	 * @param Submission $submission
 	 * @param int $userId
 	 * @return boolean
 	 */
-	public function canEditPublication($submissionId, $userId) {
+	public function canEditPublication($submission, $userId) {
+		$contextId = $submission->getData('contextId');
 		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$stageAssignments = $stageAssignmentDao->getBySubmissionAndUserIdAndStageId($submissionId, $userId, null)->toArray();
+		$stageAssignments = $stageAssignmentDao->getBySubmissionAndUserIdAndStageId($submission->getId(), $userId, null)->toArray();
+		$userIsAuthor = !empty($stageAssignmentDao->getBySubmissionAndRoleId($submission->getId(), ROLE_ID_AUTHOR, null, $userId)->toArray());
+		// If the submission is rejected and the user's only role is an author
+		if ($submission->getStatus() == STATUS_DECLINED && $userIsAuthor) {
+			$userIsOnlyAuthorOrReader = true;
+			$roleDao = DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
+			$roles = $roleDao->getByUserId($userId, $contextId);
+			foreach ($roles as $role) {
+				if ($role->getRoleId() != ROLE_ID_AUTHOR && $role->getRoleId() != ROLE_ID_READER) {
+					$userIsOnlyAuthorOrReader = false;
+					break;
+				}
+			}
+			if ($userIsOnlyAuthorOrReader) {
+				return false;
+			}
+		}
 		// Check for permission from stage assignments
 		foreach ($stageAssignments as $stageAssignment) {
 			if ($stageAssignment->getCanChangeMetadata()) {
@@ -800,8 +862,7 @@ abstract class PKPSubmissionService implements EntityPropertyInterface, EntityRe
 			}
 		}
 		// If user has no stage assigments, check if user can edit anyway ie. is manager
-		$context = Application::get()->getRequest()->getContext();
-		if (count($stageAssignments) == 0 && $this->_canUserAccessUnassignedSubmissions($context->getId(), $userId)) {
+		if (count($stageAssignments) == 0 && $this->_canUserAccessUnassignedSubmissions($contextId, $userId)) {
 			return true;
 		}
 		// Else deny access

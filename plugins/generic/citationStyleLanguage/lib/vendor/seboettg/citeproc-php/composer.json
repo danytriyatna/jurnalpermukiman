@@ -6,7 +6,7 @@
         {
             "name": "Sebastian Böttger",
             "email": "seboettg@gmail.com",
-            "homepage": "http://sebastianboettger.net",
+            "homepage": "https://sebastianboettger.net",
             "role": "Developer"
         }
     ],
@@ -23,34 +23,36 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Seboettg\\CiteProc\\": "tests/src/"
+            "Seboettg\\CiteProc\\Test\\": "tests/src/"
         }
     },
     "require": {
-        "seboettg/collection": "^2.1",
-        "myclabs/php-enum": "^1.5",
-        "symfony/polyfill-mbstring": "^1.10",
+        "seboettg/collection": ">=v3.1.0",
+        "myclabs/php-enum": "^1.8",
         "ext-simplexml": "*",
         "ext-json": "*",
-        "ext-intl": "*",
-        "php": ">=7.1"
+        "php": ">=7.3",
+        "ext-mbstring": "*",
+        "ext-intl": "*"
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^1",
-        "phpunit/phpunit": "^7.5",
+        "phpunit/phpunit": "^8.5",
         "squizlabs/php_codesniffer": "^3.5",
         "phpmd/phpmd": "^2.8"
     },
-
+    "suggest": {
+      "symfony/polyfill-mbstring": "^1.10"
+    },
     "scripts": {
         "post-install-cmd": [
-            "./install.sh styles-distribution",
+            "./install.sh styles",
             "./install.sh locales",
             "@compile-test-cases",
             "chmod +x vendor/bin/phpunit"
         ],
         "post-update-cmd": [
-            "./install.sh styles-distribution",
+            "./install.sh styles",
             "./install.sh locales",
             "@compile-test-cases",
             "chmod +x vendor/bin/phpunit"

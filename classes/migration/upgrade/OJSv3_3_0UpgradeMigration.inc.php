@@ -105,8 +105,18 @@ class OJSv3_3_0UpgradeMigration extends Migration {
 				Capsule::table($tableName)->where('setting_type', 'object')->get()->each(function ($row) use ($tableName) {
 					$this->_toJSON($row, $tableName, ['plugin_name', 'context_id', 'setting_name'], 'setting_value');
 				});
+			} elseif ($tableName == 'review_form_element_settings') {
+				Capsule::table('review_form_element_settings')->where('setting_type', 'object')->get()->each(function ($row) {
+					$this->_toJSON($row, 'review_form_element_settings', ['setting_name', 'locale', 'review_form_element_id'], 'setting_value');
+				});
 			} else {
-				Capsule::table($tableName)->where('setting_type', 'object')->get()->each(function ($row) use ($tableName) {
+				try {
+					$settings = Capsule::table($tableName, 's')->where('setting_type', 'object')->get(['setting_name', 'setting_value', 's.*']);
+				} catch (Exception $e) {
+					error_log("Failed to migrate the settings entity \"{$tableName}\"\n" . $e);
+					continue;
+				}
+				$settings->each(function ($row) use ($tableName) {
 					$this->_toJSON($row, $tableName, ['setting_name', 'locale'], 'setting_value');
 				});
 			}
@@ -152,17 +162,37 @@ class OJSv3_3_0UpgradeMigration extends Migration {
 		if (is_array($oldValue) && $this->_isNumerical($oldValue)) $oldValue = array_values($oldValue);
 		$newValue = json_encode($oldValue, JSON_UNESCAPED_UNICODE); // don't convert utf-8 characters to unicode escaped code
 
-		$id = array_key_first((array)$row); // get first/primary key column
+		// Ensure ID fields are included on the filter to avoid updating similar rows
+		$tableDetails = Capsule::connection()->getDoctrineSchemaManager()->listTableDetails($tableName);
+		$primaryKeys = [];
+		try {
+			$primaryKeys = $tableDetails->getPrimaryKeyColumns();
+		} catch (Exception $e) {
+			foreach ($tableDetails->getIndexes() as $index) {
+					if($index->isPrimary() || $index->isUnique()) {
+						$primaryKeys = $index->getColumns();
+						break;
+					}
+				}
+		}
 
-		// Remove empty filters
-		$searchBy = array_filter($searchBy, function ($item) use ($row) {
-			if (empty($row->{$item})) return false;
-			return true;
-		});
+		if (!count($primaryKeys)) {
+			foreach (array_keys(get_object_vars($row)) as $column) {
+				if (substr($column, -3) ==  '_id') {
+					$primaryKeys[] = $column;
+				}
+			}
+		}
 
-		$queryBuilder = Capsule::table($tableName)->where($id, $row->{$id});
-		foreach ($searchBy as $key => $column) {
-			$queryBuilder = $queryBuilder->where($column, $row->{$column});
+		$searchBy = array_merge($searchBy, $primaryKeys);
+
+		$queryBuilder = Capsule::table($tableName);
+		foreach (array_unique($searchBy) as $column) {
+			if ($row->{$column} !== null) {
+				$queryBuilder->where($column, $row->{$column});
+			} else {
+				$queryBuilder->whereNull($column);
+			}
 		}
 		$queryBuilder->update([$valueToConvert => $newValue]);
 	}

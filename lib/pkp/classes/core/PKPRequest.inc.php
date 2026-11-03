@@ -148,7 +148,7 @@ class PKPRequest {
 	 * @param $allowProtocolRelative boolean True iff protocol-relative URLs are allowed
 	 * @return string
 	 */
-	function getBaseUrl($allowProtocolRelative = true) {
+	function getBaseUrl($allowProtocolRelative = false) {
 		$serverHost = $this->getServerHost(false);
 		if ($serverHost !== false) {
 			// Auto-detection worked.
@@ -290,7 +290,8 @@ class PKPRequest {
 		}
 
 		// Filter out disable_path_info reserved parameters
-		foreach (array_merge(Application::getContextList(), array('path', 'page', 'op')) as $varName) {
+		$application = PKPApplication::getApplication();
+		foreach (array_merge($application->getContextList(), array('path', 'page', 'op')) as $varName) {
 			if (isset($queryArray[$varName])) unset($queryArray[$varName]);
 		}
 

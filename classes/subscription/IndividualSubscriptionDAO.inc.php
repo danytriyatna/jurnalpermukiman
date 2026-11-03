@@ -237,12 +237,10 @@ class IndividualSubscriptionDAO extends SubscriptionDAO {
 	function deleteByJournalId($journalId) {
 		$result = $this->retrieve('SELECT subscription_id FROM subscriptions WHERE journal_id = ?', [(int) $journalId]);
 
-		$returner = true;
 		foreach ($result as $row) {
-			$returner = $this->deleteById($row->subscription_id);
-			if (!$returner) break;
+			$this->deleteById($row->subscription_id);
 		}
-		return $returner;
+		return true;
 	}
 
 	/**
@@ -253,12 +251,10 @@ class IndividualSubscriptionDAO extends SubscriptionDAO {
 	function deleteByUserId($userId) {
 		$result = $this->retrieve('SELECT subscription_id FROM subscriptions WHERE user_id = ?', [(int) $userId]);
 
-		$returner = true;
 		foreach ($result as $row) {
-			$returner = $this->deleteById($row->subscription_id);
-			if (!$returner) break;
+			$this->deleteById($row->subscription_id);
 		}
-		return $returner;
+		return true;
 	}
 
 	/**
@@ -270,12 +266,10 @@ class IndividualSubscriptionDAO extends SubscriptionDAO {
 	function deleteByUserIdForJournal($userId, $journalId) {
 		$result = $this->retrieve('SELECT subscription_id FROM subscriptions WHERE user_id = ? AND journal_id = ?', [(int) $userId, (int) $journalId]);
 
-		$returner = true;
 		foreach ($result as $row) {
-			$returner = $this->deleteById($row->subscription_id);
-			if (!$returner) break;
+			$this->deleteById($row->subscription_id);
 		}
-		return $returner;
+		return true;
 	}
 
 	/**
@@ -286,13 +280,11 @@ class IndividualSubscriptionDAO extends SubscriptionDAO {
 	function deleteByTypeId($subscriptionTypeId) {
 		$result = $this->retrieve('SELECT subscription_id FROM subscriptions WHERE type_id = ?', [(int) $subscriptionTypeId]);
 
-		$returner = true;
 		foreach ($result as $row) {
-			$returner = $this->deleteById($row->subscription_id);
-			if (!$returner) break;
+			$this->deleteById($row->subscription_id);
 		}
 
-		return $returner;
+		return true;
 	}
 
 	/**
@@ -337,21 +329,21 @@ class IndividualSubscriptionDAO extends SubscriptionDAO {
 	function getByJournalId($journalId, $status = null, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 		$params = array_merge($userDao->getFetchParameters(), [(int) $journalId]);
-		$result = $this->retrieveRange(
-			$sql = 'SELECT	s.*,
-			' . $userDao->getFetchColumns() . '
+		$baseSql = '
 			FROM	subscriptions s
-				JOIN subscription_types st ON (s.type_id = st.type_id)
-				JOIN users u ON (s.user_id = u.user_id)
-				' . $userDao->getFetchJoins() . '
+			JOIN subscription_types st ON (s.type_id = st.type_id)
+			JOIN users u ON (s.user_id = u.user_id)
+			' . $userDao->getFetchJoins() . '
 			WHERE	st.institutional = 0
 				AND s.journal_id = ? ' .
-			parent::_generateSearchSQL($status, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, $params) . ' ' .
-			$userDao->getOrderBy() .', s.subscription_id',
+				parent::_generateSearchSQL($status, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, $params) . '
+		';
+		$result = $this->retrieveRange(
+			'SELECT s.*, ' . $userDao->getFetchColumns() . $baseSql . $userDao->getOrderBy() . ', s.subscription_id',
 			$params,
 			$rangeInfo
 		);
-		return new DAOResultFactory($result, $this, '_fromRow', [], $sql, $params, $rangeInfo); // Counted in subscription grid paging
+		return new DAOResultFactory($result, $this, '_fromRow', [], "SELECT 0 {$baseSql}", $params, $rangeInfo); // Counted in subscription grid paging
 	}
 
 	/**

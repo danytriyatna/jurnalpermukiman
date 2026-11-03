@@ -20,6 +20,7 @@
 				<date-range
 					unique-id="publication-stats-date-range"
 					:date-start="dateStart"
+					:date-start-min="dateStartMin"
 					:date-end="dateEnd"
 					:date-end-max="dateEndMax"
 					:options="dateRangeOptions"
@@ -204,8 +205,8 @@
 										class="pkpStats__itemLink"
 										target="_blank"
 									>
-										<span class="pkpStats__itemAuthors" v-html="row.publication.authorsStringShort"></span>
-										<span class="pkpStats__itemTitle" v-html="localize(row.publication.fullTitle)"></span>
+										<span class="pkpStats__itemAuthors">{{ row.publication.authorsStringShort }}</span>
+										<span class="pkpStats__itemTitle">{{ localize(row.publication.fullTitle) }}</span>
 									</a>
 								</template>
 							</table-cell>

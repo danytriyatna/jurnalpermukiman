@@ -15,6 +15,7 @@
  */
 
 
+#[\AllowDynamicProperties]
 class DataObject {
 	/** @var array Array of object data */
 	var $_data = array();

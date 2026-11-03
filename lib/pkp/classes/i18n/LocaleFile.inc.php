@@ -99,7 +99,7 @@ class LocaleFile {
 				if (!empty($params)) {
 					// Substitute custom parameters
 					foreach ($params as $key => $value) {
-						$message = str_replace("{\$$key}", $value, $message);
+						$message = str_replace("{\$$key}", $value ?? '', $message);
 					}
 				}
 
@@ -120,7 +120,8 @@ class LocaleFile {
 	static function &load($filename) {
 		$localeData = [];
 		foreach (Gettext\Translations::fromPoFile($filename) as $translation) {
-			$localeData[$translation->getOriginal()] = $translation->getTranslation();
+			$translatedText = $translation->getTranslation();
+			if ($translatedText !== '') $localeData[$translation->getOriginal()] = $translatedText;
 		}
 		return $localeData;
 	}

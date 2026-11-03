@@ -11,7 +11,7 @@
 namespace Seboettg\CiteProc\Util;
 
 use Seboettg\CiteProc\CiteProc;
-use Symfony\Polyfill\Mbstring\Mbstring;
+use Seboettg\Collection\ArrayList;
 
 /**
  * Class StringHelper
@@ -53,7 +53,6 @@ class StringHelper
         'ISO-8859-8',
         'ISO-8859-9',
         'ISO-8859-10',
-        'ISO-8859-11',
         'ISO-8859-13',
         'ISO-8859-14',
         'ISO-8859-15',
@@ -91,24 +90,33 @@ class StringHelper
      */
     public static function capitalizeForTitle($titleString)
     {
+        if (strlen($titleString) == 0) {
+            return "";
+        }
         if (preg_match('/(.+[^\<\>][\.:\/;\?\!]\s?)([a-z])(.+)/', $titleString, $match)) {
             $titleString = $match[1].StringHelper::mb_ucfirst($match[2]).$match[3];
         }
+        $pattern = "/(\s|\/)/";
+        if (!preg_match($pattern, $titleString, $matches)) {
+            return StringHelper::mb_ucfirst($titleString);
+        }
+        $delimiter = $matches[1];
+        $wordArray = preg_split($pattern, $titleString); //explode(" ", $titleString);
 
-        $wordArray = explode(" ", $titleString);
-
-        array_walk($wordArray, function (&$word) {
-            $words = explode("-", $word);
-            if (count($words) > 1) {
-                array_walk($words, function (&$w) {
-                    $w = StringHelper::keepLowerCase($w) ? $w : StringHelper::mb_ucfirst($w);
-                });
-                $word = implode("-", $words);
-            }
-            $word = StringHelper::keepLowerCase($word) ? $word : StringHelper::mb_ucfirst($word);
-        });
-
-        return implode(" ", array_filter($wordArray));
+        $wordList = new ArrayList(...$wordArray);
+        return $wordList
+            ->map(function(string $word) {
+                $wordParts = explode("-", $word);
+                if (count($wordParts) > 1) {
+                    $casedWordParts = [];
+                    foreach ($wordParts as $w) {
+                        $casedWordParts[] = StringHelper::keepLowerCase($w) ? $w : StringHelper::mb_ucfirst($w);
+                    }
+                    $word = implode("-", $casedWordParts);
+                }
+                return StringHelper::keepLowerCase($word) ? $word : StringHelper::mb_ucfirst($word);
+            })
+            ->collectToString($delimiter);
     }
 
     /**
@@ -134,13 +142,19 @@ class StringHelper
     public static function mb_ucfirst($string, $encoding = 'UTF-8')
     {// phpcs:enable
         $strlen = mb_strlen($string, $encoding);
+        if ($strlen == 0) return '';
         $firstChar = mb_substr($string, 0, 1, $encoding);
         $then = mb_substr($string, 1, $strlen - 1, $encoding);
 
         /** @noinspection PhpInternalEntityUsedInspection */
-        $encoding = Mbstring::mb_detect_encoding($firstChar, self::ISO_ENCODINGS, true);
-        return in_array($encoding, self::ISO_ENCODINGS) ?
-            Mbstring::mb_strtoupper($firstChar, $encoding).$then : $firstChar.$then;
+        // We can not rely on mb_detect_encoding. See https://www.php.net/manual/en/function.mb-detect-encoding.php.
+        // We need to double-check if the first char is not a multibyte char otherwise mb_strtoupper() process it
+        // incorrectly, and it causes issues later. For example 'こ' transforms to 'Á�'.
+        $original_ord = mb_ord($firstChar, $encoding);
+        $encoding = mb_detect_encoding($firstChar, self::ISO_ENCODINGS, true);
+        $new_ord = mb_ord($firstChar, $encoding);
+        return $original_ord === $new_ord && in_array($encoding, self::ISO_ENCODINGS) ?
+            mb_strtoupper($firstChar, $encoding).$then : $firstChar.$then;
     }
     // phpcs:disable
     public static function mb_strrev($string)

@@ -137,6 +137,7 @@ class ArticleGalley extends Representation {
 		$label = $this->getLabel();
 		if ($this->getLocale() != AppLocale::getLocale()) {
 			$locales = AppLocale::getAllLocales();
+			$label .= ' (' . $locales[$this->getLocale()] . ')';
 		}
 		return $label;
 	}

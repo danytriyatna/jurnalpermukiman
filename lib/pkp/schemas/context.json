@@ -222,6 +222,12 @@
 				"in:0,enable,request,require"
 			]
 		},
+		"requireAuthorCompetingInterests": {
+			"type": "boolean",
+			"validation": [
+				"nullable"
+			]
+		},
 		"editorialTeam": {
 			"type": "string",
 			"multilingual": true,
@@ -368,6 +374,13 @@
 			"type": "string",
 			"multilingual": true,
 			"defaultLocaleKey": "default.contextSettings.forLibrarians",
+			"validation": [
+				"nullable"
+			]
+		},
+		"licenseTerms": {
+			"type": "string",
+			"multilingual": true,
 			"validation": [
 				"nullable"
 			]

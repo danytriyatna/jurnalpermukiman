@@ -213,7 +213,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 
 		// Get submission authors in the same way as for the email template form,
 		// that editor sees. This also ensures that the recipient list is not empty.
-		$authors = $submission->getAuthors(true);
+		$authors = $submission->getAuthors();
 		foreach($authors as $author) {
 			$email->addRecipient($author->getEmail(), $author->getFullName());
 		}
@@ -311,7 +311,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		}
 
 		// Send the email.
-		if (!$this->getData('skipEmail')) {
+		if ($email->isEnabled() && !$this->getData('skipEmail')) {
 			$router = $request->getRouter();
 			$dispatcher = $router->getDispatcher();
 			$context = $request->getContext();
@@ -320,7 +320,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 				'submissionUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'authorDashboard', 'submission', $submission->getId()),
 				'contextName' => htmlspecialchars($context->getLocalizedName()),
 				'authorName' => htmlspecialchars($submission->getAuthorString()),
-				'editorialContactSignature' => $user->getContactSignature(),
+				'editorialContactSignature' => strip_tags($user->getContactSignature(), "<br>"),
 			]);
 			if (!$email->send($request)) {
 				import('classes.notification.NotificationManager');
@@ -357,7 +357,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	function _getAllowedVariablesType() {
 		return [
 			'contextName' => INSERT_TAG_VARIABLE_TYPE_PLAIN_TEXT,
-			'editorialContactSignature' => INSERT_TAG_VARIABLE_TYPE_PLAIN_TEXT,
+			'editorialContactSignature' => INSERT_TAG_VARIABLE_TYPE_SAFE_HTML,
 			'submissionTitle' => INSERT_TAG_VARIABLE_TYPE_PLAIN_TEXT,
 			'authorName' => INSERT_TAG_VARIABLE_TYPE_PLAIN_TEXT,
 		];

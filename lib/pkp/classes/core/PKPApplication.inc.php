@@ -122,9 +122,6 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider {
 	 * Constructor
 	 */
 	public function __construct() {
-		// Seed random number generator
-		mt_srand(((double) microtime()) * 1000000);
-
 		import('lib.pkp.classes.core.Core');
 		import('lib.pkp.classes.core.PKPString');
 		import('lib.pkp.classes.core.Registry');
@@ -135,6 +132,9 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider {
 		require_once('lib/pkp/lib/vendor/autoload.php');
 
 		ini_set('display_errors', Config::getVar('debug', 'display_errors', ini_get('display_errors')));
+		if (!Config::getVar('debug', 'deprecation_warnings', false)) {
+			error_reporting(error_reporting() & ~E_DEPRECATED & ~E_USER_DEPRECATED);
+		}
 		if (!defined('SESSION_DISABLE_INIT') && !Config::getVar('general', 'installed')) {
 			define('SESSION_DISABLE_INIT', true);
 		}
@@ -308,6 +308,7 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider {
 			'headers' => [
 				'User-Agent' => $userAgent,
 			],
+			'allow_redirects' => ['strict' => true],
 		]);
 	}
 
@@ -767,7 +768,7 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider {
 		if ($locale === null) $locale = AppLocale::getLocale();
 
 		foreach($licenseKeyMap as $pattern => $key) {
-			if (preg_match($pattern, $ccLicenseURL)) {
+			if (preg_match($pattern, $ccLicenseURL ?? '')) {
 				PKPLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, $locale);
 				return __($key, array(), $locale);
 			}
@@ -850,7 +851,7 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider {
 	 * @return string
 	 */
 	public static function getReadableMaxFileSize() {
-		return strtolower(UPLOAD_MAX_FILESIZE) . 'b';
+		return strtoupper(UPLOAD_MAX_FILESIZE) . 'B';
 	}
 
 	/**
@@ -859,15 +860,26 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider {
 	 * @return int
 	 */
 	public static function getIntMaxFileMBs() {
-		$num = substr(UPLOAD_MAX_FILESIZE, 0, (strlen(UPLOAD_MAX_FILESIZE) - 1));
-		$scale = strtolower(substr(UPLOAD_MAX_FILESIZE, -1));
-		switch ($scale) {
+		$size = (int) UPLOAD_MAX_FILESIZE;
+		$unit = strtolower(substr(UPLOAD_MAX_FILESIZE, -1));
+		// No letter suffix fallbacks to "byte"
+		switch (ctype_alpha($unit) ? $unit : 'b') {
 			case 'g':
-				$num = $num / 1024;
+				$size <<= 10;
+				break;
+			case 'm':
+				break;
 			case 'k':
-				$num = $num * 1024;
+				$size >>= 10;
+				break;
+			case 'b':
+				$size >>= 20;
+				break;
+			default:
+				error_log(sprintf('Invalid value for the PHP configuration upload_max_filesize: "%s"', UPLOAD_MAX_FILESIZE));
+				break;
 		}
-		return floor($num);
+		return floor($size);
 	}
 
 	/**
@@ -892,7 +904,7 @@ abstract class PKPApplication implements iPKPApplicationInfoProvider {
 }
 
 define('REALLY_BIG_NUMBER', 10000);
-define('UPLOAD_MAX_FILESIZE', ini_get('upload_max_filesize'));
+define('UPLOAD_MAX_FILESIZE', trim(ini_get('upload_max_filesize')));
 
 define('WORKFLOW_STAGE_ID_PUBLISHED', 0); // FIXME? See bug #6463.
 define('WORKFLOW_STAGE_ID_SUBMISSION', 1);
@@ -903,6 +915,7 @@ define('WORKFLOW_STAGE_ID_PRODUCTION', 5);
 
 /* TextArea insert tag variable types used to change their display when selected */
 define('INSERT_TAG_VARIABLE_TYPE_PLAIN_TEXT', 'PLAIN_TEXT');
+define('INSERT_TAG_VARIABLE_TYPE_SAFE_HTML', 'SAFE_HTML');
 
 // To expose LISTBUILDER_SOURCE_TYPE_... constants via JS
 import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');

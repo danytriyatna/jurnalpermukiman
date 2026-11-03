@@ -36,6 +36,7 @@ class PKPReviewerGridHandler extends GridHandler {
 	/** @var boolean Is the current user assigned as an author to this submission */
 	var $_isCurrentUserAssignedAuthor;
 
+	var $isAuthorGrid;
 
 	/**
 	 * Constructor
@@ -319,7 +320,7 @@ class PKPReviewerGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function createReviewer($args, $request) {
-		return $this->updateReviewer($args, $request);
+		return $this->saveReviewerForm(REVIEWER_SELECT_CREATE, $request);
 	}
 
 	/**
@@ -329,7 +330,7 @@ class PKPReviewerGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function enrollReviewer($args, $request) {
-		return $this->updateReviewer($args, $request);
+		return $this->saveReviewerForm(REVIEWER_SELECT_ENROLL_EXISTING, $request);
 	}
 
 	/**
@@ -339,7 +340,15 @@ class PKPReviewerGridHandler extends GridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function updateReviewer($args, $request) {
-		$selectionType = $request->getUserVar('selectionType');
+		return $this->saveReviewerForm(REVIEWER_SELECT_ADVANCED_SEARCH, $request);
+	}
+
+	/**
+	 * Save the designated reviewer form.
+	 * @param $selectionType int self::REVIEWER_...
+	 * @param $request PKPRequest
+	 */
+	function saveReviewerForm($selectionType, $request) {
 		$formClassName = $this->_getReviewerFormClassName($selectionType);
 
 		// Form handling
@@ -549,6 +558,8 @@ class PKPReviewerGridHandler extends GridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function reviewRead($args, $request) {
+		if (!$request->checkCSRF()) return new JSONMessage(false);
+
 		// Retrieve review assignment.
 		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
 
@@ -807,7 +818,7 @@ class PKPReviewerGridHandler extends GridHandler {
 			'common.assigned' => $reviewAssignment->getDateAssigned(),
 			'common.notified' => $reviewAssignment->getDateNotified(),
 			'common.reminder' => $reviewAssignment->getDateReminded(),
-			'common.confirm' => $reviewAssignment->getDateConfirmed(),
+			$reviewAssignment->getDeclined() ? 'common.declined' : 'common.confirm' => $reviewAssignment->getDateConfirmed(),
 			'common.completed' => $reviewAssignment->getDateCompleted(),
 			'common.acknowledged' => $reviewAssignment->getDateAcknowledged(),
 		);
@@ -985,7 +996,6 @@ class PKPReviewerGridHandler extends GridHandler {
 		return array(
 			'readReview',
 			'reviewHistory',
-			'reviewRead',
 			'sendEmail',
 			'gossip',
 		);

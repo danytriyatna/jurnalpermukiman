@@ -7,8 +7,8 @@
 ;
 ; config.TEMPLATE.inc.php
 ;
-; Copyright (c) 2014-2021 Simon Fraser University
-; Copyright (c) 2003-2021 John Willinsky
+; Copyright (c) 2014-2024 Simon Fraser University
+; Copyright (c) 2003-2024 John Willinsky
 ; Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
 ;
 ; OJS Configuration settings.
@@ -41,10 +41,21 @@ session_cookie_name = OJSSID
 ; (set to 0 to force expiration at end of current session)
 session_lifetime = 30
 
+; SameSite configuration for the cookie, see possible values and explanations
+; at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+; To set the "Secure" attribute for the cookie see the setting force_ssl at the [security] group
+session_samesite = Lax
+
 ; Enable support for running scheduled tasks
 ; Set this to On if you have set up the scheduled tasks script to
 ; execute periodically
 scheduled_tasks = Off
+
+; Scheduled tasks will send email about processing
+; only in case of errors. Set to off to receive
+; all other kind of notification, including success,
+; warnings and notices.
+scheduled_tasks_report_error_only = On
 
 ; Site time zone
 ; Please refer to lib/pkp/registry/timeZones.xml for a full list of supported
@@ -83,7 +94,7 @@ allow_url_fopen = Off
 ; base_url[myJournal] = http://www.myUrl.com/myJournal
 ; base_url[myOtherJournal] = http://myOtherJournal.myUrl.com
 
-; Generate RESTful URLs using mod_rewrite.  This requires the
+; Generate RESTful URLs using mod_rewrite. This requires the
 ; rewrite directive to be enabled in your .htaccess or httpd.conf.
 ; See FAQ for more details.
 restful_urls = Off
@@ -96,16 +107,10 @@ restful_urls = Off
 allowed_hosts = ''
 
 ; Allow the X_FORWARDED_FOR header to override the REMOTE_ADDR as the source IP
-; Set this to "On" if you are behind a reverse proxy and you control the X_FORWARDED_FOR
+; Set this to "On" if you are behind a reverse proxy and you control the
+; X_FORWARDED_FOR header.
 ; Warning: This defaults to "On" if unset for backwards compatibility.
 trust_x_forwarded_for = Off
-
-; Set the maximum number of citation checking processes that may run in parallel.
-; Too high a value can increase server load and lead to too many parallel outgoing
-; requests to citation checking web services. Too low a value can lead to significantly
-; slower citation checking performance. A reasonable value is probably between 3
-; and 10. The more your connection bandwidth allows the better.
-citation_checking_max_processes = 3
 
 ; Display a message on the site admin and journal manager user home pages if there is an upgrade available
 show_upgrade_warning = On
@@ -225,10 +230,6 @@ public_user_dir_size = 5000
 ; Permissions mask for created files and directories
 umask = 0022
 
-; The minimum percentage similarity between filenames that should be considered
-; a possible revision
-filename_revision_match = 70
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Fileinfo (MIME) Settings ;
@@ -244,15 +245,17 @@ filename_revision_match = 70
 
 [security]
 
-; Force SSL connections site-wide
+; Force SSL connections site-wide and also sets the "Secure" flag for session cookies
+; See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#secure
 force_ssl = Off
 
 ; Force SSL connections for login only
 force_login_ssl = Off
 
 ; This check will invalidate a session if the user's IP address changes.
-; Enabling this option provides some amount of additional security, but may
-; cause problems for users behind a proxy farm (e.g., AOL).
+; Enabling this option provides some additional security, but may cause
+; login problems for some users (e.g. if a user IP is changed frequently
+; by a server or network configuration).
 session_check_ip = On
 
 ; The encryption (hashing) algorithm to use for encrypting user passwords
@@ -277,26 +280,11 @@ reset_seconds = 7200
 allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,dd,b,i,u,img[src|alt],sup,sub,br,p"
 
 ;Is implicit authentication enabled or not
-
 ;implicit_auth = On
 
-;Implicit Auth Header Variables
-
-;implicit_auth_header_first_name = HTTP_GIVENNAME
-;implicit_auth_header_last_name = HTTP_SN
-;implicit_auth_header_email = HTTP_MAIL
-;implicit_auth_header_phone = HTTP_TELEPHONENUMBER
-;implicit_auth_header_initials = HTTP_METADATA_INITIALS
-;implicit_auth_header_mailing_address = HTTP_METADATA_HOMEPOSTALADDRESS
-;implicit_auth_header_uin = HTTP_UID
-
-; A space delimited list of uins to make admin
-;implicit_auth_admin_list = "jdoe@email.ca jshmo@email.ca"
-
-; URL of the implicit auth 'Way Finder' page. See pages/login/LoginHandler.inc.php for usage.
-
-;implicit_auth_wayf_url = "/Shibboleth.sso/wayf"
-
+; The URL to use to fetch the plugin gallery plugin list
+; BEWARE: You should not extend the gallery with custom plugin gallery listing that collide with the official ones!
+;plugin_gallery_urls = '["https://pkp.sfu.ca/ojs/xml/plugins.xml"]'
 
 
 ;;;;;;;;;;;;;;;;;;
@@ -374,7 +362,7 @@ max_recipients = 10
 ; If enabled, email addresses must be validated before login is possible.
 require_validation = Off
 
-; Maximum number of days before an unvalidated account expires and is deleted
+; The number of days a user has to validate their account before their access key expires.
 validation_timeout = 14
 
 
@@ -421,11 +409,13 @@ results_per_keyword = 500
 ; Enable OAI front-end to the site
 oai = On
 
-; OAI Repository identifier
+; OAI Repository identifier. This setting forms part of OAI-PMH record IDs.
+; Changing this setting may affect existing clients and is not recommended.
 repository_id = ojs.pkp.sfu.ca
 
 ; Maximum number of records per request to serve via OAI
 oai_max_records = 100
+
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ; Interface Settings ;
@@ -483,6 +473,7 @@ tar = /bin/tar
 ; /usr/bin/java -jar ~/java/xalan.jar -HTML -IN %xml -XSL %xsl
 xslt_command = ""
 
+
 ;;;;;;;;;;;;;;;;;;
 ; Proxy Settings ;
 ;;;;;;;;;;;;;;;;;;
@@ -513,8 +504,3 @@ deprecation_warnings = Off
 
 ; Log web service request information for debugging
 log_web_service_info = Off
-
-; declare a cainfo path if a certificate other than PHP's default should be used for curl calls.
-; This setting overrides the 'curl.cainfo' parameter of the php.ini configuration file.
-[curl]
-; cainfo = ""

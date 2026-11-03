@@ -18,6 +18,8 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use PKP\Services\QueryBuilders\Interfaces\EntityQueryBuilderInterface;
 
 class PKPPublicationQueryBuilder implements EntityQueryBuilderInterface {
+	/** @var array list of columns for query */
+	protected $columns = array();
 
 	/** @var array get publications for one or more contexts */
 	protected $contextIds = [];
@@ -83,9 +85,7 @@ class PKPPublicationQueryBuilder implements EntityQueryBuilderInterface {
 	public function getCount() {
 		return $this
 			->getQuery()
-			->select('p.publication_id')
-			->get()
-			->count();
+			->getCountForPagination();
 	}
 
 	/**
@@ -186,6 +186,6 @@ class PKPPublicationQueryBuilder implements EntityQueryBuilderInterface {
 			->where('url_path', '=' , $urlPath)
 			->where('p.submission_id', '!=', $submissionId)
 			->where('s.context_id', '=', $contextId)
-			->count();
+			->getCountForPagination();
 	}
 }

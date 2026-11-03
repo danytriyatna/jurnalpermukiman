@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paparan Laporan Awal - Peningkatan & Integrasi Sistem Jurnal Permukiman | PT Mitra Sinerji Teknoindo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --mst-blue: #186ef2;
+      --mst-blue-dark: #1256c4;
+      --mst-purple: #6d18ef;
+    }
+    body {
+      background-color: #f6f9fd;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0f172a;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      font-size: 14.5px;
+    }
+    .full-width-section {
+      width: 100%;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    @media (min-width: 768px) {
+      .full-width-section {
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+      }
+    }
+    @media (min-width: 1280px) {
+      .full-width-section {
+        padding-left: 5rem;
+        padding-right: 5rem;
+      }
+    }
+    .nav-tab-btn {
+      padding: 12px 18px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #64748b;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .nav-tab-btn:hover {
+      color: #0d2455;
+      background-color: #f1f5f9;
+    }
+    .nav-tab-btn.active {
+      color: #0d2455;
+      border-bottom-color: #186ef2;
+      background-color: #ffffff;
+      box-shadow: inset 0 -2px 0 #186ef2;
+    }
+    .feature-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03);
+    }
+    .feature-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    }
+    .duration-badge {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .step-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    @media print {
+      body { background-color: #ffffff !important; font-size: 13px !important; }
+      .no-print { display: none !important; }
+      .tab-pane { display: block !important; page-break-after: always; margin-bottom: 24px; }
+      .full-width-section { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+    }
+  </style>
+</head>
+<body class="w-full min-h-screen bg-slate-50 flex flex-col justify-between">
+
+  <!-- TOP BAR METADATA -->
+  <div class="w-full bg-[#070f1e] text-slate-400 text-[11px] border-b border-slate-800/80 full-width-section py-1.5 flex flex-wrap justify-between items-center gap-2 font-mono no-print">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+      <strong class="text-white font-semibold tracking-wider">PT MITRA SINERJI TEKNOINDO</strong>
+      <span class="text-slate-600">•</span>
+      <span class="text-slate-400"><a href="https://mitrasinerji.com" target="_blank" class="text-slate-300 hover:underline">mitrasinerji.com</a></span>
+    </div>
+    <div class="flex items-center gap-3 text-slate-400 font-sans text-xs">
+      <span>Paparan Laporan Awal</span>
+      <span class="text-slate-600">•</span>
+      <span>Kementerian PUPR</span>
+      <span class="text-slate-600">•</span>
+      <span>November 2026</span>
+    </div>
+  </div>
+
+  <!-- Header Slide Paparan Laporan Awal -->
+  <header class="w-full bg-gradient-to-r from-[#070f1e] via-[#0a1832] to-[#0d2244] text-white border-b border-slate-800 full-width-section py-5">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div class="space-y-1.5 max-w-5xl">
+        <div class="flex items-center gap-2.5 flex-nowrap overflow-x-auto text-xs md:text-sm text-slate-300 pb-0.5">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30 whitespace-nowrap shrink-0">
+            LAPORAN AWAL
+          </span>
+          <span class="font-semibold text-slate-200 whitespace-nowrap shrink-0">Kementerian Pekerjaan Umum dan Perumahan Rakyat</span>
+          <span class="text-slate-600 shrink-0">•</span>
+          <span class="text-slate-400 whitespace-nowrap shrink-0">Dit. Bina Teknik Permukiman dan Perumahan</span>
+          <span class="text-slate-600 shrink-0">•</span>
+          <span class="text-emerald-400 font-semibold whitespace-nowrap shrink-0">Jurnal Permukiman</span>
+        </div>
+        <h1 class="text-xl md:text-2xl lg:text-3xl font-black tracking-tight text-white leading-snug">
+          Peningkatan Versi PHP & Integrasi Ekosistem Jurnal Permukiman
+        </h1>
+        <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+          Rencana Kerja Pelaksanaan 10 Tahapan Ruang Lingkup Kontraktual: Pembaruan Engine OJS (PHP 8.3), Standarisasi MQC & JP-Insight, serta Integrasi Terpadu Berbasis Lingkungan Uji.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-2.5 shrink-0 no-print">
+        <div class="flex items-center gap-2">
+          <button onclick="toggleFullscreen()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition flex items-center gap-1.5 border border-slate-700 cursor-pointer" title="Layar Penuh (F11)">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+            Layar Penuh
+          </button>
+          <button onclick="window.print()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition flex items-center gap-2 shadow-md cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            Cetak Dokumen / PDF
+          </button>
+        </div>
+        <div class="flex items-center gap-3 bg-white/5 border border-white/10 px-3.5 py-2 rounded-xl backdrop-blur-xs">
+          <img src="data:image/png;base64,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" alt="Logo PT Mitra Sinerji Teknoindo" class="h-9 w-auto object-contain bg-white/10 p-1 rounded-lg">
+          <div class="text-left space-y-0.5">
+            <div class="text-[10.5px] text-slate-400 font-medium uppercase tracking-wider">Penyedia Jasa</div>
+            <div class="text-xs font-bold text-white leading-tight">PT Mitra Sinerji Teknoindo</div>
+            <div class="text-[11px] text-blue-400 font-mono"><a href="https://mitrasinerji.com" target="_blank" class="hover:underline">mitrasinerji.com</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigasi 6 Tab Paparan Runtut Logis -->
+  <nav class="w-full bg-white border-b border-slate-200 full-width-section overflow-x-auto no-print shadow-xs sticky top-0 z-50">
+    <div class="flex items-center justify-between gap-1 min-w-max">
+      <div class="flex items-center gap-1">
+        <button onclick="switchTab('tab-latar')" id="btn-tab-latar" class="nav-tab-btn active">
+          <span>01.</span> Latar Belakang & 2 Pekerjaan Utama
+        </button>
+        <button onclick="switchTab('tab-integrasi')" id="btn-tab-integrasi" class="nav-tab-btn">
+          <span>02.</span> Arsitektur & Usulan Integrasi Tri-Sistem
+        </button>
+        <button onclick="switchTab('tab-ruanglingkup')" id="btn-tab-ruanglingkup" class="nav-tab-btn">
+          <span>03.</span> Ruang Lingkup Kontraktual 10 Tahap
+        </button>
+        <button onclick="switchTab('tab-hasilawal')" id="btn-tab-hasilawal" class="nav-tab-btn">
+          <span>04.</span> Hasil Pelaksanaan Awal (Tahap 1, 2, 3 Selesai)
+        </button>
+        <button onclick="switchTab('tab-rencanakerja')" id="btn-tab-rencanakerja" class="nav-tab-btn">
+          <span>05.</span> Rencana Kerja Lanjutan & Timeline
+        </button>
+        <button onclick="switchTab('tab-mitigasi')" id="btn-tab-mitigasi" class="nav-tab-btn">
+          <span>06.</span> Kebutuhan Dukungan & Manajemen Risiko
+        </button>
+      </div>
+      <div class="hidden xl:flex items-center gap-2 text-xs text-slate-400 font-mono pr-2">
+        <span class="px-1.5 py-0.5 bg-slate-100 rounded border border-slate-200 text-slate-600 font-bold">1..6</span>
+        <span>atau</span>
+        <span class="px-1.5 py-0.5 bg-slate-100 rounded border border-slate-200 text-slate-600 font-bold">← →</span>
+        <span>pindah slide</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Konten Utama Canvas Paparan -->
+  <main class="w-full full-width-section py-5 space-y-5 flex-grow">
+
+    <!-- ================= TAB 1: LATAR BELAKANG & 2 PEKERJAAN UTAMA ================= -->
+    <section id="tab-latar" class="tab-pane space-y-4">
+      
+      <!-- EXECUTIVE KPI SCORECARD (STANDAR KORPORAT BESAR) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs flex items-center gap-3">
+          <div class="h-10 w-10 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-black text-lg shrink-0">⚙️</div>
+          <div>
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Target Runtime</div>
+            <div class="text-sm md:text-base font-extrabold text-slate-900">PHP 8.3 & OJS LTS</div>
+            <div class="text-[11px] text-emerald-700 font-semibold">Kompatibilitas Penuh</div>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs flex items-center gap-3">
+          <div class="h-10 w-10 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-lg shrink-0">✅</div>
+          <div>
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Status Awal</div>
+            <div class="text-sm md:text-base font-extrabold text-slate-900">Tahap 1, 2, 3 Selesai</div>
+            <div class="text-[11px] text-blue-700 font-semibold">Audit 3 Repo Tuntas</div>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs flex items-center gap-3">
+          <div class="h-10 w-10 rounded-lg bg-indigo-100 text-indigo-800 flex items-center justify-center font-black text-lg shrink-0">🛡️</div>
+          <div>
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Stabilitas Layanan</div>
+            <div class="text-sm md:text-base font-extrabold text-slate-900">0% Downtime Dev</div>
+            <div class="text-[11px] text-slate-600 font-semibold">Produksi Tetap Aktif</div>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs flex items-center gap-3">
+          <div class="h-10 w-10 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-black text-lg shrink-0">⏱️</div>
+          <div>
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Pemulihan Darurat</div>
+            <div class="text-sm md:text-base font-extrabold text-slate-900">&lt; 15 Menit RTO</div>
+            <div class="text-[11px] text-amber-700 font-semibold">Snapshot Rollback</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pengantar Eksekutif Laporan Awal -->
+      <div class="bg-blue-50/80 border-l-4 border-blue-600 p-4 md:p-5 rounded-r-xl space-y-1.5 shadow-xs">
+        <h2 class="text-lg md:text-xl font-extrabold text-[#0d2455] flex items-center gap-2">
+          Latar Belakang Paparan Laporan Awal
+        </h2>
+        <p class="text-xs md:text-sm text-slate-700 leading-relaxed max-w-6xl">
+          Jurnal Permukiman merupakan media publikasi berkala ilmiah resmi di lingkungan Kementerian PUPR. Guna memenuhi standar keamanan server pusat data pemerintah, menjaga kelancaran publikasi ilmiah, serta mengoptimalkan layanan kepada peneliti dan dewan redaksi, diperlukan modernisasi runtime PHP 8.3 dan penyelarasan menyeluruh dengan modul penapisan naskah (MQC) serta pusat referensi (JP-Insight).
+        </p>
+      </div>
+
+      <!-- KARTU 2 FOKUS PEKERJAAN UTAMA -->
+      <div class="space-y-2.5">
+        <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-blue-800 bg-blue-100 px-2.5 py-0.5 rounded-full">Ruang Lingkup</span>
+            <h3 class="text-lg md:text-xl font-extrabold text-slate-900 mt-1">2 Pekerjaan Utama</h3>
+          </div>
+          <span class="text-xs text-slate-500 font-semibold">Mencakup 10 Tahapan KAK</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <!-- Pekerjaan Utama 1 -->
+          <div class="p-5 rounded-xl bg-gradient-to-br from-blue-900 to-indigo-950 text-white space-y-3 shadow-xs border border-blue-800 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex justify-between items-start">
+                <span class="px-2.5 py-0.5 rounded-full bg-blue-500/30 text-blue-200 border border-blue-400/30 text-xs font-bold uppercase tracking-wider">Pekerjaan Utama 1</span>
+                <span class="text-xl font-black text-blue-300">01</span>
+              </div>
+              <h4 class="text-lg md:text-xl font-black tracking-tight text-white leading-snug">
+                Peningkatan Versi PHP Jurnal Permukiman & OJS
+              </h4>
+              <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                Pembaruan engine aplikasi OJS Jurnal Permukiman dari basis 3.3.0-13 ke versi <strong>3.3.0-24 LTS</strong> (rilis patch terbaru) beserta penyesuaian pustaka pendukung agar berjalan stabil pada runtime <strong>PHP 8.3 FPM</strong> di server kementerian.
+              </p>
+            </div>
+
+            <div class="space-y-2 bg-white/10 p-3.5 rounded-lg border border-white/10 text-xs text-slate-200">
+              <div class="font-bold text-white flex items-center gap-1.5"><span>🎯</span> Target & Jaminan Teknis:</div>
+              <ul class="space-y-1 list-disc list-inside text-slate-300">
+                <li>Tema kustom <code>bootstrap3-main</code> dan cover publikasi 100% utuh.</li>
+                <li>Berkas PDF naskah di <code>/opt/unggah</code> terisolasi dan tidak disentuh.</li>
+                <li>Uji fungsi & pengujian keamanan tuntas sebelum menyentuh produksi.</li>
+              </ul>
+              <div class="pt-1 border-t border-white/10 text-blue-200 text-xs font-semibold">
+                📌 Alur Eksekusi KAK: <strong>Tahap 1, 2, 3, 4, 6, 7, 8, 9, 10</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pekerjaan Utama 2 -->
+          <div class="p-5 rounded-xl bg-gradient-to-br from-emerald-950 to-slate-900 text-white space-y-3 shadow-xs border border-emerald-800 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex justify-between items-start">
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/30 text-emerald-200 border border-emerald-400/30 text-xs font-bold uppercase tracking-wider">Pekerjaan Utama 2</span>
+                <span class="text-xl font-black text-emerald-300">02</span>
+              </div>
+              <h4 class="text-lg md:text-xl font-black tracking-tight text-white leading-snug">
+                Standarisasi MQC & JP, serta Integrasi OJS, MQC, JP
+              </h4>
+              <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                Standarisasi aplikasi penapisan naskah Word (MQC) dan asisten pengetahuan referensi (JP-Insight), serta mengintegrasikan alur data ketiganya di lingkungan uji coba.
+              </p>
+            </div>
+
+            <div class="space-y-2 bg-white/10 p-3.5 rounded-lg border border-white/10 text-xs text-slate-200">
+              <div class="font-bold text-white flex items-center gap-1.5"><span>🎯</span> Target & Jaminan Teknis:</div>
+              <ul class="space-y-1 list-disc list-inside text-slate-300">
+                <li>Standarisasi konfigurasi lingkungan MQC (Next.js & Supabase) & JP-Insight.</li>
+                <li>Integrasi protokol OAI-PMH v2.0 (OJS ➔ JP-Insight) untuk penyerapan korpus.</li>
+                <li>Penyerahan naskah bersih format (MQC ➔ OJS) sebelum proses editorial.</li>
+              </ul>
+              <div class="pt-1 border-t border-white/10 text-emerald-200 text-xs font-semibold">
+                📌 Alur Eksekusi KAK: <strong>Tahap 1, 2, 3, 4, Tahap 5 (Inti Integrasi), 6, 7, 8, 9, 10</strong>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3 Landasan Kebutuhan Nyata -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+        
+        <div class="feature-card space-y-2 p-4">
+          <div class="h-9 w-9 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-black text-base">1</div>
+          <h3 class="font-bold text-slate-900 text-base">Kepatuhan Standar Server (PHP 8.3)</h3>
+          <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+            Server pusat data mewajibkan penggunaan versi runtime aktif yang didukung pembaruan keamanan resmi. PHP 8.1 telah habis masa dukungannya sehingga wajib beralih ke PHP 8.3.
+          </p>
+        </div>
+
+        <div class="feature-card space-y-2 p-4">
+          <div class="h-9 w-9 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-black text-base">2</div>
+          <h3 class="font-bold text-slate-900 text-base">Kelancaran Akses & Publikasi Ilmiah</h3>
+          <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+            Menjaga stabilitas server jurnal agar publikasi naskah tidak terganggu, riwayat edisi artikel tetap utuh, dan proses telaah dewan redaksi berjalan lancar.
+          </p>
+        </div>
+
+        <div class="feature-card space-y-2 p-4">
+          <div class="h-9 w-9 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-base">3</div>
+          <h3 class="font-bold text-slate-900 text-base">Pengujian Terpusat di Lingkungan Uji</h3>
+          <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+            Seluruh pekerjaan perbaikan kode, integrasi sistem, dan pengujian keamanan dilakukan di Server Uji Coba sehingga <strong>tidak ada gangguan sama sekali</strong> pada server produksi publik.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 2: ARSITEKTUR & USULAN INTEGRASI TRI-SISTEM ================= -->
+    <section id="tab-integrasi" class="tab-pane hidden space-y-4">
+      
+      <div class="space-y-1">
+        <h2 class="text-lg md:text-xl font-extrabold text-[#0d2455] tracking-tight">Arsitektur Ekosistem & Usulan Integrasi Tri-Sistem</h2>
+        <p class="text-xs md:text-sm text-slate-600">
+          Keterkaitan teknis antara OJS Jurnal Permukiman, Asisten Penapisan Naskah MQC, dan Pusat Pengetahuan AI JP-Insight:
+        </p>
+      </div>
+
+      <!-- 3 Kartu Komponen Sistem -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4">
+        
+        <!-- App 1: OJS Core -->
+        <div class="feature-card border-blue-300 bg-blue-50/20 p-4 space-y-2.5 flex flex-col justify-between">
+          <div class="space-y-1.5">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-blue-900 uppercase tracking-widest bg-blue-100 px-2.5 py-0.5 rounded-full">Sistem Utama</span>
+              <span class="text-xs text-slate-500 font-bold">Publikasi Resmi</span>
+            </div>
+            <div class="text-base md:text-lg font-extrabold text-slate-900">1. OJS Jurnal Permukiman</div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Pusat publikasi ilmiah Kementerian PUPR. Mengelola registrasi naskah, proses telaah sejawat (*peer review*), dan penerbitan edisi berkala.
+            </p>
+          </div>
+          <div class="text-xs text-slate-800 bg-white p-2.5 rounded-lg border border-blue-200 space-y-0.5">
+            <strong class="text-blue-950 block font-bold">Peran Integrasi:</strong>
+            <div>• Menyimpan naskah final & menyajikan feed metadata XML <strong>OAI-PMH</strong>.</div>
+          </div>
+        </div>
+
+        <!-- App 2: MQC Screening -->
+        <div class="feature-card border-amber-300 bg-amber-50/20 p-4 space-y-2.5 flex flex-col justify-between">
+          <div class="space-y-1.5">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-amber-900 uppercase tracking-widest bg-amber-100 px-2.5 py-0.5 rounded-full">Verifikasi Awal</span>
+              <span class="font-mono text-xs text-slate-500 font-bold">Next.js 16</span>
+            </div>
+            <div class="text-base md:text-lg font-extrabold text-slate-900">2. MQC (Penapisan Format)</div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Memeriksa kesesuaian format Word (.docx) naskah masuk: gaya selingkung PUPR, margin, jenis font, serta validasi DOI sitasi daftar pustaka.
+            </p>
+          </div>
+          <div class="text-xs text-slate-800 bg-white p-2.5 rounded-lg border border-amber-200 space-y-0.5">
+            <strong class="text-amber-950 block font-bold">Peran Integrasi:</strong>
+            <div>• Gerbang verifikasi format naskah & penerbitan Tiket Lolos sebelum masuk ke OJS.</div>
+          </div>
+        </div>
+
+        <!-- App 3: JP-Insight (RAG System) -->
+        <div class="feature-card border-emerald-300 bg-emerald-50/20 p-4 space-y-2.5 flex flex-col justify-between">
+          <div class="space-y-1.5">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-emerald-900 uppercase tracking-widest bg-emerald-100 px-2.5 py-0.5 rounded-full">Pusat Referensi</span>
+              <span class="font-mono text-xs text-slate-500 font-bold">AI Korpus</span>
+            </div>
+            <div class="text-base md:text-lg font-extrabold text-slate-900">3. JP-Insight (Sistem AI)</div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Sistem temu kembali cerdas berbasis kecerdasan buatan. Menyediakan analisis kebaruan riset berdasarkan seluruh arsip terbitan dan regulasi SNI PUPR.
+            </p>
+          </div>
+          <div class="text-xs text-slate-800 bg-white p-2.5 rounded-lg border border-emerald-200 space-y-0.5">
+            <strong class="text-emerald-950 block font-bold">Peran Integrasi:</strong>
+            <div>• Menyerap artikel terbitan OJS secara otomatis via skrip pemanen OAI-PMH.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- USULAN 3 JALUR MEKANISME INTEGRASI TEKNIS -->
+      <div class="feature-card p-5 space-y-3.5 bg-white border border-slate-200">
+        <div class="border-b border-slate-200 pb-2 flex flex-col sm:flex-row justify-between sm:items-center gap-1">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full inline-block mb-1">Mekanisme Terpadu</span>
+            <h3 class="text-base md:text-lg font-extrabold text-slate-900">Usulan 3 Jalur Teknis Integrasi Antar-Aplikasi</h3>
+          </div>
+          <span class="text-xs font-bold text-blue-900 bg-blue-100 px-2.5 py-0.5 rounded-full">Diuji di Server Dev</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          
+          <!-- Jalur 1 -->
+          <div class="p-3.5 rounded-xl bg-amber-50/50 border border-amber-300 space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="h-6 w-6 rounded bg-amber-500 text-white flex items-center justify-center font-bold text-xs">J1</span>
+              <strong class="text-amber-950 text-sm">MQC ➔ OJS (Verifikasi Format)</strong>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Penulis menapiskan naskah Word (.docx) di MQC. Naskah yang memenuhi aturan gaya selingkung PUPR menerbitkan <strong>Tiket Lolos Format Digital</strong>. Naskah yang masuk ke OJS sudah bersih sehingga editor fokus murni pada telaah substansi ilmiah.
+            </p>
+            <div class="text-xs font-semibold text-amber-900 bg-amber-100/70 p-1.5 rounded">Tiket Lolos & Naskah Bersih</div>
+          </div>
+
+          <!-- Jalur 2 -->
+          <div class="p-3.5 rounded-xl bg-blue-50/50 border border-blue-300 space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="h-6 w-6 rounded bg-blue-600 text-white flex items-center justify-center font-bold text-xs">J2</span>
+              <strong class="text-blue-950 text-sm">OJS ➔ JP-Insight (Automated Ingest)</strong>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              OJS menyediakan feed XML resmi via protokol <strong>OAI-PMH v2.0</strong> (<code>/index.php/JP/oai</code>). Modul <code>lib/ojs.ts</code> di JP-Insight secara terjadwal menyerap artikel baru, mengekstrak teks, dan memasukkannya ke basis data vektor <strong>tanpa staf mengunggah PDF manual</strong>.
+            </p>
+            <div class="text-xs font-semibold text-blue-900 bg-blue-100/70 p-1.5 rounded">Pemanen Otomatis (OAI-PMH Harvester)</div>
+          </div>
+
+          <!-- Jalur 3 -->
+          <div class="p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-300 space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="h-6 w-6 rounded bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">J3</span>
+              <strong class="text-emerald-950 text-sm">JP-Insight ➔ Penulis (Sitasi SNI PUPR)</strong>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Peneliti memanfaatkan asisten JP-Insight untuk mencari naskah terkait terdahulu dan peraturan SNI PUPR yang relevan. Naskah yang disusun memiliki referensi kuat dan langsung lolos verifikasi sitasi saat diuji di MQC.
+            </p>
+            <div class="text-xs font-semibold text-emerald-900 bg-emerald-100/70 p-1.5 rounded">Rujukan SNI & Celah Riset</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Garansi Keamanan Berkas Naskah PDF -->
+      <div class="p-4 bg-emerald-50/60 rounded-xl border border-emerald-300 flex items-start gap-3">
+        <div class="h-9 w-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-lg font-bold shrink-0">📄</div>
+        <div class="space-y-0.5">
+          <strong class="text-emerald-950 text-sm font-bold block">Keamanan Penyimpanan Berkas Naskah (/opt/unggah)</strong>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Seluruh berkas naskah PDF terbitan Jurnal Permukiman disimpan pada direktori terpisah di luar web root aplikasi (<code>/opt/unggah</code>). Proses pembaruan sistem dan integrasi tidak mengubah atau memindahkan berkas naskah publikasi tersebut.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 3: RUANG LINGKUP KONTRAKTUAL 10 TAHAP ================= -->
+    <section id="tab-ruanglingkup" class="tab-pane hidden space-y-4">
+      
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-blue-800 bg-blue-100 px-2.5 py-0.5 rounded-full">Matriks Kontraktual</span>
+          <span class="text-xs text-slate-500 font-semibold">Tabel Acuan Resmi Ruang Lingkup & Keluaran</span>
+        </div>
+        <h2 class="text-lg md:text-xl font-extrabold text-[#0d2455] tracking-tight">10 Tahapan Ruang Lingkup dan Keluaran yang Dihasilkan</h2>
+        <p class="text-xs md:text-sm text-slate-600">
+          Penjabaran resmi seluruh tahapan pekerjaan beserta bentuk fisik keluaran yang diserahkan kepada pihak kementerian:
+        </p>
+      </div>
+
+      <!-- TABEL RESMI 10 TAHAPAN & KELUARAN (SESUAI DOKUMEN GAMBAR KAK) -->
+      <div class="feature-card p-0 overflow-hidden border border-slate-300 shadow-xs">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs md:text-sm text-slate-700 border-collapse">
+            <thead>
+              <tr class="border-b-2 border-slate-300 text-slate-900 font-bold bg-slate-100">
+                <th class="py-3 px-3 w-12 text-center whitespace-nowrap">No</th>
+                <th class="py-3 px-4 whitespace-nowrap">Tahap Pekerjaan (KAK)</th>
+                <th class="py-3 px-4 whitespace-nowrap">Keluaran (Deliverables)</th>
+                <th class="py-3 px-4 text-center whitespace-nowrap">Cakupan Kerja</th>
+                <th class="py-3 px-4 text-center whitespace-nowrap">Lingkungan</th>
+                <th class="py-3 px-4 whitespace-nowrap">Pelaksana</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">1</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Serah Terima dan Akses</td>
+                <td class="py-3 px-4 font-semibold text-blue-900 whitespace-nowrap">Akses repo aktif, kredensial diserahkan</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-slate-100 text-slate-800 border border-slate-300">Persiapan</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Kementerian & Tenaga Ahli</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">2</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Pengujian Git Repo</td>
+                <td class="py-3 px-4 font-semibold text-blue-900 whitespace-nowrap">Berita acara verifikasi repositori</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-blue-100 text-blue-800 border border-blue-200">Lingkungan Uji</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">3</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Analisis dan Persiapan</td>
+                <td class="py-3 px-4 font-semibold text-blue-900 whitespace-nowrap">Dokumen rancangan integrasi dan rencana uji</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-blue-100 text-blue-800 border border-blue-200">Lingkungan Uji</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">4</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Cek Bug Error</td>
+                <td class="py-3 px-4 font-semibold text-blue-900 whitespace-nowrap">Daftar temuan beserta status perbaikan</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-blue-100 text-blue-800 border border-blue-200">Lingkungan Uji</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition bg-amber-50/40">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-amber-100/60 whitespace-nowrap">5</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Integrasi Aplikasi</td>
+                <td class="py-3 px-4 font-semibold text-blue-900 whitespace-nowrap">Integrasi berfungsi di lingkungan uji</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded text-[11px] font-bold bg-amber-200 text-amber-950 border border-amber-300">Inti Pekerjaan 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-blue-100 text-blue-800 border border-blue-200">Lingkungan Uji</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">6</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Pentest Aplikasi</td>
+                <td class="py-3 px-4 font-semibold text-blue-900 whitespace-nowrap">Laporan hasil pentest</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-blue-100 text-blue-800 border border-blue-200">Lingkungan Uji</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Spesialis Keamanan Siber</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">7</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Perbaikan Temuan dan Uji Ulang</td>
+                <td class="py-3 px-4 font-semibold text-blue-900 whitespace-nowrap">Bukti penutupan temuan</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-blue-100 text-blue-800 border border-blue-200">Lingkungan Uji</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">8</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Pengujian dan Dokumentasi</td>
+                <td class="py-3 px-4 font-semibold text-blue-900 whitespace-nowrap">Berita acara UAT dan dokumentasi sistem</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-indigo-100 text-indigo-800 border border-indigo-200">Uji Coba Bersama</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Bersama (Pengelola & Konsultan)</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition bg-amber-50/30">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-amber-100/50 whitespace-nowrap">9</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Persiapan Produksi</td>
+                <td class="py-3 px-4 font-semibold text-amber-950 whitespace-nowrap">Lingkungan produksi siap</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-amber-100 text-amber-900 border border-amber-300">Produksi</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Pengelola & Sysadmin PUPR</td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition bg-emerald-50/30">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-emerald-100/50 whitespace-nowrap">10</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Publikasi</td>
+                <td class="py-3 px-4 font-semibold text-emerald-950 whitespace-nowrap">Sistem beroperasi di produksi</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-900 border border-emerald-300">Produksi Live</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Gabungan (BAST Resmi)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Penjelasan Pemisahan Lingkungan Kerja (Padat) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+        
+        <div class="p-4 rounded-xl border border-blue-200 bg-blue-50/30 space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="h-6 w-6 rounded-md bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0">A</span>
+            <strong class="text-blue-950 text-sm font-bold">Tahap 1 s/d 8: Dikerjakan 100% di Lingkungan Uji</strong>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Seluruh aktivitas verifikasi git repo, rancangan integrasi, pembersihan bug, integrasi OJS-MQC-JP, hingga pentest dan UAT dilaksanakan di Server Dev. <strong>Layanan publik web Jurnal Permukiman tetap aktif normal tanpa gangguan (Nol Downtime).</strong>
+          </p>
+        </div>
+
+        <div class="p-4 rounded-xl border border-amber-300 bg-amber-50/30 space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="h-6 w-6 rounded-md bg-amber-600 text-white flex items-center justify-center font-bold text-xs shrink-0">B</span>
+            <strong class="text-amber-950 text-sm font-bold">Tahap 9 s/d 10: Penerapan Teruji ke Lingkungan Produksi</strong>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Server produksi hanya disentuh setelah seluruh keluaran Tahap 1-8 tuntas disetujui. Perpindahan hasil ke produksi dilakukan pada jadwal pemeliharaan resmi dengan jeda akses publik singkat (± 1 - 2 jam).
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 4: HASIL PELAKSANAAN AWAL (TAHAP 1, 2, 3 SELESAI) ================= -->
+    <section id="tab-hasilawal" class="tab-pane hidden space-y-4">
+      
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">Progres Nyata Konsultan</span>
+          <span class="text-xs text-slate-500 font-semibold">Telah Diverifikasi Berdasarkan Kode & Dokumen Riil Repositori</span>
+        </div>
+        <h2 class="text-lg md:text-xl font-extrabold text-[#0d2455] tracking-tight">Temuan Audit Teknis Repositori & Kesiapan Awal (Tahap 1, 2, 3 Selesai)</h2>
+        <p class="text-xs md:text-sm text-slate-600">
+          Bukti nyata hasil pemeriksaan langsung terhadap repositori dan dokumen serah-terima di laptop kerja tenaga ahli:
+        </p>
+      </div>
+
+      <!-- 3 Kartu Temuan Riil Per-Repositori -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+        
+        <!-- Repo 1: OJS -->
+        <div class="feature-card border-blue-400 bg-blue-50/20 p-4 space-y-2.5 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex justify-between items-center border-b border-blue-200 pb-2">
+              <span class="text-xs font-bold text-blue-900 uppercase tracking-wider bg-blue-100 px-2 py-0.5 rounded">Repo OJS</span>
+              <span class="text-xs font-bold text-emerald-700">✅ 100% Lulus Uji</span>
+            </div>
+            <strong class="text-slate-900 text-sm block font-bold">Basis Kode 3.3.0.13 & Direktori Naskah</strong>
+            <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
+              <li><strong>Versi Riil:</strong> Berkas <code>dbscripts/xml/version.xml</code> mencatat rilis 3.3.0.13 (2022).</li>
+              <li><strong>Temuan PHP 8.3:</strong> Pustaka Smarty 3 & ADOdb 5 lama memicu ribuan deprecated notice jika dijalankan di PHP 8.3.</li>
+              <li><strong>Rencana Solusi:</strong> Pembaruan ke versi resmi PKP 3.3.0-24 LTS & penyesuaian pustaka.</li>
+              <li><strong>Berkas Naskah:</strong> Parameter <code>files_dir = /opt/unggah</code> terverifikasi aman di luar web root.</li>
+            </ul>
+          </div>
+          <div class="p-2 bg-white rounded border border-blue-200 text-xs text-blue-950 font-semibold">
+            Status: Draf Berita Acara Verifikasi Repo siap.
+          </div>
+        </div>
+
+        <!-- Repo 2: MQC -->
+        <div class="feature-card border-amber-400 bg-amber-50/20 p-4 space-y-2.5 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex justify-between items-center border-b border-amber-200 pb-2">
+              <span class="text-xs font-bold text-amber-900 uppercase tracking-wider bg-amber-100 px-2 py-0.5 rounded">Repo MQC</span>
+              <span class="text-xs font-bold text-emerald-700">✅ Audit Kode Selesai</span>
+            </div>
+            <strong class="text-slate-900 text-sm block font-bold">Next.js 16 & Audit Spesifikasi Teknis</strong>
+            <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
+              <li><strong>Dokumen Riil:</strong> Berkas <code>docs/SPESIFIKASI-TEKNIS.md</code> (29 Okt 2026).</li>
+              <li><strong>Temuan Bug Parser:</strong> Word menulis kotak teks ganda (<code>mc:Choice</code> vs <code>mc:Fallback</code>), judul tabel/gambar terhitung 2x.</li>
+              <li><strong>Inkonsistensi Aturan:</strong> Konstanta 27 aturan, tapi katalognya 22 aturan.</li>
+              <li><strong>Rencana Solusi:</strong> Perbaikan parser stack-based, kalibrasi katalog aturan, & penambahan automated test.</li>
+            </ul>
+          </div>
+          <div class="p-2 bg-white rounded border border-amber-200 text-xs text-amber-950 font-semibold">
+            Status: Skema Supabase & arsitektur upload terverifikasi.
+          </div>
+        </div>
+
+        <!-- Repo 3: JP-Insight -->
+        <div class="feature-card border-emerald-400 bg-emerald-50/20 p-4 space-y-2.5 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex justify-between items-center border-b border-emerald-200 pb-2">
+              <span class="text-xs font-bold text-emerald-900 uppercase tracking-wider bg-emerald-100 px-2 py-0.5 rounded">Repo JP-Insight</span>
+              <span class="text-xs font-bold text-emerald-700">✅ Korpus Valid</span>
+            </div>
+            <strong class="text-slate-900 text-sm block font-bold">Korpus 210 Naskah & Pemanen OAI-PMH</strong>
+            <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
+              <li><strong>Dokumen Riil:</strong> Berkas <code>docs/SERAH-TERIMA.md</code> (29 Okt 2026).</li>
+              <li><strong>Kondisi Data Riil:</strong> 210 naskah, 8.589 potongan teks, 786 SNI PUPR, 111 celah riset.</li>
+              <li><strong>Skema Basis Data:</strong> Terverifikasi pada <code>db/schema.sql</code>.</li>
+              <li><strong>Konektor Pemanen:</strong> Skrip <code>lib/ojs.ts</code> siap menyerap feed OAI-PMH OJS.</li>
+            </ul>
+          </div>
+          <div class="p-2 bg-white rounded border border-emerald-200 text-xs text-emerald-950 font-semibold">
+            Status: Siap dihubungkan ke endpoint OAI-PMH OJS.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Banner Kesiapan Masuk ke Tahap 4 & 5 -->
+      <div class="p-4 rounded-xl bg-gradient-to-r from-slate-900 to-blue-950 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <div class="space-y-0.5">
+          <strong class="text-sm font-bold text-white block">Status Kesiapan Tim Konsultan:</strong>
+          <p class="text-xs text-slate-300">Tahap 1 (Akses 3 Repo), Tahap 2 (Uji Git Repo), dan Tahap 3 (Analisis Persiapan) telah tuntas. Tim langsung siap mengeksekusi <strong>Tahap 4 (Cek Bug Error)</strong> dan <strong>Tahap 5 (Integrasi di Lingkungan Uji)</strong>.</p>
+        </div>
+        <span class="px-3 py-1 rounded-lg bg-emerald-500 text-slate-950 font-extrabold text-xs shrink-0 whitespace-nowrap">Siap Eksekusi Tahap 4 & 5</span>
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 5: RENCANA KERJA LANJUTAN & TIMELINE ================= -->
+    <section id="tab-rencanakerja" class="tab-pane hidden space-y-4">
+      
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-blue-800 bg-blue-100 px-2.5 py-0.5 rounded-full">Jadwal Rencana Kerja</span>
+          <span class="text-xs text-slate-500 font-semibold">Matriks Kerja 4 Minggu Kalender</span>
+        </div>
+        <h2 class="text-lg md:text-xl font-extrabold text-[#0d2455] tracking-tight">Timeline Pelaksanaan Mingguan & Rencana Kerja Lanjutan</h2>
+        <p class="text-xs md:text-sm text-slate-600">
+          Jadwal pelaksanaan kontraktual 10 tahapan ruang lingkup yang memisahkan kolom Status dan Pihak Terlibat secara tegas:
+        </p>
+      </div>
+
+      <!-- TABEL MATRIKS TIMELINE 4 MINGGU (GANTT CHART) -->
+      <div class="feature-card p-0 overflow-hidden border border-slate-300 shadow-xs">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs md:text-sm text-slate-700 border-collapse">
+            <thead>
+              <tr class="border-b-2 border-slate-300 text-slate-900 font-bold bg-slate-100">
+                <th class="py-3 px-3 w-12 text-center whitespace-nowrap">No</th>
+                <th class="py-3 px-4 whitespace-nowrap">Tahap Ruang Lingkup KAK</th>
+                <th class="py-3 px-2 w-12 text-center whitespace-nowrap bg-blue-50/60">M-I</th>
+                <th class="py-3 px-2 w-12 text-center whitespace-nowrap bg-blue-50/60">M-II</th>
+                <th class="py-3 px-2 w-12 text-center whitespace-nowrap bg-blue-50/60">M-III</th>
+                <th class="py-3 px-2 w-12 text-center whitespace-nowrap bg-blue-50/60">M-IV</th>
+                <th class="py-3 px-4 whitespace-nowrap">Status Progres</th>
+                <th class="py-3 px-4 whitespace-nowrap">Pihak Terlibat</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              
+              <!-- Tahap 1 -->
+              <tr class="hover:bg-slate-50/80 transition bg-emerald-50/20">
+                <td class="py-2.5 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">1</td>
+                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Serah Terima dan Akses</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap bg-emerald-100 font-bold text-emerald-800">■</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-4 whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (3 Repo Aktif)</span>
+                </td>
+                <td class="py-2.5 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Pengelola PUPR & Tenaga Ahli</td>
+              </tr>
+
+              <!-- Tahap 2 -->
+              <tr class="hover:bg-slate-50/80 transition bg-emerald-50/20">
+                <td class="py-2.5 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">2</td>
+                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Pengujian Git Repo</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap bg-emerald-100 font-bold text-emerald-800">■</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-4 whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100% Lulus Uji)</span>
+                </td>
+                <td class="py-2.5 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+
+              <!-- Tahap 3 -->
+              <tr class="hover:bg-slate-50/80 transition bg-emerald-50/20">
+                <td class="py-2.5 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">3</td>
+                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Analisis dan Persiapan</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap bg-emerald-100 font-bold text-emerald-800">■</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-4 whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (Dokumen Siap)</span>
+                </td>
+                <td class="py-2.5 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+
+              <!-- Tahap 4 -->
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-2.5 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">4</td>
+                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Cek Bug Error (PHP 8.3 & Library)</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap bg-blue-600 text-white font-bold">■</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-4 whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-900">Rencana Eksekusi</span>
+                </td>
+                <td class="py-2.5 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+
+              <!-- Tahap 5 -->
+              <tr class="hover:bg-slate-50/80 transition bg-amber-50/30">
+                <td class="py-2.5 px-3 text-center font-black text-slate-900 bg-amber-100/50 whitespace-nowrap">5</td>
+                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Integrasi Aplikasi (OJS-MQC-JP)</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap bg-amber-500 text-white font-bold">■</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-4 whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-200 text-amber-950 border border-amber-300">Titik Kunci Integrasi</span>
+                </td>
+                <td class="py-2.5 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+
+              <!-- Tahap 6 -->
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-2.5 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">6</td>
+                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Pentest Aplikasi (Keamanan Siber)</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap bg-blue-600 text-white font-bold">■</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-4 whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-900">Rencana Eksekusi</span>
+                </td>
+                <td class="py-2.5 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Spesialis Keamanan Siber</td>
+              </tr>
+
+              <!-- Tahap 7 -->
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-2.5 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">7</td>
+                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Perbaikan Temuan dan Uji Ulang</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap bg-blue-600 text-white font-bold">■</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-4 whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-900">Rencana Eksekusi</span>
+                </td>
+                <td class="py-2.5 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+
+              <!-- Tahap 8 -->
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-2.5 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">8</td>
+                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Pengujian Bersama (UAT) & Dokumen</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap bg-indigo-600 text-white font-bold">■</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-4 whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-900">Uji Bersama Dewan Redaksi</span>
+                </td>
+                <td class="py-2.5 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Dewan Redaksi & Tim Gabungan</td>
+              </tr>
+
+              <!-- Tahap 9 -->
+              <tr class="hover:bg-slate-50/80 transition bg-amber-50/30">
+                <td class="py-2.5 px-3 text-center font-black text-slate-900 bg-amber-100/50 whitespace-nowrap">9</td>
+                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Persiapan Produksi</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap bg-amber-600 text-white font-bold">■</td>
+                <td class="py-2.5 px-4 whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-900">Persiapan Produksi</span>
+                </td>
+                <td class="py-2.5 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Sysadmin PUPR & Tenaga Ahli</td>
+              </tr>
+
+              <!-- Tahap 10 -->
+              <tr class="hover:bg-slate-50/80 transition bg-emerald-50/30">
+                <td class="py-2.5 px-3 text-center font-black text-slate-900 bg-emerald-100/50 whitespace-nowrap">10</td>
+                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Publikasi Live & Pemantauan</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap bg-emerald-600 text-white font-bold">■</td>
+                <td class="py-2.5 px-4 whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900">Publikasi Live & BAST</span>
+                </td>
+                <td class="py-2.5 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Gabungan (Serah Terima Akhir)</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ESTIMASI WAKTU KERJA -->
+      <div class="feature-card p-4 space-y-3">
+        <div class="border-b border-slate-200 pb-2 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+          <div>
+            <h3 class="text-base md:text-lg font-extrabold text-slate-900">Estimasi Kebutuhan Waktu Kerja (Man-Days)</h3>
+            <p class="text-xs text-slate-500">Perkiraan durasi pengerjaan teknis untuk memastikan kelancaran migrasi dan pengujian sistem:</p>
+          </div>
+          <span class="text-xs px-2.5 py-0.5 bg-blue-100 text-blue-900 rounded-full font-bold">Rencana Kerja</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          
+          <div class="p-3.5 rounded-lg border border-blue-200 bg-blue-50/30 space-y-1">
+            <div class="text-xs font-bold text-blue-800 uppercase">Tahap 4 - 8 (Server Dev)</div>
+            <div class="text-xl md:text-2xl font-black text-blue-950">5 - 7 Hari Kerja</div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Mencakup penutupan bug, integrasi tri-sistem, pentest siber, penutupan temuan, hingga sesi UAT. Layanan publik tetap aktif normal.
+            </p>
+          </div>
+
+          <div class="p-3.5 rounded-lg border border-amber-300 bg-amber-50/40 space-y-1">
+            <div class="text-xs font-bold text-amber-800 uppercase">Tahap 9 - 10 (Jeda Pemeliharaan)</div>
+            <div class="text-xl md:text-2xl font-black text-amber-950">± 1 - 2 Jam (Jeda Layanan)</div>
+            <p class="text-xs text-amber-900 leading-relaxed">
+              Jendela pemeliharaan malam hari: backup live snapshot, penerapan kode teruji ke Server Produksi, aktivasi PHP 8.3 FPM, dan verifikasi unduh naskah PDF.
+            </p>
+          </div>
+
+          <div class="p-3.5 rounded-lg border border-emerald-300 bg-emerald-50/40 space-y-1">
+            <div class="text-xs font-bold text-emerald-800 uppercase">Pemantauan Pasca-Publikasi</div>
+            <div class="text-xl md:text-2xl font-black text-emerald-950">2 - 3 Hari Pemantauan</div>
+            <p class="text-xs text-emerald-900 leading-relaxed">
+              Pendampingan pasca-publikasi untuk memastikan seluruh alur naskah baru, feed OAI-PMH, penapisan MQC, dan temu balik JP-Insight berjalan lancar di produksi.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 6: KEBUTUHAN DUKUNGAN & MANAJEMEN RISIKO ================= -->
+    <section id="tab-mitigasi" class="tab-pane hidden space-y-4">
+      
+      <div class="space-y-1">
+        <h2 class="text-lg md:text-xl font-extrabold text-[#0d2455] tracking-tight">Kebutuhan Dukungan Teknis & Manajemen Risiko</h2>
+        <p class="text-xs md:text-sm text-slate-600">Sinergi koordinasi tim pengelola dan prosedur kehati-hatian untuk menjamin kelangsungan layanan:</p>
+      </div>
+
+      <!-- KEBUTUHAN DUKUNGAN KEMENTERIAN (PADAT) -->
+      <div class="feature-card border-blue-300 bg-blue-50/20 p-4 space-y-3">
+        <div class="flex items-center gap-2.5">
+          <div class="h-8 w-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-base">📋</div>
+          <h3 class="font-bold text-slate-900 text-base">Kebutuhan Dukungan Teknis dari Tim Pengelola Kementerian PUPR</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+          <div class="p-3 bg-white rounded-lg border border-blue-200 space-y-1">
+            <strong class="text-slate-900 block font-bold">1. Kredensial & Repositori Git</strong>
+            <p class="text-slate-600">Akses aktif ke repositori git serta akses remote/SSH ke lingkungan Server Development.</p>
+          </div>
+          <div class="p-3 bg-white rounded-lg border border-blue-200 space-y-1">
+            <strong class="text-slate-900 block font-bold">2. Salinan Database Uji Coba</strong>
+            <p class="text-slate-600">Penyediaan salinan database (.sql dump) terkini untuk simulasi migrasi skema di Server Dev.</p>
+          </div>
+          <div class="p-3 bg-white rounded-lg border border-blue-200 space-y-1">
+            <strong class="text-slate-900 block font-bold">3. Partisipasi Sesi UAT</strong>
+            <p class="text-slate-600">Waktu uji coba bersama Dewan Redaksi pada Server Dev sebelum memberikan persetujuan publikasi.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MANAJEMEN RISIKO & DISASTER RECOVERY -->
+      <div class="feature-card border-l-4 border-l-emerald-600 p-4 md:p-5 space-y-3">
+        <h3 class="text-base md:text-lg font-bold text-slate-900">Prosedur Pemulihan Cadangan (Rollback &lt; 15 Menit)</h3>
+        <p class="text-xs md:text-sm text-slate-600 leading-relaxed max-w-5xl">
+          Sebagai bentuk kepatuhan terhadap tata kelola TI yang baik, setiap tindakan pada server produksi wajib dilengkapi prosedur pemulihan seketika. Apabila terjadi kendala teknis tak terduga saat jendela jeda pemeliharaan di Server Produksi:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+          <div class="p-3.5 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+            <span class="text-xs font-bold text-blue-700 uppercase bg-blue-100 px-2 py-0.5 rounded inline-block">Langkah 1</span>
+            <div class="font-bold text-sm text-slate-900">Batas Waktu Keputusan (Menit ke-45)</div>
+            <p class="text-xs text-slate-600 leading-relaxed">Jika dalam 45 menit pertama ditemukan kendala tak terduga, tim langsung beralih ke prosedur pemulihan.</p>
+          </div>
+
+          <div class="p-3.5 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+            <span class="text-xs font-bold text-blue-700 uppercase bg-blue-100 px-2 py-0.5 rounded inline-block">Langkah 2</span>
+            <div class="font-bold text-sm text-slate-900">Pemulihan dari Cadangan</div>
+            <p class="text-xs text-slate-600 leading-relaxed">Seluruh kode program dan basis data dikembalikan menggunakan salinan snapshot cadangan yang dibuat sebelum migrasi.</p>
+          </div>
+
+          <div class="p-3.5 bg-slate-50 rounded-lg border border-emerald-700 uppercase bg-emerald-100 px-2 py-0.5 rounded inline-block">Langkah 3</span>
+            <div class="font-bold text-sm text-slate-900">Sistem Aktif Normal (&lt; 15 Menit)</div>
+            <p class="text-xs text-slate-600 leading-relaxed">Dalam waktu kurang dari 15 menit, web Jurnal Permukiman kembali beroperasi normal tanpa risiko kehilangan data.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Penutup Kesepakatan Laporan Awal -->
+      <div class="feature-card bg-slate-900 text-white p-5 md:p-6 flex flex-col md:flex-row justify-between items-center gap-5 border-slate-800">
+        <div class="space-y-1 max-w-4xl">
+          <div class="text-xs font-bold uppercase tracking-widest text-emerald-400">Kesiapan Kerja</div>
+          <h4 class="text-lg md:text-xl font-extrabold text-white">Kesiapan Pelaksanaan Tahap 4 & 5</h4>
+          <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+            Paparan Laporan Awal ini menjadi acuan rencana kerja teknis. Seluruh metodologi, skrip pembaruan, dan skenario pengujian telah dipersiapkan. <strong>PT Mitra Sinerji Teknoindo</strong> siap melanjutkan pelaksanaan di Server Development setelah mendapatkan persetujuan dari Tim Pengelola Jurnal Permukiman.
+          </p>
+        </div>
+        <div class="shrink-0 flex items-center gap-3 bg-white/10 p-3 rounded-xl border border-white/15">
+          <img src="data:image/png;base64,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" alt="Logo PT Mitra Sinerji Teknoindo" class="h-10 w-auto object-contain bg-white/10 p-1.5 rounded-lg">
+          <div class="text-left">
+            <div class="text-white font-bold text-xs">PT Mitra Sinerji Teknoindo</div>
+            <div class="text-[11px] text-blue-200 font-mono"><a href="https://mitrasinerji.com" target="_blank" class="hover:underline">mitrasinerji.com</a> • Bandung</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer Dokumen Paparan -->
+  <footer class="w-full bg-white border-t border-slate-200 full-width-section py-6 text-xs md:text-sm text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-3">
+    <div>
+      © 2026 <strong>Jurnal Permukiman - Kementerian Pekerjaan Umum dan Perumahan Rakyat</strong>.
+    </div>
+    <div class="text-xs text-slate-400 flex items-center gap-2">
+      <img src="data:image/png;base64,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" alt="Logo MST" class="h-4 w-auto object-contain opacity-75">
+      <span>Dokumen Paparan Laporan Awal • Disusun oleh <strong>PT Mitra Sinerji Teknoindo</strong> (<a href="https://mitrasinerji.com" target="_blank" class="text-blue-600 hover:underline">mitrasinerji.com</a>)</span>
+    </div>
+  </footer>
+
+  <script>
+    const tabsList = [
+      'tab-latar',
+      'tab-integrasi',
+      'tab-ruanglingkup',
+      'tab-hasilawal',
+      'tab-rencanakerja',
+      'tab-mitigasi'
+    ];
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      const targetPane = document.getElementById(tabId);
+      if (targetPane) {
+        targetPane.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      const activeBtn = document.getElementById('btn-' + tabId);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    function getCurrentTabIndex() {
+      for (let i = 0; i < tabsList.length; i++) {
+        const pane = document.getElementById(tabsList[i]);
+        if (pane && !pane.classList.contains('hidden')) return i;
+      }
+      return 0;
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Keyboard Shortcuts for C-Level Presentation
+    document.addEventListener('keydown', (e) => {
+      // Ignore if user is typing in an input
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+      const key = e.key;
+      if (key >= '1' && key <= '6') {
+        const index = parseInt(key) - 1;
+        if (tabsList[index]) switchTab(tabsList[index]);
+      } else if (key === 'ArrowRight' || key === 'PageDown') {
+        const current = getCurrentTabIndex();
+        const next = (current + 1) % tabsList.length;
+        switchTab(tabsList[next]);
+      } else if (key === 'ArrowLeft' || key === 'PageUp') {
+        const current = getCurrentTabIndex();
+        const prev = (current - 1 + tabsList.length) % tabsList.length;
+        switchTab(tabsList[prev]);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -396,9 +396,6 @@ msgstr "Enter any information you would like to appear on your announcements pag
 msgid "manager.setup.appearInAboutJournal"
 msgstr "(To appear in About the Journal) "
 
-msgid "manager.setup.competingInterests.requireAuthors"
-msgstr "Require submitting Authors to file a Competing Interest (CI) statement with their submission."
-
 msgid "manager.setup.competingInterests.requireReviewers"
 msgstr "Require Reviewers to file a CI statement with each peer review they submit."
 
@@ -1646,9 +1643,6 @@ msgstr "Mark registered"
 msgid "plugins.importexport.common.action.register"
 msgstr "Register"
 
-msgid "plugins.importexport.common.validation"
-msgstr "Validate XML before the export and registration."
-
 msgid "plugins.importexport.common.error.noObjectsSelected"
 msgstr "No objects selected."
 
@@ -1687,6 +1681,18 @@ msgstr "The specified journal path, \"{$journalPath}\", does not exist."
 
 msgid "plugins.importexport.common.error.unknownObjects"
 msgstr "The specified objects could not be found."
+
+msgid "plugins.importexport.common.error.import.issueGalleyFileMissing"
+msgstr "An issue galley could not be imported, its file is missing."
+
+msgid "plugins.importexport.common.error.issueGalleyFileMissing"
+msgstr "The issue galley {$id} could not be exported, its file was not found at the path \"{$path}\"."
+
+msgid "plugins.importexport.common.error.publicationCoverImageMissing"
+msgstr "The cover image of the publication {$id} was not exported, its file was not found at the path \"{$path}\"."
+
+msgid "plugins.importexport.common.error.issueCoverImageMissing"
+msgstr "The cover image of the issue {$id} was not exported, its file was not found at the path \"{$path}\"."
 
 msgid "manager.setup.notifications.copyPrimaryContact"
 msgstr "Send a copy to the primary contact, identified in the Journal Settings."

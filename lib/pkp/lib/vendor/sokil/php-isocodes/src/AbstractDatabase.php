@@ -147,21 +147,25 @@ abstract class AbstractDatabase implements \Iterator, \Countable
     /**
      * @return object
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->arrayToEntry(current($this->clusterIndex));
     }
 
+    #[\ReturnTypeWillChange]
     public function key(): ?int
     {
         return key($this->clusterIndex);
     }
 
+    #[\ReturnTypeWillChange]
     public function next(): void
     {
         next($this->clusterIndex);
     }
 
+    #[\ReturnTypeWillChange]
     public function rewind(): void
     {
         // initialise cluster index
@@ -170,11 +174,13 @@ abstract class AbstractDatabase implements \Iterator, \Countable
         reset($this->clusterIndex);
     }
 
+    #[\ReturnTypeWillChange]
     public function valid(): bool
     {
         return $this->key() !== null;
     }
 
+    #[\ReturnTypeWillChange]
     public function count(): int
     {
         return count($this->getClusterIndex());

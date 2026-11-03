@@ -13,6 +13,8 @@
  * @brief Simple resolver gateway plugin
  */
 
+use function PHP81_BC\strftime;
+
 import('lib.pkp.classes.plugins.GatewayPlugin');
 
 class ResolverPlugin extends GatewayPlugin {
@@ -102,11 +104,11 @@ class ResolverPlugin extends GatewayPlugin {
 				foreach ($submissionsIterator as $submission) {
 					// Look for the correct page in the list of articles.
 					$matches = null;
-					if (PKPString::regexp_match_get('/^[Pp][Pp]?[.]?[ ]?(\d+)$/', $submission->getPages(), $matches)) {
+					if (PKPString::regexp_match_get('/^[Pp]?[Pp]?[.]?[ ]?(\d+)$/', $submission->getPages(), $matches)) {
 						$matchedPage = $matches[1];
 						if ($page == $matchedPage) $request->redirect(null, 'article', 'view', $submission->getBestId());
 					}
-					if (PKPString::regexp_match_get('/^[Pp][Pp]?[.]?[ ]?(\d+)[ ]?-[ ]?([Pp][Pp]?[.]?[ ]?)?(\d+)$/', $submission->getPages(), $matches)) {
+					if (PKPString::regexp_match_get('/^[Pp]?[Pp]?[.]?[ ]?(\d+)[ ]?-[ ]?([Pp][Pp]?[.]?[ ]?)?(\d+)$/', $submission->getPages(), $matches)) {
 						$matchedPageFrom = $matches[1];
 						$matchedPageTo = $matches[3];
 						if ($page >= $matchedPageFrom && ($page < $matchedPageTo || ($page == $matchedPageTo && $matchedPageFrom = $matchedPageTo))) $request->redirect(null, 'article', 'view', $submission->getBestId());
@@ -171,5 +173,3 @@ class ResolverPlugin extends GatewayPlugin {
 		}
 	}
 }
-
-

@@ -141,6 +141,10 @@ class IssueHandler extends Handler {
 		$nextPage = $total > $showingEnd ? $page + 1 : null;
 		$prevPage = $showingStart > 1 ? $page - 1 : null;
 
+		if (!count($issues) && $offset) {
+			$this->getDispatcher()->handle404();
+		}
+
 		$templateMgr->assign(array(
 			'issues' => $issues,
 			'showingStart' => $showingStart,
@@ -281,10 +285,6 @@ class IssueHandler extends Handler {
 		$user = $request->getUser();
 		$templateMgr = TemplateManager::getManager($request);
 
-		//untuk menampilkan DOI
-		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
-        	$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
-
 		// Determine pre-publication access
 		// FIXME: Do that. (Bug #8278)
 
@@ -351,7 +351,7 @@ class IssueHandler extends Handler {
 		$issueAction = new IssueAction();
 		$subscriptionRequired = $issueAction->subscriptionRequired($issue, $journal);
 		$subscribedUser = $issueAction->subscribedUser($user, $journal);
-		$subscribedDomain = $issueAction->subscribedDomain($request, $journal);
+		$subscribedDomain = $issueAction->subscribedDomain($request, $journal, $issue->getId());
 
 		if ($subscriptionRequired && !$subscribedUser && !$subscribedDomain) {
 			$templateMgr->assign('subscriptionExpiryPartial', true);

@@ -19,6 +19,8 @@
  * Currently integrated with Smarty (from http://smarty.php.net/).
  */
 
+use function PHP81_BC\strftime;
+
 /* This definition is required by Smarty */
 define('SMARTY_DIR', Core::getBaseDir() . '/lib/pkp/lib/vendor/smarty/smarty/libs/');
 
@@ -71,6 +73,13 @@ class PKPTemplateManager extends Smarty {
 
 	/** @var PKPRequest */
 	private $_request;
+
+	/** @var string[] */
+	private $_headers = [];
+
+	/** @var bool Track whether its backend page */
+	private $isBackendPage = false;
+
 
 	/**
 	 * Constructor.
@@ -158,7 +167,7 @@ class PKPTemplateManager extends Smarty {
 			if (!empty($favicon)) {
 				$publicFileManager = new PublicFileManager();
 				$faviconDir = $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($currentContext->getId());
-				$this->addHeader('favicon', '<link rel="icon" href="' . $faviconDir . '/' . $favicon['uploadName'] . '">', ['contexts' => ['frontend', 'backend']]);
+				$this->addHeader('favicon', '<link rel="icon" href="' . $faviconDir . '/' . $favicon['uploadName'] . '" />', ['contexts' => ['frontend', 'backend']]);
 			}
 		}
 
@@ -209,12 +218,12 @@ class PKPTemplateManager extends Smarty {
 			// Register meta tags
 			if (Config::getVar('general', 'installed')) {
 				if (($request->getRequestedPage()=='' || $request->getRequestedPage() == 'index') && $currentContext && $currentContext->getLocalizedData('searchDescription')) {
-					$this->addHeader('searchDescription', '<meta name="description" content="' . $currentContext->getLocalizedData('searchDescription') . '">');
+					$this->addHeader('searchDescription', '<meta name="description" content="' . $currentContext->getLocalizedData('searchDescription') . '" />');
 				}
 
 				$this->addHeader(
 					'generator',
-					'<meta name="generator" content="' . __($application->getNameKey()) . ' ' . $application->getCurrentVersion()->getVersionString(false) . '">',
+					'<meta name="generator" content="' . __($application->getNameKey()) . ' ' . $application->getCurrentVersion()->getVersionString(false) . '" />',
 					[
 						'contexts' => ['frontend', 'backend'],
 					]
@@ -231,7 +240,7 @@ class PKPTemplateManager extends Smarty {
 			if ($currentContext && !$currentContext->getEnabled()) {
 				$this->addHeader(
 					'noindex',
-					'<meta name="robots" content="noindex,nofollow">',
+					'<meta name="robots" content="noindex,nofollow" />',
 					[
 						'contexts' => ['frontend', 'backend'],
 					]
@@ -248,7 +257,22 @@ class PKPTemplateManager extends Smarty {
 		}
 
 		// Register custom functions
+		$this->registerPlugin('modifier', 'trim', 'trim');
+		$this->registerPlugin('modifier', 'intval', 'intval');
+		$this->registerPlugin('modifier', 'json_encode', 'json_encode');
+		$this->registerPlugin('modifier', 'uniqid', 'uniqid');
+		$this->registerPlugin('modifier', 'substr', 'substr');
+		$this->registerPlugin('modifier', 'strstr', 'strstr');
+		$this->registerPlugin('modifier', 'substr_replace', 'substr_replace');
+		$this->registerPlugin('modifier', 'array_key_first', 'array_key_first');
+		$this->registerPlugin('modifier', 'array_values', 'array_values');
+		$this->registerPlugin('modifier', 'fatalError', 'fatalError');
 		$this->registerPlugin('modifier', 'translate', 'AppLocale::translate');
+		$this->registerPlugin('modifier', 'parse_url', 'parse_url');
+		$this->registerPlugin('modifier', 'parse_str', 'parse_str');
+		$this->registerPlugin('modifier', 'strtok', 'strtok');
+		$this->registerPlugin('modifier', 'array_pop', 'array_pop');
+		$this->registerPlugin('modifier', 'array_keys', 'array_keys');
 		$this->registerPlugin('modifier','strip_unsafe_html', 'PKPString::stripUnsafeHtml');
 		$this->registerPlugin('modifier','String_substr', 'PKPString::substr');
 		$this->registerPlugin('modifier','dateformatPHP2JQueryDatepicker', 'PKPString::dateformatPHP2JQueryDatepicker');
@@ -400,7 +424,7 @@ class PKPTemplateManager extends Smarty {
 
 		// Set the @baseUrl variable
 		$baseUrl = !empty($args['baseUrl']) ? $args['baseUrl'] : $request->getBaseUrl(true);
-		$less->parse("@baseUrl: '$baseUrl';");
+        $less->parse('@baseUrl: ' . json_encode($baseUrl) . ';');
 
 		return $less->getCSS();
 	}
@@ -431,7 +455,7 @@ class PKPTemplateManager extends Smarty {
 		$cacheDirectory = CacheManager::getFileCachePath();
 		$context = $this->_request->getContext();
 		$contextId = is_a($context, 'Context') ? $context->getId() : 0;
-		return $cacheDirectory . DIRECTORY_SEPARATOR . $contextId . '-' . $name . '.css';
+		return $cacheDirectory . DIRECTORY_SEPARATOR . $contextId . '-' . $name . '-' . crc32(Application::get()->getRequest()->getBaseUrl()) . '.css';
 	}
 
 	/**
@@ -489,6 +513,7 @@ class PKPTemplateManager extends Smarty {
 				'priority' => STYLE_SEQUENCE_NORMAL,
 				'contexts' => ['frontend'],
 				'inline'   => false,
+				'type' => 'text/javascript',
 			],
 			$args
 		);
@@ -498,6 +523,7 @@ class PKPTemplateManager extends Smarty {
 			$this->_javaScripts[$context][$args['priority']][$name] = [
 				'script' => $script,
 				'inline' => $args['inline'],
+				'type' => $args['type'],
 			];
 		}
 	}
@@ -725,6 +751,7 @@ class PKPTemplateManager extends Smarty {
 	 * Set up the template requirements for editorial backend pages
 	 */
 	function setupBackendPage() {
+		$this->isBackendPage = true;
 
 		$request = Application::get()->getRequest();
 		$dispatcher = $request->getDispatcher();
@@ -744,6 +771,7 @@ class PKPTemplateManager extends Smarty {
 			'WORKFLOW_STAGE_ID_EDITING',
 			'WORKFLOW_STAGE_ID_PRODUCTION',
 			'INSERT_TAG_VARIABLE_TYPE_PLAIN_TEXT',
+			'INSERT_TAG_VARIABLE_TYPE_SAFE_HTML',
 			'ROLE_ID_MANAGER',
 			'ROLE_ID_SITE_ADMIN',
 			'ROLE_ID_AUTHOR',
@@ -988,6 +1016,7 @@ class PKPTemplateManager extends Smarty {
 					}
 
 					if (count(array_intersect([ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR], $userRoles))) {
+						AppLocale::requireComponents([LOCALE_COMPONENT_PKP_MANAGER]); // pkp/pkp-lib#9721
 						$menu['statistics'] = [
 							'name' => __('navigation.tools.statistics'),
 							'submenu' => [
@@ -1123,6 +1152,36 @@ class PKPTemplateManager extends Smarty {
 	 */
 	function display($template = null, $cache_id = null, $compile_id = null, $parent = null) {
 
+		if($this->isBackendPage) {
+
+			$this->unregisterPlugin('modifier', 'escape');
+
+			/** prevent {{ JS }} injection  */
+			$this->registerPlugin('modifier', 'escape', function ($string, $esc_type = 'html', $char_set = 'ISO-8859-1') {
+				$result = $string;
+				if($esc_type === 'html') {
+					$result = $this->smartyEscape($result, $esc_type, $char_set);
+					$result = str_replace('{{', '<span v-pre>{{</span>', $result);
+					$result = str_replace('}}', '<span v-pre>}}</span>', $result);
+					return $result;
+				}
+
+
+				return $this->smartyEscape($result, $esc_type, $char_set);
+
+			});
+
+			$this->unregisterPlugin('modifier', 'strip_unsafe_html');
+
+			/** prevent {{ JS }} injection  */
+			$this->registerPlugin('modifier', 'strip_unsafe_html', function ($input, $configKey = 'allowed_html') {
+				$result = PKPString::stripUnsafeHtml($input, $configKey);
+				$result = str_replace('{{', '<span v-pre>{{</span>', $result);
+				$result = str_replace('}}', '<span v-pre>}}</span>', $result);
+				return $result;
+			});
+		}
+
 		// Output global constants and locale keys used in new component library
 		$output = '';
 		if (!empty($this->_constants)) {
@@ -1179,6 +1238,10 @@ class PKPTemplateManager extends Smarty {
 		// of the proper character set).
 		header('Content-Type: text/html; charset=' . Config::getVar('i18n', 'client_charset'));
 		header('Cache-Control: ' . $this->_cacheability);
+
+		foreach ($this->_headers as $header) {
+			header($header);
+		}
 
 		// If no compile ID was assigned, get one.
 		if (!$compile_id) $compile_id = $this->getCompileId($template);
@@ -1854,7 +1917,7 @@ class PKPTemplateManager extends Smarty {
 			case 'json': return json_encode($csrfToken);
 			case 'html':
 			default:
-				return '<input type="hidden" name="csrfToken" value="' . htmlspecialchars($csrfToken) . '">';
+				return '<input type="hidden" name="csrfToken" value="' . htmlspecialchars($csrfToken) . '" />';
 		}
 	}
 
@@ -1932,7 +1995,7 @@ class PKPTemplateManager extends Smarty {
 			ksort($styles);
 			foreach ($styles as $priorityGroup) {
 				foreach ($priorityGroup as $htmlStyle) {
-					$links .= '<link rel="stylesheet" href="' . $htmlStyle['style'] . '" type="text/css">' . "\n";
+					$links .= '<link rel="stylesheet" href="' . $htmlStyle['style'] . '" type="text/css" />' . "\n";
 				}
 			}
 		}
@@ -1967,12 +2030,12 @@ class PKPTemplateManager extends Smarty {
 		foreach($scripts as $priorityList) {
 			foreach($priorityList as $name => $data) {
 				if ($data['inline']) {
-					$output .= '<script type="text/javascript">' . $data['script'] . '</script>';
+					$output .= '<script type="' . $data['type'] . '">' . $data['script'] . '</script>';
 				} else {
 					if ($appVersion && strpos($data['script'], '?') === false) {
 						$data['script'] .= '?v=' . $appVersion;
 					}
-					$output .= '<script src="' . $data['script'] . '" type="text/javascript"></script>';
+					$output .= '<script src="' . $data['script'] . '" type="' . $data['type'] . '"></script>';
 				}
 			}
 		}
@@ -2059,8 +2122,8 @@ class PKPTemplateManager extends Smarty {
 		$this->assign([
 			'navigationMenu' => $navigationMenu,
 			'id' => $params['id'],
-			'ulClass' => $params['ulClass'] ?? null,
-			'liClass' => $params['liClass'] ?? null,
+			'ulClass' => $params['ulClass'] ?? '',
+			'liClass' => $params['liClass'] ?? '',
 		]);
 
 		return $this->fetch($menuTemplatePath);
@@ -2307,5 +2370,25 @@ class PKPTemplateManager extends Smarty {
 	public function register_function($name, $impl, $cacheable = true, $cache_attrs = null) {
 		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated call to Smarty2 function ' .  __FUNCTION__);
 		$this->registerPlugin('function', $name, $impl, $cacheable, $cache_attrs);
+	}
+
+	/**
+	 * Defines the HTTP headers which will be appended to the output once the display() method gets called
+	 * @param string[] List of formatted headers (['header: content', ...])
+	 */
+	public function setHeaders(array $headers): self
+	{
+		$this->_headers = $headers;
+		return $this;
+	}
+
+	/**
+	 * Retrieves the headers
+	 *
+	 * @return string[]
+	 */
+	public function getHeaders(): array
+	{
+		return $this->_headers;
 	}
 }

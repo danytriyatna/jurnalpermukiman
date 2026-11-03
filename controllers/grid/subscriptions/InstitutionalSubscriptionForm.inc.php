@@ -79,7 +79,7 @@ class InstitutionalSubscriptionForm extends SubscriptionForm {
 					'institutionName' => $this->subscription->getInstitutionName(),
 					'institutionMailingAddress' => $this->subscription->getInstitutionMailingAddress(),
 					'domain' => $this->subscription->getDomain(),
-					'ipRanges' => join($this->subscription->getIPRanges(), "\r\n"),
+					'ipRanges' => join("\r\n", $this->subscription->getIPRanges()),
 				)
 			);
 		}
@@ -150,9 +150,9 @@ class InstitutionalSubscriptionForm extends SubscriptionForm {
 		} 
 
 		// Send notification email
-		if ($this->_data['notifyEmail'] == 1) {
+		if ($this->getData('notifyEmail')) {
 			$mail = $this->_prepareNotificationEmail('SUBSCRIPTION_NOTIFY');
-			if (!$mail->send()) {
+			if ($mail->isEnabled() && !$mail->send()) {
 				import('classes.notification.NotificationManager');
 				$notificationMgr = new NotificationManager();
 				$request = Application::get()->getRequest();

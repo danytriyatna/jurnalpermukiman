@@ -91,7 +91,7 @@ class RegistrationForm extends Form {
 
 		if ($this->captchaEnabled) {
 			$publicKey = Config::getVar('captcha', 'recaptcha_public_key');
-			$reCaptchaHtml = '<div class="g-recaptcha" data-sitekey="' . $publicKey . '"></div>';
+			$reCaptchaHtml = '<div class="g-recaptcha" data-sitekey="' . $publicKey . '"></div><label for="g-recaptcha-response" style="display:none;">Recaptcha response</label>';
 			$templateMgr->assign(array(
 				'reCaptchaHtml' => $reCaptchaHtml,
 				'captchaEnabled' => true,
@@ -329,7 +329,7 @@ class RegistrationForm extends Form {
 				'activateUrl' => $request->url($contextPath, 'user', 'activateUser', [$this->getData('username'), $accessKey])
 			]);
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
-			if (!$mail->send()) {
+			if ($mail->isEnabled() && !$mail->send()) {
 				import('classes.notification.NotificationManager');
 				$notificationMgr = new NotificationManager();
 				$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('email.compose.error')));

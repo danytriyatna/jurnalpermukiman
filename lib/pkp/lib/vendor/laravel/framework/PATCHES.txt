@@ -5,3 +5,7 @@ Inhibit __ Laravel helper
 Source: lib/laravel-helper-4017.diff
 
 
+Hide PHP8.1 deprecation notice
+Source: lib/laravel-php8.1.diff
+
+

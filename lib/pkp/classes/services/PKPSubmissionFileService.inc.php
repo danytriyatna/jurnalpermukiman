@@ -436,7 +436,7 @@ class PKPSubmissionFileService implements EntityPropertyInterface, EntityReadInt
 				]);
 
 				if ($mail->getRecipients()){
-					if (!$mail->send($request)) {
+					if ($mail->isEnabled() && !$mail->send($request)) {
 						import('classes.notification.NotificationManager');
 						$notificationMgr = new \NotificationManager();
 						$notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, ['contents' => __('email.compose.error')]);
@@ -597,6 +597,24 @@ class PKPSubmissionFileService implements EntityPropertyInterface, EntityReadInt
 				'submissionFileId' => $submissionFile->getId(),
 				'submissionId' => $submissionFile->getData('submissionId'),
 				'username' => $user ? $user->getUsername() : null,
+			]
+		);
+
+		import('lib.pkp.classes.log.SubmissionLog');
+		import('classes.log.SubmissionEventLogEntry');
+		$submission = Services::get('submission')->get($submissionFile->getData('submissionId'));
+		\SubmissionLog::logEvent(
+			Application::get()->getRequest(),
+			$submission,
+			SUBMISSION_LOG_FILE_DELETE,
+			'submission.event.fileDeleted',
+			[
+				'fileStage' => $submissionFile->getData('fileStage'),
+				'sourceSubmissionFileId' => $submissionFile->getData('sourceSubmissionFileId'),
+				'submissionFileId' => $submissionFile->getId(),
+				'submissionId' => $submissionFile->getData('submissionId'),
+				'username' => $user ? $user->getUsername() : null,
+				'originalFileName' => $submissionFile->getLocalizedData('name'),
 			]
 		);
 
@@ -768,7 +786,7 @@ class PKPSubmissionFileService implements EntityPropertyInterface, EntityReadInt
 			case SUBMISSION_FILE_INTERNAL_REVIEW_REVISION:
 				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 				$reviewRound = $reviewRoundDao->getBySubmissionFileId($submissionFile->getId());
-				return $reviewRound->getStageId();
+				return $reviewRound ? $reviewRound->getStageId() : null;
 			case SUBMISSION_FILE_QUERY:
 				$noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
 				$note = $noteDao->getById($submissionFile->getData('assocId'));

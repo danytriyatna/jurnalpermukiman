@@ -214,8 +214,8 @@ class CrossRefExportPlugin extends DOIPubIdExportPlugin {
 				$exportXml = $this->exportXML(array($object), $filter, $context, $noValidation);
 				// Write the XML to a file.
 				// export file name example: crossref-20160723-160036-articles-1-1.xml
-				$objectsFileNamePart = $objectsFileNamePart . '-' . $object->getId();
-				$exportFileName = $this->getExportFileName($this->getExportPath(), $objectsFileNamePart, $context, '.xml');
+				$objectFileNamePart = $objectsFileNamePart . '-' . $object->getId();
+				$exportFileName = $this->getExportFileName($this->getExportPath(), $objectFileNamePart, $context, '.xml');
 				$fileManager->writeFile($exportFileName, $exportXml);
 				// Deposit the XML file.
 				$result = $this->depositXML($object, $context, $exportFileName);
@@ -307,7 +307,7 @@ class CrossRefExportPlugin extends DOIPubIdExportPlugin {
 				$eResponseBody = $e->getResponse()->getBody(true);
 				$eStatusCode = $e->getResponse()->getStatusCode();
 				if ($eStatusCode == CROSSREF_API_DEPOSIT_ERROR_FROM_CROSSREF) {
-					$xmlDoc = new DOMDocument();
+					$xmlDoc = new DOMDocument('1.0', 'utf-8');
 					$xmlDoc->loadXML($eResponseBody);
 					$batchIdNode = $xmlDoc->getElementsByTagName('batch_id')->item(0);
 					$msg = $xmlDoc->getElementsByTagName('msg')->item(0)->nodeValue;
@@ -324,7 +324,7 @@ class CrossRefExportPlugin extends DOIPubIdExportPlugin {
 		}
 
 		// Get DOMDocument from the response XML string
-		$xmlDoc = new DOMDocument();
+		$xmlDoc = new DOMDocument('1.0', 'utf-8');
 		$xmlDoc->loadXML($response->getBody());
 		$batchIdNode = $xmlDoc->getElementsByTagName('batch_id')->item(0);
 

@@ -16,6 +16,9 @@
 		{translate key="user.login"}
 	</h1>
 
+	<p>
+		{translate key="common.requiredField"}
+	</p>
 	{* A login message may be displayed if the user was redireceted to the
 	   login page from another request. Examples include if login is required
 	   before dowloading a file. *}
@@ -34,7 +37,7 @@
 			</div>
 		{/if}
 
-		<input type="hidden" name="source" value="{$source|escape}" />
+		<input type="hidden" name="source" value="{$source|default:""|escape}" />
 
 		<fieldset class="fields">
 			<legend class="pkp_screen_reader">{translate key="user.login"}</legend>
@@ -47,7 +50,7 @@
 							{translate key="common.required"}
 						</span>
 					</span>
-					<input type="text" name="username" id="username" value="{$username|escape}" maxlength="32" required aria-required="true">
+					<input type="text" name="username" id="username" value="{$username|default:""|escape}" maxlength="32" required aria-required="true">
 				</label>
 			</div>
 			<div class="password">
@@ -59,7 +62,7 @@
 							{translate key="common.required"}
 						</span>
 					</span>
-					<input type="password" name="password" id="password" value="{$password|escape}" password="true" maxlength="32" required aria-required="true">
+					<input type="password" name="password" id="password" value="{$password|default:""|escape}" password="true" maxlength="32" required aria-required="true">
 					<a href="{url page="login" op="lostPassword"}">
 						{translate key="user.login.forgotPassword"}
 					</a>

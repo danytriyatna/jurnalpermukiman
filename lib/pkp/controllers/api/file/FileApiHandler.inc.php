@@ -50,6 +50,7 @@ class FileApiHandler extends Handler {
 			import('lib.pkp.classes.security.authorization.ContextAccessPolicy');
 			$this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
 		} else if (!empty($fileStage) && empty($submissionFileId)) {
+			import('lib.pkp.classes.submission.SubmissionFile');
 			$submissionFileIds = Services::get('submissionFile')->getIds([
 				'submissionIds' => [$submissionId],
 				'fileStages' => [$fileStage],
@@ -106,7 +107,7 @@ class FileApiHandler extends Handler {
 				\Stringy\Stringy::create($request->getContext()->getLocalizedData('acronym'))->toLowerCase(),
 				\Stringy\Stringy::create(__('submission.list.reviewAssignment'))->dasherize(),
 				$submissionFile->getData('submissionId'),
-				$genre->getLocalizedName(),
+				$genre ? $genre->getLocalizedName() : 'none',
 				$submissionFile->getId()
 			);
 		}

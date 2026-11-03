@@ -18,6 +18,8 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use PKP\Services\QueryBuilders\Interfaces\EntityQueryBuilderInterface;
 
 class PKPAnnouncementQueryBuilder implements EntityQueryBuilderInterface {
+	/** @var array list of columns for query */
+	protected $columns = array();
 
 	/** @var array get announcements for one or more contexts */
 	protected $contextIds = [];
@@ -68,9 +70,7 @@ class PKPAnnouncementQueryBuilder implements EntityQueryBuilderInterface {
 	public function getCount() {
 		return $this
 			->getQuery()
-			->select('a.announcement_id')
-			->get()
-			->count();
+			->getCountForPagination();
 	}
 
 	/**

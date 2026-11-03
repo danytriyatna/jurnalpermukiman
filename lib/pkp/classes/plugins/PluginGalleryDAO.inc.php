@@ -29,34 +29,42 @@ class PluginGalleryDAO extends DAO {
 	 * @return array GalleryPlugin objects
 	 */
 	function getNewestCompatible($application, $category = null, $search = null) {
-		$doc = $this->_getDocument();
 		$plugins = array();
-		foreach ($doc->getElementsByTagName('plugin') as $index => $element) {
-			$plugin = $this->_compatibleFromElement($element, $application);
-			// May be null if no compatible version exists; also
-			// apply search filters if any supplied.
-			if (
-				$plugin &&
-				($category == '' || $category == PLUGIN_GALLERY_ALL_CATEGORY_SEARCH_VALUE || $plugin->getCategory() == $category) &&
-				($search == '' || PKPString::strpos(PKPString::strtolower(serialize($plugin)), PKPString::strtolower($search)) !== false)
-			) {
-				$plugins[$index] = $plugin;
+
+		$pluginGalleryConfig = json_decode($config = self::getPluginGalleryConfig());
+		foreach ($pluginGalleryConfig as $galleryUrl) {
+			$doc = $this->_getDocument($galleryUrl);
+			foreach ($doc->getElementsByTagName('plugin') as $element) {
+				$plugin = $this->_compatibleFromElement($element, $application);
+				// May be null if no compatible version exists
+				if (!$plugin) continue;
+				$plugins["{$plugin->getCategory()}/{$plugin->getProduct()}"] = $plugin;
 			}
 		}
-		return $plugins;
+
+		// Apply search filters if any supplied.
+		return array_filter(array_values($plugins), function($plugin) use ($category, $search) {
+			return ($category == '' || $category == PLUGIN_GALLERY_ALL_CATEGORY_SEARCH_VALUE || $plugin->getCategory() == $category) &&
+				($search == '' || PKPString::strpos(PKPString::strtolower(serialize($plugin)), PKPString::strtolower($search)) !== false);
+		});
+	}
+
+	protected function getPluginGalleryConfig() {
+		return Config::getVar('security', 'plugin_gallery_urls', '["' . PLUGIN_GALLERY_XML_URL . '"]');
 	}
 
 	/**
 	 * Get the DOM document for the plugin gallery.
+	 * @param $galleryUrl string
 	 * @return DOMDocument
 	 */
-	private function _getDocument() {
-		$doc = new DOMDocument('1.0');
+	private function _getDocument($galleryUrl) {
+		$doc = new DOMDocument('1.0', 'utf-8');
 		$application = Application::get();
 		$client = $application->getHttpClient();
 		$versionDao = DAORegistry::getDAO('VersionDAO');
 		$currentVersion = $versionDao->getCurrentVersion();
-		$response = $client->request('GET', PLUGIN_GALLERY_XML_URL, ['query' => ['application' => $application->getName(), 'version' => $currentVersion->getVersionString()]]);
+		$response = $client->request('GET', $galleryUrl, ['query' => ['application' => $application->getName(), 'version' => $currentVersion->getVersionString()]]);
 		$doc->loadXML($response->getBody());
 		return $doc;
 	}
@@ -191,7 +199,7 @@ class PluginGalleryDAO extends DAO {
 			$plugin->setVersion($release['version']);
 			$plugin->setReleaseMD5($release['md5']);
 			$plugin->setReleaseDescription($release['description']);
-			$plugin->setReleaseCertifications($release['certification']);
+			$plugin->setReleaseCertifications($release['certification'] ?? []);
 			$plugin->setReleasePackage($release['package']);
 			return true;
 		}

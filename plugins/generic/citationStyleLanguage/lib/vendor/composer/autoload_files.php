@@ -6,6 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname(dirname($vendorDir));
 
 return array(
-    '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
+    'fccd6c30fa70f56cfd048c001bd392f4' => $vendorDir . '/seboettg/collection/src/ArrayList/Functions.php',
     'd9e2a8c16442dde496ed7a052bc063c9' => $vendorDir . '/seboettg/citeproc-php/src/functions.php',
 );

@@ -168,7 +168,7 @@ class MailTemplate extends Mail {
 
 		// Add some general variables
 		$params = array_merge([
-			'siteTitle' => htmlspecialchars($site->getLocalizedTitle()),
+			'siteTitle' => htmlspecialchars($site->getLocalizedTitle() ?? ''),
 		], $params);
 
 		$this->params = $params;
@@ -187,6 +187,9 @@ class MailTemplate extends Mail {
 	 * @return boolean false if there was a problem sending the email
 	 */
 	function send() {
+		if (!$this->isEnabled()) {
+			return false;
+		}
 		if (isset($this->context)) {
 			$signature = $this->context->getData('emailSignature');
 			if (strstr($this->getBody(), '{$templateSignature}') === false) {
@@ -213,7 +216,7 @@ class MailTemplate extends Mail {
 	}
 
 	/**
-	 * Replace template variables in the message body.
+	 * Replace template variables in the message body and subject.
 	 * @param $params array Parameters to assign (augments anything provided via setParams)
 	 */
 	function replaceParams() {
@@ -228,9 +231,11 @@ class MailTemplate extends Mail {
 					$body = str_replace('{$' . $key . '}', $value, $body);
 				}
 			}
-
 			$subject = str_replace('{$' . $key . '}', $value, $subject);
 		}
+
+		// Decode HTML entities for the subject after all replacements
+		$subject = htmlspecialchars_decode($subject, ENT_QUOTES | ENT_HTML5);
 		$this->setSubject($subject);
 		$this->setBody($body);
 	}

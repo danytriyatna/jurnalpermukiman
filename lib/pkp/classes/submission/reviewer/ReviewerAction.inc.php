@@ -13,6 +13,7 @@
  * @brief ReviewerAction class.
  */
 
+use function PHP81_BC\strftime;
 
 // Access decision actions constants.
 import('classes.workflow.EditorDecisionActionsManager');
@@ -54,7 +55,7 @@ class ReviewerAction {
 			import('lib.pkp.classes.log.SubmissionEmailLogEntry'); // Import email event constants
 			$email->setEventType($decline?SUBMISSION_EMAIL_REVIEW_DECLINE:SUBMISSION_EMAIL_REVIEW_CONFIRM);
 			if ($emailText) $email->setBody($emailText);
-			if (!$email->send($request)) {
+			if ($email->isEnabled() && !$email->send($request)) {
 				import('classes.notification.NotificationManager');
 				$notificationMgr = new NotificationManager();
 				$notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('email.compose.error')));

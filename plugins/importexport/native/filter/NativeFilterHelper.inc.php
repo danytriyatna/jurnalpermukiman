@@ -67,24 +67,27 @@ class NativeFilterHelper {
 			foreach ($coverImages as $locale => $coverImage) {
 				$coverImageName = $coverImage['uploadName'];
 
+				import('classes.file.PublicFileManager');
+				$publicFileManager = new PublicFileManager();
+				$contextId = $context->getId();
+				$filePath = $publicFileManager->getContextFilesPath($contextId) . '/' . $coverImageName;
+
+				if (!file_exists($filePath)) {
+					$deployment->addWarning(ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.common.error.publicationCoverImageMissing', ['id' => $object->getId(), 'path' => $filePath]));
+					continue;
+				}
 				$coverNode = $doc->createElementNS($deployment->getNamespace(), 'cover');
 				$coverNode->setAttribute('locale', $locale);
 				$coverNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'cover_image', htmlspecialchars($coverImageName, ENT_COMPAT, 'UTF-8')));
 				$coverNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'cover_image_alt_text', htmlspecialchars($coverImage['altText'], ENT_COMPAT, 'UTF-8')));
 
-				import('classes.file.PublicFileManager');
-				$publicFileManager = new PublicFileManager();
-
-				$contextId = $context->getId();
-				
-				$filePath = $publicFileManager->getContextFilesPath($contextId) . '/' . $coverImageName;
 				$embedNode = $doc->createElementNS($deployment->getNamespace(), 'embed', base64_encode(file_get_contents($filePath)));
 				$embedNode->setAttribute('encoding', 'base64');
 				$coverNode->appendChild($embedNode);
 				$coversNode->appendChild($coverNode);
 			}
 		}
-		return $coversNode;
+		return $coversNode && $coversNode->firstChild ? $coversNode : null;
 	}
 
 	/**
@@ -101,21 +104,25 @@ class NativeFilterHelper {
 		if (!empty($coverImages)) {
 			$coversNode = $doc->createElementNS($deployment->getNamespace(), 'covers');
 			foreach ($coverImages as $locale => $coverImage) {
+				import('classes.file.PublicFileManager');
+				$publicFileManager = new PublicFileManager();
+				$filePath = $publicFileManager->getContextFilesPath($object->getJournalId()) . '/' . $coverImage;
+				if (!file_exists($filePath)) {
+					$deployment->addWarning(ASSOC_TYPE_ISSUE, $object->getId(), __('plugins.importexport.native.common.issueCoverImageMissing', ['id' => $object->getId(), 'path' => $filePath]));
+					continue;
+				}
 				$coverNode = $doc->createElementNS($deployment->getNamespace(), 'cover');
 				$coverNode->setAttribute('locale', $locale);
 				$coverNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'cover_image', htmlspecialchars($coverImage, ENT_COMPAT, 'UTF-8')));
 				$coverNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'cover_image_alt_text', htmlspecialchars($object->getCoverImageAltText($locale), ENT_COMPAT, 'UTF-8')));
 
-				import('classes.file.PublicFileManager');
-				$publicFileManager = new PublicFileManager();
-				$filePath = $publicFileManager->getContextFilesPath($object->getJournalId()) . '/' . $coverImage;
 				$embedNode = $doc->createElementNS($deployment->getNamespace(), 'embed', base64_encode(file_get_contents($filePath)));
 				$embedNode->setAttribute('encoding', 'base64');
 				$coverNode->appendChild($embedNode);
 				$coversNode->appendChild($coverNode);
 			}
 		}
-		return $coversNode;
+		return $coversNode && $coversNode->firstChild ? $coversNode : null;
 	}
 
 	/**
@@ -186,16 +193,35 @@ class NativeFilterHelper {
 		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) {
 			if (is_a($n, 'DOMElement')) {
 				switch ($n->tagName) {
-					case 'cover_image': 
-						$coverImage['uploadName'] = $n->textContent; 
+					case 'cover_image':
+						$coverImage['uploadName'] = preg_replace(
+							"/[^a-z0-9\.\-]+/",
+							'',
+							str_replace(
+								[' ', '_', ':'],
+								'-',
+								strtolower($n->textContent)
+							)
+						);
 						break;
 					case 'cover_image_alt_text':
-						$coverImage['altText'] = $n->textContent; 
+						$coverImage['altText'] = $n->textContent;
 						break;
 					case 'embed':
+						if (!isset($coverImage['uploadName'])) {
+							$deployment->addWarning(ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.common.error.coverImageNameUnspecified'));
+							break;
+						}
 						import('classes.file.PublicFileManager');
 						$publicFileManager = new PublicFileManager();
 						$filePath = $publicFileManager->getContextFilesPath($context->getId()) . '/' . $coverImage['uploadName'];
+						$allowedFileTypes = ['gif', 'jpg', 'png', 'webp'];
+						$extension = pathinfo(strtolower($filePath), PATHINFO_EXTENSION);
+						if (!in_array($extension, $allowedFileTypes)) {
+							$deployment->addWarning(ASSOC_TYPE_PUBLICATION, $object->getId(), __('plugins.importexport.common.error.invalidFileExtension'));
+							break;
+						}
+
 						file_put_contents($filePath, base64_decode($n->textContent));
 						break;
 					default:
@@ -223,12 +249,39 @@ class NativeFilterHelper {
 		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) {
 			if (is_a($n, 'DOMElement')) {
 				switch ($n->tagName) {
-					case 'cover_image': $object->setCoverImage($n->textContent, $locale); break;
+					case 'cover_image':
+						$object->setCoverImage(
+							trim(
+								preg_replace(
+									"/[^a-z0-9\.\-]+/",
+									"",
+									str_replace(
+										[' ', '_', ':'],
+										'-',
+										strtolower($n->textContent)
+									)
+								)
+							),
+							$locale
+						);
+						break;
 					case 'cover_image_alt_text': $object->setCoverImageAltText($n->textContent, $locale); break;
 					case 'embed':
+						if (!$object->getCoverImage($locale)) {
+							$deployment->addWarning(ASSOC_TYPE_ISSUE, $object->getId(), __('plugins.importexport.common.error.coverImageNameUnspecified'));
+							break;
+						}
+
 						import('classes.file.PublicFileManager');
 						$publicFileManager = new PublicFileManager();
 						$filePath = $publicFileManager->getContextFilesPath($context->getId()) . '/' . $object->getCoverImage($locale);
+						$allowedFileTypes = ['gif', 'jpg', 'png', 'webp'];
+						$extension = pathinfo(strtolower($filePath), PATHINFO_EXTENSION);
+						if (!in_array($extension, $allowedFileTypes)) {
+							$deployment->addWarning(ASSOC_TYPE_ISSUE, $object->getId(), __('plugins.importexport.common.error.invalidFileExtension'));
+							break;
+						}
+
 						file_put_contents($filePath, base64_decode($n->textContent));
 						break;
 					default:

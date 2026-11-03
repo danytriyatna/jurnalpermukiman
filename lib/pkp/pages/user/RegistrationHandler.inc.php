@@ -100,8 +100,8 @@ class RegistrationHandler extends UserHandler {
 			return $templateMgr->display('frontend/pages/error.tpl');
 		}
 
-		$source = $request->getUserVar('source');
-		if (preg_match('#^/\w#', $source) === 1) {
+		$source = str_replace('@', '', $request->getUserVar('source'));
+		if (preg_match('#^/\w#', $source ?? '') === 1) {
 			return $request->redirectUrl($source);
 		} else {
 			// Make a new request to update cookie details after login

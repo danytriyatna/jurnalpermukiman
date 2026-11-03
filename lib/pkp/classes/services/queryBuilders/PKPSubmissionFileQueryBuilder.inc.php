@@ -48,6 +48,8 @@ class PKPSubmissionFileQueryBuilder implements EntityQueryBuilderInterface {
 	/** @var boolean include submission files in the SUBMISSION_FILE_DEPENDENT stage */
 	protected $includeDependentFiles = false;
 
+	protected $uploaderUserIds = [];
+
 	/**
 	 * Set fileStages filter
 	 *
@@ -157,9 +159,7 @@ class PKPSubmissionFileQueryBuilder implements EntityQueryBuilderInterface {
 	public function getCount() {
 		return $this
 			->getQuery()
-			->select('sf.submission_file_id')
-			->get()
-			->count();
+			->getCountForPagination();
 	}
 
 	/**

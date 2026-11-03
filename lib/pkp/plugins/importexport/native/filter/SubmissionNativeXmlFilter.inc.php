@@ -13,6 +13,8 @@
  * @brief Base class that converts a set of submissions to a Native XML document
  */
 
+use function PHP81_BC\strftime;
+
 import('lib.pkp.plugins.importexport.native.filter.NativeExportFilter');
 
 class SubmissionNativeXmlFilter extends NativeExportFilter {
@@ -50,7 +52,7 @@ class SubmissionNativeXmlFilter extends NativeExportFilter {
 	 */
 	function &process(&$submissions) {
 		// Create the XML document
-		$doc = new DOMDocument('1.0');
+		$doc = new DOMDocument('1.0', 'utf-8');
 		$doc->preserveWhiteSpace = false;
 		$doc->formatOutput = true;
 		$deployment = $this->getDeployment();
@@ -96,8 +98,6 @@ class SubmissionNativeXmlFilter extends NativeExportFilter {
 		$workflowStageDao = DAORegistry::getDAO('WorkflowStageDAO'); /** @var $workflowStageDao WorkflowStageDAO */
 		$submissionNode->setAttribute('stage', WorkflowStageDAO::getPathFromId($submission->getData('stageId')));
 
-		// FIXME: language attribute (from old DTD). Necessary? Data migration needed?
-
 		$this->addIdentifiers($doc, $submissionNode, $submission);
 		$this->addFiles($doc, $submissionNode, $submission);
 		$this->addPublications($doc, $submissionNode, $submission);
@@ -133,6 +133,7 @@ class SubmissionNativeXmlFilter extends NativeExportFilter {
 			'includeDependentFiles' => true,
 		]);
 
+		$deployment = $this->getDeployment();
 		foreach ($submissionFilesIterator as $submissionFile) {
 			// Skip files attached to objects that are not included in the export,
 			// such as files uploaded to discussions and files uploaded by reviewers
@@ -148,7 +149,7 @@ class SubmissionNativeXmlFilter extends NativeExportFilter {
 			];
 
 			if (in_array($submissionFile->getData('fileStage'), $excludedFileStages)) {
-				$this->getDeployment()->addWarning(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.native.error.submissionFileSkipped', array('id' => $submissionFile->getId())));
+				$deployment->addWarning(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.native.error.submissionFileSkipped', array('id' => $submissionFile->getId())));
 				continue;
 			}
 
@@ -159,8 +160,10 @@ class SubmissionNativeXmlFilter extends NativeExportFilter {
 
 			$exportFilter->setOpts($this->opts);
 			$submissionFileDoc = $exportFilter->execute($submissionFile, true);
-			$clone = $doc->importNode($submissionFileDoc->documentElement, true);
-			$submissionNode->appendChild($clone);
+			if ($submissionFileDoc) {
+				$clone = $doc->importNode($submissionFileDoc->documentElement, true);
+				$submissionNode->appendChild($clone);
+			}
 		}
 	}
 

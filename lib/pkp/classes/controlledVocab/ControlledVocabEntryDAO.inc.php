@@ -188,11 +188,13 @@ class ControlledVocabEntryDAO extends DAO {
 	 * @return array
 	 */
 	public function getByContextId($symbolic, $contextId, $locale, $term = null) {
+		import('classes.submission.Submission'); // STATUS_PUBLISHED constant
 		$params = [
 			$symbolic,
 			ASSOC_TYPE_PUBLICATION,
 			$contextId,
-			$locale
+			$locale,
+			STATUS_PUBLISHED
 		];
 		$words = array_filter(array_map(
 			function (string $word) {
@@ -205,7 +207,7 @@ class ControlledVocabEntryDAO extends DAO {
 		if (count($words)) {
 			array_push($params, ...$words);
 			$condition = 'cves.setting_value LIKE ?';
-			$termFilter = " AND (${condition}" . str_repeat(" OR ${condition}", count($words) - 1) . ')';
+			$termFilter = " AND ({$condition}" . str_repeat(" OR {$condition}", count($words) - 1) . ')';
 		}
 		$result = $this->retrieve(
 			"SELECT cve.*
@@ -219,7 +221,8 @@ class ControlledVocabEntryDAO extends DAO {
 				AND cv.assoc_type = ?
 				AND s.context_id = ?
 				AND cves.locale = ?
-				${termFilter}
+				AND p.status = ?
+				{$termFilter}
 			ORDER BY
 				cves.setting_value",
 			$params

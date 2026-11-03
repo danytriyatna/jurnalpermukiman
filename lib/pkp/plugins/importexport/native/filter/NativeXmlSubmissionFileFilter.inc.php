@@ -240,6 +240,10 @@ class NativeXmlSubmissionFileFilter extends NativeImportFilter {
 			if (is_a($childNode, 'DOMElement')) {
 				switch ($childNode->tagName) {
 					case 'href':
+						if (php_sapi_name() !== 'cli') {
+							$deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), 'Web-based imports may not specify "href"; use "embed" instead, or import using the command line.');
+							break;
+						}
 						import('lib.pkp.classes.file.TemporaryFileManager');
 						$temporaryFileManager = new TemporaryFileManager();
 						$temporaryFilename = tempnam($temporaryFileManager->getBasePath(), 'src');
@@ -314,9 +318,11 @@ class NativeXmlSubmissionFileFilter extends NativeImportFilter {
 			import('lib.pkp.classes.file.FileManager');
 			$fileManager = new FileManager();
 			$submissionDir = Services::get('submissionFile')->getSubmissionDir($submission->getData('contextId'), $submission->getId());
+			$extension = (string) $node->getAttribute('extension');
+			if (!preg_match('#^[a-zA-Z]+(\.[a-zA-Z]+)*$#', $extension)) $extension = 'txt'; // pkp/pkp-lib#13030
 			$newFileId = Services::get('file')->add(
 				$temporaryFilename,
-				$submissionDir . '/' . uniqid() . '.' . $node->getAttribute('extension')
+				$submissionDir . '/' . uniqid() . '.' . $extension
 			);
 			$deployment->setFileDBId($node->getAttribute('id'), $newFileId);
 		}

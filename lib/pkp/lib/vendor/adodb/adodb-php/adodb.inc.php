@@ -249,6 +249,7 @@ if (!defined('_ADODB_LAYER')) {
 	/**
 	 * Helper class for FetchFields -- holds info on a column
 	 */
+	#[\AllowDynamicProperties]
 	class ADOFieldObject {
 		var $name = '';
 		var $max_length=0;
@@ -309,6 +310,7 @@ if (!defined('_ADODB_LAYER')) {
 
 	//------------------
 	// class for caching
+	#[\AllowDynamicProperties]
 	class ADODB_Cache_File {
 
 		var $createdir = true; // requires creation of temp dirs
@@ -415,6 +417,7 @@ if (!defined('_ADODB_LAYER')) {
 	/**
 	 * Connection object. For connecting to databases, and executing queries.
 	 */
+	#[\AllowDynamicProperties]
 	abstract class ADOConnection {
 	//
 	// PUBLIC VARS
@@ -3121,6 +3124,7 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 	/**
 	* Internal placeholder for record objects. Used by ADORecordSet->FetchObj().
 	*/
+	#[\AllowDynamicProperties]
 	class ADOFetchObj {
 	};
 
@@ -3136,20 +3140,25 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 			$this->rs = $rs;
 		}
 
+		#[\ReturnTypeWillChange]
 		function rewind() {}
 
+		#[\ReturnTypeWillChange] 
 		function valid() {
 			return !$this->rs->EOF;
 		}
 
+		#[\ReturnTypeWillChange]
 		function key() {
 			return false;
 		}
 
+		#[\ReturnTypeWillChange]
 		function current() {
 			return false;
 		}
 
+		#[\ReturnTypeWillChange]
 		function next() {}
 
 		function __call($func, $params) {
@@ -3166,6 +3175,7 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 	/**
 	* Lightweight recordset when there are no records to be returned
 	*/
+	#[\AllowDynamicProperties]
 	class ADORecordSet_empty implements IteratorAggregate
 	{
 		var $dataProvider = 'empty';
@@ -3201,6 +3211,7 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 
 		function Init() {}
 
+		#[\ReturnTypeWillChange]
 		function getIterator() {
 			return new ADODB_Iterator_empty($this);
 		}
@@ -3261,22 +3272,27 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 			$this->rs = $rs;
 		}
 
+		#[\ReturnTypeWillChange]
 		function rewind() {
 			$this->rs->MoveFirst();
 		}
 
+		#[\ReturnTypeWillChange] 
 		function valid() {
 			return !$this->rs->EOF;
 		}
 
+		#[\ReturnTypeWillChange]
 		function key() {
 			return $this->rs->_currentRow;
 		}
 
+		#[\ReturnTypeWillChange]
 		function current() {
 			return $this->rs->fields;
 		}
 
+		#[\ReturnTypeWillChange]
 		function next() {
 			$this->rs->MoveNext();
 		}
@@ -3298,6 +3314,7 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 	 * No prefetching of data is done, so the RecordCount() can return -1 ( which
 	 * means recordcount not known).
 	 */
+	#[\AllowDynamicProperties]
 	class ADORecordSet implements IteratorAggregate {
 
 	/**
@@ -3353,6 +3370,7 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 		$this->Close();
 	}
 
+	#[\ReturnTypeWillChange]
 	function getIterator() {
 		return new ADODB_Iterator($this);
 	}
@@ -4491,6 +4509,7 @@ http://www.stanford.edu/dept/itss/docs/oracle/10g/server.101/b10759/statements_1
 	 *
 	 * Note that the constructor is different from the standard ADORecordSet
 	 */
+	#[\AllowDynamicProperties]
 	class ADORecordSet_array extends ADORecordSet
 	{
 		var $databaseType = 'array';

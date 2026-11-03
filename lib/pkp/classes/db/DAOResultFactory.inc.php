@@ -18,6 +18,7 @@
 import('lib.pkp.classes.core.ItemIterator');
 import('lib.pkp.classes.db.DAOResultIterator');
 
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Enumerable;
 
 class DAOResultFactory extends ItemIterator {
@@ -37,7 +38,7 @@ class DAOResultFactory extends ItemIterator {
 	var $records;
 
 	/**
-	 * @var string|null Fetch SQL
+	 * @var string|Builder|null Fetch SQL
 	 */
 	var $sql;
 
@@ -52,13 +53,18 @@ class DAOResultFactory extends ItemIterator {
 	var $rangeInfo;
 
 	/**
+	 * @var $rowCount ?int Cached row count
+	 */
+	var $rowCount = null;
+
+	/**
 	 * Constructor.
 	 * Initialize the DAOResultFactory
 	 * @param $records object ADO record set, Generator, or Enumerable
 	 * @param $dao object DAO class for factory
 	 * @param $functionName The function to call on $dao to create an object
 	 * @param $idFields array an array of primary key field names that uniquely identify a result row in the record set. Should be data object _data array key, not database column name
-	 * @param $sql string Optional SQL query used to generate paged result set. Necessary when total row counts will be needed (e.g. when paging). WARNING: New code should not use this.
+	 * @param $sql string|Builder Optional SQL query used to generate paged result set. Necessary when total row counts will be needed (e.g. when paging). WARNING: New code should not use this.
 	 * @param $params array Optional parameters for SQL query used to generate paged result set. Necessary when total row counts will be needed (e.g. when paging). WARNING: New code should not use this.
 	 * @param $rangeInfo DBResultRange Optional pagination information. WARNING: New code should not use this.
 	 */
@@ -99,7 +105,7 @@ class DAOResultFactory extends ItemIterator {
 	 */
 	function getCount() {
 		if ($this->sql === null) throw new Exception('DAOResultFactory instances cannot be counted unless supplied in constructor (DAO ' . get_class($this->dao) . ')!');
-		return $this->dao->countRecords($this->sql, $this->params);
+		return $this->rowCount ?? $this->rowCount = $this->dao->countRecords($this->sql, $this->params);
 	}
 
 	/**

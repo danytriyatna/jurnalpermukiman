@@ -49,6 +49,9 @@ abstract class PKPWorkflowHandler extends Handler {
 
 			$this->markRoleAssignmentsChecked();
 		} else {
+			import('lib.pkp.classes.security.authorization.internal.SubmissionCompletePolicy');
+			$this->addPolicy(new SubmissionCompletePolicy($request, $args, 'submissionId'));
+
 			import('lib.pkp.classes.security.authorization.WorkflowStageAccessPolicy');
 			$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $this->identifyStageId($request, $args), WORKFLOW_TYPE_EDITORIAL));
 		}
@@ -142,7 +145,7 @@ abstract class PKPWorkflowHandler extends Handler {
 		$currentStageId = $submission->getStageId();
 		$accessibleWorkflowStages = $this->getAuthorizedContextObject(ASSOC_TYPE_ACCESSIBLE_WORKFLOW_STAGES);
 		$canAccessPublication = false; // View title, metadata, etc.
-		$canEditPublication = Services::get('submission')->canEditPublication($submission->getId(), $request->getUser()->getId());
+		$canEditPublication = Services::get('submission')->canEditPublication($submission, $request->getUser()->getId());
 		$canAccessProduction = false; // Access to galleys and issue entry
 		$canPublish = false; // Ability to publish, unpublish and create versions
 		$canAccessEditorialHistory = false; // Access to activity log
@@ -357,19 +360,15 @@ abstract class PKPWorkflowHandler extends Handler {
 		];
 
 		// Add the metadata form if one or more metadata fields are enabled
-		$metadataFields = ['coverage', 'disciplines', 'keywords', 'languages', 'rights', 'source', 'subjects', 'agencies', 'type'];
-		$metadataEnabled = false;
-		foreach ($metadataFields as $metadataField) {
-			if ($submissionContext->getData($metadataField)) {
-				$metadataEnabled = true;
-				break;
-			}
-		}
-		if ($metadataEnabled || in_array('publication', (array) $submissionContext->getData('enablePublisherId'))) {
-			$vocabSuggestionUrlBase =$request->getDispatcher()->url($request, ROUTE_API, $submissionContext->getData('urlPath'), 'vocabs', null, null, ['vocab' => '__vocab__']);
-			$metadataForm = new PKP\components\forms\publication\PKPMetadataForm($latestPublicationApiUrl, $locales, $latestPublication, $submissionContext, $vocabSuggestionUrlBase);
+		$vocabSuggestionUrlBase =$request->getDispatcher()->url($request, ROUTE_API, $submissionContext->getData('urlPath'), 'vocabs', null, null, ['vocab' => '__vocab__']);
+		$metadataForm = new PKP\components\forms\publication\PKPMetadataForm($latestPublicationApiUrl, $locales, $latestPublication, $submissionContext, $vocabSuggestionUrlBase);
+		$metadataFormConfig = $metadataForm->getConfig();
+
+		$metadataEnabled = !empty($metadataFormConfig['fields']);
+		
+		if ($metadataEnabled) {
 			$templateMgr->setConstants(['FORM_METADATA']);
-			$state['components'][FORM_METADATA] = $metadataForm->getConfig();
+			$state['components'][FORM_METADATA] = $metadataFormConfig;
 			$state['publicationFormIds'][] = FORM_METADATA;
 		}
 
