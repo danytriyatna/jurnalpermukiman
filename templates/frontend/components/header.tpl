@@ -82,20 +82,22 @@
 							{/if}
 						</div>
 
-						{* Ecosystem Quick Access Buttons: MQC & JP *}
-						<div class="jp_ecosystem_nav_links">
-							<a href="http://{$smarty.server.SERVER_NAME|default:'localhost'}:3000" target="_blank" rel="noopener noreferrer" class="jp_ecosystem_btn mqc" title="Akses MQC Assistant (Pemeriksaan Kepatuhan Naskah)">
-								<span>MQC</span>
-								<span class="fa fa-external-link" aria-hidden="true"></span>
-							</a>
-							<a href="http://{$smarty.server.SERVER_NAME|default:'localhost'}:3001" target="_blank" rel="noopener noreferrer" class="jp_ecosystem_btn jp" title="Akses JP-Insight (Knowledge System & RAG)">
-								<span>JP</span>
-								<span class="fa fa-external-link" aria-hidden="true"></span>
-							</a>
+						{* Right-aligned items: User menu (ado 3 / login) & Ecosystem quick links in 1 clean row *}
+						<div class="pkp_navigation_user_and_ecosystem">
+							<div class="pkp_navigation_user_wrapper" id="navigationUserWrapper">
+								{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
+							</div>
+							<div class="jp_ecosystem_nav_links">
+								<a href="http://{$smarty.server.SERVER_NAME|default:'localhost'}:3000" target="_blank" rel="noopener noreferrer" class="jp_ecosystem_btn mqc" title="Akses MQC Assistant (Pemeriksaan Kepatuhan Naskah)">
+									<span>MQC</span>
+									<span class="fa fa-external-link" aria-hidden="true"></span>
+								</a>
+								<a href="http://{$smarty.server.SERVER_NAME|default:'localhost'}:3001" target="_blank" rel="noopener noreferrer" class="jp_ecosystem_btn jp" title="Akses JP-Insight (Knowledge System & RAG)">
+									<span>JP</span>
+									<span class="fa fa-external-link" aria-hidden="true"></span>
+								</a>
+							</div>
 						</div>
-					</div>
-					<div class="pkp_navigation_user_wrapper" id="navigationUserWrapper">
-						{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
 					</div>
 				</nav>
 			</div><!-- .pkp_head_wrapper -->

@@ -1367,16 +1367,56 @@ obj_article_details .abstract {
    ========================================================================== */
 .pkp_navigation_primary_row {
   display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
   justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  background: #ffffff !important;
+  min-height: 42px !important;
+}
+
+.pkp_navigation_primary_wrapper {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.pkp_navigation_user_and_ecosystem {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 12px !important;
+  margin-left: auto !important;
+  flex-shrink: 0 !important;
+}
+
+.pkp_navigation_user_wrapper {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.pkp_navigation_user {
+  margin: 0 !important;
+  padding: 0 !important;
+  border-bottom: none !important;
+  display: flex !important;
   align-items: center !important;
 }
 
 .jp_ecosystem_nav_links {
   display: flex !important;
   align-items: center !important;
-  gap: 8px !important;
-  padding-right: 15px !important;
-  margin-left: auto !important;
+  gap: 6px !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
 }
 
 .jp_ecosystem_btn {
