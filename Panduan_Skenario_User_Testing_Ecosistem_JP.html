@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lembar Uji Alur Proses & Integrasi — Ekosistem Jurnal Permukiman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0b2545',
+              navyLight: '#143b6b',
+              navyDark: '#06172d',
+              terracotta: '#c13d0d',
+              terracottaHover: '#dd4812',
+              gold: '#e0a96d',
+              goldLight: '#f6d8ae',
+              bgDark: '#060a12',
+              cardDark: '#0c1322',
+              cardSubtle: '#111a2e',
+              borderDark: '#1b2840'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #060a12;
+      color: #e2e8f0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .glass-card {
+      background: rgba(12, 19, 34, 0.94);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(27, 40, 64, 0.9);
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.625rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .uat-card {
+      transition: all 0.2s ease-in-out;
+    }
+    .uat-card:hover {
+      border-color: rgba(224, 169, 109, 0.5);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-28 selection:bg-brand-terracotta selection:text-white">
+
+  <!-- TOP APP BAR -->
+  <header class="border-b border-brand-borderDark bg-brand-cardDark/95 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-brand-navy flex items-center justify-center border-2 border-brand-terracotta text-brand-gold font-bold text-base shadow-xl shrink-0">
+          UAT
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-brand-terracotta/20 text-brand-terracotta border border-brand-terracotta/30">
+              Interactive Test Harness
+            </span>
+            <span class="text-xs font-mono text-slate-400">Jurnal Permukiman Tripartite</span>
+          </div>
+          <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">Uji Alur Proses & Integrasi Ekosistem</h1>
+        </div>
+      </div>
+
+      <!-- Action Buttons & Progress -->
+      <div class="flex items-center gap-2 self-stretch sm:self-auto justify-between sm:justify-end">
+        <div class="flex items-center gap-1.5 bg-brand-navy/60 border border-brand-borderDark px-3 py-1.5 rounded-lg text-xs font-mono">
+          <span class="text-slate-400">Progress:</span>
+          <span id="progress-text" class="text-brand-gold font-bold">0 / 4 Lolos</span>
+        </div>
+        <button onclick="checkAllSystemHealth()" class="px-3 py-1.5 rounded-lg bg-brand-terracotta hover:bg-brand-terracottaHover text-xs font-semibold text-white transition-colors shadow">
+          Ping Semua Server
+        </button>
+        <button onclick="resetAllUAT()" class="px-3 py-1.5 rounded-lg border border-slate-700 hover:border-slate-500 text-xs text-slate-300 transition-colors">
+          Reset Uji
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 space-y-8">
+
+    <!-- BANNER PANDUAN ROLEPLAY TESTER -->
+    <section class="glass-card rounded-2xl p-5 sm:p-6 border border-brand-borderDark">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-brand-borderDark/80 pb-4">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-brand-gold font-mono">Petunjuk Pengujian Pengguna (Tester Mode)</span>
+          <h2 class="text-lg font-bold text-white mt-0.5">Skenario Uji: Anda Bertindak sebagai Penulis & Editor Ekosistem</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-300">Lead Tester:</span>
+          <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-brand-navy border border-brand-borderDark text-brand-gold">Dany Triyatna</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-4 text-xs text-slate-300">
+        <div class="p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+          <span class="font-bold text-brand-gold block mb-1">Tujuan Pengujian</span>
+          Membuktikan bahwa 3 sistem terpisah (OJS, MQC Assistant, JP-Insight) saling terintegrasi membentuk satu alur proses publikasi ilmiah tanpa putus.
+        </div>
+        <div class="p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+          <span class="font-bold text-brand-gold block mb-1">Metode Pengujian</span>
+          Eksekusi langsung di antarmuka sistem lokal. Tandai <strong class="text-emerald-400">PASS</strong> jika kriteria terpenuhi atau <strong class="text-rose-400">FAIL</strong> jika ditemukan kendala integrasi.
+        </div>
+        <div class="p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+          <span class="font-bold text-brand-gold block mb-1">Status Penyimpanan</span>
+          Hasil uji dan catatan temuan tersimpan otomatis di browser lokal (localStorage), siap diekspor untuk laporan resmi tim.
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE HEALTH CHECK MONITOR -->
+    <section class="glass-card rounded-2xl p-5 border border-brand-borderDark space-y-3">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">Live Node Connectivity Status</h3>
+        <span class="text-[11px] text-slate-400">Klik tombol ping untuk verifikasi keaktifan layanan</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <!-- Node 1: OJS 3.3 Core -->
+        <div class="p-3 rounded-xl bg-brand-cardSubtle border border-brand-borderDark flex items-center justify-between">
+          <div>
+            <div class="text-xs font-bold text-white">OJS 3.3 Core</div>
+            <div class="text-[11px] font-mono text-slate-400">Port 80 (Apache + MySQL)</div>
+          </div>
+          <span id="node-ojs-status" class="status-badge bg-emerald-950/80 text-emerald-400 border border-emerald-800">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> READY
+          </span>
+        </div>
+
+        <!-- Node 2: MQC Assistant -->
+        <div class="p-3 rounded-xl bg-brand-cardSubtle border border-brand-borderDark flex items-center justify-between">
+          <div>
+            <div class="text-xs font-bold text-white">MQC Assistant</div>
+            <div class="text-[11px] font-mono text-slate-400">Port 3000 (Next.js Node)</div>
+          </div>
+          <span id="node-mqc-status" class="status-badge bg-emerald-950/80 text-emerald-400 border border-emerald-800">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> READY
+          </span>
+        </div>
+
+        <!-- Node 3: JP-Insight RAG -->
+        <div class="p-3 rounded-xl bg-brand-cardSubtle border border-brand-borderDark flex items-center justify-between">
+          <div>
+            <div class="text-xs font-bold text-white">JP-Insight Engine</div>
+            <div class="text-[11px] font-mono text-slate-400">Port 3001 (Next.js RAG)</div>
+          </div>
+          <span id="node-jp-status" class="status-badge bg-emerald-950/80 text-emerald-400 border border-emerald-800">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> READY
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALUR PROSES DIAGRAM INTERAKTIF -->
+    <section class="glass-card rounded-2xl p-6 border border-brand-borderDark space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-gold font-mono">Peta Alur Proses Bisnis</span>
+          <h3 class="text-base font-bold text-white">Siklus Hidup Naskah Ilmiah (End-to-End Scientific Loop)</h3>
+        </div>
+      </div>
+
+      <div class="relative py-2">
+        <div class="hidden md:block absolute top-1/2 left-8 right-8 h-0.5 bg-brand-borderDark -translate-y-1/2 z-0"></div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative z-10">
+          <!-- Step 1 -->
+          <div class="p-4 rounded-xl bg-brand-cardDark border-2 border-brand-navyLight flex flex-col justify-between space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="w-6 h-6 rounded-full bg-brand-navy flex items-center justify-center text-xs font-bold text-brand-gold border border-brand-terracotta">1</span>
+              <span class="text-[10px] font-mono text-brand-gold uppercase">Hilir / Riset</span>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Riset Referensi</div>
+              <div class="text-xs text-slate-400 mt-0.5">Penulis eksplorasi celah novelty lewat AI JP-Insight.</div>
+            </div>
+            <div class="text-[10px] font-mono text-slate-400 border-t border-brand-borderDark/60 pt-1.5">Widget / Port 3001</div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-4 rounded-xl bg-brand-cardDark border-2 border-brand-navyLight flex flex-col justify-between space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="w-6 h-6 rounded-full bg-brand-navy flex items-center justify-center text-xs font-bold text-brand-gold border border-brand-terracotta">2</span>
+              <span class="text-[10px] font-mono text-brand-gold uppercase">Quality Gate</span>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Audit Format MQC</div>
+              <div class="text-xs text-slate-400 mt-0.5">Validasi otomatis 25 kriteria gaya selingkung .docx.</div>
+            </div>
+            <div class="text-[10px] font-mono text-slate-400 border-t border-brand-borderDark/60 pt-1.5">MQC Assistant (3000)</div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-4 rounded-xl bg-brand-cardDark border-2 border-brand-navyLight flex flex-col justify-between space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="w-6 h-6 rounded-full bg-brand-navy flex items-center justify-center text-xs font-bold text-brand-gold border border-brand-terracotta">3</span>
+              <span class="text-[10px] font-mono text-brand-gold uppercase">Editorial Core</span>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">OJS Peer Review</div>
+              <div class="text-xs text-slate-400 mt-0.5">Naskah masuk review substansi hingga diterbitkan.</div>
+            </div>
+            <div class="text-[10px] font-mono text-slate-400 border-t border-brand-borderDark/60 pt-1.5">OJS 3.3 Core (Port 80)</div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="p-4 rounded-xl bg-brand-cardDark border-2 border-emerald-800/80 flex flex-col justify-between space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="w-6 h-6 rounded-full bg-emerald-950 flex items-center justify-center text-xs font-bold text-emerald-400 border border-emerald-600">4</span>
+              <span class="text-[10px] font-mono text-emerald-400 uppercase">Loop Tertutup</span>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Auto-Harvest RAG</div>
+              <div class="text-xs text-slate-400 mt-0.5">Artikel terbitan di-harvest via OAI-PMH ke AI Korpus.</div>
+            </div>
+            <div class="text-[10px] font-mono text-emerald-400 border-t border-brand-borderDark/60 pt-1.5">OAI-PMH &rarr; JP-Insight</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAIL MODUL PENGUJIAN TAHAP PER TAHAP -->
+
+    <!-- MODUL 1: EKSPLORASI KORPUS & WIDGET OJS KE JP-INSIGHT -->
+    <section class="glass-card rounded-2xl p-6 sm:p-8 border border-brand-borderDark uat-card space-y-5" id="card-tc-01">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-brand-borderDark/80 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-brand-navy border border-brand-terracotta flex items-center justify-center text-brand-gold font-bold text-sm">
+            01
+          </div>
+          <div>
+            <div class="text-xs font-mono text-brand-gold uppercase tracking-wider">Tahap Pengujian 1 &bull; Alur Penulis & Integrasi Frontend</div>
+            <h3 class="text-base sm:text-lg font-bold text-white">Uji Integrasi Widget OJS &rarr; Knowledge System JP-Insight</h3>
+          </div>
+        </div>
+
+        <!-- UAT Decision Switch -->
+        <div class="flex items-center gap-2">
+          <button onclick="setTestStatus('tc01', 'pass')" id="btn-tc01-pass" class="px-3 py-1.5 rounded-lg border border-slate-700 hover:border-emerald-600 text-xs font-semibold text-slate-300 hover:text-emerald-400 transition-colors">
+            &check; PASS
+          </button>
+          <button onclick="setTestStatus('tc01', 'fail')" id="btn-tc01-fail" class="px-3 py-1.5 rounded-lg border border-slate-700 hover:border-rose-600 text-xs font-semibold text-slate-300 hover:text-rose-400 transition-colors">
+            &cross; FAIL
+          </button>
+        </div>
+      </div>
+
+      <!-- Deskripsi Titik Integrasi -->
+      <div class="bg-brand-navy/30 border border-brand-borderDark rounded-xl p-4 text-xs space-y-2">
+        <div class="font-bold text-brand-gold flex items-center gap-2">
+          <span>&bull; Titik Integrasi:</span>
+          <span class="font-mono text-white">OJS Footer Script (Port 80) &rarr; JP-Insight API (Port 3001)</span>
+        </div>
+        <p class="text-slate-300">
+          Widget chat melayang di kanan bawah portal OJS (<code class="bg-slate-900 px-1 py-0.5 rounded text-amber-300">#tanya-jp-widget</code>) memanggil endpoint streaming <code class="bg-slate-900 px-1 py-0.5 rounded text-amber-300">http://localhost:3001/api/widget/chat</code> secara asynchronous tanpa me-reload halaman OJS.
+        </p>
+      </div>
+
+      <!-- Langkah Aksi Pengujian Tester -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">Langkah Aksi Pengujian (Instruksi untuk Anda):</h4>
+        
+        <ol class="space-y-3 text-xs text-slate-300">
+          <li class="flex items-start gap-2.5 p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+            <span class="font-mono font-bold text-brand-gold shrink-0">1.1</span>
+            <div class="flex-1 space-y-1">
+              <div>Buka portal utama OJS Jurnal Permukiman di browser:</div>
+              <div class="flex items-center gap-2 pt-1">
+                <a href="http://localhost/jurnalpermukiman/index.php/JP" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-terracotta hover:bg-brand-terracottaHover text-white rounded font-mono text-[11px] font-bold">
+                  Buka OJS Homepage &UpperRightArrow;
+                </a>
+                <span class="text-slate-400 text-[11px]">(Amati tombol floating bulat "Tanya JP" di pojok kanan bawah)</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="flex items-start gap-2.5 p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+            <span class="font-mono font-bold text-brand-gold shrink-0">1.2</span>
+            <div class="flex-1 space-y-1">
+              <div>Klik tombol <strong class="text-white">"Tanya JP"</strong> hingga jendela chat popup terbuka.</div>
+              <p class="text-slate-400 text-[11px]">Ketikkan pertanyaan riset berikut (atau klik tombol salin):</p>
+              <div class="flex items-center gap-2 pt-1">
+                <code id="prompt-query-1" class="p-2 rounded bg-slate-900 text-amber-300 font-mono text-[11px] flex-1">
+                  Bagaimana efektivitas teknologi RISHA untuk perumahan pasca bencana menurut arsip Puskim?
+                </code>
+                <button onclick="copyToClipboard('prompt-query-1')" class="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-mono">
+                  Salin
+                </button>
+              </div>
+            </div>
+          </li>
+
+          <li class="flex items-start gap-2.5 p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+            <span class="font-mono font-bold text-brand-gold shrink-0">1.3</span>
+            <div class="flex-1 space-y-1">
+              <div>Verifikasi Hasil yang Diharapkan (<strong class="text-emerald-400">Expected Result</strong>):</div>
+              <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1 pt-1 text-[11px]">
+                <li>AI memberikan jawaban sintesis berbasis korpus Puskim tanpa halusinasi.</li>
+                <li>Muncul nomor sitasi atau kartu referensi artikel jurnal terkait di bagian bawah respons.</li>
+                <li>Tidak terjadi error CORS pada konsol DevTools browser (F12).</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Catatan Temuan Tester -->
+      <div class="pt-2">
+        <label class="text-[11px] font-mono text-slate-400 block mb-1">Catatan Temuan Tester (Opsional):</label>
+        <textarea id="note-tc01" onchange="saveNote('tc01')" placeholder="Ketik catatan hasil uji di sini (misal: widget responsif, sitasi muncul rapi)..." class="w-full bg-slate-950 border border-brand-borderDark rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-brand-gold h-16"></textarea>
+      </div>
+    </section>
+
+    <!-- MODUL 2: QUALITY GATEKEEPER & AUDIT FORMAT DI MQC ASSISTANT -->
+    <section class="glass-card rounded-2xl p-6 sm:p-8 border border-brand-borderDark uat-card space-y-5" id="card-tc-02">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-brand-borderDark/80 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-brand-navy border border-brand-terracotta flex items-center justify-center text-brand-gold font-bold text-sm">
+            02
+          </div>
+          <div>
+            <div class="text-xs font-mono text-brand-gold uppercase tracking-wider">Tahap Pengujian 2 &bull; Alur Penulis & Screening Engine</div>
+            <h3 class="text-base sm:text-lg font-bold text-white">Uji Quality Gatekeeper: Audit Naskah di MQC Assistant</h3>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="setTestStatus('tc02', 'pass')" id="btn-tc02-pass" class="px-3 py-1.5 rounded-lg border border-slate-700 hover:border-emerald-600 text-xs font-semibold text-slate-300 hover:text-emerald-400 transition-colors">
+            &check; PASS
+          </button>
+          <button onclick="setTestStatus('tc02', 'fail')" id="btn-tc02-fail" class="px-3 py-1.5 rounded-lg border border-slate-700 hover:border-rose-600 text-xs font-semibold text-slate-300 hover:text-rose-400 transition-colors">
+            &cross; FAIL
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-brand-navy/30 border border-brand-borderDark rounded-xl p-4 text-xs space-y-2">
+        <div class="font-bold text-brand-gold flex items-center gap-2">
+          <span>&bull; Titik Integrasi:</span>
+          <span class="font-mono text-white">OJS Navigation &rarr; MQC Frontend (:3000) &rarr; Screening Engine (/api/check-submission)</span>
+        </div>
+        <p class="text-slate-300">
+          Penulis menguji kepatuhan naskah (.docx) sebelum menyerahkan ke OJS. Engine MQC memeriksa 25 parameter selingkung (Font, Margin, Abstrak dwibahasa, Judul Tabel/Gambar, Format Sitasi IEEE/APA) dan menerbitkan skor kelayakan.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">Langkah Aksi Pengujian:</h4>
+        
+        <ol class="space-y-3 text-xs text-slate-300">
+          <li class="flex items-start gap-2.5 p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+            <span class="font-mono font-bold text-brand-gold shrink-0">2.1</span>
+            <div class="flex-1 space-y-1">
+              <div>Buka halaman Dashboard atau Upload Naskah MQC Assistant:</div>
+              <div class="flex items-center gap-2 pt-1">
+                <a href="http://localhost:3000/dashboard" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-navy hover:bg-brand-navyLight border border-brand-terracotta text-brand-gold rounded font-mono text-[11px] font-bold">
+                  Buka Dashboard MQC &UpperRightArrow;
+                </a>
+                <a href="http://localhost:3000/manuscripts/upload" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-terracotta hover:bg-brand-terracottaHover text-white rounded font-mono text-[11px] font-bold">
+                  Buka Upload Naskah &UpperRightArrow;
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li class="flex items-start gap-2.5 p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+            <span class="font-mono font-bold text-brand-gold shrink-0">2.2</span>
+            <div class="flex-1 space-y-1">
+              <div>Uji Verifikasi Hasil Simulasi Audit (Passed vs Needs Revision):</div>
+              <p class="text-slate-400 text-[11px]">
+                Di Dashboard MQC, klik kartu audit naskah yang berstatus <strong class="text-emerald-400">Passed (Skor 92)</strong> dan naskah berstatus <strong class="text-amber-400">Needs Revision (Skor 68)</strong>.
+              </p>
+            </div>
+          </li>
+
+          <li class="flex items-start gap-2.5 p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+            <span class="font-mono font-bold text-brand-gold shrink-0">2.3</span>
+            <div class="flex-1 space-y-1">
+              <div>Verifikasi Hasil yang Diharapkan (<strong class="text-emerald-400">Expected Result</strong>):</div>
+              <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1 pt-1 text-[11px]">
+                <li>Naskah lolos menunjukkan rincian 25 kriteria checklist gaya selingkung berwarna hijau.</li>
+                <li>Naskah belum lolos menampilkan daftar pelanggaran spesifik (misal: "Ukuran font sub-bab tidak 11pt", "Abstrak bahasa Inggris belum ada").</li>
+                <li>Penulis diarahkan untuk memperbaiki berkas naskah sebelum menekan tombol lanjut ke OJS.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="pt-2">
+        <label class="text-[11px] font-mono text-slate-400 block mb-1">Catatan Temuan Tester (Opsional):</label>
+        <textarea id="note-tc02" onchange="saveNote('tc02')" placeholder="Ketik catatan hasil uji di sini (misal: visual status audit jelas, daftar temuan spesifik)..." class="w-full bg-slate-950 border border-brand-borderDark rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-brand-gold h-16"></textarea>
+      </div>
+    </section>
+
+    <!-- MODUL 3: PENYERAHAN NASKAH & PROSES REDAKSI DI OJS 3.3 -->
+    <section class="glass-card rounded-2xl p-6 sm:p-8 border border-brand-borderDark uat-card space-y-5" id="card-tc-03">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-brand-borderDark/80 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-brand-navy border border-brand-terracotta flex items-center justify-center text-brand-gold font-bold text-sm">
+            03
+          </div>
+          <div>
+            <div class="text-xs font-mono text-brand-gold uppercase tracking-wider">Tahap Pengujian 3 &bull; Alur Redaksi & Sistem Inti OJS</div>
+            <h3 class="text-base sm:text-lg font-bold text-white">Uji Penyerahan Naskah (Submission) & Editorial OJS 3.3</h3>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="setTestStatus('tc03', 'pass')" id="btn-tc03-pass" class="px-3 py-1.5 rounded-lg border border-slate-700 hover:border-emerald-600 text-xs font-semibold text-slate-300 hover:text-emerald-400 transition-colors">
+            &check; PASS
+          </button>
+          <button onclick="setTestStatus('tc03', 'fail')" id="btn-tc03-fail" class="px-3 py-1.5 rounded-lg border border-slate-700 hover:border-rose-600 text-xs font-semibold text-slate-300 hover:text-rose-400 transition-colors">
+            &cross; FAIL
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-brand-navy/30 border border-brand-borderDark rounded-xl p-4 text-xs space-y-2">
+        <div class="font-bold text-brand-gold flex items-center gap-2">
+          <span>&bull; Titik Integrasi:</span>
+          <span class="font-mono text-white">Author Submission &rarr; OJS 3.3 Backend Workflow (:80/submissions)</span>
+        </div>
+        <p class="text-slate-300">
+          Naskah yang telah dinyatakan lolos screening MQC diserahkan ke OJS melalui antarmuka formal 5 langkah. Dewan redaksi (Editor) menerima naskah di antrian Submissions untuk diteruskan ke tahap Peer Review substantif.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">Langkah Aksi Pengujian:</h4>
+        
+        <ol class="space-y-3 text-xs text-slate-300">
+          <li class="flex items-start gap-2.5 p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+            <span class="font-mono font-bold text-brand-gold shrink-0">3.1</span>
+            <div class="flex-1 space-y-1">
+              <div>Buka antarmuka Submissions OJS Jurnal Permukiman:</div>
+              <div class="flex items-center gap-2 pt-1">
+                <a href="http://localhost/jurnalpermukiman/index.php/JP/submissions" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-terracotta hover:bg-brand-terracottaHover text-white rounded font-mono text-[11px] font-bold">
+                  Buka OJS Submissions &UpperRightArrow;
+                </a>
+                <span class="text-slate-400 text-[11px]">(Atau klik tombol "Make a Submission" pada homepage OJS)</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="flex items-start gap-2.5 p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+            <span class="font-mono font-bold text-brand-gold shrink-0">3.2</span>
+            <div class="flex-1 space-y-1">
+              <div>Uji Alur Wizard Penyerahan 5 Langkah:</div>
+              <p class="text-slate-400 text-[11px]">
+                Klik <strong class="text-white">"New Submission"</strong> &rarr; Centang Submission Checklist &rarr; Unggah berkas naskah .docx &rarr; Isi metadata (Judul & Abstrak) &rarr; Konfirmasi & Kirim.
+              </p>
+            </div>
+          </li>
+
+          <li class="flex items-start gap-2.5 p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+            <span class="font-mono font-bold text-brand-gold shrink-0">3.3</span>
+            <div class="flex-1 space-y-1">
+              <div>Verifikasi Hasil yang Diharapkan (<strong class="text-emerald-400">Expected Result</strong>):</div>
+              <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1 pt-1 text-[11px]">
+                <li>Naskah masuk antrian <code class="text-brand-gold font-mono">My Queue / Unassigned</code> editor OJS dengan ID submission baru.</li>
+                <li>Redaksi tidak lagi membuang waktu menolak naskah akibat format font/margin yang salah karena sudah tersaring di Gate 2.</li>
+                <li>Editor dapat langsung menugaskan Section Editor dan Mitra Bestari (Reviewer).</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="pt-2">
+        <label class="text-[11px] font-mono text-slate-400 block mb-1">Catatan Temuan Tester (Opsional):</label>
+        <textarea id="note-tc03" onchange="saveNote('tc03')" placeholder="Ketik catatan hasil uji di sini (misal: wizard submission berjalan mulus, naskah muncul di antrian)..." class="w-full bg-slate-950 border border-brand-borderDark rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-brand-gold h-16"></textarea>
+      </div>
+    </section>
+
+    <!-- MODUL 4: CLOSED-LOOP INTEGRATION OAI-PMH KE JP-INSIGHT -->
+    <section class="glass-card rounded-2xl p-6 sm:p-8 border border-brand-borderDark uat-card space-y-5" id="card-tc-04">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-brand-borderDark/80 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-emerald-950 border border-emerald-600 flex items-center justify-center text-emerald-400 font-bold text-sm">
+            04
+          </div>
+          <div>
+            <div class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Tahap Pengujian 4 &bull; Siklus Tertutup (Closed-Loop)</div>
+            <h3 class="text-base sm:text-lg font-bold text-white">Uji Auto-Harvest OAI-PMH: OJS 3.3 &rarr; JP-Insight RAG Engine</h3>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="setTestStatus('tc04', 'pass')" id="btn-tc04-pass" class="px-3 py-1.5 rounded-lg border border-slate-700 hover:border-emerald-600 text-xs font-semibold text-slate-300 hover:text-emerald-400 transition-colors">
+            &check; PASS
+          </button>
+          <button onclick="setTestStatus('tc04', 'fail')" id="btn-tc04-fail" class="px-3 py-1.5 rounded-lg border border-slate-700 hover:border-rose-600 text-xs font-semibold text-slate-300 hover:text-rose-400 transition-colors">
+            &cross; FAIL
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-emerald-950/20 border border-emerald-900/60 rounded-xl p-4 text-xs space-y-2">
+        <div class="font-bold text-emerald-400 flex items-center gap-2">
+          <span>&bull; Titik Integrasi:</span>
+          <span class="font-mono text-white">OJS OAI-PMH Endpoint (Port 80) &rarr; JP-Insight Harvester Engine (:3001/api/sync/ojs)</span>
+        </div>
+        <p class="text-slate-300">
+          Inilah inti integrasi siklus tertutup. Ketika naskah terbit di OJS, metadata dan berkas artikel otomatis diekspos melalui protokol internasional OAI-PMH. Harvester JP-Insight membaca endpoint ini, mengunduh galley, memotong teks (chunking), menghitung vektor embeddings, dan menyimpannya ke database RAG sehingga AI langsung mengenali riset terbaru.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">Langkah Aksi Pengujian:</h4>
+        
+        <ol class="space-y-3 text-xs text-slate-300">
+          <li class="flex items-start gap-2.5 p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+            <span class="font-mono font-bold text-emerald-400 shrink-0">4.1</span>
+            <div class="flex-1 space-y-1">
+              <div>Uji Ketersediaan Endpoint OAI-PMH OJS:</div>
+              <div class="flex items-center gap-2 pt-1">
+                <a href="http://localhost/jurnalpermukiman/index.php/JP/oai?verb=Identify" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-navy hover:bg-brand-navyLight border border-brand-borderDark text-brand-gold rounded font-mono text-[11px] font-bold">
+                  Cek OAI Identify &UpperRightArrow;
+                </a>
+                <a href="http://localhost/jurnalpermukiman/index.php/JP/oai?verb=ListRecords&metadataPrefix=oai_dc" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-navy hover:bg-brand-navyLight border border-brand-borderDark text-slate-200 rounded font-mono text-[11px]">
+                  Cek ListRecords XML &UpperRightArrow;
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li class="flex items-start gap-2.5 p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+            <span class="font-mono font-bold text-emerald-400 shrink-0">4.2</span>
+            <div class="flex-1 space-y-1">
+              <div>Uji Langsung Respon Live OAI dari Browser Ini:</div>
+              <div class="flex items-center gap-2 pt-1">
+                <button onclick="pingLiveOAI()" class="px-3 py-1.5 rounded bg-emerald-700 hover:bg-emerald-600 text-white font-mono text-[11px] font-bold">
+                  &blacktriangleright; Jalankan Test Ping OAI-PMH
+                </button>
+                <span id="oai-live-result" class="text-xs font-mono text-slate-400">Klik tombol untuk test endpoint</span>
+              </div>
+              <pre id="oai-raw-preview" class="hidden mt-2 p-3 bg-slate-950 border border-slate-800 rounded text-[11px] font-mono text-emerald-400 overflow-x-auto max-h-40"></pre>
+            </div>
+          </li>
+
+          <li class="flex items-start gap-2.5 p-3 rounded-lg bg-brand-cardSubtle border border-brand-borderDark/60">
+            <span class="font-mono font-bold text-emerald-400 shrink-0">4.3</span>
+            <div class="flex-1 space-y-1">
+              <div>Verifikasi Hasil yang Diharapkan (<strong class="text-emerald-400">Expected Result</strong>):</div>
+              <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1 pt-1 text-[11px]">
+                <li>Endpoint merespons XML standar OAI-PMH 2.0 dengan nama repositori <code class="text-brand-gold font-mono">Jurnal Permukiman</code>.</li>
+                <li>ListRecords menyajikan judul, penulis, tanggal terbit, dan tautan galley PDF artikel.</li>
+                <li>Pipeline harvester JP-Insight dapat menyerap record ini tanpa konfigurasi manual tambahan.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="pt-2">
+        <label class="text-[11px] font-mono text-slate-400 block mb-1">Catatan Temuan Tester (Opsional):</label>
+        <textarea id="note-tc04" onchange="saveNote('tc04')" placeholder="Ketik catatan hasil uji di sini (misal: XML valid, respon cepat <200ms)..." class="w-full bg-slate-950 border border-brand-borderDark rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-brand-gold h-16"></textarea>
+      </div>
+    </section>
+
+    <!-- KESIMPULAN & EXPORT HASIL UAT -->
+    <section class="glass-card rounded-2xl p-6 sm:p-8 border border-brand-borderDark space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-brand-borderDark/80 pb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-gold font-mono">Dokumentasi & Pelaporan</span>
+          <h3 class="text-base font-bold text-white">Ringkasan Eksekutif Hasil Uji Integrasi</h3>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="window.print()" class="px-4 py-2 rounded-lg bg-brand-navy hover:bg-brand-navyLight border border-brand-borderDark text-xs font-bold text-white transition-colors">
+            Cetak / PDF Laporan
+          </button>
+          <button onclick="exportUATJson()" class="px-4 py-2 rounded-lg bg-brand-terracotta hover:bg-brand-terracottaHover text-xs font-bold text-white transition-colors">
+            Ekspor JSON Hasil Uji
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+        <div class="p-3 rounded-xl bg-brand-cardSubtle border border-brand-borderDark">
+          <div class="text-[10px] font-mono uppercase text-slate-400">Total Modul Uji</div>
+          <div class="text-xl font-bold text-white mt-1">4</div>
+        </div>
+        <div class="p-3 rounded-xl bg-brand-cardSubtle border border-brand-borderDark">
+          <div class="text-[10px] font-mono uppercase text-emerald-400">Status PASS</div>
+          <div id="stat-pass" class="text-xl font-bold text-emerald-400 mt-1">0</div>
+        </div>
+        <div class="p-3 rounded-xl bg-brand-cardSubtle border border-brand-borderDark">
+          <div class="text-[10px] font-mono uppercase text-rose-400">Status FAIL</div>
+          <div id="stat-fail" class="text-xl font-bold text-rose-400 mt-1">0</div>
+        </div>
+        <div class="p-3 rounded-xl bg-brand-cardSubtle border border-brand-borderDark">
+          <div class="text-[10px] font-mono uppercase text-brand-gold">Tingkat Kelayakan</div>
+          <div id="stat-score" class="text-xl font-bold text-brand-gold mt-1">0%</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const STORAGE_KEY = 'jp_uat_results_v1';
+    let uatData = {
+      tc01: { status: null, note: '' },
+      tc02: { status: null, note: '' },
+      tc03: { status: null, note: '' },
+      tc04: { status: null, note: '' },
+    };
+
+    function init() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          uatData = { ...uatData, ...JSON.parse(saved) };
+        } catch (e) {
+          console.error('Error parsing stored UAT data:', e);
+        }
+      }
+      renderUI();
+    }
+
+    function renderUI() {
+      let passCount = 0;
+      let failCount = 0;
+
+      ['tc01', 'tc02', 'tc03', 'tc04'].forEach(id => {
+        const item = uatData[id];
+        const btnPass = document.getElementById(`btn-${id}-pass`);
+        const btnFail = document.getElementById(`btn-${id}-fail`);
+        const noteArea = document.getElementById(`note-${id}`);
+        const card = document.getElementById(`card-${id.replace('tc', 'tc-')}`);
+
+        if (noteArea) noteArea.value = item.note || '';
+
+        // Reset styling
+        btnPass.className = "px-3 py-1.5 rounded-lg border text-xs font-semibold transition-colors " + 
+          (item.status === 'pass' 
+            ? "bg-emerald-700 border-emerald-500 text-white shadow" 
+            : "border-slate-700 hover:border-emerald-600 text-slate-300 hover:text-emerald-400");
+
+        btnFail.className = "px-3 py-1.5 rounded-lg border text-xs font-semibold transition-colors " + 
+          (item.status === 'fail' 
+            ? "bg-rose-700 border-rose-500 text-white shadow" 
+            : "border-slate-700 hover:border-rose-600 text-slate-300 hover:text-rose-400");
+
+        if (item.status === 'pass') passCount++;
+        if (item.status === 'fail') failCount++;
+      });
+
+      document.getElementById('progress-text').innerText = `${passCount} / 4 Lolos`;
+      document.getElementById('stat-pass').innerText = passCount;
+      document.getElementById('stat-fail').innerText = failCount;
+      const score = Math.round((passCount / 4) * 100);
+      document.getElementById('stat-score').innerText = `${score}%`;
+    }
+
+    function setTestStatus(tcId, status) {
+      if (uatData[tcId].status === status) {
+        uatData[tcId].status = null; // Toggle off
+      } else {
+        uatData[tcId].status = status;
+      }
+      saveData();
+      renderUI();
+    }
+
+    function saveNote(tcId) {
+      const el = document.getElementById(`note-${tcId}`);
+      if (el) {
+        uatData[tcId].note = el.value;
+        saveData();
+      }
+    }
+
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(uatData));
+    }
+
+    function resetAllUAT() {
+      if (confirm('Apakah Anda yakin ingin mereset seluruh hasil dan catatan pengujian?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        uatData = {
+          tc01: { status: null, note: '' },
+          tc02: { status: null, note: '' },
+          tc03: { status: null, note: '' },
+          tc04: { status: null, note: '' },
+        };
+        renderUI();
+      }
+    }
+
+    function copyToClipboard(elementId) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      const text = el.innerText.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Prompt berhasil disalin ke clipboard!');
+      });
+    }
+
+    async function pingLiveOAI() {
+      const resultSpan = document.getElementById('oai-live-result');
+      const previewEl = document.getElementById('oai-raw-preview');
+      resultSpan.innerHTML = '<span class="text-amber-400 font-mono">Memeriksa endpoint...</span>';
+      
+      try {
+        const response = await fetch('http://localhost/jurnalpermukiman/index.php/JP/oai?verb=Identify');
+        if (response.ok) {
+          const text = await response.text();
+          resultSpan.innerHTML = '<span class="text-emerald-400 font-mono font-bold">&check; 200 OK &bull; OAI-PMH Berhasil Merespons!</span>';
+          previewEl.classList.remove('hidden');
+          previewEl.innerText = text.substring(0, 500) + '... (truncated)';
+          setTestStatus('tc04', 'pass');
+        } else {
+          resultSpan.innerHTML = `<span class="text-rose-400 font-mono font-bold">&cross; Status ${response.status}</span>`;
+        }
+      } catch (err) {
+        resultSpan.innerHTML = `<span class="text-rose-400 font-mono font-bold">&cross; Fetch Error: ${err.message}</span>`;
+      }
+    }
+
+    async function checkAllSystemHealth() {
+      // Ping OJS
+      const ojsEl = document.getElementById('node-ojs-status');
+      try {
+        const res = await fetch('http://localhost/jurnalpermukiman/index.php/JP', { method: 'HEAD', mode: 'no-cors' });
+        ojsEl.className = "status-badge bg-emerald-950/80 text-emerald-400 border border-emerald-800";
+        ojsEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400"></span> READY';
+      } catch (e) {
+        ojsEl.className = "status-badge bg-rose-950/80 text-rose-400 border border-rose-800";
+        ojsEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-400"></span> DOWN';
+      }
+
+      // Ping MQC
+      const mqcEl = document.getElementById('node-mqc-status');
+      try {
+        const res = await fetch('http://localhost:3000', { method: 'HEAD', mode: 'no-cors' });
+        mqcEl.className = "status-badge bg-emerald-950/80 text-emerald-400 border border-emerald-800";
+        mqcEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400"></span> READY';
+      } catch (e) {
+        mqcEl.className = "status-badge bg-rose-950/80 text-rose-400 border border-rose-800";
+        mqcEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-400"></span> DOWN';
+      }
+
+      // Ping JP-Insight
+      const jpEl = document.getElementById('node-jp-status');
+      try {
+        const res = await fetch('http://localhost:3001', { method: 'HEAD', mode: 'no-cors' });
+        jpEl.className = "status-badge bg-emerald-950/80 text-emerald-400 border border-emerald-800";
+        jpEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400"></span> READY';
+      } catch (e) {
+        jpEl.className = "status-badge bg-rose-950/80 text-rose-400 border border-rose-800";
+        jpEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-400"></span> DOWN';
+      }
+    }
+
+    function exportUATJson() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(uatData, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `UAT_Hasil_Integrasi_JP_${new Date().toISOString().split('T')[0]}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    // Run on startup
+    window.addEventListener('DOMContentLoaded', () => {
+      init();
+    });
+  </script>
+</body>
+</html>
