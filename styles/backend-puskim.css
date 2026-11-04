@@ -1,0 +1,120 @@
+/**
+ * styles/backend-puskim.css
+ * Tema Visual Ekosistem Puskim & Kementerian PU untuk Backend Editorial OJS 3.3
+ * Deep Navy PU (#0b2545) | Terakota Puskim (#c13d0d) | Emas Kunyit (#e0a96d)
+ */
+
+/* 1. Header Bar Atas */
+.app__header {
+  background: #0b2545 !important;
+  border-bottom: 2px solid #c13d0d !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+}
+
+.app__contextTitle,
+.app__contextTitle:visited {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3px !important;
+}
+
+.app__contextTitle:hover,
+.app__contextTitle:focus {
+  color: #f6d8ae !important;
+}
+
+.app__headerAction button,
+.app__headerAction .fa {
+  color: #e2e8f0 !important;
+}
+
+.app__headerAction button:hover,
+.app__headerAction button:focus {
+  color: #ffffff !important;
+}
+
+.app__tasksCount {
+  background: #c13d0d !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 700 !important;
+}
+
+/* 2. Navigasi Sidebar Kiri */
+.app__nav {
+  background: #0f172a !important;
+  border-right: 1px solid #1e293b !important;
+}
+
+.app__navItem {
+  color: #94a3b8 !important;
+  font-size: 0.8125rem !important;
+  transition: all 0.15s ease !important;
+}
+
+.app__navItem--hasSubmenu {
+  color: #e2e8f0 !important;
+  font-weight: 700 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding-top: 1.25rem !important;
+}
+
+.app__navItem:hover,
+.app__navItem:focus {
+  background: #1e293b !important;
+  color: #ffffff !important;
+}
+
+.app__navItem--isCurrent {
+  background: #1e293b !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-left: 3px solid #c13d0d !important;
+  padding-left: calc(1rem - 3px) !important;
+}
+
+/* 3. Latar Belakang Canvas Backend */
+.app__body {
+  background: #f8fafc !important;
+}
+
+/* 4. Tombol Utama (Primary Button) */
+.pkpButton--primary {
+  background: #0b2545 !important;
+  border-color: #06172d !important;
+  color: #ffffff !important;
+  transition: all 0.15s ease !important;
+}
+
+.pkpButton--primary:hover,
+.pkpButton--primary:focus {
+  background: #143b6b !important;
+  border-color: #0b2545 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(11, 37, 69, 0.25) !important;
+}
+
+/* 5. Tabs Aktif */
+.pkpTabs__button[aria-selected="true"] {
+  border-bottom: 2px solid #c13d0d !important;
+  color: #0b2545 !important;
+  font-weight: 700 !important;
+}
+
+.pkpTabs__button:hover {
+  color: #c13d0d !important;
+}
+
+/* 6. Header Panel / Section Card */
+.pkpHeader__title {
+  color: #0b2545 !important;
+}
+
+/* 7. Dropdown & Submenu */
+.pkpDropdown__action:hover,
+.pkpDropdown__action:focus {
+  background: #f1f5f9 !important;
+  color: #0b2545 !important;
+}
