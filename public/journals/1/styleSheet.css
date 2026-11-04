@@ -1,6 +1,7 @@
 .journals ul .body .description a {display: inline;}
 body {
-  background: #f5f9fb !important;
+  *background: url("https://i.ibb.co/zSshwyr/bg.png") #f5f9fb fixed !important;  
+  background: #c13d0d fixed !important; 
 }
 /*.pkp_structure_footer .pkp_footer_content {background: #1779b7; padding: 15px !important;}
 .pkp_structure_footer .pkp_footer_content p {margin: 0}

@@ -870,19 +870,9 @@ class PKPTemplateManager extends Smarty {
 		// Stylesheet compiled from Vue.js single-file components
 		$this->addStyleSheet(
 			'build',
-			$request->getBaseUrl() . '/styles/build.css?v=' . time(),
+			$request->getBaseUrl() . '/styles/build.css',
 			[
 				'priority' => STYLE_SEQUENCE_CORE,
-				'contexts' => 'backend',
-			]
-		);
-
-		// Puskim Heritage Theme for backend
-		$this->addStyleSheet(
-			'backendPuskim',
-			$request->getBaseUrl() . '/styles/backend-puskim.css',
-			[
-				'priority' => STYLE_SEQUENCE_LAST,
 				'contexts' => 'backend',
 			]
 		);
