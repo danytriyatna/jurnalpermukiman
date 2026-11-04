@@ -95,6 +95,13 @@ a:hover { color: #0d2455; }
   width: 310px !important;
   float: none !important;
 }
+
+/* Hilangkan garis semu vertikal kaku bawaan default theme yang membelah sidebar */
+.pkp_structure_main:before,
+.pkp_structure_main:after {
+  display: none !important;
+  content: none !important;
+}
 .pkp_structure_content { padding-top: 0; }
 .pkp_structure_sidebar .pkp_block .title {font-family: Sunflower, helvetica, calibri;}
 h1,h2,h3,h4,h5,h6 {font-family: Sunflower, helvetica, calibri;}
