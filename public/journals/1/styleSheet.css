@@ -1,7 +1,6 @@
 .journals ul .body .description a {display: inline;}
 body {
-  *background: url("https://i.ibb.co/zSshwyr/bg.png") #f5f9fb fixed !important;  
-  background: #c13d0d fixed !important; 
+  background: #f5f9fb !important;
 }
 /*.pkp_structure_footer .pkp_footer_content {background: #1779b7; padding: 15px !important;}
 .pkp_structure_footer .pkp_footer_content p {margin: 0}
@@ -65,7 +64,36 @@ a:hover { color: #0d2455; }
 .pkp_navigation_primary_row .pkp_navigation_primary_wrapper ul li, .pkp_navigation_primary_row .pkp_navigation_primary_wrapper ul li a {font-family:Sunflower, helvetica, calibri; color: #151515 !important; font-weight: normal !important}
 .pkp_navigation_primary_row .pkp_navigation_primary_wrapper .pkp_search.is_open input[type=text] {font-family: Sunflower, helvetica, calibri;}
 
-.pkp_structure_page {margin:auto; width: 1162px; padding-bottom: 0 !important; border-left: 1px color: transparent; border-right: 1px color: transparent; background: #fff; }
+.pkp_structure_page {
+  margin: 20px auto !important;
+  width: 1162px;
+  max-width: 96%;
+  padding-bottom: 0 !important;
+  border: 1px solid #e2e8f0;
+  background: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Flexbox scaffolding to prevent sidebar drop */
+.pkp_structure_content.has_sidebar {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 24px !important;
+}
+.pkp_structure_content.has_sidebar .pkp_structure_main {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  float: none !important;
+  width: auto !important;
+  padding: 0 0 2rem 0 !important;
+}
+.pkp_structure_content.has_sidebar .pkp_structure_sidebar {
+  flex: 0 0 310px !important;
+  width: 310px !important;
+  float: none !important;
+}
 .pkp_structure_content { padding-top: 0; }
 .pkp_structure_sidebar .pkp_block .title {font-family: Sunflower, helvetica, calibri;}
 h1,h2,h3,h4,h5,h6 {font-family: Sunflower, helvetica, calibri;}
@@ -112,6 +140,8 @@ h1,h2,h3,h4,h5,h6 {font-family: Sunflower, helvetica, calibri;}
 .pkp_structure_footer .pkp_footer_content div.logo2 img{width: 88px; height:31px;}
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+/* Disabled destructive global reset that broke OJS layout */
+/*
 *{
   margin: 0;
   padding: 0;
@@ -123,6 +153,7 @@ body{
   width: 100%;
   
 }
+*/
 footer{
   position: relative;
   background: #355f8b;
@@ -1385,4 +1416,30 @@ obj_article_details .abstract {
 .jp_ecosystem_btn .fa {
   font-size: 10px !important;
   opacity: 0.8 !important;
+}
+
+/* ==========================================================================
+   Puskim Heritage Palette for Frontend Login
+   ========================================================================== */
+.page_login .pkp_structure_main {
+  max-width: 480px;
+  margin: 40px auto !important;
+  padding: 30px !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-top: 4px solid #0b2545 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06) !important;
+}
+.page_login .cmp_button {
+  background: #0b2545 !important;
+  border: 1px solid #06172d !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  padding: 8px 22px !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
+}
+.page_login .cmp_button:hover {
+  background: #143b6b !important;
 }
