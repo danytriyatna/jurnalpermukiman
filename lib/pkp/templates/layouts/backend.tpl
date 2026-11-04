@@ -15,6 +15,7 @@
 	<title>{title|strip_tags value=$pageTitle}</title>
 	{load_header context="backend"}
 	{load_stylesheet context="backend"}
+	<link rel="stylesheet" href="{$baseUrl}/styles/backend-puskim.css?v={$smarty.now}" type="text/css" />
 	{load_script context="backend"}
 </head>
 <body class="pkp_page_{$requestedPage|escape|default:"index"} pkp_op_{$requestedOp|escape|default:"index"}" dir="{$currentLocaleLangDir|escape|default:"ltr"}">

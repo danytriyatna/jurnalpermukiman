@@ -877,6 +877,16 @@ class PKPTemplateManager extends Smarty {
 			]
 		);
 
+		// Puskim Heritage Theme for backend
+		$this->addStyleSheet(
+			'backendPuskim',
+			$request->getBaseUrl() . '/styles/backend-puskim.css',
+			[
+				'priority' => STYLE_SEQUENCE_LAST,
+				'contexts' => 'backend',
+			]
+		);
+
 		// The legacy stylesheet for the backend
 		$this->addStyleSheet(
 			'pkpLib',
