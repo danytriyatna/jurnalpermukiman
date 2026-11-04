@@ -1363,7 +1363,7 @@ obj_article_details .abstract {
 
 
 /* ==========================================================================
-   Ecosystem Quick Access Links: MQC & JP (Puskim Heritage Palette)
+   Ecosystem Quick Access Links: MQC & JP (Puskim Heritage Palette) - Single Row
    ========================================================================== */
 .pkp_navigation_primary_row {
   display: flex !important;
@@ -1373,50 +1373,52 @@ obj_article_details .abstract {
   align-items: center !important;
   width: 100% !important;
   background: #ffffff !important;
-  min-height: 42px !important;
+  min-height: 40px !important;
 }
 
 .pkp_navigation_primary_wrapper {
   display: flex !important;
+  flex-direction: row !important;
   align-items: center !important;
   flex-wrap: nowrap !important;
   flex: 1 1 auto !important;
   min-width: 0 !important;
+  overflow: visible !important;
 }
 
-.pkp_navigation_user_and_ecosystem {
+/* Pastikan semua item menu horizontal 1 baris tanpa wrap */
+.pkp_navigation_primary_row .pkp_navigation_primary_wrapper ul.pkp_navigation_primary {
   display: flex !important;
-  align-items: center !important;
+  flex-direction: row !important;
   flex-wrap: nowrap !important;
-  gap: 12px !important;
-  margin-left: auto !important;
+  align-items: center !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.pkp_navigation_primary_row .pkp_navigation_primary_wrapper ul.pkp_navigation_primary > li {
+  display: inline-flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
   flex-shrink: 0 !important;
 }
 
-.pkp_navigation_user_wrapper {
-  position: static !important;
-  top: auto !important;
-  right: auto !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-}
-
-.pkp_navigation_user {
-  margin: 0 !important;
-  padding: 0 !important;
-  border-bottom: none !important;
-  display: flex !important;
-  align-items: center !important;
+.pkp_navigation_primary_row .pkp_navigation_primary_wrapper ul.pkp_navigation_primary > li > a {
+  padding: 0 8px !important;
+  font-size: 13px !important;
+  line-height: 40px !important;
+  white-space: nowrap !important;
 }
 
 .jp_ecosystem_nav_links {
-  display: flex !important;
+  display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
-  padding-right: 0 !important;
-  margin-left: 0 !important;
+  padding-right: 12px !important;
+  margin-left: auto !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
 }
 
 .jp_ecosystem_btn {
@@ -1424,15 +1426,16 @@ obj_article_details .abstract {
   align-items: center !important;
   gap: 5px !important;
   font-family: Sunflower, helvetica, calibri, sans-serif !important;
-  font-size: 12px !important;
+  font-size: 11px !important;
   font-weight: 700 !important;
   line-height: 1 !important;
-  padding: 6px 14px !important;
+  padding: 5px 12px !important;
   border-radius: 4px !important;
   text-decoration: none !important;
   transition: all 0.2s ease !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
   letter-spacing: 0.5px !important;
+  white-space: nowrap !important;
 }
 
 .jp_ecosystem_btn.mqc {
@@ -1464,30 +1467,4 @@ obj_article_details .abstract {
 .jp_ecosystem_btn .fa {
   font-size: 10px !important;
   opacity: 0.8 !important;
-}
-
-/* ==========================================================================
-   Puskim Heritage Palette for Frontend Login
-   ========================================================================== */
-.page_login .pkp_structure_main {
-  max-width: 480px;
-  margin: 40px auto !important;
-  padding: 30px !important;
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  border-top: 4px solid #0b2545 !important;
-  border-radius: 8px !important;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06) !important;
-}
-.page_login .cmp_button {
-  background: #0b2545 !important;
-  border: 1px solid #06172d !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  padding: 8px 22px !important;
-  border-radius: 4px !important;
-  transition: all 0.2s ease !important;
-}
-.page_login .cmp_button:hover {
-  background: #143b6b !important;
 }
