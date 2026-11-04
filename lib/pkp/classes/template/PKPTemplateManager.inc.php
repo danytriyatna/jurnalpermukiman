@@ -870,7 +870,7 @@ class PKPTemplateManager extends Smarty {
 		// Stylesheet compiled from Vue.js single-file components
 		$this->addStyleSheet(
 			'build',
-			$request->getBaseUrl() . '/styles/build.css',
+			$request->getBaseUrl() . '/styles/build.css?v=' . time(),
 			[
 				'priority' => STYLE_SEQUENCE_CORE,
 				'contexts' => 'backend',
