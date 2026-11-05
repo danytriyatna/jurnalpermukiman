@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buku Panduan Operasional & User Manual OJS 3.3 LTS (Untuk Pemula)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+    code, pre { font-family: 'JetBrains Mono', monospace; }
+    .prose-custom p { margin-top: 0.75rem; margin-bottom: 0.75rem; line-height: 1.75; color: #334155; }
+    .prose-custom ul { list-style-type: disc; margin-left: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem; }
+    .prose-custom li { margin-top: 0.25rem; margin-bottom: 0.25rem; color: #475569; }
+    .step-badge { width: 32px; height: 32px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; flex-shrink: 0; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- TOP HEADER -->
+  <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-md">
+          <i class="fa-solid fa-book-open-reader text-lg"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded border border-blue-400/30">Official User Manual</span>
+            <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-400/30">OJS 3.3 LTS</span>
+          </div>
+          <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">Panduan Lengkap Operasional Open Journal Systems (OJS)</h1>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="http://localhost/jurnalpermukiman/index.php/JP" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white px-3.5 py-1.5 rounded-lg shadow-sm transition">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Web Jurnal
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BODY LAYOUT WITH SIDEBAR TOC -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+    
+    <!-- STICKY TABLE OF CONTENTS -->
+    <aside class="hidden lg:block lg:col-span-3">
+      <div class="sticky top-20 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4 max-h-[calc(100vh-6rem)] overflow-y-auto">
+        <div class="text-xs font-bold uppercase text-slate-400 tracking-wider">Daftar Isi Manual</div>
+        <nav class="space-y-1 text-sm">
+          <a href="#bab-1" class="block py-1.5 px-2.5 rounded-lg hover:bg-slate-100 text-slate-700 font-medium hover:text-blue-600 transition">
+            1. Pahami Dulu: OJS Itu Apa?
+          </a>
+          <a href="#bab-2" class="block py-1.5 px-2.5 rounded-lg hover:bg-slate-100 text-slate-700 font-medium hover:text-blue-600 transition">
+            2. Kamus Istilah OJS (A-Z)
+          </a>
+          <a href="#bab-3" class="block py-1.5 px-2.5 rounded-lg hover:bg-slate-100 text-slate-700 font-medium hover:text-blue-600 transition">
+            3. Alur Kerja Penulis (Author)
+          </a>
+          <a href="#bab-4" class="block py-1.5 px-2.5 rounded-lg hover:bg-slate-100 text-slate-700 font-medium hover:text-blue-600 transition">
+            4. Alur Kerja Editor (Pengelola)
+          </a>
+          <a href="#bab-5" class="block py-1.5 px-2.5 rounded-lg hover:bg-slate-100 text-slate-700 font-medium hover:text-blue-600 transition">
+            5. Alur Reviewer (Mitra Bestari)
+          </a>
+          <a href="#bab-6" class="block py-1.5 px-2.5 rounded-lg hover:bg-slate-100 text-slate-700 font-medium hover:text-blue-600 transition">
+            6. Copyediting & Galley (PDF)
+          </a>
+          <a href="#bab-7" class="block py-1.5 px-2.5 rounded-lg hover:bg-slate-100 text-slate-700 font-medium hover:text-blue-600 transition">
+            7. Menerbitkan Edisi (Publish Issue)
+          </a>
+          <a href="#bab-8" class="block py-1.5 px-2.5 rounded-lg hover:bg-slate-100 text-amber-700 font-bold bg-amber-50 hover:bg-amber-100 transition">
+            8. Peran Plugin MQC di Sini
+          </a>
+        </nav>
+        <div class="pt-4 border-t border-slate-100 text-xs text-slate-500">
+          <p><strong>Info Akun Admin Lokal:</strong></p>
+          <p class="font-mono mt-1 text-slate-700">User: ado</p>
+          <p class="font-mono text-slate-700">Pass: admin123</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN READING CONTENT -->
+    <main class="lg:col-span-9 space-y-10 prose-custom">
+
+      <!-- BAB 1 -->
+      <section id="bab-1" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-sm">1</span>
+          <div>
+            <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Konsep Mental Dasar</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Pahami Dulu: Sebenarnya OJS Itu Aplikasi Apa?</h2>
+          </div>
+        </div>
+        
+        <p>
+          Bayangkan kamu sedang mengelola sebuah <strong>pabrik penerbitan majalah sains</strong>. 
+          Di pabrik ini, ada orang yang mengirim naskah tulisan, ada ahli yang memeriksa apakah tulisan itu benar atau palsu, ada editor yang merapikan bahasa dan ejaannya, ada tukang setting percetakan yang menata layout buku, dan ada manajer yang membukukan naskah tersebut menjadi terbitan resmi bernomor seri.
+        </p>
+
+        <p>
+          <strong>Open Journal Systems (OJS)</strong> adalah aplikasi web yang menjadi kantor digital pabrik tersebut. OJS <strong>bukan</strong> sekadar website blog tempat kamu mengetik artikel lalu langsung tayang seperti WordPress. Di OJS, setiap naskah wajib melewati serangkaian pintu sensor dan pemeriksaan ketat sebelum boleh dibaca masyarakat umum.
+        </p>
+
+        <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-xl my-4 text-xs sm:text-sm text-blue-950">
+          <p class="font-bold flex items-center gap-2"><i class="fa-solid fa-lightbulb text-blue-600"></i> Prinsip Inti yang Wajib Diingat:</p>
+          <p class="mt-1">
+            Di OJS, naskah tidak disebut "post" atau "artikel", melainkan disebut <strong>Submission</strong> (Naskah Kiriman). Naskah baru berubah status menjadi <strong>Article</strong> resmi hanya setelah melewati 5 meja pemeriksaan dan dimasukkan ke dalam sebuah <strong>Issue</strong> (Edisi Terbitan).
+          </p>
+        </div>
+      </section>
+
+      <!-- BAB 2 -->
+      <section id="bab-2" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-sm">2</span>
+          <div>
+            <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Glosarium</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Kamus Istilah OJS yang Sering Membingungkan Pemula</h2>
+          </div>
+        </div>
+
+        <p>Saat pertama kali membuka OJS, kamu akan melihat banyak tombol dengan istilah asing. Ini artinya:</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+              <i class="fa-solid fa-file-lines text-blue-600"></i> Submission (Naskah)
+            </h4>
+            <p class="text-xs text-slate-600 mt-1">
+              File draf artikel penelitian (biasanya berformat Word .docx) yang dikirimkan oleh penulis beserta data pendukungnya.
+            </p>
+          </div>
+
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+              <i class="fa-solid fa-file-pdf text-red-600"></i> Galley (Berkas Terbitan)
+            </h4>
+            <p class="text-xs text-slate-600 mt-1">
+              Format file akhir yang siap dibaca atau diunduh oleh pembaca di internet (biasanya berbentuk file PDF layout rapi atau HTML).
+            </p>
+          </div>
+
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+              <i class="fa-solid fa-book-bookmark text-emerald-600"></i> Issue (Edisi Terbitan)
+            </h4>
+            <p class="text-xs text-slate-600 mt-1">
+              Sebuah "buku/edisi" yang mewadahi kumpulan artikel. Contoh: <em>Vol. 21 No. 1 (2026)</em>. Artikel harus dimasukkan ke Issue agar terbit.
+            </p>
+          </div>
+
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+              <i class="fa-solid fa-user-secret text-purple-600"></i> Double-Blind Review
+            </h4>
+            <p class="text-xs text-slate-600 mt-1">
+              Pemeriksaan naskah di mana Penulis tidak tahu siapa ahli yang menilai naskahnya, dan Reviewer juga tidak diberi tahu siapa penulisnya agar penilaian 100% objektif.
+            </p>
+          </div>
+
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+              <i class="fa-solid fa-fingerprint text-amber-600"></i> DOI (Digital Object Identifier)
+            </h4>
+            <p class="text-xs text-slate-600 mt-1">
+              KTP unik permanen sebuah artikel ilmiah sedunia (dikeluarkan lembaga CrossRef), contoh: <code class="bg-white px-1 rounded text-slate-700">10.31815/jp.2026.21.1</code>. Link DOI tidak akan pernah mati selamanya.
+            </p>
+          </div>
+
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+              <i class="fa-solid fa-ruler-combined text-teal-600"></i> Gaya Selingkung (Author Guidelines)
+            </h4>
+            <p class="text-xs text-slate-600 mt-1">
+              Aturan baku penulisan di jurnal tersebut: jenis huruf, ukuran margin, susunan abstrak, cara penulisan tabel, dan format daftar pustaka. (Inilah yang dicek otomatis oleh plugin MQC).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BAB 3 -->
+      <section id="bab-3" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center text-sm">3</span>
+          <div>
+            <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Peran 1: Penulis (Author)</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Alur Pengiriman Naskah oleh Penulis (Submission Wizard)</h2>
+          </div>
+        </div>
+
+        <p>Sebagai penulis yang ingin mengirim artikel ilmiah, ini langkah yang kamu lewati di web jurnal:</p>
+
+        <div class="space-y-4 my-6">
+          <div class="flex gap-4 p-4 border border-slate-200 rounded-xl bg-slate-50">
+            <div class="step-badge bg-blue-600 text-white">1</div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm">Klik Tombol "Make a Submission"</h4>
+              <p class="text-xs text-slate-600 mt-1">Di halaman depan web jurnal, klik tombol merah <span class="bg-red-800 text-white px-2 py-0.5 rounded text-[11px] font-semibold">Make a Submission</span>. Jika belum login, kamu diminta mendaftar akun atau login terlebih dahulu.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 p-4 border border-slate-200 rounded-xl bg-slate-50">
+            <div class="step-badge bg-blue-600 text-white">2</div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm">Step 1: Start (Persetujuan Etika & Checklist)</h4>
+              <p class="text-xs text-slate-600 mt-1">Memilih bagian jurnal (Section: misalnya <em>Artikel Penelitian</em>), memilih bahasa naskah, dan mencentang semua kotak pernyataan bahwa naskah ini orisinal dan belum pernah terbit di tempat lain.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 p-4 border border-slate-200 rounded-xl bg-slate-50">
+            <div class="step-badge bg-blue-600 text-white">3</div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm">Step 2: Upload Submission (Mengunggah Dokumen Word)</h4>
+              <p class="text-xs text-slate-600 mt-1">Memilih komponen berkas (<span class="bg-slate-200 text-slate-800 px-1 rounded text-[11px]">Article Text</span>) lalu mengunggah file dokumen Microsoft Word (<code class="text-blue-700 bg-white px-1 rounded">.docx</code>). <em>(Di sinilah plugin MQC bekerja menganalisis format Word kamu!)</em>.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 p-4 border border-slate-200 rounded-xl bg-slate-50">
+            <div class="step-badge bg-blue-600 text-white">4</div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm">Step 3: Enter Metadata (Data Judul & Rekan Penulis)</h4>
+              <p class="text-xs text-slate-600 mt-1">Mengisi Judul Naskah, Abstrak ringkasan penelitian, Kata Kunci (Keywords), dan menambahkan daftar nama teman satu tim (Co-Authors) beserta alamat email dan kampusnya.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 p-4 border border-slate-200 rounded-xl bg-slate-50">
+            <div class="step-badge bg-blue-600 text-white">5</div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm">Step 4 & 5: Konfirmasi Akhir (Finish Submission)</h4>
+              <p class="text-xs text-slate-600 mt-1">Review ringkasan data, lalu klik tombol <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[11px] font-semibold">Finish Submission</span>. Sistem akan otomatis mengirimkan email konfirmasi tanda terima naskah ke email penulis.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BAB 4 -->
+      <section id="bab-4" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 font-bold flex items-center justify-center text-sm">4</span>
+          <div>
+            <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Peran 2: Editor Jurnal</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Alur Kerja Editor: Menyaring, Mengirim ke Reviewer, dan Memutuskan</h2>
+          </div>
+        </div>
+
+        <p>Editor bertindak sebagai nahkoda penentu nasib naskah. Saat Editor login ke Dashboard, ada 3 antrean utama:</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+          <div class="p-4 border border-slate-200 rounded-xl bg-slate-50">
+            <div class="text-xs font-bold uppercase text-amber-700 bg-amber-100 px-2 py-0.5 rounded inline-block">1. Unassigned</div>
+            <p class="text-xs text-slate-600 mt-2">Naskah yang baru masuk dari penulis dan belum ditangani oleh siapapun. Editor harus membuka naskah ini untuk melakukan <strong>Desk Review</strong>.</p>
+          </div>
+          <div class="p-4 border border-slate-200 rounded-xl bg-slate-50">
+            <div class="text-xs font-bold uppercase text-blue-700 bg-blue-100 px-2 py-0.5 rounded inline-block">2. In Review</div>
+            <p class="text-xs text-slate-600 mt-2">Naskah yang sudah dikirimkan ke para ahli (Mitra Bestari) dan sedang menunggu mereka selesai membaca serta mengirim laporan penilaian.</p>
+          </div>
+          <div class="p-4 border border-slate-200 rounded-xl bg-slate-50">
+            <div class="text-xs font-bold uppercase text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded inline-block">3. In Editing / Production</div>
+            <p class="text-xs text-slate-600 mt-2">Naskah yang sudah dinyatakan lulus substansi dan sedang dirapikan tata bahasanya serta ditata layout PDF-nya untuk diterbitkan.</p>
+          </div>
+        </div>
+
+        <h4 class="font-bold text-slate-900 text-base mt-6 mb-2">3 Keputusan Krusial yang Bisa Diambil Editor:</h4>
+        <div class="space-y-3">
+          <div class="p-3 bg-red-50 border border-red-200 rounded-lg text-xs text-red-950">
+            <strong>❌ Decline Submission (Tolak Naskah):</strong> Jika topik naskah tidak relevan dengan fokus jurnal permukiman atau formatnya acak-acakan parah. Naskah langsung gugur (*Desk Reject*).
+          </div>
+          <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs text-blue-950">
+            <strong>🔍 Send to Review (Kirim ke Mitra Bestari):</strong> Jika naskah bagus, Editor menekan tombol ini untuk memindahkan naskah dari Stage 1 (Submission) ke Stage 2 (Review), lalu menugaskan 2 orang reviewer.
+          </div>
+          <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-xs text-emerald-950">
+            <strong>✅ Accept Submission (Terima Naskah):</strong> Ditekan setelah para reviewer setuju naskah layak terbit. Naskah berpindah ke Stage 3 (Copyediting).
+          </div>
+        </div>
+      </section>
+
+      <!-- BAB 5 -->
+      <section id="bab-5" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 font-bold flex items-center justify-center text-sm">5</span>
+          <div>
+            <span class="text-xs font-bold text-purple-600 uppercase tracking-wider">Peran 3: Reviewer (Mitra Bestari)</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Alur Kerja Reviewer: Menilai Kebenaran Ilmiah Naskah</h2>
+          </div>
+        </div>
+
+        <p>Reviewer adalah profesor atau pakar independen yang diundang secara khusus untuk menilai keabsahan metode dan temuan artikel.</p>
+
+        <div class="border border-purple-200 bg-purple-50/40 rounded-xl p-5 my-4">
+          <h4 class="font-bold text-purple-950 text-sm mb-2">Langkah yang Dijalani Reviewer:</h4>
+          <ol class="list-decimal list-inside space-y-2 text-xs text-purple-900">
+            <li><strong>Menerima Undangan:</strong> Reviewer mendapat email undangan dan membuka link khusus di OJS.</li>
+            <li><strong>Konfirmasi Kesediaan:</strong> Memilih tombol <em>"Accept Review"</em> (jika bersedia) atau <em>"Decline Review"</em> (jika berhalangan).</li>
+            <li><strong>Mengunduh Naskah Anonim:</strong> Membaca file artikel yang sudah dihilangkan nama penulisnya.</li>
+            <li><strong>Mengisi Form Evaluasi:</strong> Memberikan komentar detail mengenai kekurangan metodologi atau teori di naskah.</li>
+            <li><strong>Memberi Rekomendasi Final:</strong> Memilih salah satu opsi:
+              <ul class="list-disc list-inside ml-4 mt-1 font-semibold text-slate-800">
+                <li><em>Accept Submission:</em> Naskah sempurna, langsung terima.</li>
+                <li><em>Revisions Required:</em> Penulis wajib memperbaiki poin tertentu (minor).</li>
+                <li><em>Resubmit for Review:</em> Perbaikan sangat besar, naskah harus di-review ulang (major/Round 2).</li>
+                <li><em>Reject:</em> Naskah salah secara metodologi, tolak.</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- BAB 6 -->
+      <section id="bab-6" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-teal-100 text-teal-700 font-bold flex items-center justify-center text-sm">6</span>
+          <div>
+            <span class="text-xs font-bold text-teal-600 uppercase tracking-wider">Peran 4: Copyeditor & Layout Editor</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Dari Draf Word Menjadi Galley PDF Siap Cetak</h2>
+          </div>
+        </div>
+
+        <p>Setelah naskah dinyatakan diterima (*Accept*), naskah belum boleh langsung tayang ke publik karena formatnya masih berupa draf mentah penulis. Dua peran ini yang menyulapnya:</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+            <h4 class="font-bold text-teal-800 text-sm">Meja Copyediting (Penyunting Bahasa)</h4>
+            <p class="text-xs text-slate-600 mt-1">
+              Memeriksa ejaan (PUEBI/English Academic), keterbacaan paragraf, format daftar pustaka (standar IEEE/APA), dan memastikan semua tabel serta gambar memiliki nomor dan judul yang tepat.
+            </p>
+          </div>
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+            <h4 class="font-bold text-purple-800 text-sm">Meja Production (Tata Letak Galley)</h4>
+            <p class="text-xs text-slate-600 mt-1">
+              Menata teks ke dalam template 2-kolom khas Jurnal Permukiman, memberi nomor halaman (misal: hal 15-28), memasang nomor DOI resmi, lalu meng-export-nya menjadi file <strong>PDF Galley</strong> yang di-upload ke tab <em>Galleys</em>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BAB 7 -->
+      <section id="bab-7" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-rose-100 text-rose-700 font-bold flex items-center justify-center text-sm">7</span>
+          <div>
+            <span class="text-xs font-bold text-rose-600 uppercase tracking-wider">Peran 5: Journal Manager / Editor in Chief</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Menerbitkan Edisi (Publish Issue): Langkah Terakhir</h2>
+          </div>
+        </div>
+
+        <p>Di OJS, artikel tidak terbit sendiri-sendiri, melainkan diterbitkan bersama dalam satu "buku edisi" (Issue). Ini cara kerjanya:</p>
+
+        <div class="bg-slate-900 text-white rounded-xl p-5 my-4 text-xs font-mono">
+          <p class="text-slate-400 font-sans font-bold text-sm mb-3">Langkah Menerbitkan Issue di Menu Admin OJS:</p>
+          <p class="text-emerald-400">1. Buka menu Issues ➔ Future Issues ➔ Klik "Create Issue"</p>
+          <p class="text-slate-300 ml-4">Isi Volume (21), Nomor (1), Tahun (2026), dan Judul Edisi.</p>
+          <p class="text-emerald-400 mt-2">2. Masukkan Naskah-Naskah yang Sudah Punya Galley PDF</p>
+          <p class="text-slate-300 ml-4">Di setiap naskah yang siap, klik tab "Publication" ➔ Pilih Issue: Vol. 21 No. 1 ➔ Klik "Save".</p>
+          <p class="text-emerald-400 mt-2">3. Tekan Tombol "Publish Issue"</p>
+          <p class="text-slate-300 ml-4">Edisi langsung rilis live di halaman depan, DOI aktif, dan artikel bisa diunduh gratis oleh seluruh dunia.</p>
+        </div>
+      </section>
+
+      <!-- BAB 8 -->
+      <section id="bab-8" class="bg-white border-2 border-amber-300 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="flex items-center gap-3 border-b border-amber-100 pb-4 mb-4">
+          <span class="w-8 h-8 rounded-lg bg-amber-500 text-white font-bold flex items-center justify-center text-sm">8</span>
+          <div>
+            <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Kaitan Proyek Kita</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Di Mana Posisi Plugin MQC (Manuscript Quality Control)?</h2>
+          </div>
+        </div>
+
+        <p>
+          Sekarang kamu sudah paham seluruh siklus penerbitan naskah di OJS. Pertanyaan kuncinya: <strong>di mana posisi aplikasi MQC yang sedang kita kerjakan ini?</strong>
+        </p>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 my-4">
+          <h4 class="font-bold text-amber-950 text-sm mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-crosshairs text-amber-600"></i> MQC Adalah Gerbang Sensor Otomatis di Stage 1 (Submission):
+          </h4>
+          <p class="text-xs text-amber-900 leading-relaxed">
+            Sebelum ada MQC, Editor Jurnal Permukiman harus membaca file Word secara manual untuk mengecek apakah spasi sudah 1.15, apakah font sudah Calibri, apakah abstrak terdiri dari 150-200 kata, apakah tabel sudah format terbuka, dsb. Ini sangat memakan waktu dan melelahkan (bisa berhari-hari).
+          </p>
+          <div class="mt-4 pt-4 border-t border-amber-200 text-xs text-slate-800 space-y-2">
+            <p><strong>Dengan Adanya Plugin MQC:</strong></p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Saat Penulis mengunggah file <code class="bg-white px-1 rounded font-bold">.docx</code> di Step 2, sistem MQC langsung membedah jeroan XML dokumen Word tersebut dalam 2 detik.</li>
+              <li>MQC mencocokkan dokumen terhadap <strong>22–27 aturan baku Jurnal Permukiman</strong>.</li>
+              <li>Jika ada yang salah (misal: ada text box terduplikasi, font salah, margin sempit), MQC langsung memberikan nilai skor kepatuhan dan catatan perbaikan instan ke Penulis dan Editor sebelum naskah diteruskan ke Reviewer!</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-slate-900 rounded-xl text-white text-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <div class="font-bold text-sm text-amber-400">Siap Lanjut ke Langkah #2: Memperbaiki Bug MQC?</div>
+            <p class="text-slate-400 mt-0.5">Kita akan beralih ke repositori <code class="text-blue-300">MQC-JurnalPermukiman</code> untuk membenahi parser text box dan katalog 27 rules.</p>
+          </div>
+          <a href="#bab-1" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg whitespace-nowrap transition">
+            Kembali ke Atas
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p>Kira & Tara Companion Technical Architecture Series &copy; 2026 Dany Triyatna.</p>
+      <p class="text-slate-400">Buku Panduan Operasional Pemula &bull; Open Journal Systems (OJS 3.3.0-24 LTS)</p>
+    </div>
+  </footer>
+
+</body>
+</html>

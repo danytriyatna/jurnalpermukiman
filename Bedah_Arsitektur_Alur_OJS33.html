@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bedah Arsitektur & Alur Kerja Open Journal Systems (OJS 3.3 LTS)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    code, pre { font-family: 'JetBrains Mono', monospace; }
+    .tab-active { border-bottom: 3px solid #2563eb; color: #2563eb; font-weight: 700; }
+    .stage-card { transition: all 0.25s ease-in-out; }
+    .stage-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px -10px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- TOP HEADER BANNER -->
+  <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-900 text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-11 h-11 rounded-xl bg-blue-600/30 border border-blue-400/40 flex items-center justify-center text-blue-300 text-xl font-bold">
+          <i class="fa-solid fa-book-journal-whills"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold uppercase tracking-wider bg-blue-500/20 text-blue-300 px-2.5 py-0.5 rounded-full border border-blue-400/30">OJS 3.3.0-24 LTS</span>
+            <span class="text-xs font-semibold uppercase tracking-wider bg-amber-500/20 text-amber-300 px-2.5 py-0.5 rounded-full border border-amber-400/30">PHP 8.3 Ready</span>
+            <span class="text-xs font-semibold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full border border-emerald-400/30">Jurnal Permukiman</span>
+          </div>
+          <h1 class="text-xl md:text-2xl font-extrabold tracking-tight text-white mt-1">Bedah Arsitektur, Alur Bisnis & Struktur Data OJS 3.3</h1>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 text-xs text-slate-300">
+        <div class="text-right hidden sm:block">
+          <p class="font-medium text-slate-200">Dany Triyatna (Lead Consultant)</p>
+          <p class="text-slate-400">Architectural Walkthrough & MQC Integration</p>
+        </div>
+        <div class="h-9 w-9 rounded-full bg-blue-700/60 flex items-center justify-center border border-blue-400/40 text-blue-200 font-bold">
+          DT
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS -->
+  <nav class="bg-white border-b border-slate-200 sticky top-[73px] z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-8 overflow-x-auto text-sm font-medium text-slate-600">
+      <button onclick="switchTab('overview')" id="tab-btn-overview" class="py-4 px-1 tab-active flex items-center gap-2 whitespace-nowrap">
+        <i class="fa-solid fa-compass"></i> 1. Filosofi & Konsep OJS
+      </button>
+      <button onclick="switchTab('lifecycle')" id="tab-btn-lifecycle" class="py-4 px-1 hover:text-blue-600 flex items-center gap-2 whitespace-nowrap">
+        <i class="fa-solid fa-arrows-split-up-and-left"></i> 2. The 5-Stage Publishing Lifecycle
+      </button>
+      <button onclick="switchTab('rbac')" id="tab-btn-rbac" class="py-4 px-1 hover:text-blue-600 flex items-center gap-2 whitespace-nowrap">
+        <i class="fa-solid fa-users-gear"></i> 3. Matriks Peran & RBAC
+      </button>
+      <button onclick="switchTab('architecture')" id="tab-btn-architecture" class="py-4 px-1 hover:text-blue-600 flex items-center gap-2 whitespace-nowrap">
+        <i class="fa-solid fa-layer-group"></i> 4. Arsitektur Dual-Layer PKP
+      </button>
+      <button onclick="switchTab('database')" id="tab-btn-database" class="py-4 px-1 hover:text-blue-600 flex items-center gap-2 whitespace-nowrap">
+        <i class="fa-solid fa-database"></i> 5. ERD & Entitas Kunci
+      </button>
+      <button onclick="switchTab('mqc')" id="tab-btn-mqc" class="py-4 px-1 hover:text-blue-600 flex items-center gap-2 whitespace-nowrap">
+        <i class="fa-solid fa-puzzle-piece text-amber-500"></i> 6. Titik Integrasi Plugin MQC
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+
+    <!-- TAB 1: FILOSOFI & KONSEP OJS -->
+    <section id="tab-overview" class="space-y-6">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-start justify-between flex-col md:flex-row gap-4 border-b border-slate-100 pb-6 mb-6">
+          <div>
+            <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">Prinsip Dasar Sistem</span>
+            <h2 class="text-2xl font-bold text-slate-900 mt-1">Mengapa OJS Bukan Sekadar CMS Biasa?</h2>
+            <p class="text-slate-600 mt-2 max-w-3xl leading-relaxed">
+              Banyak yang keliru mengira OJS adalah blog artikel layaknya WordPress atau Drupal. Padahal secara arsitektur, OJS adalah <strong>Enterprise Business Process Management (BPM) & Document Lifecycle Engine</strong> yang dirancang ketat untuk menjamin integritas ilmiah, audit trail naskah, dan kepatuhan indeksasi global (Scopus, DOAJ, CrossRef).
+            </p>
+          </div>
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 min-w-[240px]">
+            <div class="text-xs font-semibold text-blue-800 uppercase">Core Identity</div>
+            <div class="text-lg font-bold text-blue-950 mt-1">PKP OJS 3.3 LTS</div>
+            <p class="text-xs text-blue-700 mt-1">Dirilis oleh Public Knowledge Project (Simon Fraser University, Kanada).</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+            <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-lg mb-3">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 mb-1">Double-Blind Peer Review</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Memisahkan identitas antara Penulis (Author) dan Pengulas (Reviewer) secara sistemik. File naskah diverifikasi agar bersih dari jejak identitas (metadata author/anonymized).
+            </p>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg mb-3">
+              <i class="fa-solid fa-code-branch"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 mb-1">Versioning Submissions (OJS 3.2+)</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Satu naskah (<code class="text-emerald-700 bg-emerald-50 px-1 rounded">submission</code>) memiliki banyak versi publikasi (<code class="text-emerald-700 bg-emerald-50 px-1 rounded">publication</code>). Memungkinkan revisi pasca-terbit (corrigendum) tanpa merusak integritas kutipan DOI lama.
+            </p>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+            <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-lg mb-3">
+              <i class="fa-solid fa-satellite-dish"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 mb-1">OAI-PMH & Global Harvester</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Menyediakan protokol pertukaran metadata otomatis via endpoint <code class="text-amber-700 bg-amber-50 px-1 rounded">/oai</code>. Mesin pengindeks (Scopus, Google Scholar, SINTA) menyedot metadata artikel secara independen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: THE 5-STAGE PUBLISHING LIFECYCLE -->
+    <section id="tab-lifecycle" class="space-y-6 hidden">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="border-b border-slate-100 pb-5 mb-6">
+          <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">Workflow Engine</span>
+          <h2 class="text-2xl font-bold text-slate-900 mt-1">The 5-Stage Publishing Lifecycle</h2>
+          <p class="text-slate-600 mt-2 text-sm">
+            Setiap naskah yang masuk tidak langsung dipublikasikan. OJS memaksa naskah bergerak melalui 5 tahapan berurutan (*stages*). Di setiap gerbang stage ada izin peran dan aksi validasi khusus.
+          </p>
+        </div>
+
+        <!-- PIPELINE DIAGRAM -->
+        <div class="bg-slate-900 text-slate-100 p-6 rounded-xl overflow-x-auto mb-8 shadow-inner">
+          <div class="text-xs uppercase text-slate-400 font-semibold mb-3 tracking-wider">Diagram Alur Proses Naskah:</div>
+          <div class="mermaid text-center">
+            graph LR
+              subgraph Stage1 ["Stage 1: SUBMISSION"]
+                A[Author Upload Naskah] --> B[Input Metadata & Co-Authors]
+                B --> C{Pemeriksaan MQC<br/>Format Selingkung}
+                C -->|Skor Rendah| A
+                C -->|Lolos MQC| D[Desk Review Editor]
+              end
+
+              subgraph Stage2 ["Stage 2: REVIEW"]
+                D -->|Desk Reject| Z[Declined]
+                D -->|Send to Review| E[Assign Mitra Bestari]
+                E --> F[Double-Blind Review]
+                F --> G{Rekomendasi Reviewer}
+                G -->|Revisi Round 2| F
+                G -->|Accept| H[Decision: Accept Submission]
+              end
+
+              subgraph Stage3 ["Stage 3: COPYEDITING"]
+                H --> I[Copyeditor Editing]
+                I --> J[Penyuntingan Tata Bahasa]
+                J --> K[Format Sitasi APA/IEEE]
+              end
+
+              subgraph Stage4 ["Stage 4: PRODUCTION"]
+                K --> L[Layout Editor]
+                L --> M[Generate Galley PDF/HTML]
+                M --> N[Author Proofreading Final]
+              end
+
+              subgraph Stage5 ["Stage 5: PUBLICATION"]
+                N --> O[Assign ke Future Issue]
+                O --> P[Minting DOI CrossRef]
+                P --> Q[Publish Issue Live]
+                Q --> R[OAI-PMH Harvester Scopus]
+              end
+
+              classDef mqcNode fill:#d97706,stroke:#f59e0b,stroke-width:2px,color:#fff;
+              class C mqcNode;
+          </div>
+        </div>
+
+        <!-- STAGES DETAIL GRID -->
+        <div class="space-y-4">
+          <!-- Stage 1 -->
+          <div class="stage-card border border-blue-200 bg-blue-50/40 rounded-xl p-5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider bg-blue-600 text-white px-2.5 py-0.5 rounded-full">Stage 1</span>
+              <span class="text-xs font-semibold text-blue-700 bg-blue-100 px-2 py-0.5 rounded">WORKFLOW_STAGE_ID_SUBMISSION (1)</span>
+            </div>
+            <h4 class="text-lg font-bold text-slate-900">1. Submission (Pengajuan Awal)</h4>
+            <p class="text-sm text-slate-600 mt-1">Penulis mengisi 5 langkah wizard: Checklist persetujuan etika, upload file mentah (Word .docx), metadata judul/abstrak/kata kunci, co-authors, dan konfirmasi akhir.</p>
+            <div class="mt-3 bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-900">
+              <span class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-puzzle-piece text-amber-600"></i> Titik Kritis Plugin MQC:</span>
+              Plugin MQC mencegat file Word di stage ini untuk memastikan naskah memenuhi 22–27 aturan format penulisan Jurnal Permukiman sebelum diteruskan ke meja Editor.
+            </div>
+          </div>
+
+          <!-- Stage 2 -->
+          <div class="stage-card border border-indigo-200 bg-indigo-50/40 rounded-xl p-5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider bg-indigo-600 text-white px-2.5 py-0.5 rounded-full">Stage 2</span>
+              <span class="text-xs font-semibold text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded">WORKFLOW_STAGE_ID_EXTERNAL_REVIEW (3)</span>
+            </div>
+            <h4 class="text-lg font-bold text-slate-900">2. External Review (Penilaian Mitra Bestari)</h4>
+            <p class="text-sm text-slate-600 mt-1">Editor menugaskan 2 atau lebih reviewer independen. Reviewer membaca naskah tanpa mengetahui nama penulis (Double Blind). Hasil evaluasi bisa berupa: <em>Accept Submission</em>, <em>Revisions Required</em> (butuh perbaikan minor/mayor), <em>Resubmit for Review</em> (buka Round 2), atau <em>Decline</em> (tolak).</p>
+          </div>
+
+          <!-- Stage 3 -->
+          <div class="stage-card border border-teal-200 bg-teal-50/40 rounded-xl p-5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider bg-teal-600 text-white px-2.5 py-0.5 rounded-full">Stage 3</span>
+              <span class="text-xs font-semibold text-teal-700 bg-teal-100 px-2 py-0.5 rounded">WORKFLOW_STAGE_ID_EDITING (4)</span>
+            </div>
+            <h4 class="text-lg font-bold text-slate-900">3. Copyediting (Penyuntingan Tata Bahasa)</h4>
+            <p class="text-sm text-slate-600 mt-1">Naskah yang sudah diterima secara substansi diperbaiki gaya bahasanya. Copyeditor memastikan kejelasan kalimat, kepatuhan referensi terhadap standar internasional (Mendeley/Zotero), dan kesesuaian gambar/tabel.</p>
+          </div>
+
+          <!-- Stage 4 -->
+          <div class="stage-card border border-purple-200 bg-purple-50/40 rounded-xl p-5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider bg-purple-600 text-white px-2.5 py-0.5 rounded-full">Stage 4</span>
+              <span class="text-xs font-semibold text-purple-700 bg-purple-100 px-2 py-0.5 rounded">WORKFLOW_STAGE_ID_PRODUCTION (5)</span>
+            </div>
+            <h4 class="text-lg font-bold text-slate-900">4. Production (Pembuatan Galley Cetak)</h4>
+            <p class="text-sm text-slate-600 mt-1">Layout Editor mengonversi naskah final menjadi file terbitan publik (Galley PDF). Naskah diberi nomor halaman final, header volume jurnal, dan barcode/DOI. Author melakukan proofreading terakhir.</p>
+          </div>
+
+          <!-- Stage 5 -->
+          <div class="stage-card border border-emerald-200 bg-emerald-50/40 rounded-xl p-5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider bg-emerald-600 text-white px-2.5 py-0.5 rounded-full">Stage 5</span>
+              <span class="text-xs font-semibold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">PUBLICATION & INDEXING</span>
+            </div>
+            <h4 class="text-lg font-bold text-slate-900">5. Publication & Terbitan Terjadwal</h4>
+            <p class="text-sm text-slate-600 mt-1">Editor in Chief menjadwalkan artikel ke dalam Edisi (Issue), misalnya <em>Vol. 21 No. 1 (2026)</em>. Saat edisi diterbitkan (*Publish Issue*), DOI CrossRef diaktifkan dan metadata naskah disebarkan secara otomatis ke pangkalan data global melalui OAI-PMH.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: RBAC & ROLES -->
+    <section id="tab-rbac" class="space-y-6 hidden">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="border-b border-slate-100 pb-5 mb-6">
+          <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">Access Control</span>
+          <h2 class="text-2xl font-bold text-slate-900 mt-1">Matriks Peran & Hak Akses (RBAC OJS 3.3)</h2>
+          <p class="text-slate-600 mt-2 text-sm">
+            OJS menerapkan sistem keamanan bertingkat Role-Based Access Control (RBAC). Satu akun pengguna (<code class="text-blue-700 bg-blue-50 px-1 rounded">users</code>) bisa memiliki banyak peran (<code class="text-blue-700 bg-blue-50 px-1 rounded">user_groups</code>) sekaligus di berbagai jurnal.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead>
+              <tr class="bg-slate-100 text-slate-700 border-b border-slate-300">
+                <th class="py-3 px-4 font-bold">Role ID</th>
+                <th class="py-3 px-4 font-bold">Nama Peran</th>
+                <th class="py-3 px-4 font-bold">Cakupan Wewenang</th>
+                <th class="py-3 px-4 font-bold">Stage yang Diakses</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-indigo-700">1</td>
+                <td class="py-3 px-4 font-semibold text-slate-900">Site Administrator</td>
+                <td class="py-3 px-4 text-slate-600 text-xs">Akses penuh level server: install bahasa, create multi-journal, konfigurasi database & email global.</td>
+                <td class="py-3 px-4 text-slate-500 text-xs font-mono">Semua Stage (Global)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-indigo-700">16</td>
+                <td class="py-3 px-4 font-semibold text-slate-900">Journal Manager</td>
+                <td class="py-3 px-4 text-slate-600 text-xs">Manajer jurnal: mengatur kebijakan (*Settings*), plugin, tema, block sidebar, anggota dewan editor, dan setup terbitan.</td>
+                <td class="py-3 px-4 text-slate-500 text-xs font-mono">Semua Stage & Dashboard Admin</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-indigo-700">17</td>
+                <td class="py-3 px-4 font-semibold text-slate-900">Editor in Chief / Section Editor</td>
+                <td class="py-3 px-4 text-slate-600 text-xs">Pengambil keputusan utama: desk reject, memilih reviewer, memutuskan revisi atau penerimaan artikel, dan menyetujui publikasi.</td>
+                <td class="py-3 px-4 text-slate-500 text-xs font-mono">Stage 1, 2, 3, 4, 5</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-indigo-700">4096</td>
+                <td class="py-3 px-4 font-semibold text-slate-900">Reviewer (Mitra Bestari)</td>
+                <td class="py-3 px-4 text-slate-600 text-xs">Pakar penilai: membaca file review anonim, mengisi form kuesioner evaluasi, dan memberikan rekomendasi saintifik.</td>
+                <td class="py-3 px-4 text-slate-500 text-xs font-mono">Hanya Stage 2 (Terkunci)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-4 font-mono font-bold text-indigo-700">65536</td>
+                <td class="py-3 px-4 font-semibold text-slate-900">Author (Penulis)</td>
+                <td class="py-3 px-4 text-slate-600 text-xs">Pengaju naskah: submit naskah, merespons diskusi revisi dengan reviewer/copyeditor, dan menyetujui proof final.</td>
+                <td class="py-3 px-4 text-slate-500 text-xs font-mono">Stage 1, 2, 3, 4 (Hanya Naskah Sendiri)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: ARSITEKTUR KODE DUAL-LAYER -->
+    <section id="tab-architecture" class="space-y-6 hidden">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="border-b border-slate-100 pb-5 mb-6">
+          <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">Source Code Architecture</span>
+          <h2 class="text-2xl font-bold text-slate-900 mt-1">Dwi-Lapisan: PKP Core Framework vs OJS Application</h2>
+          <p class="text-slate-600 mt-2 text-sm">
+            OJS dibangun di atas fondasi dwi-lapisan. Framework generic diletakkan di <code class="text-blue-700 bg-blue-50 px-1 rounded">lib/pkp</code>, sedangkan logika bisnis spesifik publikasi jurnal ada di root repository.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Folder Structure -->
+          <div class="bg-slate-900 text-slate-200 p-5 rounded-xl font-mono text-xs overflow-x-auto shadow-inner">
+            <div class="text-slate-400 font-bold mb-3 border-b border-slate-800 pb-2 flex items-center justify-between">
+              <span>STRUKTUR DIREKTORI UTAMA</span>
+              <span class="text-[10px] bg-slate-800 px-2 py-0.5 rounded">C:\...\jurnalpermukiman</span>
+            </div>
+            <pre class="leading-relaxed">
+├── classes/          <span class="text-amber-400"># Logika domain OJS (Issue, Article, Galley)</span>
+│   ├── article/      <span class="text-slate-400"># AuthorDAO, SubmissionDAO</span>
+│   ├── issue/        <span class="text-slate-400"># IssueDAO, IssueAction</span>
+│   └── journal/      <span class="text-slate-400"># JournalDAO, SectionDAO</span>
+├── controllers/      <span class="text-amber-400"># Grid UI & Modals khusus OJS</span>
+├── pages/            <span class="text-amber-400"># Routing URL Frontend & Dashboard</span>
+│   ├── article/      <span class="text-slate-400"># ArticleHandler.inc.php</span>
+│   ├── issue/        <span class="text-slate-400"># IssueHandler.inc.php</span>
+│   └── workflow/     <span class="text-slate-400"># WorkflowHandler.inc.php</span>
+├── plugins/          <span class="text-amber-400"># Ekosistem Ekstensi (MQC, Themes, Blocks)</span>
+│   ├── generic/      <span class="text-slate-400"># Custom Block, MQC, ORCID, Citation</span>
+│   ├── themes/       <span class="text-slate-400"># default, classic, bootstrap3</span>
+│   └── importexport/ <span class="text-slate-400"># CrossRef, DOAJ, PubMed</span>
+├── templates/        <span class="text-amber-400"># Template Smarty (.tpl) tampilan frontend</span>
+└── <span class="text-emerald-400 font-bold">lib/pkp/</span>          <span class="text-emerald-400"># 🌟 CORE ENGINE FRAMEWORK (PKP)</span>
+    ├── classes/      <span class="text-slate-400"># Security, Session, DB, I18n, Core</span>
+    ├── controllers/  <span class="text-slate-400"># Data Tables, File Upload Modals</span>
+    └── lib/vendor/   <span class="text-slate-400"># ADOdb, Smarty 3, Composer dependencies</span></pre>
+          </div>
+
+          <!-- Request Lifecycle -->
+          <div class="space-y-4">
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+              <h4 class="font-bold text-blue-950 text-sm flex items-center gap-2">
+                <i class="fa-solid fa-route text-blue-600"></i> Pola Resolusi URL OJS:
+              </h4>
+              <p class="text-xs text-blue-900 mt-2 font-mono bg-white p-2 rounded border border-blue-200">
+                index.php / {contextPath} / {page} / {op} / {args}
+              </p>
+              <div class="mt-3 text-xs text-slate-600 space-y-1.5">
+                <p><strong>1. Context:</strong> <code class="text-blue-700 bg-white px-1 rounded">JP</code> ➔ Membaca ID Jurnal di tabel <code class="text-blue-700 bg-white px-1 rounded">journals.path = 'JP'</code>.</p>
+                <p><strong>2. Page:</strong> <code class="text-blue-700 bg-white px-1 rounded">article</code> ➔ Memuat controller di <code class="text-blue-700 bg-white px-1 rounded">pages/article/index.php</code>.</p>
+                <p><strong>3. Op:</strong> <code class="text-blue-700 bg-white px-1 rounded">view</code> ➔ Menjalankan method <code class="text-blue-700 bg-white px-1 rounded">ArticleHandler::view($args, $request)</code>.</p>
+                <p><strong>4. Args:</strong> <code class="text-blue-700 bg-white px-1 rounded">371</code> ➔ Parameter ID artikel yang akan ditampilkan ke Smarty template.</p>
+              </div>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                <i class="fa-solid fa-plug text-indigo-600"></i> Arsitektur Hook System (Event-Driven):
+              </h4>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                OJS tidak mengharuskan developer mengubah source code core untuk menambahkan fitur baru. Semua interaksi plugin bekerja melalui hook registry:
+              </p>
+              <pre class="bg-slate-900 text-emerald-400 p-2.5 rounded text-[11px] font-mono mt-2 overflow-x-auto">
+// Pendaftaran Event Hook oleh Plugin
+HookRegistry::register('FileManager::uploadFile', array($this, 'validateWordFormat'));
+
+// Pemicu Event di Core OJS
+HookRegistry::call('FileManager::uploadFile', array(&$file, &$result));</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: ERD & ENTITAS DATABASE -->
+    <section id="tab-database" class="space-y-6 hidden">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="border-b border-slate-100 pb-5 mb-6">
+          <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">Database Architecture</span>
+          <h2 class="text-2xl font-bold text-slate-900 mt-1">ERD & Relasi Entitas Data Kunci (ojs33_gc2)</h2>
+          <p class="text-slate-600 mt-2 text-sm">
+            Database OJS memisahkan data master, konfigurasi key-value, dan data dinamis alur publikasi naskah.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 text-slate-100 p-6 rounded-xl overflow-x-auto mb-8 shadow-inner">
+          <div class="text-xs uppercase text-slate-400 font-semibold mb-3 tracking-wider">Diagram Relasi Entitas (ERD Makro):</div>
+          <div class="mermaid text-center">
+            erDiagram
+              JOURNALS ||--o{ SUBMISSIONS : "menampung naskah"
+              JOURNALS ||--o{ ISSUES : "menerbitkan edisi"
+              SUBMISSIONS ||--|{ PUBLICATIONS : "memiliki versi rilis"
+              PUBLICATIONS ||--o{ PUBLICATION_SETTINGS : "metadata per bahasa"
+              PUBLICATIONS ||--o{ AUTHORS : "daftar penulis"
+              SUBMISSIONS ||--o{ SUBMISSION_FILES : "file naskah & revisi"
+              SUBMISSIONS ||--o{ REVIEW_ASSIGNMENTS : "penugasan reviewer"
+              ISSUES ||--o{ PUBLICATIONS : "memuat artikel"
+              USERS ||--o{ USER_USER_GROUPS : "memiliki peran"
+              USER_GROUPS ||--o{ USER_USER_GROUPS : "daftar grup hak akses"
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+            <h4 class="font-bold text-slate-900 text-sm mb-2 font-mono text-blue-700">submissions & publications</h4>
+            <p class="text-slate-600 mb-2">Sejak OJS 3.2, pemisahan tabel ini memungkinkan <em>versioning</em> (pembaruan versi artikel tanpa mengubah submission ID induk).</p>
+            <ul class="list-disc list-inside text-slate-500 space-y-1 font-mono">
+              <li><strong class="text-slate-700">submission_id:</strong> ID naskah permanen</li>
+              <li><strong class="text-slate-700">current_publication_id:</strong> Versi yang sedang aktif terbit</li>
+              <li><strong class="text-slate-700">status:</strong> 1 (Queued/Draf), 3 (Published), 4 (Declined)</li>
+            </ul>
+          </div>
+
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+            <h4 class="font-bold text-slate-900 text-sm mb-2 font-mono text-emerald-700">submission_files</h4>
+            <p class="text-slate-600 mb-2">Menyimpan jejak dokumen fisik di setiap tahapan (stage). File aslinya disimpan di direktori privat server (<code class="bg-white px-1 rounded">files_dir</code>).</p>
+            <ul class="list-disc list-inside text-slate-500 space-y-1 font-mono">
+              <li><strong class="text-slate-700">file_stage:</strong> 2 (Submission), 4 (Review File), 10 (Galley PDF)</li>
+              <li><strong class="text-slate-700">path:</strong> Lokasi fisik dokumen di disk</li>
+              <li><strong class="text-slate-700">mimetype:</strong> application/vnd.openxmlformats... (Word)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: TITIK INTEGRASI PLUGIN MQC -->
+    <section id="tab-mqc" class="space-y-6 hidden">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="border-b border-slate-100 pb-5 mb-6">
+          <span class="text-amber-600 text-xs font-bold uppercase tracking-wider">Custom Extension Deep Dive</span>
+          <h2 class="text-2xl font-bold text-slate-900 mt-1">Titik Integrasi Plugin MQC (Manuscript Quality Control)</h2>
+          <p class="text-slate-600 mt-2 text-sm">
+            Bagaimana plugin MQC bekerja secara non-invasif mencegat naskah Word (.docx) di Jurnal Permukiman tanpa merusak sistem core OJS.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-lg bg-amber-600 text-white flex items-center justify-center text-sm font-bold mb-3">1</div>
+            <h4 class="font-bold text-slate-900 text-sm">Intersepsi Upload Word</h4>
+            <p class="text-xs text-slate-600 mt-1">Saat Author mengunggah dokumen di Step 2 Submission, hook MQC aktif otomatis mengambil file <code class="text-amber-800 bg-amber-100 px-1 rounded">.docx</code>.</p>
+          </div>
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-lg bg-blue-600 text-white flex items-center justify-center text-sm font-bold mb-3">2</div>
+            <h4 class="font-bold text-slate-900 text-sm">XML Parser & Rule Engine</h4>
+            <p class="text-xs text-slate-600 mt-1">MQC membedah arsip ZIP docx, membaca <code class="text-blue-800 bg-blue-100 px-1 rounded">word/document.xml</code>, dan menguji 22–27 aturan format selingkung (Font, Margin, Spasi, Abstrak, Sitasi).</p>
+          </div>
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5">
+            <div class="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm font-bold mb-3">3</div>
+            <h4 class="font-bold text-slate-900 text-sm">Skor Kelayakan & Feedback</h4>
+            <p class="text-xs text-slate-600 mt-1">Menghasilkan laporan kepatuhan otomatis bagi Penulis dan Editor: apakah naskah siap masuk ke Stage 2 atau harus direvisi formatnya terlebih dahulu.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 text-slate-200 p-6 rounded-xl font-mono text-xs overflow-x-auto shadow-inner">
+          <div class="text-slate-400 font-bold mb-3 border-b border-slate-800 pb-2">
+            CONTOH PENDAFTARAN HOOK MQC DI OJS (GenericPlugin)
+          </div>
+          <pre class="leading-relaxed text-slate-300">
+<span class="text-amber-400">class</span> <span class="text-blue-400">MQCPlugin</span> <span class="text-amber-400">extends</span> <span class="text-blue-400">GenericPlugin</span> {
+    <span class="text-amber-400">public function</span> <span class="text-emerald-400">register</span>($category, $path, $mainContextId = null) {
+        <span class="text-amber-400">if</span> (parent::register($category, $path, $mainContextId)) {
+            <span class="text-amber-400">if</span> ($this->getEnabled($mainContextId)) {
+                <span class="text-slate-500">// Mencegat saat file submission selesai diupload</span>
+                HookRegistry::register(<span class="text-teal-300">'SubmissionFile::uploadFile'</span>, array($this, <span class="text-teal-300">'handleDocxAnalysis'</span>));
+                
+                <span class="text-slate-500">// Menyisipkan panel skor MQC ke halaman workflow Editor</span>
+                HookRegistry::register(<span class="text-teal-300">'Template::Workflow'</span>, array($this, <span class="text-teal-300">'injectMQCDashboard'</span>));
+            }
+            <span class="text-amber-400">return true</span>;
+        }
+        <span class="text-amber-400">return false</span>;
+    }
+}</pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p>Kira & Tara Companion Technical Architecture Series &copy; 2026 Dany Triyatna.</p>
+      <p class="text-slate-400">Dokumen Interaktif OJS 3.3.0-24 LTS &bull; Siap Diekspor ke PDF / Presentasi Tim</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT SWITCH TAB -->
+  <script>
+    function switchTab(tabId) {
+      const tabs = ['overview', 'lifecycle', 'rbac', 'architecture', 'database', 'mqc'];
+      tabs.forEach(t => {
+        const content = document.getElementById('tab-' + t);
+        const btn = document.getElementById('tab-btn-' + t);
+        if (content && btn) {
+          if (t === tabId) {
+            content.classList.remove('hidden');
+            btn.classList.add('tab-active');
+            btn.classList.remove('hover:text-blue-600');
+          } else {
+            content.classList.add('hidden');
+            btn.classList.remove('tab-active');
+            btn.classList.add('hover:text-blue-600');
+          }
+        }
+      });
+      // Re-render mermaid if tab is lifecycle or database
+      if (tabId === 'lifecycle' || tabId === 'database') {
+        setTimeout(() => { mermaid.run(); }, 100);
+      }
+    }
+  </script>
+</body>
+</html>
