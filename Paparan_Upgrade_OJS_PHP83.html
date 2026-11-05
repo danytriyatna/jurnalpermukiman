@@ -270,7 +270,7 @@
           Latar Belakang Paparan Laporan Awal
         </h2>
         <p class="text-xs md:text-sm text-slate-700 leading-relaxed max-w-6xl">
-          Jurnal Permukiman merupakan media publikasi berkala ilmiah resmi di lingkungan Kementerian PUPR. Guna memenuhi standar keamanan server pusat data pemerintah, menjaga kelancaran publikasi ilmiah, serta mengoptimalkan layanan kepada peneliti dan dewan redaksi, diperlukan modernisasi runtime PHP 8.3 dan penyelarasan menyeluruh dengan modul penapisan naskah (MQC) serta pusat referensi (JP-Insight).
+          Jurnal Permukiman merupakan media publikasi berkala ilmiah resmi di lingkungan Kementerian PUPR. Guna memenuhi standar keamanan server pusat data pemerintah, menjaga kelancaran publikasi ilmiah, serta mengoptimalkan layanan kepada peneliti dan dewan redaksi, diperlukan modernisasi runtime PHP 8.3 dan penyelarasan menyeluruh dengan modul pengecekan format naskah (MQC) serta pusat referensi (JP-Insight).
         </p>
       </div>
 
@@ -325,7 +325,7 @@
                 Standarisasi MQC & JP, serta Integrasi OJS, MQC, JP
               </h4>
               <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
-                Standarisasi aplikasi penapisan naskah Word (MQC) dan asisten pengetahuan referensi (JP-Insight), serta mengintegrasikan alur data ketiganya di lingkungan uji coba.
+                Standarisasi aplikasi pengecekan format naskah Word (MQC) dan asisten pengetahuan referensi (JP-Insight), serta mengintegrasikan alur data ketiganya di lingkungan uji coba.
               </p>
             </div>
 
@@ -382,7 +382,7 @@
       <div class="space-y-1">
         <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">Arsitektur Ekosistem & Usulan Integrasi Tri-Sistem</h2>
         <p class="text-xs md:text-sm text-slate-600">
-          Keterkaitan teknis antara OJS Jurnal Permukiman, Asisten Penapisan Naskah MQC, dan Pusat Pengetahuan AI JP-Insight:
+          Keterkaitan teknis antara OJS Jurnal Permukiman, Asisten Pengecekan Format Naskah MQC, dan Pusat Pengetahuan AI JP-Insight:
         </p>
       </div>
 
@@ -414,7 +414,7 @@
               <span class="text-xs font-bold text-amber-900 uppercase tracking-widest bg-amber-100 px-2.5 py-0.5 rounded-full">Verifikasi Awal</span>
               <span class="font-mono text-xs text-slate-500 font-bold">Next.js 16</span>
             </div>
-            <div class="text-base md:text-lg font-extrabold text-slate-900">2. MQC (Penapisan Format)</div>
+            <div class="text-base md:text-lg font-extrabold text-slate-900">2. MQC (Pengecekan Format Otomatis)</div>
             <p class="text-xs text-slate-600 leading-relaxed">
               Memeriksa kesesuaian format Word (.docx) naskah masuk: gaya selingkung PUPR, margin, jenis font, serta validasi DOI sitasi daftar pustaka.
             </p>
@@ -817,7 +817,7 @@
                 🟢 Sesudah (Hasil Perbaikan & Kalibrasi Konsultan)
               </div>
               <ul class="text-[12px] text-emerald-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Asisten Format Mandiri Aktif:</strong> Mesin pemeriksa format mandiri aktif di port 3000 untuk menyaring kerapian tulisan di awal, tanpa menggantikan wewenang dewan editor.</li>
+                <li><strong>Asisten Format Mandiri Aktif:</strong> Mesin pemeriksa format mandiri aktif di port 3000 untuk mengecek kerapian tulisan di awal, tanpa menggantikan wewenang dewan editor.</li>
                 <li><strong>Pembacaan Dokumen Akurat:</strong> Logika pembacaan berkas Word diperbaiki tuntas sehingga tidak ada lagi salah hitung jumlah tabel atau gambar.</li>
                 <li><strong>25 Standar Penulisan Puskim Terkunci:</strong> Sistem berhasil mengunci 25 aturan resmi (huruf, margin, abstrak dwibahasa, format rujukan IEEE).</li>
               </ul>
@@ -1102,7 +1102,7 @@
             <div class="text-xs font-bold text-emerald-800 uppercase">Pemantauan Pasca-Publikasi</div>
             <div class="text-xl md:text-2xl font-black text-emerald-950">2 - 3 Hari Pemantauan</div>
             <p class="text-xs text-emerald-900 leading-relaxed">
-              Pendampingan pasca-publikasi untuk memastikan seluruh alur naskah baru, feed OAI-PMH, penapisan MQC, dan temu balik JP-Insight berjalan lancar di produksi.
+              Pendampingan pasca-publikasi untuk memastikan seluruh alur naskah baru, feed OAI-PMH, pengecekan otomatis MQC, dan temu balik JP-Insight berjalan lancar di produksi.
             </p>
           </div>
 
