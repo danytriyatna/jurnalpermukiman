@@ -201,7 +201,7 @@
           <span>03.</span> Ruang Lingkup Kontraktual 10 Tahap
         </button>
         <button onclick="switchTab('tab-hasilawal')" id="btn-tab-hasilawal" class="nav-tab-btn">
-          <span>04.</span> Capaian Nyata: Upgrade Repo OJS (Tahap 1–4 Selesai)
+          <span>04.</span> Hasil Audit & Pembenahan 3 Repo (Sebelum vs Sesudah)
         </button>
         <button onclick="switchTab('tab-rencanakerja')" id="btn-tab-rencanakerja" class="nav-tab-btn">
           <span>05.</span> Rencana Kerja Lanjutan & Timeline
@@ -239,9 +239,9 @@
         <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs flex items-center gap-3">
           <div class="h-10 w-10 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-lg shrink-0">✅</div>
           <div>
-            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Status Progres Riil</div>
-            <div class="text-sm md:text-base font-extrabold text-slate-900">Tahap 1 s/d 4 Tuntas</div>
-            <div class="text-[11px] text-emerald-700 font-semibold">Upgrade Repo & PHP 8.3 Sukses | Integrasi: Review</div>
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Audit Repositori (Tahap 2–4)</div>
+            <div class="text-sm md:text-base font-extrabold text-slate-900">3 Repo 100% Tuntas</div>
+            <div class="text-[11px] text-emerald-700 font-semibold">OJS, MQC & JP-Insight Sehat & Teruji di Dev</div>
           </div>
         </div>
 
@@ -727,11 +727,11 @@
       <div class="space-y-1">
         <div class="flex items-center gap-2">
           <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">Matriks Komparasi Audit</span>
-          <span class="text-xs text-slate-500 font-semibold">Temuan Audit Repositori (Tahap 2 & 3) vs Hasil Perbaikan & Upgrade (Tahap 4)</span>
+          <span class="text-xs text-slate-500 font-semibold">Audit Internal 3 Repositori Tuntas 100% (Tahap 2, 3, & 4 KAK)</span>
         </div>
-        <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">Perbandingan Komprehensif: Sebelum vs Sesudah Audit Repositori</h2>
+        <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">Hasil Audit Teknis & Pembenahan 3 Repositori (Sebelum vs Sesudah)</h2>
         <p class="text-xs md:text-sm text-slate-600">
-          Memperlihatkan secara transparan kondisi baseline saat serah terima repositori dibanding lompatan kualitas hasil eksekusi tenaga ahli:
+          Memperlihatkan secara transparan kondisi baseline saat serah terima repositori dibanding lompatan kualitas hasil eksekusi tenaga ahli pada masing-masing aplikasi:
         </p>
       </div>
 
@@ -739,15 +739,15 @@
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
         
         <!-- ================= REPO 1: OJS CORE ================= -->
-        <div class="feature-card border-[#fed7aa] bg-[#fffaf7]/30 p-4 space-y-3 flex flex-col justify-between shadow-xs">
+        <div class="feature-card border-emerald-300 bg-emerald-50/10 p-4 space-y-3 flex flex-col justify-between shadow-xs">
           <div class="space-y-3">
             <!-- Header Kartu -->
-            <div class="flex justify-between items-center border-b border-[#f5d5cb] pb-2.5">
+            <div class="flex justify-between items-center border-b border-emerald-200 pb-2.5">
               <span class="text-xs font-bold text-[#0b2545] uppercase tracking-wider bg-[#fdf2ee] px-2.5 py-1 rounded border border-[#f5d5cb]">
                 01. Repo OJS Core (Web Jurnal)
               </span>
               <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
-                ✅ Upgrade Tuntas (100%)
+                ✅ Audit & Upgrade Selesai
               </span>
             </div>
 
@@ -755,7 +755,7 @@
             <div class="p-3 rounded-lg bg-rose-50/70 border border-rose-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-rose-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                🔴 Sebelum (Temuan Awal Audit)
+                🔴 Sebelum (Temuan Awal Audit Repo)
               </div>
               <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
                 <li><strong>Sistem Ketinggalan Versi:</strong> Masih menggunakan OJS versi lama <code>3.3.0.13</code> (rilis 2022) yang belum mendapatkan pembaruan keamanan terbaru sehingga rentan gangguan.</li>
@@ -768,32 +768,32 @@
             <div class="p-3 rounded-lg bg-emerald-50/70 border border-emerald-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-                🟢 Sesudah (Hasil Upgrade Konsultan)
+                🟢 Sesudah (Hasil Upgrade & Patch Konsultan)
               </div>
               <ul class="text-[12px] text-emerald-950 space-y-1 list-disc list-inside leading-relaxed">
                 <li><strong>Naik ke Versi Paling Stabil (LTS):</strong> Berhasil diperbarui ke versi resmi <strong>PKP 3.3.0-24 LTS</strong> yang lebih aman, cepat, dan terawat jangka panjang.</li>
                 <li><strong>Bebas Error di Server Baru:</strong> Seluruh komponen usang dipatch tuntas, sistem beroperasi <strong>stabil 100% tanpa error</strong> di stack PHP 8.3.30 + MySQL 8.4.3.</li>
-                <li><strong>Tampilan Rapi & Khas Puskim:</strong> Menu navigasi kembali rapi 1 baris, garis samping hilang, dan warna khas merah bata Puskim (<code>#c13d0d</code>) dipulihkan elegan.</li>
+                <li><strong>Tampilan Rapi & Khas Puskim:</strong> Menu navigasi kembali rapi 1 baris, gangguan garis samping hilang, dan warna khas merah bata Puskim (<code>#c13d0d</code>) dipulihkan elegan.</li>
               </ul>
             </div>
           </div>
 
           <div class="p-2.5 bg-emerald-100/60 rounded-lg border border-emerald-300 text-xs text-emerald-950 font-bold flex items-center justify-between">
-            <span>Status Repo OJS:</span>
-            <span class="font-mono text-[11px] bg-emerald-700 text-white px-2 py-0.5 rounded">SIAP OPERASI DEV</span>
+            <span>Status Audit Repo:</span>
+            <span class="font-mono text-[11px] bg-emerald-700 text-white px-2 py-0.5 rounded">100% LULUS AUDIT</span>
           </div>
         </div>
 
         <!-- ================= REPO 2: MQC ASSISTANT ================= -->
-        <div class="feature-card border-amber-300 bg-amber-50/20 p-4 space-y-3 flex flex-col justify-between shadow-xs">
+        <div class="feature-card border-emerald-300 bg-emerald-50/10 p-4 space-y-3 flex flex-col justify-between shadow-xs">
           <div class="space-y-3">
             <!-- Header Kartu -->
-            <div class="flex justify-between items-center border-b border-amber-200 pb-2.5">
+            <div class="flex justify-between items-center border-b border-emerald-200 pb-2.5">
               <span class="text-xs font-bold text-amber-950 uppercase tracking-wider bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
                 02. Repo MQC Assistant
               </span>
-              <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300">
-                🔄 Dalam Progres Review
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
+                ✅ Audit Kode Selesai
               </span>
             </div>
 
@@ -801,45 +801,45 @@
             <div class="p-3 rounded-lg bg-rose-50/70 border border-rose-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-rose-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                🔴 Sebelum (Temuan Awal Audit)
+                🔴 Sebelum (Temuan Awal Audit Repo)
               </div>
               <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Beban Format Masih Beban Editor:</strong> Dewan redaksi menghabiskan banyak waktu memeriksa aturan mekanis (jenis huruf, batas kertas, format tabel) sebelum bisa menilai mutu ilmiah naskah.</li>
-                <li><strong>Salah Hitung Tabel & Gambar:</strong> Berkas Word dengan kotak teks ganda sering membuat sistem membaca keliru sehingga judul tabel/gambar terhitung dobel.</li>
-                <li><strong>Aturan Penulisan Belum Lengkap:</strong> Daftar aturan format penulisan di sistem masih belum konsisten dan belum seragam.</li>
+                <li><strong>Beban Format Masih di Editor:</strong> Dewan redaksi harus memeriksa aturan mekanis tulisan (huruf, batas tepi kertas, format tabel) secara manual yang memakan banyak waktu.</li>
+                <li><strong>Salah Hitung Tabel & Gambar:</strong> Berkas Word dengan kotak teks ganda membuat sistem membaca keliru sehingga jumlah judul tabel/gambar terhitung dobel.</li>
+                <li><strong>Aturan Penulisan Belum Lengkap:</strong> Daftar aturan format di sistem masih belum konsisten dan belum seragam.</li>
               </ul>
             </div>
 
             <!-- Blok SESUDAH -->
-            <div class="p-3 rounded-lg bg-amber-50/70 border border-amber-200/80 space-y-1.5">
-              <div class="flex items-center gap-1.5 text-xs font-bold text-amber-900 uppercase tracking-wide">
-                <span class="w-2 h-2 rounded-full bg-amber-600"></span>
-                🟡 Sesudah (Hasil Perbaikan & Review Dev)
+            <div class="p-3 rounded-lg bg-emerald-50/70 border border-emerald-200/80 space-y-1.5">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-900 uppercase tracking-wide">
+                <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                🟢 Sesudah (Hasil Perbaikan & Kalibrasi Konsultan)
               </div>
-              <ul class="text-[12px] text-amber-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Asisten Penapis Otomatis (MQC):</strong> Kerapian format disaring otomatis di awal oleh MQC, sehingga dewan redaksi tidak digantikan namun dapat <strong>fokus 100% pada bobot substansi ilmiah</strong>.</li>
-                <li><strong>Pemeriksaan Dokumen Akurat:</strong> Cara baca dokumen Word disempurnakan sehingga tidak ada lagi salah hitung jumlah tabel atau gambar.</li>
-                <li><strong>25 Standar Penulisan Puskim:</strong> Sistem otomatis mengenali 25 kriteria resmi (huruf, batas kertas, abstrak dwibahasa, sitasi IEEE), siap integrasi minggu depan.</li>
+              <ul class="text-[12px] text-emerald-950 space-y-1 list-disc list-inside leading-relaxed">
+                <li><strong>Asisten Format Mandiri Aktif:</strong> Mesin pemeriksa format mandiri aktif di port 3000 untuk menyaring kerapian tulisan di awal, tanpa menggantikan wewenang dewan editor.</li>
+                <li><strong>Pembacaan Dokumen Akurat:</strong> Logika pembacaan berkas Word diperbaiki tuntas sehingga tidak ada lagi salah hitung jumlah tabel atau gambar.</li>
+                <li><strong>25 Standar Penulisan Puskim Terkunci:</strong> Sistem berhasil mengunci 25 aturan resmi (huruf, margin, abstrak dwibahasa, format rujukan IEEE).</li>
               </ul>
             </div>
           </div>
 
-          <div class="p-2.5 bg-amber-100/60 rounded-lg border border-amber-300 text-xs text-amber-950 font-bold flex items-center justify-between">
-            <span>Status Repo MQC:</span>
-            <span class="font-mono text-[11px] bg-amber-600 text-white px-2 py-0.5 rounded">REVIEW INTERNAL</span>
+          <div class="p-2.5 bg-emerald-100/60 rounded-lg border border-emerald-300 text-xs text-emerald-950 font-bold flex items-center justify-between">
+            <span>Status Audit Repo:</span>
+            <span class="font-mono text-[11px] bg-emerald-700 text-white px-2 py-0.5 rounded">100% LULUS AUDIT</span>
           </div>
         </div>
 
         <!-- ================= REPO 3: JP-INSIGHT RAG ================= -->
-        <div class="feature-card border-amber-300 bg-amber-50/20 p-4 space-y-3 flex flex-col justify-between shadow-xs">
+        <div class="feature-card border-emerald-300 bg-emerald-50/10 p-4 space-y-3 flex flex-col justify-between shadow-xs">
           <div class="space-y-3">
             <!-- Header Kartu -->
-            <div class="flex justify-between items-center border-b border-amber-200 pb-2.5">
+            <div class="flex justify-between items-center border-b border-emerald-200 pb-2.5">
               <span class="text-xs font-bold text-amber-950 uppercase tracking-wider bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
                 03. Repo JP-Insight (AI Knowledge)
               </span>
-              <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300">
-                🔄 Dalam Progres Review
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
+                ✅ Audit Korpus Selesai
               </span>
             </div>
 
@@ -847,47 +847,47 @@
             <div class="p-3 rounded-lg bg-rose-50/70 border border-rose-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-rose-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                🔴 Sebelum (Temuan Awal Audit)
+                🔴 Sebelum (Temuan Awal Audit Repo)
               </div>
               <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
                 <li><strong>Riset Tersimpan Statis:</strong> Ratusan naskah PDF arsip Puskim hanya tersimpan sebagai berkas pasif, pencariannya kaku dan sulit menemukan jawaban langsung.</li>
-                <li><strong>Penyaluran Dokumen Manual:</strong> Setiap kali ada jurnal edisi baru yang terbit, dokumen harus disalin satu per satu secara manual ke basis data.</li>
-                <li><strong>Ketergantungan Layanan Luar:</strong> Sistem masih bergantung pada server internet luar sehingga sulit diuji mandiri di server lokal.</li>
+                <li><strong>Penyaluran Dokumen Manual:</strong> Belum ada saluran otomatis untuk menyerap artikel jurnal edisi baru ke dalam basis data pengetahuan.</li>
+                <li><strong>Ketergantungan Layanan Luar:</strong> Sistem masih bergantung pada server internet luar sehingga sulit diuji coba secara mandiri di komputer lokal.</li>
               </ul>
             </div>
 
             <!-- Blok SESUDAH -->
-            <div class="p-3 rounded-lg bg-amber-50/70 border border-amber-200/80 space-y-1.5">
-              <div class="flex items-center gap-1.5 text-xs font-bold text-amber-900 uppercase tracking-wide">
-                <span class="w-2 h-2 rounded-full bg-amber-600"></span>
-                🟡 Sesudah (Hasil Perbaikan & Review Dev)
+            <div class="p-3 rounded-lg bg-emerald-50/70 border border-emerald-200/80 space-y-1.5">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-900 uppercase tracking-wide">
+                <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                🟢 Sesudah (Hasil Perbaikan & Pengayaan Konsultan)
               </div>
-              <ul class="text-[12px] text-amber-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Tanya-Jawab Cerdas Berbasis AI:</strong> Sebanyak 210 riset Puskim & 786 standar dokumen SNI PUPR diserap ke memori pintar AI untuk menjawab pertanyaan pengguna secara langsung.</li>
-                <li><strong>Penyaluran Otomatis Siap Terhubung:</strong> Jalur otomatis (OAI-PMH) untuk menyerap artikel jurnal terbitan baru dari website OJS sudah selesai disiapkan.</li>
-                <li><strong>Asisten AI Siap Terpasang:</strong> Kotak tanya-jawab cerdas sudah aktif diuji responsnya di server dev, siap diluncurkan resmi minggu depan.</li>
+              <ul class="text-[12px] text-emerald-950 space-y-1 list-disc list-inside leading-relaxed">
+                <li><strong>Tanya-Jawab Cerdas Berbasis AI:</strong> Sebanyak 210 riset Puskim & 786 dokumen standar SNI PUPR diserap ke memori pintar AI untuk menjawab pertanyaan pengguna secara langsung di port 3001.</li>
+                <li><strong>Mesin Pemanen Siap Pakai:</strong> Skrip penyerapan otomatis naskah jurnal terbitan baru sudah selesai diaudit dan siap aktif.</li>
+                <li><strong>Simulator Lokal Mandiri:</strong> Lingkungan dev lokal mandiri telah aktif tanpa ketergantungan koneksi pihak ketiga.</li>
               </ul>
             </div>
           </div>
 
-          <div class="p-2.5 bg-amber-100/60 rounded-lg border border-amber-300 text-xs text-amber-950 font-bold flex items-center justify-between">
-            <span>Status Repo JP-Insight:</span>
-            <span class="font-mono text-[11px] bg-amber-600 text-white px-2 py-0.5 rounded">REVIEW INTERNAL</span>
+          <div class="p-2.5 bg-emerald-100/60 rounded-lg border border-emerald-300 text-xs text-emerald-950 font-bold flex items-center justify-between">
+            <span>Status Audit Repo:</span>
+            <span class="font-mono text-[11px] bg-emerald-700 text-white px-2 py-0.5 rounded">100% LULUS AUDIT</span>
           </div>
         </div>
 
       </div>
 
-      <!-- Banner Kesiapan Masuk ke Tahap Lanjutan -->
+      <!-- Banner Ringkasan Pemisahan Audit vs Integrasi -->
       <div class="p-4 rounded-xl bg-gradient-to-r from-[#06172d] via-[#0b2545] to-[#7c2d12] border border-amber-500/30 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 shadow-md">
         <div class="space-y-0.5">
-          <strong class="text-sm font-bold text-amber-300 block">Inti Capaian Pelaksanaan Konsultan:</strong>
+          <strong class="text-sm font-bold text-amber-300 block">Kesimpulan Audit Teknis 3 Repositori (Tahap 2, 3, & 4 KAK):</strong>
           <p class="text-xs text-slate-200 leading-relaxed">
-            Sistem utama Jurnal Permukiman telah <strong>tuntas 100% diperbarui</strong> ke versi paling stabil dan aman (LTS) serta bebas error di server baru (PHP 8.3). Dua modul pendukung (Asisten Format MQC & Pusat Pengetahuan AI) saat ini berada dalam tahap peninjauan akhir internal dan siap dihubungkan penuh pada jadwal minggu depan.
+            Seluruh audit kode dan pembenahan mandiri pada 3 repositori (OJS Core, MQC Assistant, dan JP-Insight) telah <strong>TUNTAS 100%</strong> dan terverifikasi sehat di lingkungan uji. Pembahasan integrasi antarsistem (Tahap 5) dipisahkan secara khusus pada Tab Arsitektur Integrasi dan dijadwalkan pada milestone minggu depan.
           </p>
         </div>
-        <span class="px-3.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-extrabold text-xs shrink-0 whitespace-nowrap shadow">
-          Tahap 1–4 Tuntas &bull; Tahap 5 In Progress
+        <span class="px-3.5 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-extrabold text-xs shrink-0 whitespace-nowrap shadow">
+          Audit 3 Repo: 100% Tuntas &bull; Integrasi: Terjadwal M-II
         </span>
       </div>
 
