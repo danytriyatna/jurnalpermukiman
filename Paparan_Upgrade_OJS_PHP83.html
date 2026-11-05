@@ -726,87 +726,169 @@
       
       <div class="space-y-1">
         <div class="flex items-center gap-2">
-          <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">Progres Nyata Konsultan</span>
-          <span class="text-xs text-slate-500 font-semibold">Tahap 1 s/d 4 Tuntas &bull; Tahap 5 Dalam Progres Review Internal</span>
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">Matriks Komparasi Audit</span>
+          <span class="text-xs text-slate-500 font-semibold">Temuan Audit Repositori (Tahap 2 & 3) vs Hasil Perbaikan & Upgrade (Tahap 4)</span>
         </div>
-        <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">Capaian Nyata: Upgrade Repo OJS 3.3.0-24 LTS & Kesiapan PHP 8.3 (Tahap 1–4 Selesai)</h2>
+        <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">Perbandingan Komprehensif: Sebelum vs Sesudah Audit Repositori</h2>
         <p class="text-xs md:text-sm text-slate-600">
-          Bukti nyata eksekusi upgrade repositori OJS ke versi LTS resmi serta status review modul penunjang (MQC & JP-Insight) di lingkungan uji:
+          Memperlihatkan secara transparan kondisi baseline saat serah terima repositori dibanding lompatan kualitas hasil eksekusi tenaga ahli:
         </p>
       </div>
 
-      <!-- 3 Kartu Temuan Riil Per-Repositori -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+      <!-- 3 Kartu Komparasi Sebelum vs Sesudah Per-Repositori -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
         
-        <!-- Repo 1: OJS Core -->
-        <div class="feature-card border-[#fed7aa] bg-[#fffaf7]/20 p-4 space-y-2.5 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="flex justify-between items-center border-b border-[#f5d5cb] pb-2">
-              <span class="text-xs font-bold text-[#0b2545] uppercase tracking-wider bg-[#fdf2ee] px-2 py-0.5 rounded">Repo OJS Core</span>
-              <span class="text-xs font-bold text-emerald-700">✅ Upgrade Selesai (100%)</span>
+        <!-- ================= REPO 1: OJS CORE ================= -->
+        <div class="feature-card border-[#fed7aa] bg-[#fffaf7]/30 p-4 space-y-3 flex flex-col justify-between shadow-xs">
+          <div class="space-y-3">
+            <!-- Header Kartu -->
+            <div class="flex justify-between items-center border-b border-[#f5d5cb] pb-2.5">
+              <span class="text-xs font-bold text-[#0b2545] uppercase tracking-wider bg-[#fdf2ee] px-2.5 py-1 rounded border border-[#f5d5cb]">
+                01. Repo OJS Core
+              </span>
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
+                ✅ Upgrade Tuntas (100%)
+              </span>
             </div>
-            <strong class="text-slate-900 text-sm block font-bold">Pembaruan ke OJS 3.3.0-24 LTS & Patch PHP 8.3</strong>
-            <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
-              <li><strong>Versi Baru:</strong> Berhasil di-upgrade dari basis rentan 3.3.0.13 ke rilis resmi <strong>PKP 3.3.0-24 LTS</strong>.</li>
-              <li><strong>Pembersihan PHP 8.3:</strong> Pustaka Smarty 3 & ADOdb 5 telah dipatch bebas dari ribuan <em>deprecated notices & dynamic property warnings</em>.</li>
-              <li><strong>Uji Kompatibilitas Runtime:</strong> Terverifikasi beroperasi stabil di stack Apache 2.4.66 + PHP 8.3.30 + MySQL 8.4.3.</li>
-              <li><strong>Tema & Layout Puskim:</strong> Restorasi palet terracotta (#c13d0d), penataan navbar 1 baris, dan eliminasi konflik garis sidebar.</li>
-            </ul>
+
+            <!-- Blok SEBELUM -->
+            <div class="p-3 rounded-lg bg-rose-50/70 border border-rose-200/80 space-y-1.5">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-rose-900 uppercase tracking-wide">
+                <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                🔴 Sebelum (Temuan Audit Repo Awal)
+              </div>
+              <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
+                <li><strong>Versi Lama:</strong> Berkas <code>dbscripts/xml/version.xml</code> mencatat rilis <strong>3.3.0.13</strong> (Rilis 2022, tertinggal puluhan patch keamanan).</li>
+                <li><strong>Error PHP 8.3:</strong> Pustaka Smarty 3 & ADOdb 5 lama memicu ribuan <em>deprecated notice & dynamic property warning</em>.</li>
+                <li><strong>Tata Letak Glitch:</strong> Navbar terbelah jadi 2 baris dan garis vertikal default PKP memotong tepat di tengah sidebar kanan.</li>
+              </ul>
+            </div>
+
+            <!-- Blok SESUDAH -->
+            <div class="p-3 rounded-lg bg-emerald-50/70 border border-emerald-200/80 space-y-1.5">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-900 uppercase tracking-wide">
+                <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                🟢 Sesudah (Hasil Upgrade & Patch Konsultan)
+              </div>
+              <ul class="text-[12px] text-emerald-950 space-y-1 list-disc list-inside leading-relaxed">
+                <li><strong>Versi LTS Resmi:</strong> Sukses di-upgrade ke <strong>PKP 3.3.0-24 LTS</strong> (Terbaru, stabil, & didukung komunitas resmi).</li>
+                <li><strong>Zero Warning PHP 8.3:</strong> Seluruh pustaka Smarty & ADOdb dipatch tuntas, beroperasi stabil di stack <strong>PHP 8.3.30 + MySQL 8.4.3</strong>.</li>
+                <li><strong>Desain Puskim Presisi:</strong> Restorasi palet heritage terracotta (<code>#c13d0d</code>), navbar 1 baris terpadu, & sidebar bebas garis potong.</li>
+              </ul>
+            </div>
           </div>
-          <div class="p-2 bg-emerald-50 rounded border border-emerald-200 text-xs text-emerald-900 font-semibold">
-            Status: Engine OJS 3.3.0-24 LTS & PHP 8.3 Beroperasi Stabil di Server Uji.
+
+          <div class="p-2.5 bg-emerald-100/60 rounded-lg border border-emerald-300 text-xs text-emerald-950 font-bold flex items-center justify-between">
+            <span>Status Repo OJS:</span>
+            <span class="font-mono text-[11px] bg-emerald-700 text-white px-2 py-0.5 rounded">SIAP OPERASI DEV</span>
           </div>
         </div>
 
-        <!-- Repo 2: MQC Assistant -->
-        <div class="feature-card border-amber-300 bg-amber-50/20 p-4 space-y-2.5 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="flex justify-between items-center border-b border-amber-200 pb-2">
-              <span class="text-xs font-bold text-amber-900 uppercase tracking-wider bg-amber-100 px-2 py-0.5 rounded">Repo MQC Assistant</span>
-              <span class="text-xs font-bold text-amber-700">🔄 Dalam Progres Review</span>
+        <!-- ================= REPO 2: MQC ASSISTANT ================= -->
+        <div class="feature-card border-amber-300 bg-amber-50/20 p-4 space-y-3 flex flex-col justify-between shadow-xs">
+          <div class="space-y-3">
+            <!-- Header Kartu -->
+            <div class="flex justify-between items-center border-b border-amber-200 pb-2.5">
+              <span class="text-xs font-bold text-amber-950 uppercase tracking-wider bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
+                02. Repo MQC Assistant
+              </span>
+              <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300">
+                🔄 Dalam Progres Review
+              </span>
             </div>
-            <strong class="text-slate-900 text-sm block font-bold">Audit 25 Aturan Selingkung & Integrasi Alur</strong>
-            <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
-              <li><strong>Arsitektur Engine:</strong> Next.js 16 dengan modul parser dokumen .docx berbasis aturan gaya selingkung Jurnal Permukiman.</li>
-              <li><strong>Status Uji:</strong> Engine screening <code>/api/check-submission</code> sedang dalam tahap reviu akurasi internal tenaga ahli.</li>
-              <li><strong>Fokus Review:</strong> Kalibrasi toleransi heading, format tabel, sitasi dwibahasa, dan integrasi penyerahan naskah.</li>
-              <li><strong>Target Milestone:</strong> Siap dihubungkan resmi ke alur registrasi naskah OJS pada jadwal minggu depan.</li>
-            </ul>
+
+            <!-- Blok SEBELUM -->
+            <div class="p-3 rounded-lg bg-rose-50/70 border border-rose-200/80 space-y-1.5">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-rose-900 uppercase tracking-wide">
+                <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                🔴 Sebelum (Temuan Audit Repo Awal)
+              </div>
+              <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
+                <li><strong>Pemeriksaan Manual:</strong> Penapisan format selingkung naskah .docx masih diperiksa manual oleh dewan editor OJS.</li>
+                <li><strong>Bug Parser Word:</strong> Berkas Word dengan text box ganda (<code>mc:Choice</code> vs <code>mc:Fallback</code>) membuat judul tabel/gambar terhitung 2 kali.</li>
+                <li><strong>Inkonsistensi Katalog:</strong> Konstanta kode mencatat 27 aturan, namun katalog baru mendefinisikan 22 aturan.</li>
+              </ul>
+            </div>
+
+            <!-- Blok SESUDAH -->
+            <div class="p-3 rounded-lg bg-amber-50/70 border border-amber-200/80 space-y-1.5">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-amber-900 uppercase tracking-wide">
+                <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                🟡 Sesudah (Hasil Perbaikan & Review Dev)
+              </div>
+              <ul class="text-[12px] text-amber-950 space-y-1 list-disc list-inside leading-relaxed">
+                <li><strong>Parser Stack-Based:</strong> Logika pembacaan Word XML disempurnakan sehingga eliminasi bug dobel hitung judul/tabel.</li>
+                <li><strong>Katalog 25 Aturan:</strong> Standardisasi 25 kriteria gaya selingkung Jurnal Permukiman (Font, Margin, Abstrak dwibahasa, Sitasi IEEE).</li>
+                <li><strong>Kesiapan Endpoint:</strong> API <code>/api/check-submission</code> aktif di port 3000, tahap review internal menuju integrasi minggu depan.</li>
+              </ul>
+            </div>
           </div>
-          <div class="p-2 bg-amber-50 rounded border border-amber-200 text-xs text-amber-950 font-semibold">
-            Status: Konsep & Engine Teruji di Dev, Menunggu Finalisasi Review Internal.
+
+          <div class="p-2.5 bg-amber-100/60 rounded-lg border border-amber-300 text-xs text-amber-950 font-bold flex items-center justify-between">
+            <span>Status Repo MQC:</span>
+            <span class="font-mono text-[11px] bg-amber-600 text-white px-2 py-0.5 rounded">REVIEW INTERNAL</span>
           </div>
         </div>
 
-        <!-- Repo 3: JP-Insight -->
-        <div class="feature-card border-amber-300 bg-amber-50/20 p-4 space-y-2.5 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="flex justify-between items-center border-b border-amber-200 pb-2">
-              <span class="text-xs font-bold text-emerald-900 uppercase tracking-wider bg-amber-100 px-2 py-0.5 rounded">Repo JP-Insight</span>
-              <span class="text-xs font-bold text-amber-700">🔄 Dalam Progres Review</span>
+        <!-- ================= REPO 3: JP-INSIGHT RAG ================= -->
+        <div class="feature-card border-amber-300 bg-amber-50/20 p-4 space-y-3 flex flex-col justify-between shadow-xs">
+          <div class="space-y-3">
+            <!-- Header Kartu -->
+            <div class="flex justify-between items-center border-b border-amber-200 pb-2.5">
+              <span class="text-xs font-bold text-amber-950 uppercase tracking-wider bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
+                03. Repo JP-Insight
+              </span>
+              <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300">
+                🔄 Dalam Progres Review
+              </span>
             </div>
-            <strong class="text-slate-900 text-sm block font-bold">Korpus 210 Naskah & Pemanen OAI-PMH</strong>
-            <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
-              <li><strong>Basis Data RAG:</strong> Korpus 210 naskah arsip Puskim, 8.589 potongan teks vektor, dan 786 SNI PUPR tervalidasi.</li>
-              <li><strong>Status Uji:</strong> Modul pemanen <code>lib/ojs.ts</code> dan widget chat sedang dalam reviu beban konkurensi data internal.</li>
-              <li><strong>Kesiapan Endpoint:</strong> Endpoint OAI-PMH OJS telah terverifikasi valid menyajikan metadata artikel terbitan.</li>
-              <li><strong>Target Milestone:</strong> Aktivasi sinkronisasi siklus tertutup (closed-loop) dijadwalkan pada milestone minggu depan.</li>
-            </ul>
+
+            <!-- Blok SEBELUM -->
+            <div class="p-3 rounded-lg bg-rose-50/70 border border-rose-200/80 space-y-1.5">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-rose-900 uppercase tracking-wide">
+                <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                🔴 Sebelum (Temuan Audit Repo Awal)
+              </div>
+              <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
+                <li><strong>Korpus Pasif:</strong> 210 naskah PDF arsip Puskim tersimpan statis, pencarian hanya mengandalkan kata kunci teks dasar OJS.</li>
+                <li><strong>Pemanenan Manual:</strong> Belum ada mekanisme penyerapan naskah otomatis dari edisi terbitan baru OJS.</li>
+                <li><strong>Ketergantungan Supabase:</strong> Belum ada simulator lingkungan uji dev lokal untuk pengujian tanpa cloud eksternal.</li>
+              </ul>
+            </div>
+
+            <!-- Blok SESUDAH -->
+            <div class="p-3 rounded-lg bg-amber-50/70 border border-amber-200/80 space-y-1.5">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-amber-900 uppercase tracking-wide">
+                <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                🟡 Sesudah (Hasil Perbaikan & Review Dev)
+              </div>
+              <ul class="text-[12px] text-amber-950 space-y-1 list-disc list-inside leading-relaxed">
+                <li><strong>Korpus Vektor Aktif:</strong> Berhasil mengekstrak 210 naskah menjadi 8.589 potongan vektor semantik AI + 786 dokumen SNI PUPR.</li>
+                <li><strong>Harvester OAI-PMH:</strong> Skrip <code>lib/ojs.ts</code> terverifikasi siap menyerap feed XML OJS untuk siklus tertutup.</li>
+                <li><strong>Kesiapan Widget:</strong> Antarmuka chat AI responsif di port 3001, tahap review internal menuju integrasi minggu depan.</li>
+              </ul>
+            </div>
           </div>
-          <div class="p-2 bg-amber-50 rounded border border-amber-200 text-xs text-amber-950 font-semibold">
-            Status: Korpus Valid, Menunggu Jadwal Sinkronisasi Terjadwal Minggu Depan.
+
+          <div class="p-2.5 bg-amber-100/60 rounded-lg border border-amber-300 text-xs text-amber-950 font-bold flex items-center justify-between">
+            <span>Status Repo JP-Insight:</span>
+            <span class="font-mono text-[11px] bg-amber-600 text-white px-2 py-0.5 rounded">REVIEW INTERNAL</span>
           </div>
         </div>
 
       </div>
 
       <!-- Banner Kesiapan Masuk ke Tahap Lanjutan -->
-      <div class="p-4 rounded-xl bg-gradient-to-r from-[#06172d] to-[#0b2545] border border-amber-500/30 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+      <div class="p-4 rounded-xl bg-gradient-to-r from-[#06172d] via-[#0b2545] to-[#7c2d12] border border-amber-500/30 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 shadow-md">
         <div class="space-y-0.5">
-          <strong class="text-sm font-bold text-amber-300 block">Status Capaian Nyata Tim Konsultan:</strong>
-          <p class="text-xs text-slate-200">Tahap 1 s/d 4 telah <strong>TUNTAS 100%</strong> dengan keberhasilan upgrade OJS ke versi 3.3.0-24 LTS dan eliminasi error PHP 8.3. Tahap 5 (Integrasi Aplikasi) saat ini berstatus <strong>Dalam Progres Review Internal</strong> untuk diselesaikan pada milestone minggu depan.</p>
+          <strong class="text-sm font-bold text-amber-300 block">Kesimpulan Evaluasi Audit & Upgrade:</strong>
+          <p class="text-xs text-slate-200 leading-relaxed">
+            Temuan audit teknis pada repositori OJS (Tahap 2 & 3) telah <strong>diselesaikan 100%</strong> melalui upgrade resmi ke <strong>OJS 3.3.0-24 LTS & PHP 8.3</strong>. Modul MQC Assistant dan JP-Insight saat ini berada dalam status <strong>Dalam Progres Review Internal</strong> dan siap melangkah ke integrasi resmi (Tahap 5) pada milestone minggu depan.
+          </p>
         </div>
-        <span class="px-3 py-1 rounded-lg bg-amber-500 text-slate-950 font-extrabold text-xs shrink-0 whitespace-nowrap">Tahap 1–4 Tuntas &bull; Tahap 5 In Progress</span>
+        <span class="px-3.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-extrabold text-xs shrink-0 whitespace-nowrap shadow">
+          Tahap 1–4 Tuntas &bull; Tahap 5 In Progress
+        </span>
       </div>
 
     </section>
