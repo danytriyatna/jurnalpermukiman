@@ -106,6 +106,68 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form {
 		import('lib.pkp.classes.log.SubmissionLog');
 		SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_SUBMISSION_SUBMIT, 'submission.event.submissionSubmitted');
 
+		// =========================================================================
+		// MQC ECOSYSTEM SYNC DISPATCHER (Tahap 5 Integrasi Tri-Sistem OJS -> MQC)
+		// Saat penulis menyelesaikan submission, kirimkan metadata & berkas ke MQC
+		// =========================================================================
+		try {
+			$submissionId = $submission->getId();
+			$title = $submission->getLocalizedTitle();
+			$authorName = $user ? $user->getFullName() : 'Penulis Jurnal Permukiman';
+
+			// Ambil berkas naskah utama (.docx)
+			$files = Services::get('submissionFile')->getMany([
+				'submissionIds' => [$submissionId],
+				'fileStages' => [SUBMISSION_FILE_SUBMISSION]
+			]);
+
+			$filePath = '';
+			$originalFileName = 'manuscript.docx';
+			$fileBase64 = '';
+
+			foreach ($files as $file) {
+				$relPath = $file->getData('path');
+				$fullPath = Config::getVar('files', 'files_dir') . '/' . $relPath;
+				if (file_exists($fullPath)) {
+					$filePath = $fullPath;
+					$originalFileName = $file->getLocalizedData('name') ?: basename($fullPath);
+					$fileBase64 = base64_encode(file_get_contents($fullPath));
+					break;
+				}
+			}
+
+			// Payload integrasi ke MQC Assistant
+			$mqcPayload = [
+				'ojs_submission_id' => $submissionId,
+				'title' => $title ?: "Naskah OJS #{$submissionId}",
+				'author_name' => $authorName,
+				'original_file_name' => $originalFileName,
+				'file_path' => $filePath,
+				'file_content_base64' => $fileBase64
+			];
+
+			// Kirim ke endpoint MQC secara non-blocking / timeout cepat
+			$mqcUrl = 'http://localhost:3000/api/ojs/sync-submission';
+			$ch = curl_init($mqcUrl);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POST, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($mqcPayload));
+			curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+			$response = curl_exec($ch);
+			$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			curl_close($ch);
+
+			if ($httpCode === 200) {
+				error_log("[MQC Sync Success] Naskah OJS #{$submissionId} berhasil disinkronkan ke MQC Assistant.");
+			} else {
+				error_log("[MQC Sync Warning] MQC merespons kode HTTP {$httpCode}: {$response}");
+			}
+		} catch (Exception $e) {
+			error_log("[MQC Sync Error] Gagal menyinkronkan naskah OJS ke MQC: " . $e->getMessage());
+		}
+
 		return $this->submissionId;
 	}
 }
