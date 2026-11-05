@@ -194,11 +194,11 @@
         <button onclick="switchTab('tab-latar')" id="btn-tab-latar" class="nav-tab-btn active">
           <span>01.</span> Latar Belakang & 2 Pekerjaan Utama
         </button>
-        <button onclick="switchTab('tab-integrasi')" id="btn-tab-integrasi" class="nav-tab-btn">
-          <span>02.</span> Arsitektur & Usulan Integrasi Tri-Sistem
-        </button>
         <button onclick="switchTab('tab-ruanglingkup')" id="btn-tab-ruanglingkup" class="nav-tab-btn">
-          <span>03.</span> Ruang Lingkup Kontraktual 10 Tahap
+          <span>02.</span> Ruang Lingkup Kontraktual 10 Tahap
+        </button>
+        <button onclick="switchTab('tab-integrasi')" id="btn-tab-integrasi" class="nav-tab-btn">
+          <span>03.</span> Arsitektur & Usulan Integrasi Tri-Sistem
         </button>
         <button onclick="switchTab('tab-hasilawal')" id="btn-tab-hasilawal" class="nav-tab-btn">
           <span>04.</span> Hasil Audit & Pembenahan 3 Repo (Sebelum vs Sesudah)
@@ -376,7 +376,229 @@
 
     </section>
 
-    <!-- ================= TAB 2: ARSITEKTUR & USULAN INTEGRASI TRI-SISTEM ================= -->
+    <!-- ================= TAB 02: RUANG LINGKUP KONTRAKTUAL 10 TAHAP ================= -->
+    <section id="tab-ruanglingkup" class="tab-pane hidden space-y-4">
+      
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#9e2f08] bg-[#fdf2ee] px-2.5 py-0.5 rounded-full">Matriks Kontraktual</span>
+          <span class="text-xs text-slate-500 font-semibold">Tabel Acuan Resmi Ruang Lingkup & Keluaran</span>
+        </div>
+        <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">10 Tahapan Ruang Lingkup dan Keluaran yang Dihasilkan</h2>
+        <p class="text-xs md:text-sm text-slate-600">
+          Penjabaran resmi seluruh tahapan pekerjaan beserta bentuk fisik keluaran yang diserahkan kepada pihak kementerian:
+        </p>
+      </div>
+
+      <!-- TABEL RESMI 10 TAHAPAN & KELUARAN (SESUAI DOKUMEN GAMBAR KAK) -->
+      <div class="feature-card p-0 overflow-hidden border border-slate-300 shadow-xs">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs md:text-sm text-slate-700 border-collapse">
+            <thead>
+              <tr class="border-b-2 border-slate-300 text-slate-900 font-bold bg-slate-100">
+                <th class="py-3 px-3 w-12 text-center whitespace-nowrap">No</th>
+                <th class="py-3 px-4 whitespace-nowrap">Tahap Pekerjaan (KAK)</th>
+                <th class="py-3 px-4 whitespace-nowrap">Keluaran (Deliverables)</th>
+                <th class="py-3 px-4 text-center whitespace-nowrap">Cakupan Kerja</th>
+                <th class="py-3 px-4 text-center whitespace-nowrap">Lingkungan</th>
+                <th class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/60">Progres</th>
+                <th class="py-3 px-4 whitespace-nowrap">Pelaksana</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <!-- Row 1 -->
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">1</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Serah Terima dan Akses</td>
+                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Akses repo aktif, kredensial diserahkan</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-slate-100 text-slate-800 border border-slate-300">Persiapan</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100%)</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Kementerian & Tenaga Ahli</td>
+              </tr>
+              <!-- Row 2 -->
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">2</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Pengujian Git Repo</td>
+                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Berita acara verifikasi repositori</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100%)</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+              <!-- Row 3 -->
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">3</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Analisis dan Persiapan</td>
+                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Dokumen rancangan integrasi dan rencana uji</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100%)</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+              <!-- Row 4 -->
+              <tr class="hover:bg-slate-50/80 transition bg-emerald-50/20">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-emerald-100/60 whitespace-nowrap">4</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Cek Bug Error & Upgrade Repo OJS</td>
+                <td class="py-3 px-4 font-semibold text-emerald-950 whitespace-nowrap">OJS 3.3.0-24 LTS & Patch PHP 8.3 tuntas</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100%)</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+              <!-- Row 5 -->
+              <tr class="hover:bg-slate-50/80 transition bg-amber-50/40">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-amber-100/60 whitespace-nowrap">5</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Integrasi Aplikasi (OJS - MQC - JP)</td>
+                <td class="py-3 px-4 font-semibold text-amber-950 whitespace-nowrap">Konsep arsitektur & tahap review internal</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded text-[11px] font-bold bg-amber-200 text-amber-950 border border-amber-300">Inti Pekerjaan 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/50">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-amber-100 text-amber-900 border border-amber-300">🟡 Dalam Progres (Minggu Depan)</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+              <!-- Row 6 -->
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">6</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Pentest Aplikasi</td>
+                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Laporan hasil pentest</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Spesialis Keamanan Siber</td>
+              </tr>
+              <!-- Row 7 -->
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">7</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Perbaikan Temuan dan Uji Ulang</td>
+                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Bukti penutupan temuan</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
+              </tr>
+              <!-- Row 8 -->
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">8</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Pengujian dan Dokumentasi</td>
+                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Berita acara UAT dan dokumentasi sistem</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-indigo-50 text-indigo-700 border border-indigo-200">Uji Coba Bersama</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Bersama (Pengelola & Konsultan)</td>
+              </tr>
+              <!-- Row 9 -->
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">9</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Persiapan Produksi</td>
+                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Lingkungan produksi siap</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-amber-50 text-amber-800 border border-amber-200">Produksi</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Pengelola & Sysadmin PUPR</td>
+              </tr>
+              <!-- Row 10 -->
+              <tr class="hover:bg-slate-50/80 transition">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">10</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Publikasi</td>
+                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Sistem beroperasi di produksi</td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-50 text-emerald-800 border border-emerald-300">Produksi Live</span>
+                </td>
+                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
+                </td>
+                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Gabungan (BAST Resmi)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Penjelasan Pemisahan Lingkungan Kerja (Padat) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+        
+        <div class="p-4 rounded-xl border border-[#f5d5cb] bg-[#fffaf7]/30 space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="h-6 w-6 rounded-md bg-[#c13d0d] text-white flex items-center justify-center font-bold text-xs shrink-0">A</span>
+            <strong class="text-[#06172d] text-sm font-bold">Tahap 1 s/d 8: Dikerjakan 100% di Lingkungan Uji</strong>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Seluruh aktivitas verifikasi git repo, rancangan integrasi, pembersihan bug, integrasi OJS-MQC-JP, hingga pentest dan UAT dilaksanakan di Server Dev. <strong>Layanan publik web Jurnal Permukiman tetap aktif normal tanpa gangguan (Nol Downtime).</strong>
+          </p>
+        </div>
+
+        <div class="p-4 rounded-xl border border-amber-300 bg-amber-50/30 space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="h-6 w-6 rounded-md bg-amber-600 text-white flex items-center justify-center font-bold text-xs shrink-0">B</span>
+            <strong class="text-amber-950 text-sm font-bold">Tahap 9 s/d 10: Penerapan Teruji ke Lingkungan Produksi</strong>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Server produksi hanya disentuh setelah seluruh keluaran Tahap 1-8 tuntas disetujui. Perpindahan hasil ke produksi dilakukan pada jadwal pemeliharaan resmi dengan jeda akses publik singkat (± 1 - 2 jam).
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 03: ARSITEKTUR & USULAN INTEGRASI TRI-SISTEM ================= -->
     <section id="tab-integrasi" class="tab-pane hidden space-y-4">
       <div class="space-y-1">
         <div class="flex items-center gap-2">
@@ -623,228 +845,6 @@
         </div>
       </div>
 </section>
-
-    <!-- ================= TAB 3: RUANG LINGKUP KONTRAKTUAL 10 TAHAP ================= -->
-    <section id="tab-ruanglingkup" class="tab-pane hidden space-y-4">
-      
-      <div class="space-y-1">
-        <div class="flex items-center gap-2">
-          <span class="text-xs font-bold uppercase tracking-widest text-[#9e2f08] bg-[#fdf2ee] px-2.5 py-0.5 rounded-full">Matriks Kontraktual</span>
-          <span class="text-xs text-slate-500 font-semibold">Tabel Acuan Resmi Ruang Lingkup & Keluaran</span>
-        </div>
-        <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">10 Tahapan Ruang Lingkup dan Keluaran yang Dihasilkan</h2>
-        <p class="text-xs md:text-sm text-slate-600">
-          Penjabaran resmi seluruh tahapan pekerjaan beserta bentuk fisik keluaran yang diserahkan kepada pihak kementerian:
-        </p>
-      </div>
-
-      <!-- TABEL RESMI 10 TAHAPAN & KELUARAN (SESUAI DOKUMEN GAMBAR KAK) -->
-      <div class="feature-card p-0 overflow-hidden border border-slate-300 shadow-xs">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs md:text-sm text-slate-700 border-collapse">
-            <thead>
-              <tr class="border-b-2 border-slate-300 text-slate-900 font-bold bg-slate-100">
-                <th class="py-3 px-3 w-12 text-center whitespace-nowrap">No</th>
-                <th class="py-3 px-4 whitespace-nowrap">Tahap Pekerjaan (KAK)</th>
-                <th class="py-3 px-4 whitespace-nowrap">Keluaran (Deliverables)</th>
-                <th class="py-3 px-4 text-center whitespace-nowrap">Cakupan Kerja</th>
-                <th class="py-3 px-4 text-center whitespace-nowrap">Lingkungan</th>
-                <th class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/60">Progres</th>
-                <th class="py-3 px-4 whitespace-nowrap">Pelaksana</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-200 bg-white">
-              <!-- Row 1 -->
-              <tr class="hover:bg-slate-50/80 transition">
-                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">1</td>
-                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Serah Terima dan Akses</td>
-                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Akses repo aktif, kredensial diserahkan</td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-slate-100 text-slate-800 border border-slate-300">Persiapan</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
-                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100%)</span>
-                </td>
-                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Kementerian & Tenaga Ahli</td>
-              </tr>
-              <!-- Row 2 -->
-              <tr class="hover:bg-slate-50/80 transition">
-                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">2</td>
-                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Pengujian Git Repo</td>
-                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Berita acara verifikasi repositori</td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
-                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100%)</span>
-                </td>
-                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
-              </tr>
-              <!-- Row 3 -->
-              <tr class="hover:bg-slate-50/80 transition">
-                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">3</td>
-                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Analisis dan Persiapan</td>
-                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Dokumen rancangan integrasi dan rencana uji</td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
-                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100%)</span>
-                </td>
-                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
-              </tr>
-              <!-- Row 4 -->
-              <tr class="hover:bg-slate-50/80 transition bg-emerald-50/20">
-                <td class="py-3 px-3 text-center font-black text-slate-900 bg-emerald-100/60 whitespace-nowrap">4</td>
-                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Cek Bug Error & Upgrade Repo OJS</td>
-                <td class="py-3 px-4 font-semibold text-emerald-950 whitespace-nowrap">OJS 3.3.0-24 LTS & Patch PHP 8.3 tuntas</td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
-                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100%)</span>
-                </td>
-                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
-              </tr>
-              <!-- Row 5 -->
-              <tr class="hover:bg-slate-50/80 transition bg-amber-50/40">
-                <td class="py-3 px-3 text-center font-black text-slate-900 bg-amber-100/60 whitespace-nowrap">5</td>
-                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Integrasi Aplikasi (OJS - MQC - JP)</td>
-                <td class="py-3 px-4 font-semibold text-amber-950 whitespace-nowrap">Konsep arsitektur & tahap review internal</td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-2.5 py-0.5 rounded text-[11px] font-bold bg-amber-200 text-amber-950 border border-amber-300">Inti Pekerjaan 2</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/50">
-                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-amber-100 text-amber-900 border border-amber-300">🟡 Dalam Progres (Minggu Depan)</span>
-                </td>
-                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
-              </tr>
-              <!-- Row 6 -->
-              <tr class="hover:bg-slate-50/80 transition">
-                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">6</td>
-                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Pentest Aplikasi</td>
-                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Laporan hasil pentest</td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
-                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
-                </td>
-                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Spesialis Keamanan Siber</td>
-              </tr>
-              <!-- Row 7 -->
-              <tr class="hover:bg-slate-50/80 transition">
-                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">7</td>
-                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Perbaikan Temuan dan Uji Ulang</td>
-                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Bukti penutupan temuan</td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
-                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
-                </td>
-                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
-              </tr>
-              <!-- Row 8 -->
-              <tr class="hover:bg-slate-50/80 transition">
-                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">8</td>
-                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Pengujian dan Dokumentasi</td>
-                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Berita acara UAT dan dokumentasi sistem</td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-indigo-50 text-indigo-700 border border-indigo-200">Uji Coba Bersama</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
-                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
-                </td>
-                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Bersama (Pengelola & Konsultan)</td>
-              </tr>
-              <!-- Row 9 -->
-              <tr class="hover:bg-slate-50/80 transition">
-                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">9</td>
-                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Persiapan Produksi</td>
-                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Lingkungan produksi siap</td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-amber-50 text-amber-800 border border-amber-200">Produksi</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
-                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
-                </td>
-                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Pengelola & Sysadmin PUPR</td>
-              </tr>
-              <!-- Row 10 -->
-              <tr class="hover:bg-slate-50/80 transition">
-                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">10</td>
-                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Publikasi</td>
-                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Sistem beroperasi di produksi</td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-50 text-emerald-800 border border-emerald-300">Produksi Live</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/30">
-                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
-                </td>
-                <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tim Gabungan (BAST Resmi)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Penjelasan Pemisahan Lingkungan Kerja (Padat) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
-        
-        <div class="p-4 rounded-xl border border-[#f5d5cb] bg-[#fffaf7]/30 space-y-2">
-          <div class="flex items-center gap-2">
-            <span class="h-6 w-6 rounded-md bg-[#c13d0d] text-white flex items-center justify-center font-bold text-xs shrink-0">A</span>
-            <strong class="text-[#06172d] text-sm font-bold">Tahap 1 s/d 8: Dikerjakan 100% di Lingkungan Uji</strong>
-          </div>
-          <p class="text-xs text-slate-700 leading-relaxed">
-            Seluruh aktivitas verifikasi git repo, rancangan integrasi, pembersihan bug, integrasi OJS-MQC-JP, hingga pentest dan UAT dilaksanakan di Server Dev. <strong>Layanan publik web Jurnal Permukiman tetap aktif normal tanpa gangguan (Nol Downtime).</strong>
-          </p>
-        </div>
-
-        <div class="p-4 rounded-xl border border-amber-300 bg-amber-50/30 space-y-2">
-          <div class="flex items-center gap-2">
-            <span class="h-6 w-6 rounded-md bg-amber-600 text-white flex items-center justify-center font-bold text-xs shrink-0">B</span>
-            <strong class="text-amber-950 text-sm font-bold">Tahap 9 s/d 10: Penerapan Teruji ke Lingkungan Produksi</strong>
-          </div>
-          <p class="text-xs text-slate-700 leading-relaxed">
-            Server produksi hanya disentuh setelah seluruh keluaran Tahap 1-8 tuntas disetujui. Perpindahan hasil ke produksi dilakukan pada jadwal pemeliharaan resmi dengan jeda akses publik singkat (± 1 - 2 jam).
-          </p>
-        </div>
-
-      </div>
-
-    </section>
 
     <!-- ================= TAB 4: HASIL PELAKSANAAN AWAL (TAHAP 1, 2, 3 SELESAI) ================= -->
     <section id="tab-hasilawal" class="tab-pane hidden space-y-4">
@@ -1358,8 +1358,8 @@
   <script>
     const tabsList = [
       'tab-latar',
-      'tab-integrasi',
       'tab-ruanglingkup',
+      'tab-integrasi',
       'tab-hasilawal',
       'tab-rencanakerja',
       'tab-mitigasi'
