@@ -726,16 +726,16 @@
       
       <div class="space-y-1">
         <div class="flex items-center gap-2">
-          <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">Matriks Komparasi Audit</span>
-          <span class="text-xs text-slate-500 font-semibold">Audit Internal 3 Repositori Tuntas 100% (Tahap 2, 3, & 4 KAK)</span>
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">Laporan Audit Teknis Repositori</span>
+          <span class="text-xs text-slate-500 font-semibold">Pemeriksaan Kode & Kesiapan Repositori Serah-Terima (Tahap 2, 3, & 4 KAK)</span>
         </div>
         <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">Hasil Audit Teknis & Pembenahan 3 Repositori (Sebelum vs Sesudah)</h2>
         <p class="text-xs md:text-sm text-slate-600">
-          Memperlihatkan secara transparan kondisi baseline saat serah terima repositori dibanding lompatan kualitas hasil eksekusi tenaga ahli pada masing-masing aplikasi:
+          Laporan objektif kondisi kode repositori saat diserahterimakan kepada konsultan dibanding tindakan teknis perbaikan yang telah dilaksanakan:
         </p>
       </div>
 
-      <!-- 3 Kartu Komparasi Sebelum vs Sesudah Per-Repositori -->
+      <!-- 3 Kartu Komparasi Hasil Audit Teknis Per-Repositori -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
         
         <!-- ================= REPO 1: OJS CORE ================= -->
@@ -744,7 +744,7 @@
             <!-- Header Kartu -->
             <div class="flex justify-between items-center border-b border-emerald-200 pb-2.5">
               <span class="text-xs font-bold text-[#0b2545] uppercase tracking-wider bg-[#fdf2ee] px-2.5 py-1 rounded border border-[#f5d5cb]">
-                01. Repo OJS Core (Web Jurnal)
+                01. Repositori OJS Core
               </span>
               <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
                 ✅ Audit & Upgrade Selesai
@@ -755,12 +755,12 @@
             <div class="p-3 rounded-lg bg-rose-50/70 border border-rose-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-rose-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                🔴 Sebelum (Temuan Awal Audit Repo)
+                🔴 Kondisi Awal Kode (Saat Serah Terima)
               </div>
               <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Sistem Ketinggalan Versi:</strong> Masih menggunakan OJS versi lama <code>3.3.0.13</code> (rilis 2022) yang belum mendapatkan pembaruan keamanan terbaru sehingga rentan gangguan.</li>
-                <li><strong>Muncul Ribuan Pesan Error:</strong> Saat diuji di server modern (PHP 8.3), komponen lama memunculkan ribuan peringatan error karena tidak lagi didukung.</li>
-                <li><strong>Tampilan Kurang Rapi:</strong> Menu atas terpotong menjadi dua baris dan ada garis vertikal yang menabrak kolom samping (sidebar).</li>
+                <li><strong>Basis Kode Versi Lama:</strong> Repositori berada pada rilis <code>3.3.0.13</code> (2022) yang belum memuat perbaikan keamanan PKP terkini.</li>
+                <li><strong>Inkompatibilitas PHP 8.3:</strong> Pustaka bawaan (Smarty 3 & ADOdb 5) memicu ribuan pesan peringatan error saat diuji pada server PHP 8.3.</li>
+                <li><strong>Kendala Tata Letak Bawaan:</strong> Ditemukan bug styling di mana menu navigasi atas terbelah dua baris dan garis vertikal memotong kolom sidebar.</li>
               </ul>
             </div>
 
@@ -768,19 +768,19 @@
             <div class="p-3 rounded-lg bg-emerald-50/70 border border-emerald-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-                🟢 Sesudah (Hasil Upgrade & Patch Konsultan)
+                🟢 Tindakan Teknis Konsultan (Hasil Perbaikan)
               </div>
               <ul class="text-[12px] text-emerald-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Naik ke Versi Paling Stabil (LTS):</strong> Berhasil diperbarui ke versi resmi <strong>PKP 3.3.0-24 LTS</strong> yang lebih aman, cepat, dan terawat jangka panjang.</li>
-                <li><strong>Bebas Error di Server Baru:</strong> Seluruh komponen usang dipatch tuntas, sistem beroperasi <strong>stabil 100% tanpa error</strong> di stack PHP 8.3.30 + MySQL 8.4.3.</li>
-                <li><strong>Tampilan Rapi & Khas Puskim:</strong> Menu navigasi kembali rapi 1 baris, gangguan garis samping hilang, dan warna khas merah bata Puskim (<code>#c13d0d</code>) dipulihkan elegan.</li>
+                <li><strong>Pembaruan ke Rilis LTS Resmi:</strong> Basis kode berhasil ditingkatkan ke versi resmi <strong>PKP 3.3.0-24 LTS</strong> yang teruji stabil dan aman.</li>
+                <li><strong>Penambalan Pustaka Usang:</strong> Pustaka internal telah dipatch penuh; sistem beroperasi <strong>100% bebas error</strong> pada stack PHP 8.3.30 + MySQL 8.4.3.</li>
+                <li><strong>Koreksi Antarmuka & Tema:</strong> Bug CSS diselesaikan (navbar rapi 1 baris, sidebar bersih) dan identitas warna merah bata Puskim diselaraskan.</li>
               </ul>
             </div>
           </div>
 
           <div class="p-2.5 bg-emerald-100/60 rounded-lg border border-emerald-300 text-xs text-emerald-950 font-bold flex items-center justify-between">
-            <span>Status Audit Repo:</span>
-            <span class="font-mono text-[11px] bg-emerald-700 text-white px-2 py-0.5 rounded">100% LULUS AUDIT</span>
+            <span>Hasil Audit Kode:</span>
+            <span class="font-mono text-[11px] bg-emerald-700 text-white px-2 py-0.5 rounded">STABIL & SIAP INTEGRASI</span>
           </div>
         </div>
 
@@ -790,7 +790,7 @@
             <!-- Header Kartu -->
             <div class="flex justify-between items-center border-b border-emerald-200 pb-2.5">
               <span class="text-xs font-bold text-amber-950 uppercase tracking-wider bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
-                02. Repo MQC Assistant
+                02. Repositori MQC Assistant
               </span>
               <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
                 ✅ Audit Kode Selesai
@@ -801,12 +801,12 @@
             <div class="p-3 rounded-lg bg-rose-50/70 border border-rose-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-rose-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                🔴 Sebelum (Temuan Awal Audit Repo)
+                🔴 Kondisi Awal Kode (Saat Serah Terima)
               </div>
               <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Beban Format Masih di Editor:</strong> Dewan redaksi harus memeriksa aturan mekanis tulisan (huruf, batas tepi kertas, format tabel) secara manual yang memakan banyak waktu.</li>
-                <li><strong>Salah Hitung Tabel & Gambar:</strong> Berkas Word dengan kotak teks ganda membuat sistem membaca keliru sehingga jumlah judul tabel/gambar terhitung dobel.</li>
-                <li><strong>Aturan Penulisan Belum Lengkap:</strong> Daftar aturan format di sistem masih belum konsisten dan belum seragam.</li>
+                <li><strong>Bug Pembacaan XML Dokumen:</strong> Penanganan tag kotak teks ganda Word (<code>mc:Choice</code> vs <code>mc:Fallback</code>) membuat judul tabel/gambar terhitung dobel.</li>
+                <li><strong>Inkonsistensi Definisi Aturan:</strong> Konstanta pada kode mencatat 27 aturan, sementara berkas katalog definisi baru memuat 22 aturan.</li>
+                <li><strong>Kesiapan Antarmuka Pemanggilan:</strong> Belum ada mekanisme pengujian endpoint lokal terstandar untuk menerima kiriman berkas dari OJS.</li>
               </ul>
             </div>
 
@@ -814,32 +814,32 @@
             <div class="p-3 rounded-lg bg-emerald-50/70 border border-emerald-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-                🟢 Sesudah (Hasil Perbaikan & Kalibrasi Konsultan)
+                🟢 Tindakan Teknis Konsultan (Hasil Perbaikan)
               </div>
               <ul class="text-[12px] text-emerald-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Asisten Format Mandiri Aktif:</strong> Mesin pemeriksa format mandiri aktif di port 3000 untuk mengecek kerapian tulisan di awal, tanpa menggantikan wewenang dewan editor.</li>
-                <li><strong>Pembacaan Dokumen Akurat:</strong> Logika pembacaan berkas Word diperbaiki tuntas sehingga tidak ada lagi salah hitung jumlah tabel atau gambar.</li>
-                <li><strong>25 Standar Penulisan Puskim Terkunci:</strong> Sistem berhasil mengunci 25 aturan resmi (huruf, margin, abstrak dwibahasa, format rujukan IEEE).</li>
+                <li><strong>Koreksi Logika Parser Word:</strong> Pembacaan struktur XML dokumen diperbaiki menggunakan metode penelusuran hierarki agar hitungan objek akurat.</li>
+                <li><strong>Sinkronisasi Katalog Aturan:</strong> Kode katalog diselaraskan menjadi 25 kriteria gaya selingkung terverifikasi tanpa inkonsistensi.</li>
+                <li><strong>Verifikasi Kesiapan Endpoint:</strong> Jalur penerimaan berkas (API <code>/api/check-submission</code>) teruji aktif dan siap dipanggil di server dev.</li>
               </ul>
             </div>
           </div>
 
           <div class="p-2.5 bg-emerald-100/60 rounded-lg border border-emerald-300 text-xs text-emerald-950 font-bold flex items-center justify-between">
-            <span>Status Audit Repo:</span>
-            <span class="font-mono text-[11px] bg-emerald-700 text-white px-2 py-0.5 rounded">100% LULUS AUDIT</span>
+            <span>Hasil Audit Kode:</span>
+            <span class="font-mono text-[11px] bg-emerald-700 text-white px-2 py-0.5 rounded">TERKALIBRASI & SIAP INTEGRASI</span>
           </div>
         </div>
 
-        <!-- ================= REPO 3: JP-INSIGHT RAG ================= -->
+        <!-- ================= REPO 3: JP-INSIGHT ================= -->
         <div class="feature-card border-emerald-300 bg-emerald-50/10 p-4 space-y-3 flex flex-col justify-between shadow-xs">
           <div class="space-y-3">
             <!-- Header Kartu -->
             <div class="flex justify-between items-center border-b border-emerald-200 pb-2.5">
               <span class="text-xs font-bold text-amber-950 uppercase tracking-wider bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
-                03. Repo JP-Insight (AI Knowledge)
+                03. Repositori JP-Insight
               </span>
               <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
-                ✅ Audit Korpus Selesai
+                ✅ Audit Data & Pemanen Selesai
               </span>
             </div>
 
@@ -847,12 +847,12 @@
             <div class="p-3 rounded-lg bg-rose-50/70 border border-rose-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-rose-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                🔴 Sebelum (Temuan Awal Audit Repo)
+                🔴 Kondisi Awal Kode (Saat Serah Terima)
               </div>
               <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Riset Tersimpan Statis:</strong> Ratusan naskah PDF arsip Puskim hanya tersimpan sebagai berkas pasif, pencariannya kaku dan sulit menemukan jawaban langsung.</li>
-                <li><strong>Penyaluran Dokumen Manual:</strong> Belum ada saluran otomatis untuk menyerap artikel jurnal edisi baru ke dalam basis data pengetahuan.</li>
-                <li><strong>Ketergantungan Layanan Luar:</strong> Sistem masih bergantung pada server internet luar sehingga sulit diuji coba secara mandiri di komputer lokal.</li>
+                <li><strong>Ketergantungan Layanan Cloud:</strong> Repositori masih bergantung langsung pada basis data cloud tanpa konfigurasi simulator lokal untuk pengujian dev.</li>
+                <li><strong>Validasi Skrip Penyerapan Data:</strong> Modul pemanen data (<code>lib/ojs.ts</code>) belum tervalidasi terhadap endpoint penyedia metadata OJS lokal.</li>
+                <li><strong>Integritas Korpus Tersimpan:</strong> Diperlukan verifikasi apakah 210 naskah dan dokumen SNI yang ada di repositori telah terindeks utuh di basis data.</li>
               </ul>
             </div>
 
@@ -860,34 +860,34 @@
             <div class="p-3 rounded-lg bg-emerald-50/70 border border-emerald-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-                🟢 Sesudah (Hasil Perbaikan & Pengayaan Konsultan)
+                🟢 Tindakan Teknis Konsultan (Hasil Perbaikan)
               </div>
               <ul class="text-[12px] text-emerald-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Tanya-Jawab Cerdas Berbasis AI:</strong> Sebanyak 210 riset Puskim & 786 dokumen standar SNI PUPR diserap ke memori pintar AI untuk menjawab pertanyaan pengguna secara langsung di port 3001.</li>
-                <li><strong>Mesin Pemanen Siap Pakai:</strong> Skrip penyerapan otomatis naskah jurnal terbitan baru sudah selesai diaudit dan siap aktif.</li>
-                <li><strong>Simulator Lokal Mandiri:</strong> Lingkungan dev lokal mandiri telah aktif tanpa ketergantungan koneksi pihak ketiga.</li>
+                <li><strong>Penyediaan Lingkungan Uji Mandiri:</strong> Konfigurasi lingkungan dev lokal mandiri berhasil diaktifkan tanpa ketergantungan koneksi pihak ketiga.</li>
+                <li><strong>Uji Konektivitas Pemanen Data:</strong> Skrip pembaca XML teruji sukses terhubung ke endpoint protokol OAI-PMH milik OJS.</li>
+                <li><strong>Verifikasi Integritas Korpus:</strong> Seluruh 210 naskah arsip & 786 SNI PUPR (8.589 pecahan data) terverifikasi valid dan siap dioperasikan.</li>
               </ul>
             </div>
           </div>
 
           <div class="p-2.5 bg-emerald-100/60 rounded-lg border border-emerald-300 text-xs text-emerald-950 font-bold flex items-center justify-between">
-            <span>Status Audit Repo:</span>
-            <span class="font-mono text-[11px] bg-emerald-700 text-white px-2 py-0.5 rounded">100% LULUS AUDIT</span>
+            <span>Hasil Audit Kode:</span>
+            <span class="font-mono text-[11px] bg-emerald-700 text-white px-2 py-0.5 rounded">TERVERIFIKASI & SIAP INTEGRASI</span>
           </div>
         </div>
 
       </div>
 
-      <!-- Banner Ringkasan Pemisahan Audit vs Integrasi -->
+      <!-- Banner Ringkasan Status Audit Teknis Konsultan -->
       <div class="p-4 rounded-xl bg-gradient-to-r from-[#06172d] via-[#0b2545] to-[#7c2d12] border border-amber-500/30 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 shadow-md">
         <div class="space-y-0.5">
-          <strong class="text-sm font-bold text-amber-300 block">Kesimpulan Audit Teknis 3 Repositori (Tahap 2, 3, & 4 KAK):</strong>
+          <strong class="text-sm font-bold text-amber-300 block">Status Kesiapan Repositori Konsultan (Tahap 1–4 KAK Selesai):</strong>
           <p class="text-xs text-slate-200 leading-relaxed">
-            Seluruh audit kode dan pembenahan mandiri pada 3 repositori (OJS Core, MQC Assistant, dan JP-Insight) telah <strong>TUNTAS 100%</strong> dan terverifikasi sehat di lingkungan uji. Pembahasan integrasi antarsistem (Tahap 5) dipisahkan secara khusus pada Tab Arsitektur Integrasi dan dijadwalkan pada milestone minggu depan.
+            Seluruh audit teknis dan penanganan kendala kode internal pada ketiga repositori yang diserahterimakan telah <strong>TUNTAS 100%</strong>. Repositori kini berada dalam kondisi stabil dan siap untuk tahapan pekerjaan integrasi antarsistem (Tahap 5 KAK) pada jadwal berikutnya.
           </p>
         </div>
         <span class="px-3.5 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-extrabold text-xs shrink-0 whitespace-nowrap shadow">
-          Audit 3 Repo: 100% Tuntas &bull; Integrasi: Terjadwal M-II
+          Audit 3 Repo: 100% Tuntas &bull; Integrasi: Tahap 5
         </span>
       </div>
 
