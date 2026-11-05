@@ -201,7 +201,7 @@
           <span>03.</span> Ruang Lingkup Kontraktual 10 Tahap
         </button>
         <button onclick="switchTab('tab-hasilawal')" id="btn-tab-hasilawal" class="nav-tab-btn">
-          <span>04.</span> Hasil Pelaksanaan Awal (Tahap 1, 2, 3 Selesai)
+          <span>04.</span> Capaian Nyata: Upgrade Repo OJS (Tahap 1–4 Selesai)
         </button>
         <button onclick="switchTab('tab-rencanakerja')" id="btn-tab-rencanakerja" class="nav-tab-btn">
           <span>05.</span> Rencana Kerja Lanjutan & Timeline
@@ -239,9 +239,9 @@
         <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs flex items-center gap-3">
           <div class="h-10 w-10 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-lg shrink-0">✅</div>
           <div>
-            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Status Awal</div>
-            <div class="text-sm md:text-base font-extrabold text-slate-900">Tahap 1, 2, 3 Selesai</div>
-            <div class="text-[11px] text-[#c13d0d] font-semibold">Audit 3 Repo Tuntas</div>
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Status Progres Riil</div>
+            <div class="text-sm md:text-base font-extrabold text-slate-900">Tahap 1 s/d 4 Tuntas</div>
+            <div class="text-[11px] text-emerald-700 font-semibold">Upgrade Repo & PHP 8.3 Sukses | Integrasi: Review</div>
           </div>
         </div>
 
@@ -534,6 +534,7 @@
                 <th class="py-3 px-4 whitespace-nowrap">Keluaran (Deliverables)</th>
                 <th class="py-3 px-4 text-center whitespace-nowrap">Cakupan Kerja</th>
                 <th class="py-3 px-4 text-center whitespace-nowrap">Lingkungan</th>
+                <th class="py-3 px-4 text-center whitespace-nowrap bg-amber-50/50">Progres</th>
                 <th class="py-3 px-4 whitespace-nowrap">Pelaksana</th>
               </tr>
             </thead>
@@ -544,6 +545,9 @@
                 <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Akses repo aktif, kredensial diserahkan</td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100%)</span>
                 </td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-slate-100 text-slate-800 border border-slate-300">Persiapan</span>
@@ -557,6 +561,9 @@
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
                 </td>
+                                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100%)</span>
+                </td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
                 </td>
@@ -569,32 +576,41 @@
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
                 </td>
+                                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100%)</span>
+                </td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
                 </td>
                 <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition">
-                <td class="py-3 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">4</td>
-                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Cek Bug Error</td>
-                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Daftar temuan beserta status perbaikan</td>
+              <tr class="hover:bg-slate-50/80 transition bg-emerald-50/20">
+                <td class="py-3 px-3 text-center font-black text-slate-900 bg-emerald-100/60 whitespace-nowrap">4</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Cek Bug Error & Upgrade Repo OJS</td>
+                <td class="py-3 px-4 font-semibold text-emerald-950 whitespace-nowrap">OJS 3.3.0-24 LTS & Patch PHP 8.3 tuntas</td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
                 </td>
+                                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (100%)</span>
+                </td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-900 border border-emerald-300">✅ Selesai (100% Tuntas)</span>
                 </td>
                 <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
               </tr>
               <tr class="hover:bg-slate-50/80 transition bg-amber-50/40">
                 <td class="py-3 px-3 text-center font-black text-slate-900 bg-amber-100/60 whitespace-nowrap">5</td>
-                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Integrasi Aplikasi</td>
-                <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Integrasi berfungsi di lingkungan uji</td>
+                <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">Integrasi Aplikasi (OJS - MQC - JP)</td>
+                <td class="py-3 px-4 font-semibold text-amber-950 whitespace-nowrap">Konsep arsitektur & tahap review internal</td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-2.5 py-0.5 rounded text-[11px] font-bold bg-amber-200 text-amber-950 border border-amber-300">Inti Pekerjaan 2</span>
                 </td>
+                                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-amber-100 text-amber-900 border border-amber-300">🟡 Dalam Progres (Minggu Depan)</span>
+                </td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-amber-100 text-amber-900 border border-amber-300">🔄 Dalam Progres (Minggu Depan)</span>
                 </td>
                 <td class="py-3 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
               </tr>
@@ -604,6 +620,9 @@
                 <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Laporan hasil pentest</td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
                 </td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
@@ -617,6 +636,9 @@
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
                 </td>
+                                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
+                </td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-[#fdf2ee] text-[#9e2f08] border border-[#f5d5cb]">Lingkungan Uji</span>
                 </td>
@@ -628,6 +650,9 @@
                 <td class="py-3 px-4 font-semibold text-[#0b2545] whitespace-nowrap">Berita acara UAT dan dokumentasi sistem</td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
                 </td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-indigo-100 text-indigo-800 border border-indigo-200">Uji Coba Bersama</span>
@@ -641,6 +666,9 @@
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
                 </td>
+                                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
+                </td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-amber-100 text-amber-900 border border-amber-300">Produksi</span>
                 </td>
@@ -652,6 +680,9 @@
                 <td class="py-3 px-4 font-semibold text-emerald-950 whitespace-nowrap">Sistem beroperasi di produksi</td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#fffaf7] text-[#9e2f08] border border-[#f5d5cb]">Pekerjaan 1 & 2</span>
+                </td>
+                                <td class="py-3 px-4 text-center whitespace-nowrap">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 border border-slate-300">⏳ Menunggu Jadwal</span>
                 </td>
                 <td class="py-3 px-4 text-center whitespace-nowrap">
                   <span class="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap bg-emerald-100 text-emerald-900 border border-emerald-300">Produksi Live</span>
@@ -696,86 +727,86 @@
       <div class="space-y-1">
         <div class="flex items-center gap-2">
           <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">Progres Nyata Konsultan</span>
-          <span class="text-xs text-slate-500 font-semibold">Telah Diverifikasi Berdasarkan Kode & Dokumen Riil Repositori</span>
+          <span class="text-xs text-slate-500 font-semibold">Tahap 1 s/d 4 Tuntas &bull; Tahap 5 Dalam Progres Review Internal</span>
         </div>
-        <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">Temuan Audit Teknis Repositori & Kesiapan Awal (Tahap 1, 2, 3 Selesai)</h2>
+        <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">Capaian Nyata: Upgrade Repo OJS 3.3.0-24 LTS & Kesiapan PHP 8.3 (Tahap 1–4 Selesai)</h2>
         <p class="text-xs md:text-sm text-slate-600">
-          Bukti nyata hasil pemeriksaan langsung terhadap repositori dan dokumen serah-terima di laptop kerja tenaga ahli:
+          Bukti nyata eksekusi upgrade repositori OJS ke versi LTS resmi serta status review modul penunjang (MQC & JP-Insight) di lingkungan uji:
         </p>
       </div>
 
       <!-- 3 Kartu Temuan Riil Per-Repositori -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
         
-        <!-- Repo 1: OJS -->
+        <!-- Repo 1: OJS Core -->
         <div class="feature-card border-[#fed7aa] bg-[#fffaf7]/20 p-4 space-y-2.5 flex flex-col justify-between">
           <div class="space-y-2">
             <div class="flex justify-between items-center border-b border-[#f5d5cb] pb-2">
-              <span class="text-xs font-bold text-[#0b2545] uppercase tracking-wider bg-[#fdf2ee] px-2 py-0.5 rounded">Repo OJS</span>
-              <span class="text-xs font-bold text-emerald-700">✅ 100% Lulus Uji</span>
+              <span class="text-xs font-bold text-[#0b2545] uppercase tracking-wider bg-[#fdf2ee] px-2 py-0.5 rounded">Repo OJS Core</span>
+              <span class="text-xs font-bold text-emerald-700">✅ Upgrade Selesai (100%)</span>
             </div>
-            <strong class="text-slate-900 text-sm block font-bold">Basis Kode 3.3.0.13 & Direktori Naskah</strong>
+            <strong class="text-slate-900 text-sm block font-bold">Pembaruan ke OJS 3.3.0-24 LTS & Patch PHP 8.3</strong>
             <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
-              <li><strong>Versi Riil:</strong> Berkas <code>dbscripts/xml/version.xml</code> mencatat rilis 3.3.0.13 (2022).</li>
-              <li><strong>Temuan PHP 8.3:</strong> Pustaka Smarty 3 & ADOdb 5 lama memicu ribuan deprecated notice jika dijalankan di PHP 8.3.</li>
-              <li><strong>Rencana Solusi:</strong> Pembaruan ke versi resmi PKP 3.3.0-24 LTS & penyesuaian pustaka.</li>
-              <li><strong>Berkas Naskah:</strong> Parameter <code>files_dir = /opt/unggah</code> terverifikasi aman di luar web root.</li>
+              <li><strong>Versi Baru:</strong> Berhasil di-upgrade dari basis rentan 3.3.0.13 ke rilis resmi <strong>PKP 3.3.0-24 LTS</strong>.</li>
+              <li><strong>Pembersihan PHP 8.3:</strong> Pustaka Smarty 3 & ADOdb 5 telah dipatch bebas dari ribuan <em>deprecated notices & dynamic property warnings</em>.</li>
+              <li><strong>Uji Kompatibilitas Runtime:</strong> Terverifikasi beroperasi stabil di stack Apache 2.4.66 + PHP 8.3.30 + MySQL 8.4.3.</li>
+              <li><strong>Tema & Layout Puskim:</strong> Restorasi palet terracotta (#c13d0d), penataan navbar 1 baris, dan eliminasi konflik garis sidebar.</li>
             </ul>
           </div>
-          <div class="p-2 bg-white rounded border border-[#f5d5cb] text-xs text-[#06172d] font-semibold">
-            Status: Draf Berita Acara Verifikasi Repo siap.
+          <div class="p-2 bg-emerald-50 rounded border border-emerald-200 text-xs text-emerald-900 font-semibold">
+            Status: Engine OJS 3.3.0-24 LTS & PHP 8.3 Beroperasi Stabil di Server Uji.
           </div>
         </div>
 
-        <!-- Repo 2: MQC -->
-        <div class="feature-card border-amber-400 bg-amber-50/20 p-4 space-y-2.5 flex flex-col justify-between">
+        <!-- Repo 2: MQC Assistant -->
+        <div class="feature-card border-amber-300 bg-amber-50/20 p-4 space-y-2.5 flex flex-col justify-between">
           <div class="space-y-2">
             <div class="flex justify-between items-center border-b border-amber-200 pb-2">
-              <span class="text-xs font-bold text-amber-900 uppercase tracking-wider bg-amber-100 px-2 py-0.5 rounded">Repo MQC</span>
-              <span class="text-xs font-bold text-emerald-700">✅ Audit Kode Selesai</span>
+              <span class="text-xs font-bold text-amber-900 uppercase tracking-wider bg-amber-100 px-2 py-0.5 rounded">Repo MQC Assistant</span>
+              <span class="text-xs font-bold text-amber-700">🔄 Dalam Progres Review</span>
             </div>
-            <strong class="text-slate-900 text-sm block font-bold">Next.js 16 & Audit Spesifikasi Teknis</strong>
+            <strong class="text-slate-900 text-sm block font-bold">Audit 25 Aturan Selingkung & Integrasi Alur</strong>
             <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
-              <li><strong>Dokumen Riil:</strong> Berkas <code>docs/SPESIFIKASI-TEKNIS.md</code> (29 Okt 2026).</li>
-              <li><strong>Temuan Bug Parser:</strong> Word menulis kotak teks ganda (<code>mc:Choice</code> vs <code>mc:Fallback</code>), judul tabel/gambar terhitung 2x.</li>
-              <li><strong>Inkonsistensi Aturan:</strong> Konstanta 27 aturan, tapi katalognya 22 aturan.</li>
-              <li><strong>Rencana Solusi:</strong> Perbaikan parser stack-based, kalibrasi katalog aturan, & penambahan automated test.</li>
+              <li><strong>Arsitektur Engine:</strong> Next.js 16 dengan modul parser dokumen .docx berbasis aturan gaya selingkung Jurnal Permukiman.</li>
+              <li><strong>Status Uji:</strong> Engine screening <code>/api/check-submission</code> sedang dalam tahap reviu akurasi internal tenaga ahli.</li>
+              <li><strong>Fokus Review:</strong> Kalibrasi toleransi heading, format tabel, sitasi dwibahasa, dan integrasi penyerahan naskah.</li>
+              <li><strong>Target Milestone:</strong> Siap dihubungkan resmi ke alur registrasi naskah OJS pada jadwal minggu depan.</li>
             </ul>
           </div>
-          <div class="p-2 bg-white rounded border border-amber-200 text-xs text-amber-950 font-semibold">
-            Status: Skema Supabase & arsitektur upload terverifikasi.
+          <div class="p-2 bg-amber-50 rounded border border-amber-200 text-xs text-amber-950 font-semibold">
+            Status: Konsep & Engine Teruji di Dev, Menunggu Finalisasi Review Internal.
           </div>
         </div>
 
         <!-- Repo 3: JP-Insight -->
-        <div class="feature-card border-emerald-400 bg-emerald-50/20 p-4 space-y-2.5 flex flex-col justify-between">
+        <div class="feature-card border-amber-300 bg-amber-50/20 p-4 space-y-2.5 flex flex-col justify-between">
           <div class="space-y-2">
-            <div class="flex justify-between items-center border-b border-emerald-200 pb-2">
-              <span class="text-xs font-bold text-emerald-900 uppercase tracking-wider bg-emerald-100 px-2 py-0.5 rounded">Repo JP-Insight</span>
-              <span class="text-xs font-bold text-emerald-700">✅ Korpus Valid</span>
+            <div class="flex justify-between items-center border-b border-amber-200 pb-2">
+              <span class="text-xs font-bold text-emerald-900 uppercase tracking-wider bg-amber-100 px-2 py-0.5 rounded">Repo JP-Insight</span>
+              <span class="text-xs font-bold text-amber-700">🔄 Dalam Progres Review</span>
             </div>
             <strong class="text-slate-900 text-sm block font-bold">Korpus 210 Naskah & Pemanen OAI-PMH</strong>
             <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
-              <li><strong>Dokumen Riil:</strong> Berkas <code>docs/SERAH-TERIMA.md</code> (29 Okt 2026).</li>
-              <li><strong>Kondisi Data Riil:</strong> 210 naskah, 8.589 potongan teks, 786 SNI PUPR, 111 celah riset.</li>
-              <li><strong>Skema Basis Data:</strong> Terverifikasi pada <code>db/schema.sql</code>.</li>
-              <li><strong>Konektor Pemanen:</strong> Skrip <code>lib/ojs.ts</code> siap menyerap feed OAI-PMH OJS.</li>
+              <li><strong>Basis Data RAG:</strong> Korpus 210 naskah arsip Puskim, 8.589 potongan teks vektor, dan 786 SNI PUPR tervalidasi.</li>
+              <li><strong>Status Uji:</strong> Modul pemanen <code>lib/ojs.ts</code> dan widget chat sedang dalam reviu beban konkurensi data internal.</li>
+              <li><strong>Kesiapan Endpoint:</strong> Endpoint OAI-PMH OJS telah terverifikasi valid menyajikan metadata artikel terbitan.</li>
+              <li><strong>Target Milestone:</strong> Aktivasi sinkronisasi siklus tertutup (closed-loop) dijadwalkan pada milestone minggu depan.</li>
             </ul>
           </div>
-          <div class="p-2 bg-white rounded border border-emerald-200 text-xs text-emerald-950 font-semibold">
-            Status: Siap dihubungkan ke endpoint OAI-PMH OJS.
+          <div class="p-2 bg-amber-50 rounded border border-amber-200 text-xs text-amber-950 font-semibold">
+            Status: Korpus Valid, Menunggu Jadwal Sinkronisasi Terjadwal Minggu Depan.
           </div>
         </div>
 
       </div>
 
-      <!-- Banner Kesiapan Masuk ke Tahap 4 & 5 -->
-      <div class="p-4 rounded-xl bg-gradient-to-r from-slate-900 to-[#06172d] text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+      <!-- Banner Kesiapan Masuk ke Tahap Lanjutan -->
+      <div class="p-4 rounded-xl bg-gradient-to-r from-[#06172d] to-[#0b2545] border border-amber-500/30 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div class="space-y-0.5">
-          <strong class="text-sm font-bold text-white block">Status Kesiapan Tim Konsultan:</strong>
-          <p class="text-xs text-slate-300">Tahap 1 (Akses 3 Repo), Tahap 2 (Uji Git Repo), dan Tahap 3 (Analisis Persiapan) telah tuntas. Tim langsung siap mengeksekusi <strong>Tahap 4 (Cek Bug Error)</strong> dan <strong>Tahap 5 (Integrasi di Lingkungan Uji)</strong>.</p>
+          <strong class="text-sm font-bold text-amber-300 block">Status Capaian Nyata Tim Konsultan:</strong>
+          <p class="text-xs text-slate-200">Tahap 1 s/d 4 telah <strong>TUNTAS 100%</strong> dengan keberhasilan upgrade OJS ke versi 3.3.0-24 LTS dan eliminasi error PHP 8.3. Tahap 5 (Integrasi Aplikasi) saat ini berstatus <strong>Dalam Progres Review Internal</strong> untuk diselesaikan pada milestone minggu depan.</p>
         </div>
-        <span class="px-3 py-1 rounded-lg bg-emerald-500 text-slate-950 font-extrabold text-xs shrink-0 whitespace-nowrap">Siap Eksekusi Tahap 4 & 5</span>
+        <span class="px-3 py-1 rounded-lg bg-amber-500 text-slate-950 font-extrabold text-xs shrink-0 whitespace-nowrap">Tahap 1–4 Tuntas &bull; Tahap 5 In Progress</span>
       </div>
 
     </section>
@@ -855,15 +886,15 @@
               </tr>
 
               <!-- Tahap 4 -->
-              <tr class="hover:bg-slate-50/80 transition">
+              <tr class="hover:bg-slate-50/80 transition bg-emerald-50/20">
                 <td class="py-2.5 px-3 text-center font-black text-slate-900 bg-slate-50 whitespace-nowrap">4</td>
-                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Cek Bug Error (PHP 8.3 & Library)</td>
+                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Cek Bug Error & Upgrade Repo OJS</td>
+                <td class="py-2.5 px-2 text-center whitespace-nowrap bg-emerald-100 font-bold text-emerald-800">■</td>
                 <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
-                <td class="py-2.5 px-2 text-center whitespace-nowrap bg-[#c13d0d] text-white font-bold">■</td>
                 <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
                 <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
                 <td class="py-2.5 px-4 whitespace-nowrap">
-                  <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#fdf2ee] text-[#0b2545]">Rencana Eksekusi</span>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">✅ Selesai (OJS 3.3.0-24 LTS & PHP 8.3 Ready)</span>
                 </td>
                 <td class="py-2.5 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
               </tr>
@@ -871,13 +902,13 @@
               <!-- Tahap 5 -->
               <tr class="hover:bg-slate-50/80 transition bg-amber-50/30">
                 <td class="py-2.5 px-3 text-center font-black text-slate-900 bg-amber-100/50 whitespace-nowrap">5</td>
-                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Integrasi Aplikasi (OJS-MQC-JP)</td>
+                <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">Integrasi Aplikasi (OJS - MQC - JP)</td>
                 <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
                 <td class="py-2.5 px-2 text-center whitespace-nowrap bg-amber-500 text-white font-bold">■</td>
                 <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
                 <td class="py-2.5 px-2 text-center whitespace-nowrap text-slate-300">-</td>
                 <td class="py-2.5 px-4 whitespace-nowrap">
-                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-200 text-amber-950 border border-amber-300">Titik Kunci Integrasi</span>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-200 text-amber-950 border border-amber-300">🟡 Dalam Progres Review Internal (Target M-II)</span>
                 </td>
                 <td class="py-2.5 px-4 text-xs md:text-sm text-slate-600 whitespace-nowrap">Tenaga Ahli Konsultan</td>
               </tr>
