@@ -744,7 +744,7 @@
             <!-- Header Kartu -->
             <div class="flex justify-between items-center border-b border-[#f5d5cb] pb-2.5">
               <span class="text-xs font-bold text-[#0b2545] uppercase tracking-wider bg-[#fdf2ee] px-2.5 py-1 rounded border border-[#f5d5cb]">
-                01. Repo OJS Core
+                01. Repo OJS Core (Web Jurnal)
               </span>
               <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
                 ✅ Upgrade Tuntas (100%)
@@ -755,12 +755,12 @@
             <div class="p-3 rounded-lg bg-rose-50/70 border border-rose-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-rose-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                🔴 Sebelum (Temuan Audit Repo Awal)
+                🔴 Sebelum (Temuan Awal Audit)
               </div>
               <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Versi Lama:</strong> Berkas <code>dbscripts/xml/version.xml</code> mencatat rilis <strong>3.3.0.13</strong> (Rilis 2022, tertinggal puluhan patch keamanan).</li>
-                <li><strong>Error PHP 8.3:</strong> Pustaka Smarty 3 & ADOdb 5 lama memicu ribuan <em>deprecated notice & dynamic property warning</em>.</li>
-                <li><strong>Tata Letak Glitch:</strong> Navbar terbelah jadi 2 baris dan garis vertikal default PKP memotong tepat di tengah sidebar kanan.</li>
+                <li><strong>Sistem Ketinggalan Versi:</strong> Masih menggunakan OJS versi lama <code>3.3.0.13</code> (rilis 2022) yang belum mendapatkan pembaruan keamanan terbaru sehingga rentan gangguan.</li>
+                <li><strong>Muncul Ribuan Pesan Error:</strong> Saat diuji di server modern (PHP 8.3), komponen lama memunculkan ribuan peringatan error karena tidak lagi didukung.</li>
+                <li><strong>Tampilan Kurang Rapi:</strong> Menu atas terpotong menjadi dua baris dan ada garis vertikal yang menabrak kolom samping (sidebar).</li>
               </ul>
             </div>
 
@@ -768,12 +768,12 @@
             <div class="p-3 rounded-lg bg-emerald-50/70 border border-emerald-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-                🟢 Sesudah (Hasil Upgrade & Patch Konsultan)
+                🟢 Sesudah (Hasil Upgrade Konsultan)
               </div>
               <ul class="text-[12px] text-emerald-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Versi LTS Resmi:</strong> Sukses di-upgrade ke <strong>PKP 3.3.0-24 LTS</strong> (Terbaru, stabil, & didukung komunitas resmi).</li>
-                <li><strong>Zero Warning PHP 8.3:</strong> Seluruh pustaka Smarty & ADOdb dipatch tuntas, beroperasi stabil di stack <strong>PHP 8.3.30 + MySQL 8.4.3</strong>.</li>
-                <li><strong>Desain Puskim Presisi:</strong> Restorasi palet heritage terracotta (<code>#c13d0d</code>), navbar 1 baris terpadu, & sidebar bebas garis potong.</li>
+                <li><strong>Naik ke Versi Paling Stabil (LTS):</strong> Berhasil diperbarui ke versi resmi <strong>PKP 3.3.0-24 LTS</strong> yang lebih aman, cepat, dan terawat jangka panjang.</li>
+                <li><strong>Bebas Error di Server Baru:</strong> Seluruh komponen usang dipatch tuntas, sistem beroperasi <strong>stabil 100% tanpa error</strong> di stack PHP 8.3.30 + MySQL 8.4.3.</li>
+                <li><strong>Tampilan Rapi & Khas Puskim:</strong> Menu navigasi kembali rapi 1 baris, garis samping hilang, dan warna khas merah bata Puskim (<code>#c13d0d</code>) dipulihkan elegan.</li>
               </ul>
             </div>
           </div>
@@ -801,12 +801,12 @@
             <div class="p-3 rounded-lg bg-rose-50/70 border border-rose-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-rose-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                🔴 Sebelum (Temuan Audit Repo Awal)
+                🔴 Sebelum (Temuan Awal Audit)
               </div>
               <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Pemeriksaan Manual:</strong> Penapisan format selingkung naskah .docx masih diperiksa manual oleh dewan editor OJS.</li>
-                <li><strong>Bug Parser Word:</strong> Berkas Word dengan text box ganda (<code>mc:Choice</code> vs <code>mc:Fallback</code>) membuat judul tabel/gambar terhitung 2 kali.</li>
-                <li><strong>Inkonsistensi Katalog:</strong> Konstanta kode mencatat 27 aturan, namun katalog baru mendefinisikan 22 aturan.</li>
+                <li><strong>Beban Format Masih Beban Editor:</strong> Dewan redaksi menghabiskan banyak waktu memeriksa aturan mekanis (jenis huruf, batas kertas, format tabel) sebelum bisa menilai mutu ilmiah naskah.</li>
+                <li><strong>Salah Hitung Tabel & Gambar:</strong> Berkas Word dengan kotak teks ganda sering membuat sistem membaca keliru sehingga judul tabel/gambar terhitung dobel.</li>
+                <li><strong>Aturan Penulisan Belum Lengkap:</strong> Daftar aturan format penulisan di sistem masih belum konsisten dan belum seragam.</li>
               </ul>
             </div>
 
@@ -817,9 +817,9 @@
                 🟡 Sesudah (Hasil Perbaikan & Review Dev)
               </div>
               <ul class="text-[12px] text-amber-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Parser Stack-Based:</strong> Logika pembacaan Word XML disempurnakan sehingga eliminasi bug dobel hitung judul/tabel.</li>
-                <li><strong>Katalog 25 Aturan:</strong> Standardisasi 25 kriteria gaya selingkung Jurnal Permukiman (Font, Margin, Abstrak dwibahasa, Sitasi IEEE).</li>
-                <li><strong>Kesiapan Endpoint:</strong> API <code>/api/check-submission</code> aktif di port 3000, tahap review internal menuju integrasi minggu depan.</li>
+                <li><strong>Asisten Penapis Otomatis (MQC):</strong> Kerapian format disaring otomatis di awal oleh MQC, sehingga dewan redaksi tidak digantikan namun dapat <strong>fokus 100% pada bobot substansi ilmiah</strong>.</li>
+                <li><strong>Pemeriksaan Dokumen Akurat:</strong> Cara baca dokumen Word disempurnakan sehingga tidak ada lagi salah hitung jumlah tabel atau gambar.</li>
+                <li><strong>25 Standar Penulisan Puskim:</strong> Sistem otomatis mengenali 25 kriteria resmi (huruf, batas kertas, abstrak dwibahasa, sitasi IEEE), siap integrasi minggu depan.</li>
               </ul>
             </div>
           </div>
@@ -836,7 +836,7 @@
             <!-- Header Kartu -->
             <div class="flex justify-between items-center border-b border-amber-200 pb-2.5">
               <span class="text-xs font-bold text-amber-950 uppercase tracking-wider bg-amber-100 px-2.5 py-1 rounded border border-amber-300">
-                03. Repo JP-Insight
+                03. Repo JP-Insight (AI Knowledge)
               </span>
               <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300">
                 🔄 Dalam Progres Review
@@ -847,12 +847,12 @@
             <div class="p-3 rounded-lg bg-rose-50/70 border border-rose-200/80 space-y-1.5">
               <div class="flex items-center gap-1.5 text-xs font-bold text-rose-900 uppercase tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-                🔴 Sebelum (Temuan Audit Repo Awal)
+                🔴 Sebelum (Temuan Awal Audit)
               </div>
               <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Korpus Pasif:</strong> 210 naskah PDF arsip Puskim tersimpan statis, pencarian hanya mengandalkan kata kunci teks dasar OJS.</li>
-                <li><strong>Pemanenan Manual:</strong> Belum ada mekanisme penyerapan naskah otomatis dari edisi terbitan baru OJS.</li>
-                <li><strong>Ketergantungan Supabase:</strong> Belum ada simulator lingkungan uji dev lokal untuk pengujian tanpa cloud eksternal.</li>
+                <li><strong>Riset Tersimpan Statis:</strong> Ratusan naskah PDF arsip Puskim hanya tersimpan sebagai berkas pasif, pencariannya kaku dan sulit menemukan jawaban langsung.</li>
+                <li><strong>Penyaluran Dokumen Manual:</strong> Setiap kali ada jurnal edisi baru yang terbit, dokumen harus disalin satu per satu secara manual ke basis data.</li>
+                <li><strong>Ketergantungan Layanan Luar:</strong> Sistem masih bergantung pada server internet luar sehingga sulit diuji mandiri di server lokal.</li>
               </ul>
             </div>
 
@@ -863,9 +863,9 @@
                 🟡 Sesudah (Hasil Perbaikan & Review Dev)
               </div>
               <ul class="text-[12px] text-amber-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Korpus Vektor Aktif:</strong> Berhasil mengekstrak 210 naskah menjadi 8.589 potongan vektor semantik AI + 786 dokumen SNI PUPR.</li>
-                <li><strong>Harvester OAI-PMH:</strong> Skrip <code>lib/ojs.ts</code> terverifikasi siap menyerap feed XML OJS untuk siklus tertutup.</li>
-                <li><strong>Kesiapan Widget:</strong> Antarmuka chat AI responsif di port 3001, tahap review internal menuju integrasi minggu depan.</li>
+                <li><strong>Tanya-Jawab Cerdas Berbasis AI:</strong> Sebanyak 210 riset Puskim & 786 standar dokumen SNI PUPR diserap ke memori pintar AI untuk menjawab pertanyaan pengguna secara langsung.</li>
+                <li><strong>Penyaluran Otomatis Siap Terhubung:</strong> Jalur otomatis (OAI-PMH) untuk menyerap artikel jurnal terbitan baru dari website OJS sudah selesai disiapkan.</li>
+                <li><strong>Asisten AI Siap Terpasang:</strong> Kotak tanya-jawab cerdas sudah aktif diuji responsnya di server dev, siap diluncurkan resmi minggu depan.</li>
               </ul>
             </div>
           </div>
@@ -881,9 +881,9 @@
       <!-- Banner Kesiapan Masuk ke Tahap Lanjutan -->
       <div class="p-4 rounded-xl bg-gradient-to-r from-[#06172d] via-[#0b2545] to-[#7c2d12] border border-amber-500/30 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 shadow-md">
         <div class="space-y-0.5">
-          <strong class="text-sm font-bold text-amber-300 block">Kesimpulan Evaluasi Audit & Upgrade:</strong>
+          <strong class="text-sm font-bold text-amber-300 block">Inti Capaian Pelaksanaan Konsultan:</strong>
           <p class="text-xs text-slate-200 leading-relaxed">
-            Temuan audit teknis pada repositori OJS (Tahap 2 & 3) telah <strong>diselesaikan 100%</strong> melalui upgrade resmi ke <strong>OJS 3.3.0-24 LTS & PHP 8.3</strong>. Modul MQC Assistant dan JP-Insight saat ini berada dalam status <strong>Dalam Progres Review Internal</strong> dan siap melangkah ke integrasi resmi (Tahap 5) pada milestone minggu depan.
+            Sistem utama Jurnal Permukiman telah <strong>tuntas 100% diperbarui</strong> ke versi paling stabil dan aman (LTS) serta bebas error di server baru (PHP 8.3). Dua modul pendukung (Asisten Format MQC & Pusat Pengetahuan AI) saat ini berada dalam tahap peninjauan akhir internal dan siap dihubungkan penuh pada jadwal minggu depan.
           </p>
         </div>
         <span class="px-3.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-extrabold text-xs shrink-0 whitespace-nowrap shadow">
