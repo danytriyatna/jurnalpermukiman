@@ -378,11 +378,14 @@
 
     <!-- ================= TAB 2: ARSITEKTUR & USULAN INTEGRASI TRI-SISTEM ================= -->
     <section id="tab-integrasi" class="tab-pane hidden space-y-4">
-      
       <div class="space-y-1">
-        <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">Arsitektur Ekosistem & Usulan Integrasi Tri-Sistem</h2>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#c13d0d] bg-[#fffaf7] px-2.5 py-0.5 rounded-full border border-[#f5d5cb]">Konsep Integrasi Tri-Sistem</span>
+          <span class="text-xs text-slate-500 font-semibold">OJS Jurnal Permukiman &bull; MQC Assistant &bull; JP-Insight</span>
+        </div>
+        <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">Arsitektur Ekosistem & Usulan Alur Integrasi Tri-Sistem</h2>
         <p class="text-xs md:text-sm text-slate-600">
-          Keterkaitan teknis antara OJS Jurnal Permukiman, Asisten Pengecekan Format Naskah MQC, dan Pusat Pengetahuan AI JP-Insight:
+          Membangun ekosistem penerbitan ilmiah tertutup (<em>closed-loop</em>) yang mempercepat pemeriksaan format tanpa mengurangi wewenang substansi Dewan Redaksi, serta menghubungkan publikasi dengan repositori kecerdasan buatan:
         </p>
       </div>
 
@@ -390,69 +393,176 @@
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4">
         
         <!-- App 1: OJS Core -->
-        <div class="feature-card border-[#fed7aa] bg-[#fffaf7]/20 p-4 space-y-2.5 flex flex-col justify-between">
+        <div class="feature-card border-[#fed7aa] bg-[#fffaf7]/30 p-4 space-y-2.5 flex flex-col justify-between shadow-xs">
           <div class="space-y-1.5">
-            <div class="flex justify-between items-center">
-              <span class="text-xs font-bold text-[#0b2545] uppercase tracking-widest bg-[#fdf2ee] px-2.5 py-0.5 rounded-full">Sistem Utama</span>
+            <div class="flex justify-between items-center border-b border-[#fed7aa] pb-2">
+              <span class="text-xs font-bold text-[#0b2545] uppercase tracking-widest bg-[#fdf2ee] px-2.5 py-0.5 rounded-full border border-[#f5d5cb]">Sistem Utama</span>
               <span class="text-xs text-slate-500 font-bold">Publikasi Resmi</span>
             </div>
-            <div class="text-base md:text-lg font-extrabold text-slate-900">1. OJS Jurnal Permukiman</div>
+            <div class="text-base font-extrabold text-slate-900">1. OJS Jurnal Permukiman</div>
             <p class="text-xs text-slate-600 leading-relaxed">
-              Pusat publikasi ilmiah Kementerian PUPR. Mengelola registrasi naskah, proses telaah sejawat (*peer review*), dan penerbitan edisi berkala.
+              Pusat publikasi ilmiah Kementerian PU. Mengelola registrasi naskah, proses telaah sejawat (<em>peer review</em>), dan penerbitan edisi berkala.
             </p>
           </div>
           <div class="text-xs text-slate-800 bg-white p-2.5 rounded-lg border border-[#f5d5cb] space-y-0.5">
             <strong class="text-[#06172d] block font-bold">Peran Integrasi:</strong>
-            <div>• Menyimpan naskah final & menyajikan feed metadata XML <strong>OAI-PMH</strong>.</div>
+            <div>• Menampung naskah terstandar & menyajikan feed metadata XML <strong>OAI-PMH</strong> terbuka.</div>
           </div>
         </div>
 
         <!-- App 2: MQC Screening -->
-        <div class="feature-card border-amber-300 bg-amber-50/20 p-4 space-y-2.5 flex flex-col justify-between">
+        <div class="feature-card border-amber-300 bg-amber-50/20 p-4 space-y-2.5 flex flex-col justify-between shadow-xs">
           <div class="space-y-1.5">
-            <div class="flex justify-between items-center">
-              <span class="text-xs font-bold text-amber-900 uppercase tracking-widest bg-amber-100 px-2.5 py-0.5 rounded-full">Verifikasi Awal</span>
+            <div class="flex justify-between items-center border-b border-amber-200 pb-2">
+              <span class="text-xs font-bold text-amber-900 uppercase tracking-widest bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-300">Pemeriksaan Awal</span>
               <span class="font-mono text-xs text-slate-500 font-bold">Next.js 16</span>
             </div>
-            <div class="text-base md:text-lg font-extrabold text-slate-900">2. MQC (Pengecekan Format Otomatis)</div>
+            <div class="text-base font-extrabold text-slate-900">2. MQC (Pengecekan Format Otomatis)</div>
             <p class="text-xs text-slate-600 leading-relaxed">
-              Memeriksa kesesuaian format Word (.docx) naskah masuk: gaya selingkung PUPR, margin, jenis font, serta validasi DOI sitasi daftar pustaka.
+              Memeriksa kesesuaian format Word (.docx) naskah masuk: gaya selingkung PUPR, margin, jenis font, struktur naskah, serta validasi sitasi.
             </p>
           </div>
           <div class="text-xs text-slate-800 bg-white p-2.5 rounded-lg border border-amber-200 space-y-0.5">
             <strong class="text-amber-950 block font-bold">Peran Integrasi:</strong>
-            <div>• Gerbang verifikasi format naskah & penerbitan Tiket Lolos sebelum masuk ke OJS.</div>
+            <div>• Gerbang verifikasi format mandiri & penerbitan Tiket Validasi sebelum naskah masuk ke OJS.</div>
           </div>
         </div>
 
         <!-- App 3: JP-Insight (RAG System) -->
-        <div class="feature-card border-emerald-300 bg-emerald-50/20 p-4 space-y-2.5 flex flex-col justify-between">
+        <div class="feature-card border-emerald-300 bg-emerald-50/20 p-4 space-y-2.5 flex flex-col justify-between shadow-xs">
           <div class="space-y-1.5">
-            <div class="flex justify-between items-center">
-              <span class="text-xs font-bold text-emerald-900 uppercase tracking-widest bg-emerald-100 px-2.5 py-0.5 rounded-full">Pusat Referensi</span>
+            <div class="flex justify-between items-center border-b border-emerald-200 pb-2">
+              <span class="text-xs font-bold text-emerald-900 uppercase tracking-widest bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300">Pusat Referensi</span>
               <span class="font-mono text-xs text-slate-500 font-bold">AI Korpus</span>
             </div>
-            <div class="text-base md:text-lg font-extrabold text-slate-900">3. JP-Insight (Sistem AI)</div>
+            <div class="text-base font-extrabold text-slate-900">3. JP-Insight (Sistem AI)</div>
             <p class="text-xs text-slate-600 leading-relaxed">
-              Sistem temu kembali cerdas berbasis kecerdasan buatan. Menyediakan analisis kebaruan riset berdasarkan seluruh arsip terbitan dan regulasi SNI PUPR.
+              Sistem temu kembali cerdas berbasis AI. Menyediakan analisis kebaruan riset berdasarkan 210 arsip terbitan dan 786 regulasi SNI PUPR.
             </p>
           </div>
           <div class="text-xs text-slate-800 bg-white p-2.5 rounded-lg border border-emerald-200 space-y-0.5">
             <strong class="text-emerald-950 block font-bold">Peran Integrasi:</strong>
-            <div>• Menyerap artikel terbitan OJS secara otomatis via skrip pemanen OAI-PMH.</div>
+            <div>• Menyerap artikel terbitan OJS secara otomatis via skrip pemanen OAI-PMH tanpa unggah manual.</div>
           </div>
         </div>
 
       </div>
 
+      <!-- ALUR PROSES USULAN INTEGRASI 5 LANGKAH (CLOSED-LOOP WORKFLOW) -->
+      <div class="feature-card p-5 space-y-4 bg-white border border-slate-200 shadow-xs">
+        <div class="border-b border-slate-200 pb-2.5 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-[#c13d0d] bg-[#fffaf7] px-2.5 py-0.5 rounded-full border border-[#f5d5cb] inline-block mb-1">Alur Kerja Terpadu</span>
+            <h3 class="text-base md:text-lg font-extrabold text-[#0b2545]">Usulan Alur Proses Integrasi End-to-End (5 Tahapan)</h3>
+          </div>
+          <span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300 self-start sm:self-auto">
+            Siklus Ekosistem Tertutup (Closed-Loop)
+          </span>
+        </div>
+
+        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+          Alur kerja mengintegrasikan ketiga aplikasi secara harmonis mulai dari penyusunan draf oleh penulis, verifikasi format otomatis, telaah substansi oleh dewan editor, hingga pemanenan kembali ke korpus AI:
+        </p>
+
+        <!-- Stepper 5 Tahap -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+          
+          <!-- Tahap 1 -->
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between space-y-2 relative hover:border-[#c13d0d] transition">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="w-7 h-7 rounded-lg bg-[#0b2545] text-white flex items-center justify-center font-bold text-xs">01</span>
+                <span class="text-[10px] font-bold text-slate-600 uppercase bg-slate-200/70 px-2 py-0.5 rounded">Penulis</span>
+              </div>
+              <strong class="text-xs font-bold text-slate-900 block">Eksplorasi Sitasi & Regulasi SNI</strong>
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                Penulis berkonsultasi dengan <strong>JP-Insight</strong> untuk menelusuri 210 naskah arsip Puskim dan 786 SNI PUPR.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-slate-200 text-[10px] text-slate-700 font-semibold bg-white p-1.5 rounded">
+              🎯 <em>Hasil:</em> Draf naskah memiliki referensi SNI yang kokoh sejak awal.
+            </div>
+          </div>
+
+          <!-- Tahap 2 -->
+          <div class="p-3.5 rounded-xl bg-amber-50/50 border border-amber-300 flex flex-col justify-between space-y-2 relative hover:border-amber-500 transition">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="w-7 h-7 rounded-lg bg-amber-500 text-white flex items-center justify-center font-bold text-xs">02</span>
+                <span class="text-[10px] font-bold text-amber-900 uppercase bg-amber-100 px-2 py-0.5 rounded">Portal MQC</span>
+              </div>
+              <strong class="text-xs font-bold text-amber-950 block">Pengecekan Format Otomatis Mandiri</strong>
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                Penulis mengunggah berkas <code>.docx</code> ke <strong>MQC Assistant</strong> untuk menguji 25 kriteria gaya selingkung.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-amber-200 text-[10px] text-amber-950 font-semibold bg-white p-1.5 rounded">
+              🎯 <em>Hasil:</em> Revisi mandiri & penerbitan <strong>Tiket Validasi Format</strong>.
+            </div>
+          </div>
+
+          <!-- Tahap 3 -->
+          <div class="p-3.5 rounded-xl bg-[#fffaf7] border border-[#fed7aa] flex flex-col justify-between space-y-2 relative hover:border-[#c13d0d] transition">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="w-7 h-7 rounded-lg bg-[#c13d0d] text-white flex items-center justify-center font-bold text-xs">03</span>
+                <span class="text-[10px] font-bold text-[#9e2f08] uppercase bg-[#fdf2ee] px-2 py-0.5 rounded">Portal OJS</span>
+              </div>
+              <strong class="text-xs font-bold text-[#06172d] block">Pengajuan Naskah Terstandar</strong>
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                Penulis submit ke <strong>OJS</strong> menyertakan Tiket Validasi Format. OJS memverifikasi tiket via API lokal.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-[#f5d5cb] text-[10px] text-[#06172d] font-semibold bg-white p-1.5 rounded">
+              🎯 <em>Hasil:</em> Naskah masuk ke OJS dalam kondisi format 100% bersih.
+            </div>
+          </div>
+
+          <!-- Tahap 4 -->
+          <div class="p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-300 flex flex-col justify-between space-y-2 relative hover:border-emerald-500 transition">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">04</span>
+                <span class="text-[10px] font-bold text-emerald-900 uppercase bg-emerald-100 px-2 py-0.5 rounded">Redaksi</span>
+              </div>
+              <strong class="text-xs font-bold text-emerald-950 block">Telaah Substansi Ilmiah Murni</strong>
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                <strong>Wewenang Redaksi Utuh:</strong> Dewan Editor & Reviewer murni menilai mutu sains, metodologi, dan signifikansi.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-emerald-200 text-[10px] text-emerald-950 font-semibold bg-white p-1.5 rounded">
+              🎯 <em>Hasil:</em> Beban mekanis editor hilang, naskah disetujui & terbit resmi.
+            </div>
+          </div>
+
+          <!-- Tahap 5 -->
+          <div class="p-3.5 rounded-xl bg-indigo-50/50 border border-indigo-200 flex flex-col justify-between space-y-2 relative hover:border-indigo-400 transition">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">05</span>
+                <span class="text-[10px] font-bold text-indigo-900 uppercase bg-indigo-100 px-2 py-0.5 rounded">AI Ingest</span>
+              </div>
+              <strong class="text-xs font-bold text-indigo-950 block">Pemanenan Otomatis Edisi Baru</strong>
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                OJS menyiarkan terbitan via <strong>OAI-PMH</strong>. Skrip JP-Insight menyerap artikel baru secara otomatis ke korpus AI.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-indigo-200 text-[10px] text-indigo-950 font-semibold bg-white p-1.5 rounded">
+              🎯 <em>Hasil:</em> Korpus cerdas terbarui otomatis tanpa staf mengunggah PDF.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <!-- USULAN 3 JALUR MEKANISME INTEGRASI TEKNIS -->
-      <div class="feature-card p-5 space-y-3.5 bg-white border border-slate-200">
+      <div class="feature-card p-5 space-y-3.5 bg-white border border-slate-200 shadow-xs">
         <div class="border-b border-slate-200 pb-2 flex flex-col sm:flex-row justify-between sm:items-center gap-1">
           <div>
-            <span class="text-xs font-bold uppercase tracking-widest text-[#c13d0d] bg-[#fffaf7] px-2 py-0.5 rounded-full inline-block mb-1">Mekanisme Terpadu</span>
-            <h3 class="text-base md:text-lg font-extrabold text-slate-900">Usulan 3 Jalur Teknis Integrasi Antar-Aplikasi</h3>
+            <span class="text-xs font-bold uppercase tracking-widest text-[#c13d0d] bg-[#fffaf7] px-2 py-0.5 rounded-full inline-block mb-1 border border-[#f5d5cb]">Protokol Komunikasi</span>
+            <h3 class="text-base md:text-lg font-extrabold text-[#0b2545]">Usulan 3 Jalur Teknis Integrasi Antar-Aplikasi</h3>
           </div>
-          <span class="text-xs font-bold text-[#0b2545] bg-[#fdf2ee] px-2.5 py-0.5 rounded-full">Diuji di Server Dev</span>
+          <span class="text-xs font-bold text-[#0b2545] bg-[#fdf2ee] px-2.5 py-0.5 rounded-full border border-[#f5d5cb]">Diuji di Lingkungan Uji (Server Dev)</span>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
@@ -464,21 +574,25 @@
               <strong class="text-amber-950 text-sm">MQC ➔ OJS (Verifikasi Format)</strong>
             </div>
             <p class="text-xs text-slate-600 leading-relaxed">
-              Penulis menapiskan naskah Word (.docx) di MQC. Naskah yang memenuhi aturan gaya selingkung PUPR menerbitkan <strong>Tiket Lolos Format Digital</strong>. Naskah yang masuk ke OJS sudah bersih sehingga editor fokus murni pada telaah substansi ilmiah.
+              Penulis mengecek draf naskah Word (.docx) di portal MQC. Naskah yang memenuhi aturan gaya selingkung PUPR menerbitkan <strong>Tiket Validasi Format Digital</strong>. Saat naskah diajukan ke OJS, form submission memverifikasi tiket via API lokal (<code>/api/check-submission</code>) sehingga naskah yang masuk ke dewan editor dijamin rapi.
             </p>
-            <div class="text-xs font-semibold text-amber-900 bg-amber-100/70 p-1.5 rounded">Tiket Lolos & Naskah Bersih</div>
+            <div class="text-xs font-semibold text-amber-900 bg-amber-100/70 p-1.5 rounded border border-amber-200">
+              API Tiket Format & Berkas Naskah Terstandar
+            </div>
           </div>
 
           <!-- Jalur 2 -->
-          <div class="p-3.5 rounded-xl bg-[#fffaf7]/50 border border-[#fed7aa] space-y-2">
+          <div class="p-3.5 rounded-xl bg-[#fffaf7]/60 border border-[#fed7aa] space-y-2">
             <div class="flex items-center gap-2">
               <span class="h-6 w-6 rounded bg-[#c13d0d] text-white flex items-center justify-center font-bold text-xs">J2</span>
               <strong class="text-[#06172d] text-sm">OJS ➔ JP-Insight (Automated Ingest)</strong>
             </div>
             <p class="text-xs text-slate-600 leading-relaxed">
-              OJS menyediakan feed XML resmi via protokol <strong>OAI-PMH v2.0</strong> (<code>/index.php/JP/oai</code>). Modul <code>lib/ojs.ts</code> di JP-Insight secara terjadwal menyerap artikel baru, mengekstrak teks, dan memasukkannya ke basis data vektor <strong>tanpa staf mengunggah PDF manual</strong>.
+              OJS menyediakan feed XML resmi via protokol standar <strong>OAI-PMH v2.0</strong> (<code>/index.php/JP/oai</code>). Modul <code>lib/ojs.ts</code> di JP-Insight secara terjadwal menyerap artikel edisi baru, mengekstrak teks, dan memasukkannya ke basis data vektor <strong>tanpa staf pengelola mengunggah PDF manual</strong>.
             </p>
-            <div class="text-xs font-semibold text-[#0b2545] bg-[#fdf2ee]/70 p-1.5 rounded">Pemanen Otomatis (OAI-PMH Harvester)</div>
+            <div class="text-xs font-semibold text-[#0b2545] bg-[#fdf2ee]/80 p-1.5 rounded border border-[#f5d5cb]">
+              Protokol Terbuka OAI-PMH Harvester
+            </div>
           </div>
 
           <!-- Jalur 3 -->
@@ -488,26 +602,27 @@
               <strong class="text-emerald-950 text-sm">JP-Insight ➔ Penulis (Sitasi SNI PUPR)</strong>
             </div>
             <p class="text-xs text-slate-600 leading-relaxed">
-              Peneliti memanfaatkan asisten JP-Insight untuk mencari naskah terkait terdahulu dan peraturan SNI PUPR yang relevan. Naskah yang disusun memiliki referensi kuat dan langsung lolos verifikasi sitasi saat diuji di MQC.
+              Penulis memanfaatkan asisten JP-Insight untuk mencari naskah terkait terdahulu dan peraturan SNI PUPR yang relevan. Naskah yang disusun memiliki rujukan yang kuat dan langsung lolos verifikasi sitasi saat diuji di MQC.
             </p>
-            <div class="text-xs font-semibold text-emerald-900 bg-emerald-100/70 p-1.5 rounded">Rujukan SNI & Celah Riset</div>
+            <div class="text-xs font-semibold text-emerald-900 bg-emerald-100/70 p-1.5 rounded border border-emerald-200">
+              Rujukan 786 SNI & 210 Naskah Arsip Puskim
+            </div>
           </div>
 
         </div>
       </div>
 
       <!-- Garansi Keamanan Berkas Naskah PDF -->
-      <div class="p-4 bg-emerald-50/60 rounded-xl border border-emerald-300 flex items-start gap-3">
+      <div class="p-4 bg-emerald-50/60 rounded-xl border border-emerald-300 flex items-start gap-3 shadow-xs">
         <div class="h-9 w-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-lg font-bold shrink-0">📄</div>
         <div class="space-y-0.5">
-          <strong class="text-emerald-950 text-sm font-bold block">Keamanan Penyimpanan Berkas Naskah (/opt/unggah)</strong>
+          <strong class="text-emerald-950 text-sm font-bold block">Keamanan Penyimpanan Berkas Naskah Publikasi (/opt/unggah)</strong>
           <p class="text-xs text-slate-700 leading-relaxed">
-            Seluruh berkas naskah PDF terbitan Jurnal Permukiman disimpan pada direktori terpisah di luar web root aplikasi (<code>/opt/unggah</code>). Proses pembaruan sistem dan integrasi tidak mengubah atau memindahkan berkas naskah publikasi tersebut.
+            Seluruh berkas naskah PDF terbitan Jurnal Permukiman disimpan pada direktori terpisah di luar web root aplikasi (<code>/opt/unggah</code>). Proses pembaruan sistem OJS ke PHP 8.3 dan perancangan integrasi tri-sistem tidak mengubah, memindahkan, atau memengaruhi berkas publikasi bersejarah tersebut.
           </p>
         </div>
       </div>
-
-    </section>
+</section>
 
     <!-- ================= TAB 3: RUANG LINGKUP KONTRAKTUAL 10 TAHAP ================= -->
     <section id="tab-ruanglingkup" class="tab-pane hidden space-y-4">
@@ -733,15 +848,14 @@
 
     <!-- ================= TAB 4: HASIL PELAKSANAAN AWAL (TAHAP 1, 2, 3 SELESAI) ================= -->
     <section id="tab-hasilawal" class="tab-pane hidden space-y-4">
-      
       <div class="space-y-1">
         <div class="flex items-center gap-2">
-          <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">Laporan Audit Teknis Repositori</span>
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300">Laporan Audit Teknis Repositori</span>
           <span class="text-xs text-slate-500 font-semibold">Pemeriksaan Kode & Kesiapan Repositori Serah-Terima (Tahap 2, 3, & 4 KAK)</span>
         </div>
         <h2 class="text-lg md:text-xl font-extrabold text-[#0b2545] tracking-tight">Hasil Audit Teknis & Pembenahan 3 Repositori (Sebelum vs Sesudah)</h2>
         <p class="text-xs md:text-sm text-slate-600">
-          Laporan objektif kondisi kode repositori saat diserahterimakan kepada konsultan dibanding tindakan teknis perbaikan yang telah dilaksanakan:
+          Laporan objektif kondisi kode repositori saat diserahterimakan kepada konsultan dibanding tindakan teknis perbaikan yang telah dilaksanakan, lengkap dengan dasar bukti fisik repositori:
         </p>
       </div>
 
@@ -768,7 +882,7 @@
                 🔴 Kondisi Awal Kode (Saat Serah Terima)
               </div>
               <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
-                <li><strong>Basis Kode Versi Lama:</strong> Repositori berada pada rilis <code>3.3.0.13</code> (2022) yang belum memuat perbaikan keamanan PKP terkini.</li>
+                <li><strong>Basis Kode Versi Lama:</strong> Repositori berada pada rilis <code>3.3.0.13</code> (Oktober 2022) yang belum memuat perbaikan keamanan PKP terkini.</li>
                 <li><strong>Inkompatibilitas PHP 8.3:</strong> Pustaka bawaan (Smarty 3 & ADOdb 5) memicu ribuan pesan peringatan error saat diuji pada server PHP 8.3.</li>
                 <li><strong>Kendala Tata Letak Bawaan:</strong> Ditemukan bug styling di mana menu navigasi atas terbelah dua baris dan garis vertikal memotong kolom sidebar.</li>
               </ul>
@@ -785,6 +899,16 @@
                 <li><strong>Penambalan Pustaka Usang:</strong> Pustaka internal telah dipatch penuh; sistem beroperasi <strong>100% bebas error</strong> pada stack PHP 8.3.30 + MySQL 8.4.3.</li>
                 <li><strong>Koreksi Antarmuka & Tema:</strong> Bug CSS diselesaikan (navbar rapi 1 baris, sidebar bersih) dan identitas warna merah bata Puskim diselaraskan.</li>
               </ul>
+            </div>
+
+            <!-- Blok DASAR BUKTI FISIK REPO -->
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-300 space-y-1 text-[11px] text-slate-700">
+              <strong class="text-slate-900 block font-bold flex items-center gap-1">
+                <span>🔍</span> Dasar Bukti Fisik Repositori & DB:
+              </strong>
+              <div>• <strong>Versi 3.3.0.13:</strong> <code>dbscripts/xml/version.xml</code>, <code>docs/README.md</code>, dan record DB <code>versions</code> (11-05-2023).</div>
+              <div>• <strong>PHP Awal:</strong> <code>lib/pkp/composer.json</code> terkunci pada platform <code>php: 7.3.0</code>; server lama <code>PHP 7.3 - 8.0</code>.</div>
+              <div>• <strong>PHP Target:</strong> Mandat KAK Pekerjaan 1 (Peningkatan ke PHP 8.3); teruji di PHP 8.3.30.</div>
             </div>
           </div>
 
@@ -832,6 +956,16 @@
                 <li><strong>Verifikasi Kesiapan Endpoint:</strong> Jalur penerimaan berkas (API <code>/api/check-submission</code>) teruji aktif dan siap dipanggil di server dev.</li>
               </ul>
             </div>
+
+            <!-- Blok DASAR BUKTI FISIK REPO -->
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-300 space-y-1 text-[11px] text-slate-700">
+              <strong class="text-slate-900 block font-bold flex items-center gap-1">
+                <span>🔍</span> Dasar Bukti Fisik Repositori:
+              </strong>
+              <div>• <strong>Parser Word:</strong> <code>src/lib/docx.ts</code> (penanganan DrawingML Word dan eliminasi bug hitung ganda).</div>
+              <div>• <strong>Katalog Aturan:</strong> <code>src/lib/constants.ts</code> vs <code>src/lib/rules.ts</code> (standarisasi 25 kriteria gaya selingkung).</div>
+              <div>• <strong>Endpoint API:</strong> <code>src/app/api/check-submission/route.ts</code> aktif di port 3000.</div>
+            </div>
           </div>
 
           <div class="p-2.5 bg-emerald-100/60 rounded-lg border border-emerald-300 text-xs text-emerald-950 font-bold flex items-center justify-between">
@@ -878,6 +1012,16 @@
                 <li><strong>Verifikasi Integritas Korpus:</strong> Seluruh 210 naskah arsip & 786 SNI PUPR (8.589 pecahan data) terverifikasi valid dan siap dioperasikan.</li>
               </ul>
             </div>
+
+            <!-- Blok DASAR BUKTI FISIK REPO -->
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-300 space-y-1 text-[11px] text-slate-700">
+              <strong class="text-slate-900 block font-bold flex items-center gap-1">
+                <span>🔍</span> Dasar Bukti Fisik Repositori:
+              </strong>
+              <div>• <strong>Pemanen Data:</strong> <code>lib/ojs.ts</code> (skrip harvester OAI-PMH siap menyerap feed XML OJS).</div>
+              <div>• <strong>Korpus AI:</strong> Direktori <code>data/seed</code> (210 naskah arsip Puskim + 786 SNI PUPR terindeks).</div>
+              <div>• <strong>Layanan Dev:</strong> Port 3001 aktif melayani tanya-jawab semantik secara mandiri di server lokal.</div>
+            </div>
           </div>
 
           <div class="p-2.5 bg-emerald-100/60 rounded-lg border border-emerald-300 text-xs text-emerald-950 font-bold flex items-center justify-between">
@@ -900,8 +1044,7 @@
           Audit 3 Repo: 100% Tuntas &bull; Integrasi: Tahap 5
         </span>
       </div>
-
-    </section>
+</section>
 
     <!-- ================= TAB 5: RENCANA KERJA LANJUTAN & TIMELINE ================= -->
     <section id="tab-rencanakerja" class="tab-pane hidden space-y-4">
