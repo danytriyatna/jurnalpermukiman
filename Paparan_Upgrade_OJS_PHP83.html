@@ -636,7 +636,7 @@
               <ul class="text-[12px] text-rose-950 space-y-1 list-disc list-inside leading-relaxed">
                 <li><strong>Basis Kode Versi Lama:</strong> Repositori berada pada rilis <code>3.3.0.13</code> (Oktober 2022) yang belum memuat perbaikan keamanan PKP terkini.</li>
                 <li><strong>Inkompatibilitas PHP 8.3:</strong> Pustaka bawaan (Smarty 3 & ADOdb 5) memicu ribuan pesan peringatan error saat diuji pada server PHP 8.3.</li>
-                <li><strong>Kendala Tata Letak Bawaan:</strong> Ditemukan bug styling di mana menu navigasi atas terbelah dua baris dan garis vertikal memotong kolom sidebar.</li>
+                <li><strong>Ketergantungan Aset Pihak Ketiga:</strong> Berkas tema <code>styleSheet.css</code> memuat tautan gambar latar ke domain eksternal publik (<code>i.ibb.co</code>) yang rawan <em>broken link</em>, serta belum tersedia bilah akses cepat ke aplikasi ekosistem.</li>
               </ul>
             </div>
 
@@ -649,7 +649,7 @@
               <ul class="text-[12px] text-emerald-950 space-y-1 list-disc list-inside leading-relaxed">
                 <li><strong>Pembaruan ke Rilis LTS Resmi:</strong> Basis kode berhasil ditingkatkan ke versi resmi <strong>PKP 3.3.0-24 LTS</strong> yang teruji stabil dan aman.</li>
                 <li><strong>Penambalan Pustaka Usang:</strong> Pustaka internal telah dipatch penuh; sistem beroperasi <strong>100% bebas error</strong> pada stack PHP 8.3.30 + MySQL 8.4.3.</li>
-                <li><strong>Koreksi Antarmuka & Tema:</strong> Bug CSS diselesaikan (navbar rapi 1 baris, sidebar bersih) dan identitas warna merah bata Puskim diselaraskan.</li>
+                <li><strong>Lokalisasi Aset & Integrasi Navigasi:</strong> Seluruh aset tampilan dilokalisasi ke server internal, palet warna heritage Puskim (<code>#c13d0d</code>) distandarisasi, dan tombol akses cepat ekosistem disematkan rapi 1 baris.</li>
               </ul>
             </div>
 
@@ -661,6 +661,7 @@
               <div>• <strong>Versi 3.3.0.13:</strong> <code>dbscripts/xml/version.xml</code>, <code>docs/README.md</code>, dan record DB <code>versions</code> (11-05-2023).</div>
               <div>• <strong>PHP Awal:</strong> <code>lib/pkp/composer.json</code> terkunci pada platform <code>php: 7.3.0</code>; server lama <code>PHP 7.3 - 8.0</code>.</div>
               <div>• <strong>PHP Target:</strong> Mandat KAK Pekerjaan 1 (Peningkatan ke PHP 8.3); teruji di PHP 8.3.30.</div>
+              <div>• <strong>Aset Tema:</strong> <code>public/journals/1/styleSheet.css</code> (lokalisasi aset gambar eksternal & penataan navigasi).</div>
             </div>
           </div>
 
