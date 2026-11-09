@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full antialiased text-[14px]">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jurnal Permukiman - Redesign Segar & Modern (Struktur & Warna Eksisting Tetap 100%)</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Newsreader -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brick: {
+              DEFAULT: '#C13D0D',     /* MERAH BATA ASLI PUSKIM */
+              dark: '#A0320A',
+              deep: '#7E2506',
+              soft: '#FDF4F0',
+              border: '#F4D4C9',
+            },
+            slateCustom: '#64748B',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-size: 14px;
+      line-height: 1.6;
+      background-color: #F8FAFC;
+    }
+    
+    /* Sentuhan Segar: Bayangan Ambient Lembut, Menggantikan Box-Shadow Kaku Abu-Abu 90-an */
+    .fresh-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(193, 61, 13, 0.03);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fresh-card:hover {
+      box-shadow: 0 6px 20px rgba(193, 61, 13, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+      border-color: #F4D4C9;
+    }
+
+    /* 18 Menu Policy: Solid Merah Bata Puskim (#C13D0D) Eksisting - Segar, Rapi, Bernapas */
+    .policy-bata-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8.5px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #FFFFFF !important;
+      background: #C13D0D;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none !important;
+    }
+    .policy-bata-btn:hover {
+      background: #A0320A !important;
+      transform: translateX(4px);
+      box-shadow: 0 4px 10px rgba(193, 61, 13, 0.35);
+      color: #FFFFFF !important;
+    }
+    .policy-bata-btn.home-btn {
+      background: #778899 !important; /* Warna Abu-abu Khusus Home Eksisting */
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .policy-bata-btn.home-btn:hover {
+      background: #5A6978 !important;
+      box-shadow: 0 4px 10px rgba(119, 136, 153, 0.4);
+    }
+
+    /* Efek Header Navbar Gradasi Lembut */
+    .bata-navbar {
+      background: linear-gradient(135deg, #C13D0D 0%, #A5330A 100%);
+    }
+  
+    /* Mode Background Samping Kiri & Kanan */
+    body.bg-mode-clean {
+      background-color: #F8FAFC !important;
+      background-image: none !important;
+    }
+    body.bg-mode-clean #main-page-card {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid #E2E8F0;
+    }
+
+    body.bg-mode-bata {
+      background-color: #C13D0D !important;
+      background-image: radial-gradient(circle at 50% 0%, #C84313 0%, #9C2E07 100%) !important;
+      background-attachment: fixed !important;
+    }
+    body.bg-mode-bata #main-page-card {
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.25) !important;
+      border-radius: 16px !important;
+      background: #FFFFFF !important;
+      padding: 24px !important;
+    }
+
+    body.bg-mode-warm {
+      background-color: #F6F1ED !important;
+      background-image: radial-gradient(#E8DDD5 0.75px, transparent 0.75px) !important;
+      background-size: 16px 16px !important;
+    }
+    body.bg-mode-warm #main-page-card {
+      background: #FFFFFF !important;
+      box-shadow: 0 10px 30px -5px rgba(193, 61, 13, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03), 0 0 0 1px #EAE0DA !important;
+      border-radius: 16px !important;
+      padding: 24px !important;
+    }
+
+  </style>
+</head>
+
+<body id="page-body" class="h-full flex flex-col font-sans text-slate-800 bg-mode-bata transition-colors duration-200">
+
+  <!-- ======================================================== -->
+  <!-- BAR ATAS INDIKATOR PENJELAS (HEADER PRESENTASI KIRA)    -->
+  <!-- ======================================================== -->
+  <header class="bg-[#1E293B] text-white border-b-2 border-brick sticky top-0 z-50 px-4 sm:px-6 py-2 shadow-sm">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-brick flex items-center justify-center font-black text-white text-sm shadow">
+          JP
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-sm tracking-tight text-white uppercase">JURNAL PERMUKIMAN</span>
+            <span class="text-[11px] font-bold bg-brick text-white px-2 py-0.5 rounded-full uppercase tracking-wider">
+              REDESIGN SEGAR &bull; TATA LETAK 100% IDENTIK
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400 hidden sm:block">
+            Merah Bata Puskim Dominan &bull; Zero Perubahan Logika &bull; 100% Siap Diterapkan ke styleSheet.css
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1.5 bg-slate-800/90 p-1 rounded-lg border border-slate-700 text-xs">
+        <span class="text-slate-300 px-2 font-medium hidden lg:inline">Pilihan Latar Samping:</span>
+        <button id="btn-clean" onclick="setSideBg('clean')" class="px-2.5 py-1 rounded font-medium text-slate-300 hover:text-white flex items-center gap-1">
+          <i class="fa fa-square-o"></i> <span>Putih Bersih</span>
+        </button>
+        <button id="btn-warm" onclick="setSideBg('warm')" class="px-2.5 py-1 rounded font-medium text-slate-300 hover:text-white flex items-center gap-1">
+          <i class="fa fa-tint"></i> <span>Warm Soft Bata</span>
+        </button>
+        <button id="btn-bata" onclick="setSideBg('bata')" class="px-2.5 py-1 rounded font-bold text-white bg-[#C13D0D] shadow flex items-center gap-1 ring-1 ring-white/50">
+          <i class="fa fa-th-large"></i> <span>Merah Bata OJS</span>
+        </button>
+      </div>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="http://localhost/jurnalpermukiman/index.php/JP" target="_blank" class="bg-brick hover:bg-brick-dark text-white font-bold px-3 py-1.5 rounded-lg text-xs transition flex items-center gap-1.5 shadow-sm">
+          <span>Buka OJS Eksisting</span>
+          <i class="fa fa-external-link"></i>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- CONTAINER UTAMA (1200PX IDENTIK OJS ASLI)               -->
+  <!-- ======================================================== -->
+  <main class="flex-1 overflow-y-auto py-6 px-4 sm:px-6 lg:px-8">
+    <div id="main-page-card" class="max-w-7xl mx-auto space-y-6 transition-all duration-200">
+
+      <!-- ===================================================== -->
+      <!-- HEADER JURNAL: BANNER ASLI LEBAR PENUH + NAVBAR SEGAR  -->
+      <!-- ===================================================== -->
+      <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm">
+        
+        <!-- Bar Utilitas Atas: Bersih, Rapi & Lega -->
+        <div class="bg-slate-50/80 px-6 py-2.5 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-slate-600 gap-2">
+          <div class="flex items-center gap-2 font-medium text-slate-700">
+            <i class="fa fa-university text-brick text-sm"></i>
+            <span>Balai Sains Bangunan dan Permukiman, Bandung</span>
+          </div>
+          <div class="flex items-center gap-4 text-xs sm:text-sm font-semibold">
+            <a href="http://localhost/jurnalpermukiman/index.php/JP/user/register" class="hover:text-brick transition flex items-center gap-1.5 text-slate-600 hover:text-brick">
+              <i class="fa fa-user-plus text-brick"></i>
+              <span>Register</span>
+            </a>
+            <span class="text-slate-300">|</span>
+            <a href="http://localhost/jurnalpermukiman/index.php/JP/login" class="hover:text-brick transition flex items-center gap-1.5 text-slate-600 hover:text-brick">
+              <i class="fa fa-sign-in text-brick"></i>
+              <span>Login</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- BANNER LOGO UTAMA: Gambar Asli OJS Lebar Penuh (100% Wall-to-Wall) -->
+        <div class="w-full bg-white leading-none">
+          <a href="http://localhost/jurnalpermukiman/index.php/JP" class="block w-full">
+            <img src="http://localhost/jurnalpermukiman/public/journals/1/pageHeaderLogoImage_en_US.jpg" 
+                 class="w-full h-auto block" 
+                 style="width: 100%; display: block;"
+                 alt="Jurnal Permukiman" 
+                 onerror="this.src='https://placehold.co/1200x195/C13D0D/FFFFFF?text=JURNAL+PERMUKIMAN'">
+          </a>
+        </div>
+
+        <!-- BILAH NAVIGASI: Merah Bata Elegan dengan Micro-Highlight -->
+        <nav class="bata-navbar text-white px-6 py-1.5 flex items-center justify-between shadow-md">
+          <div class="flex items-center space-x-1 sm:space-x-1.5 text-sm font-bold overflow-x-auto py-1">
+            <a href="#" class="px-3.5 py-1.5 rounded-lg bg-black/25 text-white font-extrabold flex items-center gap-1.5 shadow-inner">
+              <i class="fa fa-home"></i> Home
+            </a>
+            <a href="#" class="px-3.5 py-1.5 rounded-lg hover:bg-black/20 text-white/90 hover:text-white transition">About</a>
+            <a href="#" class="px-3.5 py-1.5 rounded-lg hover:bg-black/20 text-white/90 hover:text-white transition">Current</a>
+            <a href="#" class="px-3.5 py-1.5 rounded-lg hover:bg-black/20 text-white/90 hover:text-white transition">Announcements</a>
+            <a href="#" class="px-3.5 py-1.5 rounded-lg hover:bg-black/20 text-white/90 hover:text-white transition">Archives</a>
+            <a href="#" class="px-3.5 py-1.5 rounded-lg hover:bg-black/20 text-white/90 hover:text-white transition">Contact</a>
+          </div>
+
+          <div class="relative hidden lg:block w-56 py-1">
+            <input type="text" placeholder="Search articles..." class="w-full text-xs bg-white/20 text-white placeholder-white/80 border border-white/30 rounded-lg px-3 pl-8 py-1.5 focus:outline-none focus:bg-white focus:text-slate-800 focus:placeholder-slate-400 transition shadow-inner">
+            <i class="fa fa-search text-white/80 absolute left-2.5 top-3 text-xs"></i>
+          </div>
+        </nav>
+
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- TATA LETAK 2 KOLOM IDENTIK: KONTEN KIRI, SIDEBAR KANAN-->
+      <!-- ===================================================== -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+
+        <!-- =================================================== -->
+        <!-- MAIN CONTENT KIRI (8 COLS) - SEGAR, BERSIH & LEGA   -->
+        <!-- =================================================== -->
+        <div class="lg:col-span-8 space-y-6">
+          
+          <!-- SEKSI 1: ABOUT THE JOURNAL -->
+          <section class="fresh-card p-6 sm:p-7 space-y-4">
+            <div class="border-b-2 border-brick/20 pb-3 flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-2.5 h-6 bg-brick rounded-full"></div>
+                <h2 class="text-lg font-extrabold text-slate-900 tracking-tight">About the Journal</h2>
+              </div>
+              <span class="text-xs text-brick font-bold bg-brick-soft px-3 py-1 rounded-full border border-brick-border">
+                <i class="fa fa-certificate mr-1"></i> Jurnal Terakreditasi SINTA 2
+              </span>
+            </div>
+
+            <p class="text-[14px] text-slate-700 leading-relaxed font-normal">
+              <strong class="font-bold text-slate-900">Jurnal Permukiman</strong> is a peer-reviewed, open access scholarly journal that publishes original research, reviews, and conceptual papers in the field of human settlements, covering urban and rural areas, the buildings within them, and the facilities and infrastructure that support community life and livelihoods. Jurnal Permukiman is published by the <strong class="text-slate-900">Directorate of Building and Environmental Sanitation Engineering Development, Directorate General of Human Settlements, Ministry of Public Works, Indonesia.</strong>
+            </p>
+
+            <!-- Tabel Identitas Jurnal: Bersih, Rapi & Elegan -->
+            <div class="overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50/50">
+              <table class="w-full text-sm">
+                <tr class="border-b border-slate-200/70">
+                  <td class="py-2.5 px-4 font-bold text-slate-700 w-48 bg-slate-100/60">Journal Name</td>
+                  <td class="py-2.5 px-4 text-slate-800 font-semibold">: Jurnal Permukiman</td>
+                </tr>
+                <tr class="border-b border-slate-200/70">
+                  <td class="py-2.5 px-4 font-bold text-slate-700 bg-slate-100/60">Publication Frequency</td>
+                  <td class="py-2.5 px-4 text-slate-800">: May and November</td>
+                </tr>
+                <tr class="border-b border-slate-200/70">
+                  <td class="py-2.5 px-4 font-bold text-slate-700 bg-slate-100/60">Publisher</td>
+                  <td class="py-2.5 px-4 text-slate-800">: Directorate of Building &amp; Environmental Sanitation</td>
+                </tr>
+                <tr class="border-b border-slate-200/70">
+                  <td class="py-2.5 px-4 font-bold text-slate-700 bg-slate-100/60">Electronic ISSN</td>
+                  <td class="py-2.5 px-4 text-brick font-mono font-bold">: 2339-2975</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-4 font-bold text-slate-700 bg-slate-100/60">Email Contact</td>
+                  <td class="py-2.5 px-4 text-brick font-semibold">: jurnalpermukiman@pu.go.id</td>
+                </tr>
+              </table>
+            </div>
+          </section>
+
+          <!-- SEKSI 2: ANNOUNCEMENTS -->
+          <section class="fresh-card p-6 sm:p-7 space-y-4">
+            <div class="border-b-2 border-brick/20 pb-3 flex items-center gap-2.5">
+              <div class="w-2.5 h-6 bg-brick rounded-full"></div>
+              <h2 class="text-lg font-extrabold text-slate-900 tracking-tight">Announcements</h2>
+            </div>
+
+            <!-- Announcement 1: Highlight Card Segar -->
+            <div class="p-5 rounded-xl bg-brick-soft border border-brick-border/80 space-y-2">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <span class="font-extrabold text-brick text-[15px] leading-snug">
+                  <i class="fa fa-bullhorn mr-1.5"></i> Important Announcement: Jurnal Permukiman Will Publish in English Starting January 2026
+                </span>
+                <span class="text-xs text-slate-500 font-mono font-semibold">07/23/2025</span>
+              </div>
+              <p class="text-sm text-slate-700 leading-relaxed">
+                As part of our ongoing efforts to improve quality and expand international reach, we are pleased to announce that starting from the January 2026 issue, Jurnal Permukiman will publish articles in English only.
+              </p>
+            </div>
+
+            <!-- Announcement 2: Minimalist Row -->
+            <div class="p-3.5 rounded-xl border border-slate-200/80 flex items-center justify-between text-sm hover:bg-slate-50 hover:border-slate-300 transition cursor-pointer">
+              <div class="flex items-center gap-3">
+                <i class="fa fa-file-text-o text-slate-400"></i>
+                <div>
+                  <h4 class="font-bold text-slate-800 text-sm">Cara Menyerahkan Hasil Revisi</h4>
+                  <span class="text-xs text-slate-400">Dipublikasikan: 09/06/2021</span>
+                </div>
+              </div>
+              <i class="fa fa-angle-right text-slate-400 text-base"></i>
+            </div>
+          </section>
+
+          <!-- SEKSI 3: CURRENT ISSUE & DAFTAR ARTIKEL (NATURE-GRADE SCHOLARLY CARDS) -->
+          <section class="fresh-card p-6 sm:p-7 space-y-5">
+            
+            <div class="border-b-2 border-brick/20 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <div class="w-2.5 h-6 bg-brick rounded-full"></div>
+                <div>
+                  <h2 class="text-lg font-extrabold text-slate-900 tracking-tight">Current Issue: Vol. 17 No. 2 (2022)</h2>
+                  <span class="text-xs text-slate-500 font-medium">Published: 11/01/2022</span>
+                </div>
+              </div>
+              <a href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold bg-brick hover:bg-brick-dark text-white shadow-sm transition">
+                <i class="fa fa-file-pdf-o"></i>
+                <span>Full Issue PDF (Bahasa Indonesia)</span>
+              </a>
+            </div>
+
+            <!-- Daftar Artikel -->
+            <div class="space-y-4">
+              <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                <span>ARTICLES IN THIS ISSUE</span>
+                <div class="flex-1 border-t border-slate-200"></div>
+              </h3>
+
+              <!-- Artikel 1: Segar, Bersih, Card Berkelas -->
+              <article class="p-5 rounded-xl border border-slate-200 bg-white hover:border-brick/50 hover:shadow-md transition-all duration-200 space-y-3">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                    <i class="fa fa-check-circle mr-1"></i> Original Research
+                  </span>
+                  <span class="font-mono text-slate-500 font-medium">Hal: 77-84</span>
+                </div>
+
+                <h4 class="text-[15.5px] font-bold text-slate-900 hover:text-brick transition cursor-pointer leading-snug">
+                  Pola Adaptasi Meruang Pengungsi pada Hunian Sementara (Huntara) Bencana Erupsi Gunung Merapi di Kabupaten Magelang Jawa Tengah
+                </h4>
+                
+                <div class="text-sm text-slate-600 flex items-center gap-2">
+                  <i class="fa fa-users text-slate-400 text-xs"></i>
+                  <span class="font-medium text-slate-700">Evi Yuliyanti, Wiyatiningsih Wiyatiningsih</span>
+                </div>
+
+                <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono text-slate-500">DOI:</span>
+                    <a href="https://doi.org/10.20886/jp.v17i2.414" target="_blank" class="font-mono text-brick font-semibold hover:underline">
+                      10.20886/jp.v17i2.414
+                    </a>
+                  </div>
+                  <a href="http://localhost/jurnalpermukiman/index.php/JP/article/view/414/pdf" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-white bg-brick hover:bg-brick-dark font-bold text-xs shadow-sm transition">
+                    <i class="fa fa-download"></i>
+                    <span>PDF Download</span>
+                  </a>
+                </div>
+              </article>
+
+              <!-- Artikel 2: Segar, Bersih, Card Berkelas -->
+              <article class="p-5 rounded-xl border border-slate-200 bg-white hover:border-brick/50 hover:shadow-md transition-all duration-200 space-y-3">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                    <i class="fa fa-check-circle mr-1"></i> Original Research
+                  </span>
+                  <span class="font-mono text-slate-500 font-medium">Hal: 85-92</span>
+                </div>
+
+                <h4 class="text-[15.5px] font-bold text-slate-900 hover:text-brick transition cursor-pointer leading-snug">
+                  Persepsi Pemukim terhadap Kualitas Lingkungan di Permukiman Kumuh Tepian Sungai Musi, Palembang
+                </h4>
+                
+                <div class="text-sm text-slate-600 flex items-center gap-2">
+                  <i class="fa fa-users text-slate-400 text-xs"></i>
+                  <span class="font-medium text-slate-700">Maya Fitri Oktarini, Tutur Lussetyowati, Primadella Primadella</span>
+                </div>
+
+                <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono text-slate-500">DOI:</span>
+                    <a href="https://doi.org/10.20886/jp.v17i2.437" target="_blank" class="font-mono text-brick font-semibold hover:underline">
+                      10.20886/jp.v17i2.437
+                    </a>
+                  </div>
+                  <a href="http://localhost/jurnalpermukiman/index.php/JP/article/view/437/pdf" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-white bg-brick hover:bg-brick-dark font-bold text-xs shadow-sm transition">
+                    <i class="fa fa-download"></i>
+                    <span>PDF Download</span>
+                  </a>
+                </div>
+              </article>
+
+            </div>
+
+            <!-- View All Issues Footer Link -->
+            <div class="pt-3 text-center border-t border-slate-100">
+              <a href="http://localhost/jurnalpermukiman/index.php/JP/issue/archive" class="inline-flex items-center gap-2 text-sm font-bold text-brick hover:text-brick-dark transition py-1 px-3 rounded-lg hover:bg-brick-soft">
+                <span>View All Archives &amp; Issues</span>
+                <i class="fa fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+
+          </section>
+
+        </div>
+
+        <!-- =================================================== -->
+        <!-- SIDEBAR KANAN (4 COLS) - SEGAR, BERSIH, LEGA        -->
+        <!-- =================================================== -->
+        <aside class="lg:col-span-4 space-y-5">
+          
+          <!-- BLOK 1: MAKE A SUBMISSION (CALL-TO-ACTION MEWAH) -->
+          <div class="fresh-card p-4 text-center">
+            <a href="http://localhost/jurnalpermukiman/index.php/JP/about/submissions" class="w-full inline-flex flex-col items-center justify-center py-3.5 px-4 rounded-xl bg-brick hover:bg-brick-dark text-white font-extrabold shadow-md hover:shadow-lg transition group">
+              <div class="flex items-center gap-2 text-sm uppercase tracking-wider">
+                <i class="fa fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                <span>Make a Submission</span>
+              </div>
+              <span class="text-[11px] font-normal text-white/80 mt-0.5">Submit your research manuscript online</span>
+            </a>
+          </div>
+
+          <!-- BLOK 2: REGISTRATION -->
+          <div class="fresh-card p-4 space-y-2.5">
+            <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-800 border-b-2 border-brick/30 pb-2">
+              REGISTRATION
+            </h4>
+            <a href="http://localhost/jurnalpermukiman/index.php/JP/user/register" class="flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-900 text-white text-center font-bold shadow-sm text-xs transition">
+              <i class="fa fa-user-plus text-brick"></i>
+              <span>Click Here for Registration</span>
+            </a>
+          </div>
+
+          <!-- BLOK 3: JOURNAL POLICY (18 MENU ASLI - TAMPILAN SEGAR & ELEGAN) -->
+          <div class="fresh-card p-4 space-y-3">
+            <div class="flex items-center justify-between border-b-2 border-brick/30 pb-2">
+              <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-800">
+                JOURNAL POLICY
+              </h4>
+              <span class="text-[11px] font-bold text-brick bg-brick-soft px-2 py-0.5 rounded-full border border-brick-border">
+                18 Menu Resmi
+              </span>
+            </div>
+
+            <!-- Tumpukan 18 Menu: Bersih, Lega, Berkelas (Bukan Balok Merah Padat) -->
+            <div class="space-y-[3.5px]">
+              <a href="#" class="policy-bata-btn home-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-home w-4 text-center text-sm"></i>
+                  <span>Home</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="https://jurnalpermukiman.pu.go.id/index.php/JP/fokus" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-circle-o w-4 text-center text-xs"></i>
+                  <span>Aims and Scope</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="https://jurnalpermukiman.pu.go.id/index.php/JP/citedness" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-quote-right w-4 text-center text-xs"></i>
+                  <span>Citedness in Scopus</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="https://jurnalpermukiman.pu.go.id/index.php/JP/about/editorialTeam" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-user-circle-o w-4 text-center text-xs"></i>
+                  <span>Editorial Team</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-pencil w-4 text-center text-xs"></i>
+                  <span>Author Guidelines</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-users w-4 text-center text-xs"></i>
+                  <span>Peer Reviewers</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-check-square-o w-4 text-center text-xs"></i>
+                  <span>Peer Review Process</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-shield w-4 text-center text-xs"></i>
+                  <span>Publication Ethics</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-search w-4 text-center text-xs"></i>
+                  <span>Plagiarism Check</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-copyright w-4 text-center text-xs"></i>
+                  <span>Copyright Notice &amp; Licensing</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-microchip w-4 text-center text-xs"></i>
+                  <span>Generative AI Policy</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-ban w-4 text-center text-xs"></i>
+                  <span>Article Retraction &amp; Withdrawal</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-comments w-4 text-center text-xs"></i>
+                  <span>Complaints &amp; Appeals Policy</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-unlock-alt w-4 text-center text-xs"></i>
+                  <span>Open Access Policy</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-credit-card w-4 text-center text-xs"></i>
+                  <span>Article Processing Charge (APC)</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-calendar w-4 text-center text-xs"></i>
+                  <span>Publication Frequency</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-archive w-4 text-center text-xs"></i>
+                  <span>Archiving Policy</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+
+              <a href="#" class="policy-bata-btn">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa fa-exchange w-4 text-center text-xs"></i>
+                  <span>Post-Publication Discussion</span>
+                </div>
+                <i class="fa fa-angle-right text-xs opacity-75"></i>
+              </a>
+            </div>
+          </div>
+          <!-- BLOK 4<!-- BLOK 4: TEMPLATE (KARTU DOWNLOAD BERSIH) -->
+          <div class="fresh-card p-4 text-center space-y-3">
+            <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-800 border-b-2 border-brick/30 pb-2">
+              TEMPLATE NASKAH
+            </h4>
+            <div class="p-4 bg-brick-soft rounded-xl border border-brick-border space-y-2">
+              <i class="fa fa-file-word-o text-3xl text-brick"></i>
+              <div class="text-xs font-bold text-slate-800">Format Naskah 2026 (.docx)</div>
+              <a href="http://localhost/jurnalpermukiman/public/Template.docx" class="inline-block w-full py-2 bg-brick hover:bg-brick-dark text-white font-bold text-xs rounded-lg transition shadow-sm">
+                <i class="fa fa-download mr-1"></i> Unduh Template
+              </a>
+            </div>
+          </div>
+
+          <!-- BLOK 5: AKREDITASI -->
+          <div class="fresh-card p-4 space-y-3">
+            <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-800 border-b-2 border-brick/30 pb-2">
+              AKREDITASI
+            </h4>
+            <div class="space-y-2 text-center text-sm">
+              <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 font-bold text-slate-800">
+                <span class="text-brick font-black text-lg block tracking-tight">SINTA 2</span>
+                <span class="text-[11px] text-slate-500 font-normal">Kemenristek / BRIN Terakreditasi</span>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-700 font-semibold text-xs">
+                Google Scholar &bull; h-index 18
+              </div>
+            </div>
+          </div>
+
+          <!-- BLOK 6: VISITING COUNTER -->
+          <div class="fresh-card p-4 space-y-2.5">
+            <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-800 border-b-2 border-brick/30 pb-2">
+              VISITING COUNTER
+            </h4>
+            <div class="text-center p-3 bg-slate-50/80 rounded-xl border border-slate-200/70 font-mono text-brick font-black text-xl">
+              184,920
+              <span class="text-[11px] font-sans font-normal text-slate-500 block mt-0.5">Total Kunjungan Unik</span>
+            </div>
+          </div>
+
+          <!-- BLOK 7: TOOLS -->
+          <div class="fresh-card p-4 space-y-2.5">
+            <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-800 border-b-2 border-brick/30 pb-2">
+              TOOLS
+            </h4>
+            <div class="grid grid-cols-2 gap-2 text-center text-xs font-bold text-slate-700">
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition">Mendeley</div>
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200/80 hover:border-slate-300 transition">iThenticate</div>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- FOOTER OJS (MERAH BATA & PUTIH ELEGAN)                  -->
+      <!-- ======================================================== -->
+      <footer class="bg-white border-t-2 border-brick py-7 px-4 text-center text-xs text-slate-500 rounded-2xl border border-slate-200/80 shadow-sm mt-8">
+        <div class="max-w-7xl mx-auto space-y-1.5">
+          <p class="font-extrabold text-slate-900 text-sm">Jurnal Permukiman &bull; Balai Sains Bangunan dan Permukiman</p>
+          <p class="text-slate-600">Jl. Panyaungan, Cileunyi Wetan, Kab. Bandung 40622 | Email: <a href="mailto:jurnalpermukiman@pu.go.id" class="text-brick font-semibold hover:underline">jurnalpermukiman@pu.go.id</a></p>
+          <p class="text-[11px] text-slate-400 pt-1">Open Journal Systems (OJS) 3.3 Engine &bull; Redesign Dominan Merah Bata Puskim</p>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+
+  <script>
+    function setSideBg(mode) {
+      const body = document.getElementById('page-body');
+      const bClean = document.getElementById('btn-clean');
+      const bWarm = document.getElementById('btn-warm');
+      const bBata = document.getElementById('btn-bata');
+
+      body.classList.remove('bg-mode-clean', 'bg-mode-warm', 'bg-mode-bata');
+      body.classList.add('bg-mode-' + mode);
+
+      [bClean, bWarm, bBata].forEach(b => {
+        b.className = 'px-2.5 py-1 rounded font-medium text-slate-300 hover:text-white flex items-center gap-1';
+      });
+
+      if (mode === 'clean') {
+        bClean.className = 'px-2.5 py-1 rounded font-bold text-white bg-slate-700 shadow flex items-center gap-1 ring-1 ring-white/50';
+      } else if (mode === 'warm') {
+        bWarm.className = 'px-2.5 py-1 rounded font-bold text-white bg-[#C13D0D] shadow flex items-center gap-1 ring-1 ring-white/50';
+      } else if (mode === 'bata') {
+        bBata.className = 'px-2.5 py-1 rounded font-bold text-white bg-[#C13D0D] shadow flex items-center gap-1 ring-1 ring-white/50';
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mockup Backend OJS 3.3 - Redesign Alur Kerja Editorial (Atas Merah, Bawah Biru PU Full-Width)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #F8FAFC;
+      color: #1E293B;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    #app {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP HEADER: MERAH BATA PUSKIM */
+    .app__header {
+      background: linear-gradient(135deg, #C13D0D 0%, #A0320A 100%);
+      border-bottom: 2px solid #802606;
+      height: 48px;
+      flex: 0 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      color: #FFFFFF;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+    }
+
+    .app__contextTitle {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .app__contextBadge {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .app__headerActions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .app__headerBtn {
+      background: transparent;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.15s ease;
+    }
+
+    .app__headerBtn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .app__tasksBadge {
+      background: #FFFFFF;
+      color: #C13D0D;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 10px;
+      padding: 1px 6px;
+      margin-left: 4px;
+    }
+
+    /* BODY LAYOUT: FLEX ROW FULL HEIGHT */
+    .app__body {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: row;
+      min-height: calc(100vh - 48px);
+      width: 100%;
+    }
+
+    /* LEFT SIDEBAR NAVIGATION */
+    .app__nav {
+      flex: 0 0 220px;
+      width: 220px;
+      background: #FFFFFF;
+      border-right: 1px solid #E2E8F0;
+      min-height: calc(100vh - 48px);
+      padding: 1.25rem 0.75rem;
+      box-shadow: 2px 0 6px rgba(0, 0, 0, 0.02);
+      box-sizing: border-box;
+    }
+
+    .app__navSectionTitle {
+      color: #94A3B8;
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.75rem 0.75rem 0.35rem 0.75rem;
+    }
+
+    .app__navGroup:first-child .app__navSectionTitle {
+      padding-top: 0;
+    }
+
+    .app__navItem {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+
+    .app__navItem i {
+      width: 16px;
+      color: #64748B;
+      font-size: 13px;
+    }
+
+    .app__navItem:hover {
+      color: #006798;
+      background: #F0F7FB;
+      transform: translateX(3px);
+    }
+
+    .app__navItem:hover i {
+      color: #006798;
+    }
+
+    .app__navItem.active {
+      background: #006798;
+      color: #FFFFFF;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(0, 103, 152, 0.35);
+    }
+
+    .app__navItem.active i {
+      color: #FFFFFF;
+    }
+
+    /* MAIN OPERATIONAL WORKSPACE: FULL WIDTH & FULL HEIGHT */
+    .app__main {
+      flex: 1 1 auto;
+      width: calc(100% - 220px);
+      min-height: calc(100vh - 48px);
+      background: #F8FAFC;
+      padding: 1.5rem 2.5rem 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      transition: max-width 0.3s ease;
+    }
+
+    /* TOGGLE BAR (DEMO CONTROL) */
+    .demo-bar {
+      background: #0F172A;
+      color: #F8FAFC;
+      padding: 8px 16px;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12.5px;
+    }
+
+    .demo-bar span strong {
+      color: #38BDF8;
+    }
+
+    .demo-btn-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .demo-btn {
+      background: #334155;
+      color: #FFFFFF;
+      border: 1px solid #475569;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .demo-btn.active {
+      background: #006798;
+      border-color: #38BDF8;
+      color: #FFFFFF;
+    }
+
+    /* BREADCRUMB & METADATA BAR */
+    .app__breadcrumbBar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .app__breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .app__breadcrumbs .sub-id {
+      font-weight: 800;
+      color: #006798;
+      background: #E0F2FE;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .app__breadcrumbs .sub-author {
+      font-weight: 700;
+      color: #1E293B;
+    }
+
+    .app__breadcrumbs .sub-title {
+      font-weight: 600;
+      color: #475569;
+      max-width: 600px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .app__topActions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-secondary {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #334155;
+      font-weight: 600;
+      font-size: 12.5px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: #006798;
+      color: #006798;
+      background: #F0F7FB;
+    }
+
+    /* TOP TABS: WORKFLOW & PUBLICATION */
+    .top-tabs {
+      display: flex;
+      gap: 24px;
+      border-bottom: 2px solid #E2E8F0;
+      margin-bottom: 1.5rem;
+    }
+
+    .top-tab {
+      padding: 8px 4px 12px 4px;
+      font-weight: 700;
+      font-size: 15px;
+      color: #64748B;
+      text-decoration: none;
+      position: relative;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .top-tab.active {
+      color: #006798;
+    }
+
+    .top-tab.active::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #006798;
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* STAGE TABS: SUBMISSION, REVIEW, COPYEDITING, PRODUCTION */
+    .stage-tabs-wrapper {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      padding: 0;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      width: 100%;
+    }
+
+    .stage-nav {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #E2E8F0;
+      background: #FAFAFA;
+      padding: 0 1rem;
+    }
+
+    .stage-nav-item {
+      padding: 14px 20px;
+      font-weight: 600;
+      font-size: 13.5px;
+      color: #64748B;
+      text-decoration: none;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stage-nav-item.active {
+      color: #006798;
+      font-weight: 800;
+      background: #FFFFFF;
+    }
+
+    .stage-nav-item.active::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #006798;
+    }
+
+    .stage-nav-help {
+      margin-left: auto;
+      color: #64748B;
+      font-size: 12.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 4px;
+    }
+
+    .stage-nav-help:hover {
+      color: #006798;
+      background: #F0F7FB;
+    }
+
+    /* OPERATIONAL WORKSPACE: 2 COLUMNS (FULL WIDTH FLUID) */
+    .stage-workspace {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      padding: 1.5rem;
+      background: #FFFFFF;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* LEFT CONTENT AREA: FILES & DISCUSSIONS */
+    .stage-content-area {
+      flex: 1 1 auto;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* RIGHT SIDEBAR AREA: DECISION BUTTONS & PARTICIPANTS */
+    .stage-sidebar-area {
+      flex: 0 0 300px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* CARD PANELS */
+    .panel-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #FFFFFF;
+    }
+
+    .panel-header {
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #1E293B;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-panel-action {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-panel-action:hover {
+      border-color: #006798;
+      color: #006798;
+      background: #F0F7FB;
+    }
+
+    /* TABLES */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background: #F8FAFC;
+      padding: 8px 16px;
+      text-align: left;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #F1F5F9;
+      color: #334155;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:hover td {
+      background: #F8FAFC;
+    }
+
+    .file-doc-link {
+      font-weight: 600;
+      color: #006798;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .file-doc-link:hover {
+      text-decoration: underline;
+      color: #00547C;
+    }
+
+    .file-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: #E2E8F0;
+      color: #475569;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    /* EDITORIAL DECISION BUTTONS (BIRU PU) */
+    .decisions-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 16px;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-primary-action {
+      background: #006798;
+      border: 1px solid #00547C;
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 13.5px;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 103, 152, 0.3);
+      transition: all 0.18s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary-action:hover {
+      background: #00547C;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 103, 152, 0.4);
+    }
+
+    .btn-secondary-action {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #1E293B;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+    }
+
+    .btn-secondary-action:hover {
+      border-color: #006798;
+      color: #006798;
+      background: #F0F7FB;
+    }
+
+    .btn-decline-action {
+      background: #FFF1F2;
+      border: 1px solid #FDA4AF;
+      color: #E11D48;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+    }
+
+    .btn-decline-action:hover {
+      background: #FFE4E6;
+      border-color: #F43F5E;
+      color: #BE123C;
+    }
+
+    /* PARTICIPANTS CARD */
+    .participants-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #FFFFFF;
+    }
+
+    .participant-row {
+      padding: 10px 16px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .participant-role {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+
+    .participant-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1E293B;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <!-- TOP HEADER: MERAH BATA PUSKIM -->
+    <header class="app__header">
+      <a href="http://localhost/jurnalpermukiman/index.php/JP" class="app__contextTitle">
+        <i class="fa-solid fa-book-journal-whills"></i>
+        <span>Jurnal Permukiman</span>
+        <span class="app__contextBadge">Puskim PU</span>
+      </a>
+
+      <div class="app__headerActions">
+        <button class="app__headerBtn">
+          <i class="fa-regular fa-bell"></i>
+          <span>Tugas</span>
+          <span class="app__tasksBadge">3</span>
+        </button>
+        <button class="app__headerBtn">
+          <i class="fa-regular fa-circle-user"></i>
+          <span>ado (Admin)</span>
+          <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- BODY CONTAINER: FLEX ROW FULL HEIGHT -->
+    <div class="app__body">
+      <!-- LEFT SIDEBAR NAVIGATION -->
+      <nav class="app__nav">
+        <div class="app__navGroup">
+          <a href="#" class="app__navItem active">
+            <i class="fa-solid fa-inbox"></i>
+            <span>Submissions</span>
+          </a>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Issues</span>
+          </a>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>Announcements</span>
+          </a>
+        </div>
+
+        <div class="app__navGroup">
+          <div class="app__navSectionTitle">Settings</div>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-newspaper"></i>
+            <span>Journal</span>
+          </a>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-globe"></i>
+            <span>Website</span>
+          </a>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-arrows-split-up-and-left"></i>
+            <span>Workflow</span>
+          </a>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-share-nodes"></i>
+            <span>Distribution</span>
+          </a>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-users-gear"></i>
+            <span>Users & Roles</span>
+          </a>
+        </div>
+
+        <div class="app__navGroup">
+          <div class="app__navSectionTitle">Statistics</div>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Articles</span>
+          </a>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Editorial Activity</span>
+          </a>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-user-group"></i>
+            <span>Users</span>
+          </a>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-file-invoice"></i>
+            <span>Reports</span>
+          </a>
+        </div>
+
+        <div class="app__navGroup">
+          <div class="app__navSectionTitle">System</div>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <span>Tools</span>
+          </a>
+          <a href="#" class="app__navItem">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Administration</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- MAIN OPERATIONAL WORKSPACE: FULL WIDTH & FULL HEIGHT -->
+      <main class="app__main" id="mainWorkspace">
+        
+        <!-- DEMO CONTROL BAR -->
+        <div class="demo-bar">
+          <span>Mode Tampilan: <strong id="modeLabel">Mandat Dany: Full-Width & Full-Height Fluid (Zero Dead Space)</strong></span>
+          <div class="demo-btn-group">
+            <button class="demo-btn active" id="btnFull" onclick="setMode('full')">Full-Width (Mandat Baru)</button>
+            <button class="demo-btn" id="btnNarrow" onclick="setMode('narrow')">992px Sempit (Legacy Lama)</button>
+          </div>
+        </div>
+
+        <!-- BREADCRUMB & METADATA -->
+        <div class="app__breadcrumbBar">
+          <div class="app__breadcrumbs">
+            <span class="sub-id">482</span>
+            <span>/</span>
+            <span class="sub-author">muka</span>
+            <span>/</span>
+            <span class="sub-title">MODEL MANAJEMEN RISIKO RANTAI PASOK AMP DI PROVINSI BALI</span>
+          </div>
+          <div class="app__topActions">
+            <button class="btn-secondary">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>Activity Log</span>
+            </button>
+            <button class="btn-secondary">
+              <i class="fa-solid fa-folder-open"></i>
+              <span>Library</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TOP TABS -->
+        <div class="top-tabs">
+          <div class="top-tab active">Workflow</div>
+          <div class="top-tab">Publication</div>
+        </div>
+
+        <!-- STAGE TABS CONTAINER -->
+        <div class="stage-tabs-wrapper">
+          <div class="stage-nav">
+            <div class="stage-nav-item active">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Submission</span>
+            </div>
+            <div class="stage-nav-item">
+              <i class="fa-regular fa-circle"></i>
+              <span>Review</span>
+            </div>
+            <div class="stage-nav-item">
+              <i class="fa-regular fa-circle"></i>
+              <span>Copyediting</span>
+            </div>
+            <div class="stage-nav-item">
+              <i class="fa-regular fa-circle"></i>
+              <span>Production</span>
+            </div>
+            <div class="stage-nav-help">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>Help</span>
+            </div>
+          </div>
+
+          <!-- OPERATIONAL 2-COLUMN WORKSPACE -->
+          <div class="stage-workspace">
+            <!-- LEFT: SUBMISSION FILES & PRE-REVIEW DISCUSSIONS -->
+            <div class="stage-content-area">
+              <!-- SUBMISSION FILES PANEL -->
+              <div class="panel-card">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <i class="fa-regular fa-folder-closed text-sky-600"></i>
+                    <span>Submission Files</span>
+                  </div>
+                  <div class="panel-actions">
+                    <button class="btn-panel-action">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                      <span>Search</span>
+                    </button>
+                    <button class="btn-panel-action" style="background: #006798; color: #fff; border-color: #00547C;">
+                      <i class="fa-solid fa-cloud-arrow-up"></i>
+                      <span>Upload File</span>
+                    </button>
+                  </div>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 50px;">ID</th>
+                      <th>Nama File & Uploader</th>
+                      <th>Tanggal Upload</th>
+                      <th>Kategori</th>
+                      <th style="text-align: right;">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="file-badge">1737</span></td>
+                      <td>
+                        <a href="#" class="file-doc-link">
+                          <i class="fa-regular fa-file-word" style="color: #2563EB;"></i>
+                          <span>meydinafa, Journal manager, JURNAL PERMUKIMAN 2022.docx</span>
+                        </a>
+                      </td>
+                      <td>25 December 2022</td>
+                      <td><span style="color: #64748B;">Article Text</span></td>
+                      <td style="text-align: right;">
+                        <button class="btn-panel-action" style="padding: 2px 8px; display: inline-flex;"><i class="fa-solid fa-ellipsis"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><span class="file-badge">1736</span></td>
+                      <td>
+                        <a href="#" class="file-doc-link">
+                          <i class="fa-regular fa-file-lines" style="color: #64748B;"></i>
+                          <span>Untitled</span>
+                        </a>
+                      </td>
+                      <td>25 December 2022</td>
+                      <td><span style="color: #64748B;">Other</span></td>
+                      <td style="text-align: right;">
+                        <button class="btn-panel-action" style="padding: 2px 8px; display: inline-flex;"><i class="fa-solid fa-ellipsis"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div style="padding: 10px 16px; background: #FAFAFA; border-top: 1px solid #E2E8F0; text-align: right;">
+                  <button class="btn-secondary" style="display: inline-flex;">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Download All Files</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- PRE-REVIEW DISCUSSIONS PANEL -->
+              <div class="panel-card">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <i class="fa-regular fa-comments text-amber-600"></i>
+                    <span>Pre-Review Discussions</span>
+                  </div>
+                  <div class="panel-actions">
+                    <button class="btn-panel-action">Order</button>
+                    <button class="btn-panel-action" style="background: #006798; color: #fff; border-color: #00547C;">
+                      <i class="fa-solid fa-plus"></i>
+                      <span>Add discussion</span>
+                    </button>
+                  </div>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Topik Diskusi</th>
+                      <th>Pengirim</th>
+                      <th>Balasan Terakhir</th>
+                      <th style="text-align: center;">Replies</th>
+                      <th style="text-align: center;">Closed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <a href="#" class="file-doc-link">
+                          <i class="fa-solid fa-caret-right" style="color: #64748B;"></i>
+                          <span>Comments for the Editor</span>
+                        </a>
+                      </td>
+                      <td>wayanmuka<br><span style="font-size: 11px; color: #94A3B8;">12/25/2022 17:31</span></td>
+                      <td>-</td>
+                      <td style="text-align: center;"><span class="file-badge">0</span></td>
+                      <td style="text-align: center;"><input type="checkbox" disabled></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#" class="file-doc-link">
+                          <i class="fa-solid fa-caret-right" style="color: #64748B;"></i>
+                          <span>Catatan Koreksi Gaya Selingkung Naskah - Sekretariat Redaksi</span>
+                        </a>
+                      </td>
+                      <td>aris<br><span style="font-size: 11px; color: #94A3B8;">07/17/2023 14:18</span></td>
+                      <td>-</td>
+                      <td style="text-align: center;"><span class="file-badge">0</span></td>
+                      <td style="text-align: center;"><input type="checkbox" disabled></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- RIGHT: EDITORIAL ACTION BUTTONS & PARTICIPANTS -->
+            <div class="stage-sidebar-area">
+              <!-- DECISIONS -->
+              <div class="decisions-card">
+                <button class="btn-primary-action">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span>Send to Review</span>
+                </button>
+                <button class="btn-secondary-action">
+                  <span>Accept and Skip Review</span>
+                </button>
+                <button class="btn-decline-action">
+                  <i class="fa-solid fa-ban" style="margin-right: 4px;"></i>
+                  <span>Decline Submission</span>
+                </button>
+              </div>
+
+              <!-- PARTICIPANTS -->
+              <div class="participants-card">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <i class="fa-solid fa-user-group text-slate-500"></i>
+                    <span>Participants</span>
+                  </div>
+                  <button class="btn-panel-action" style="font-size: 11.5px; padding: 2px 8px;">Assign</button>
+                </div>
+                <div class="participant-row">
+                  <div class="participant-role">Journal editor</div>
+                  <div class="participant-name">
+                    <i class="fa-solid fa-caret-right" style="font-size: 11px; color: #64748B;"></i>
+                    <span>Rindo Herdinto</span>
+                  </div>
+                </div>
+                <div class="participant-row">
+                  <div class="participant-role">Author</div>
+                  <div class="participant-name">
+                    <i class="fa-solid fa-caret-right" style="font-size: 11px; color: #64748B;"></i>
+                    <span>yanka wayan master muka</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    function setMode(mode) {
+      const main = document.getElementById('mainWorkspace');
+      const label = document.getElementById('modeLabel');
+      const btnFull = document.getElementById('btnFull');
+      const btnNarrow = document.getElementById('btnNarrow');
+
+      if (mode === 'full') {
+        main.style.maxWidth = 'none';
+        main.style.margin = '0';
+        label.innerHTML = 'Mandat Dany: Full-Width & Full-Height Fluid (Zero Dead Space)';
+        btnFull.classList.add('active');
+        btnNarrow.classList.remove('active');
+      } else {
+        main.style.maxWidth = '992px';
+        main.style.margin = '0 auto';
+        label.innerHTML = 'Legacy Lama: Terjepit di Tengah 992px (Area Merah di Kanan & Bawah)';
+        btnNarrow.classList.add('active');
+        btnFull.classList.remove('active');
+      }
+    }
+  </script>
+</body>
+</html>

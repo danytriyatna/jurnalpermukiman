@@ -199,7 +199,7 @@ class PKPTemplateManager extends Smarty {
 					$this->addStyleSheet(
 						'contextStylesheet',
 						$request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($currentContext->getId()) . '/' . $contextStyleSheet['uploadName'] . '?d=' . urlencode($contextStyleSheet['dateUploaded']),
-						['priority' => STYLE_SEQUENCE_LATE]
+						['priority' => STYLE_SEQUENCE_LATE, 'contexts' => ['frontend', 'backend']]
 					);
 				}
 			}
@@ -868,9 +868,11 @@ class PKPTemplateManager extends Smarty {
 		);
 
 		// Stylesheet compiled from Vue.js single-file components
+		$buildCssPath = Core::getBaseDir() . '/styles/build.css';
+		$buildCssVersion = file_exists($buildCssPath) ? filemtime($buildCssPath) : $application->getCurrentVersion()->getVersionString(false);
 		$this->addStyleSheet(
 			'build',
-			$request->getBaseUrl() . '/styles/build.css',
+			$request->getBaseUrl() . '/styles/build.css?v=' . $buildCssVersion,
 			[
 				'priority' => STYLE_SEQUENCE_CORE,
 				'contexts' => 'backend',
