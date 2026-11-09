@@ -296,8 +296,10 @@ a.pkpLink:hover {
 
 
 
+
+
 /* ==========================================================================
-   ENTERPRISE THEME: ATAS MERAH BATA, BAWAH BIRU PU (FULL-WIDTH & FULL-HEIGHT)
+   ENTERPRISE THEME: MONOKROMATIK MEWAH PUSKIM (SATU JIWA DENGAN FRONTEND)
    Mandat Dany Triyatna - 9 November 2026
    ========================================================================== */
 
@@ -425,18 +427,18 @@ body.pkp_page_index:has(.app) {
 }
 
 .app__navItem:hover {
-  color: #006798 !important;
-  background: #F0F7FB !important;
+  color: #C13D0D !important;
+  background: #FFF5F2 !important;
   transform: translateX(3px) !important;
 }
 
 .app__navItem--isCurrent,
 .app__navItem--isCurrent:hover {
-  background: #006798 !important;
+  background: #C13D0D !important;
   color: #FFFFFF !important;
   border-radius: 6px !important;
   font-weight: 700 !important;
-  box-shadow: 0 2px 6px rgba(0, 103, 152, 0.35) !important;
+  box-shadow: 0 2px 8px rgba(193, 61, 13, 0.35) !important;
   transform: none !important;
 }
 
@@ -488,7 +490,7 @@ body.pkp_page_index:has(.app) {
 }
 
 .app__breadcrumbs a:hover {
-  color: #006798 !important;
+  color: #C13D0D !important;
 }
 
 .pkpWorkflow__header {
@@ -504,7 +506,7 @@ body.pkp_page_index:has(.app) {
 
 .pkpWorkflow__identificationId,
 .pkpWorkflow__identificationAuthor {
-  color: #006798 !important;
+  color: #C13D0D !important;
   font-weight: 700 !important;
 }
 
@@ -518,431 +520,24 @@ body.pkp_page_index:has(.app) {
 }
 
 .pkpTabs__button:hover {
-  color: #006798 !important;
+  color: #C13D0D !important;
 }
 
 .pkpTabs__button[aria-selected="true"] {
-  color: #006798 !important;
-  font-weight: 800 !important;
-}
-
-.pkpTabs__button:focus:before,
-.pkpTabs__button:hover:before,
-.pkpTabs__button[aria-selected="true"]:before {
-  background: #006798 !important;
-  width: 100% !important;
-}
-
-.pkpWorkflow .pkpTabs__button[aria-selected="true"] {
-  border-bottom: 3px solid #006798 !important;
-  color: #006798 !important;
-  font-weight: 800 !important;
-}
-
-/* 8. Stage Tabs (Submission, Review, Copyediting, Production) */
-.pkp_submission_workflow .ui-tabs-nav {
-  border-bottom: 2px solid #E2E8F0 !important;
-  background: #FFFFFF !important;
-  border-radius: 8px 8px 0 0 !important;
-  padding: 0.5rem 1rem 0 1rem !important;
-  margin-bottom: 1.5rem !important;
-}
-
-.pkp_submission_workflow .ui-tabs-nav li a {
-  color: #64748B !important;
-  font-weight: 600 !important;
-  font-size: 13.5px !important;
-  transition: all 0.15s ease !important;
-}
-
-.pkp_submission_workflow .ui-tabs-nav li.ui-state-active a,
-.pkp_submission_workflow .ui-tabs-nav li a:hover {
-  color: #006798 !important;
-  font-weight: 800 !important;
-}
-
-.pkp_submission_workflow .ui-tabs-nav .initiated a:before,
-.pkp_submission_workflow .ui-tabs-nav .initiated:focus a:before,
-.pkp_submission_workflow .ui-tabs-nav .initiated a:hover:before,
-.pkp_submission_workflow .ui-tabs-nav .initiated a:focus:before,
-.pkp_submission_workflow .ui-tabs-nav li.ui-state-active a:before {
-  background: #006798 !important;
-  height: 3px !important;
-}
-
-/* 9. Two-Column Operational Layout in Stage Tabs */
-#stageTabs:after,
-#stageTabs > div[id^="stageTabs-"]:after {
-  content: "" !important;
-  display: table !important;
-  clear: both !important;
-}
-
-#stageTabs .pkp_workflow_sidebar {
-  float: right !important;
-  width: 300px !important;
-  min-width: 280px !important;
-  padding-left: 1.5rem !important;
-  box-sizing: border-box !important;
-}
-
-#stageTabs .pkp_workflow_content {
-  float: left !important;
-  width: calc(100% - 300px) !important;
-  box-sizing: border-box !important;
-}
-
-/* 10. Cards & Panels Styling */
-.pkp_controllers_grid,
-.pkp_participants_grid,
-.pkp_tab_actions,
-.pkpWorkflow__content,
-.pkp_controllers_tab .ui-tabs-panel {
-  background: #FFFFFF !important;
-  border: 1px solid #E2E8F0 !important;
-  border-radius: 10px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02) !important;
-  margin-bottom: 1.5rem !important;
-  padding: 1.25rem 1.5rem !important;
-  box-sizing: border-box !important;
-}
-
-.pkp_tab_actions {
-  padding: 1rem !important;
-}
-
-/* 11. Buttons: Biru PU (#006798) */
-.pkpButton--primary,
-button.pkpButton--primary,
-.pkpButton--isPrimary,
-.pkp_button_primary,
-.pkp_workflow_decisions a.pkp_linkaction_externalReview,
-.pkp_workflow_decisions a.pkp_linkaction_sendToProduction,
-.pkp_workflow_decisions a.pkp_linkaction_schedulePublication,
-.pkp_workflow_decisions a.pkp_linkaction_toPublication {
-  background: #006798 !important;
-  border: 1px solid #00547C !important;
-  color: #FFFFFF !important;
-  font-weight: 700 !important;
-  border-radius: 6px !important;
-  font-size: 13px !important;
-  padding: 0.55rem 1.25rem !important;
-  box-shadow: 0 2px 6px rgba(0, 103, 152, 0.3) !important;
-  transition: all 0.18s ease !important;
-  text-decoration: none !important;
-  display: inline-block !important;
-}
-
-.pkpButton--primary:hover,
-button.pkpButton--primary:hover,
-.pkp_button_primary:hover,
-.pkp_workflow_decisions a.pkp_linkaction_externalReview:hover,
-.pkp_workflow_decisions a.pkp_linkaction_sendToProduction:hover,
-.pkp_workflow_decisions a.pkp_linkaction_schedulePublication:hover,
-.pkp_workflow_decisions a.pkp_linkaction_toPublication:hover {
-  background: #00547C !important;
-  border-color: #004160 !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px rgba(0, 103, 152, 0.4) !important;
-  color: #FFFFFF !important;
-}
-
-/* Tombol Tolak / Decline */
-.pkp_workflow_decisions a.pkp_linkaction_decline,
-.pkp_button_offset {
-  background: #FFF1F2 !important;
-  border: 1px solid #FDA4AF !important;
-  color: #E11D48 !important;
-  border-radius: 6px !important;
-  font-weight: 700 !important;
-  font-size: 13px !important;
-  padding: 0.55rem 1.25rem !important;
-  text-decoration: none !important;
-  display: inline-block !important;
-  transition: all 0.18s ease !important;
-}
-
-.pkp_workflow_decisions a.pkp_linkaction_decline:hover,
-.pkp_button_offset:hover {
-  background: #FFE4E6 !important;
-  border-color: #F43F5E !important;
-  color: #BE123C !important;
-}
-
-/* Secondary Buttons */
-.pkpButton,
-.pkp_button {
-  border: 1px solid #CBD5E1 !important;
-  color: #1E293B !important;
-  border-radius: 6px !important;
-  font-weight: 600 !important;
-  font-size: 13px !important;
-  background: #FFFFFF !important;
-  transition: all 0.18s ease !important;
-}
-
-.pkpButton:hover,
-.pkp_button:hover {
-  border-color: #006798 !important;
-  color: #006798 !important;
-  background: #F0F7FB !important;
-}
-
-/* Links */
-.-linkButton,
-a.pkpLink,
-.pkp_linkaction {
-  color: #006798 !important;
-  font-weight: 600 !important;
-}
-
-.-linkButton:hover,
-a.pkpLink:hover,
-.pkp_linkaction:hover {
-  color: #00547C !important;
-}
-
-
-/* ==========================================================================
-   ENTERPRISE THEME: ATAS MERAH BATA, BAWAH BIRU PU (FULL-WIDTH & FULL-HEIGHT)
-   Mandat Dany Triyatna - 9 November 2026
-   ========================================================================== */
-
-/* 1. Global Reset & Backend Canvas */
-html {
-  height: 100% !important;
-}
-
-body.pkp_page_workflow,
-body.pkp_page_dashboard,
-body.pkp_page_submissions,
-body.pkp_page_stats,
-body.pkp_page_settings,
-body.pkp_page_management,
-body.pkp_page_admin,
-body.pkp_page_index:has(.app) {
-  background: #F8FAFC !important;
-  min-height: 100vh !important;
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  color: #1E293B !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-}
-
-#app,
-.app {
-  min-height: 100vh !important;
-  height: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  background: #F8FAFC !important;
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* 2. Top Masthead: Merah Bata Puskim */
-.app__header {
-  background: linear-gradient(135deg, #C13D0D 0%, #A0320A 100%) !important;
-  border-bottom: 2px solid #802606 !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
-  flex: 0 0 48px !important;
-  height: 48px !important;
-  padding: 0 1.5rem !important;
-  z-index: 1000 !important;
-}
-
-.app__header .app__contextTitle,
-.app__header .app__contextTitle a,
-.app__header a,
-.app__header button,
-.app__header .icon,
-.app__header .pkpDropdown__action {
-  color: #FFFFFF !important;
-}
-
-.app__header .app__contextTitle {
-  font-weight: 800 !important;
-  font-size: 14.5px !important;
-  letter-spacing: 0.5px !important;
-  text-transform: uppercase !important;
-}
-
-.app__tasksCount {
-  background: #FFFFFF !important;
   color: #C13D0D !important;
   font-weight: 800 !important;
 }
 
-/* 3. App Body Layout: Flex Row & Full Height */
-.app__body {
-  flex: 1 1 auto !important;
-  display: flex !important;
-  flex-direction: row !important;
-  min-height: calc(100vh - 48px) !important;
-  background: #F8FAFC !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* 4. Left Sidebar Navigation */
-.app__nav {
-  flex: 0 0 220px !important;
-  width: 220px !important;
-  min-width: 220px !important;
-  background: #FFFFFF !important;
-  border-right: 1px solid #E2E8F0 !important;
-  min-height: calc(100vh - 48px) !important;
-  padding: 1.25rem 0.75rem !important;
-  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.02) !important;
-  box-sizing: border-box !important;
-}
-
-.app__navGroup {
-  margin-top: 1.25rem !important;
-  margin-bottom: 0.5rem !important;
-}
-
-.app__navGroup:first-child {
-  margin-top: 0 !important;
-}
-
-.app__navItem--hasSubmenu {
-  color: #64748B !important;
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.8px !important;
-  padding: 0.5rem 0.75rem !important;
-  margin-bottom: 0.25rem !important;
-}
-
-.app__navItem {
-  color: #334155 !important;
-  font-size: 13px !important;
-  font-weight: 500 !important;
-  padding: 0.45rem 0.75rem !important;
-  border-radius: 6px !important;
-  display: block !important;
-  text-decoration: none !important;
-  transition: all 0.15s ease !important;
-}
-
-.app__navItem:hover {
-  color: #006798 !important;
-  background: #F0F7FB !important;
-  transform: translateX(3px) !important;
-}
-
-.app__navItem--isCurrent,
-.app__navItem--isCurrent:hover {
-  background: #006798 !important;
-  color: #FFFFFF !important;
-  border-radius: 6px !important;
-  font-weight: 700 !important;
-  box-shadow: 0 2px 6px rgba(0, 103, 152, 0.35) !important;
-  transform: none !important;
-}
-
-/* 5. Main Operational Workspace: FULL WIDTH & FULL HEIGHT */
-.app__main {
-  flex: 1 1 auto !important;
-  width: calc(100% - 220px) !important;
-  max-width: none !important;
-  min-height: calc(100vh - 48px) !important;
-  background: #F8FAFC !important;
-  padding: 1.5rem 2.5rem 3rem 2.5rem !important;
-  box-sizing: border-box !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.app__page,
-.app__page--wide,
-.app__page--full,
-.pkpWorkflow {
-  max-width: none !important;
-  width: 100% !important;
-  margin: 0 !important;
-  flex: 1 1 auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-#submissionWorkflow,
-.pkp_submission_workflow,
-#submissionProgressBarDiv,
-#stageTabs,
-.pkp_controllers_tab {
-  width: 100% !important;
-  max-width: none !important;
-  flex: 1 1 auto !important;
-}
-
-/* 6. Breadcrumbs & Identification */
-.app__breadcrumbs {
-  margin-bottom: 1.25rem !important;
-}
-
-.app__breadcrumbs a {
-  color: #64748B !important;
-  text-decoration: none !important;
-  font-weight: 500 !important;
-  font-size: 13px !important;
-}
-
-.app__breadcrumbs a:hover {
-  color: #006798 !important;
-}
-
-.pkpWorkflow__header {
-  background: #FFFFFF !important;
-  border: 1px solid #E2E8F0 !important;
-  border-radius: 10px !important;
-  padding: 1rem 1.5rem !important;
-  margin-bottom: 1.25rem !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-.pkpWorkflow__identificationId,
-.pkpWorkflow__identificationAuthor {
-  color: #006798 !important;
-  font-weight: 700 !important;
-}
-
-/* 7. Tabs: Workflow & Publication */
-.pkpTabs__button {
-  color: #475569 !important;
-  font-size: 13.5px !important;
-  font-weight: 600 !important;
-  border-radius: 6px 6px 0 0 !important;
-  transition: all 0.18s ease !important;
-}
-
-.pkpTabs__button:hover {
-  color: #006798 !important;
-}
-
-.pkpTabs__button[aria-selected="true"] {
-  color: #006798 !important;
-  font-weight: 800 !important;
-}
-
 .pkpTabs__button:focus:before,
 .pkpTabs__button:hover:before,
 .pkpTabs__button[aria-selected="true"]:before {
-  background: #006798 !important;
+  background: #C13D0D !important;
   width: 100% !important;
 }
 
 .pkpWorkflow .pkpTabs__button[aria-selected="true"] {
-  border-bottom: 3px solid #006798 !important;
-  color: #006798 !important;
+  border-bottom: 3px solid #C13D0D !important;
+  color: #C13D0D !important;
   font-weight: 800 !important;
 }
 
@@ -964,7 +559,7 @@ body.pkp_page_index:has(.app) {
 
 .pkp_submission_workflow .ui-tabs-nav li.ui-state-active a,
 .pkp_submission_workflow .ui-tabs-nav li a:hover {
-  color: #006798 !important;
+  color: #C13D0D !important;
   font-weight: 800 !important;
 }
 
@@ -973,7 +568,7 @@ body.pkp_page_index:has(.app) {
 .pkp_submission_workflow .ui-tabs-nav .initiated a:hover:before,
 .pkp_submission_workflow .ui-tabs-nav .initiated a:focus:before,
 .pkp_submission_workflow .ui-tabs-nav li.ui-state-active a:before {
-  background: #006798 !important;
+  background: #C13D0D !important;
   height: 3px !important;
 }
 
@@ -1018,7 +613,7 @@ body.pkp_page_index:has(.app) {
   padding: 1rem !important;
 }
 
-/* 11. Buttons: Biru PU (#006798) */
+/* 11. Buttons: Deep Terracotta Puskim Gradient (#C84313 -> #B03106) */
 .pkpButton--primary,
 button.pkpButton--primary,
 .pkpButton--isPrimary,
@@ -1027,14 +622,14 @@ button.pkpButton--primary,
 .pkp_workflow_decisions a.pkp_linkaction_sendToProduction,
 .pkp_workflow_decisions a.pkp_linkaction_schedulePublication,
 .pkp_workflow_decisions a.pkp_linkaction_toPublication {
-  background: #006798 !important;
-  border: 1px solid #00547C !important;
+  background: linear-gradient(180deg, #C84313 0%, #B03106 100%) !important;
+  border: 1px solid #9A2803 !important;
   color: #FFFFFF !important;
   font-weight: 700 !important;
   border-radius: 6px !important;
   font-size: 13px !important;
   padding: 0.55rem 1.25rem !important;
-  box-shadow: 0 2px 6px rgba(0, 103, 152, 0.3) !important;
+  box-shadow: 0 2px 6px rgba(176, 49, 6, 0.35) !important;
   transition: all 0.18s ease !important;
   text-decoration: none !important;
   display: inline-block !important;
@@ -1047,14 +642,14 @@ button.pkpButton--primary:hover,
 .pkp_workflow_decisions a.pkp_linkaction_sendToProduction:hover,
 .pkp_workflow_decisions a.pkp_linkaction_schedulePublication:hover,
 .pkp_workflow_decisions a.pkp_linkaction_toPublication:hover {
-  background: #00547C !important;
-  border-color: #004160 !important;
+  background: linear-gradient(180deg, #B03106 0%, #982803 100%) !important;
+  border-color: #802002 !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px rgba(0, 103, 152, 0.4) !important;
+  box-shadow: 0 4px 12px rgba(176, 49, 6, 0.45) !important;
   color: #FFFFFF !important;
 }
 
-/* Tombol Tolak / Decline */
+/* Tombol Tolak / Decline: Soft Rose Alert */
 .pkp_workflow_decisions a.pkp_linkaction_decline,
 .pkp_button_offset {
   background: #FFF1F2 !important;
@@ -1090,25 +685,27 @@ button.pkpButton--primary:hover,
 
 .pkpButton:hover,
 .pkp_button:hover {
-  border-color: #006798 !important;
-  color: #006798 !important;
-  background: #F0F7FB !important;
+  border-color: #C13D0D !important;
+  color: #C13D0D !important;
+  background: #FFF7F5 !important;
 }
 
-/* Links */
+/* Links & Help */
 .-linkButton,
 a.pkpLink,
-.pkp_linkaction {
-  color: #006798 !important;
+.pkp_linkaction,
+.pkp_help_link {
+  color: #1E293B !important;
   font-weight: 600 !important;
+  transition: color 0.15s ease !important;
 }
 
 .-linkButton:hover,
 a.pkpLink:hover,
-.pkp_linkaction:hover {
-  color: #00547C !important;
+.pkp_linkaction:hover,
+.pkp_help_link:hover {
+  color: #C13D0D !important;
 }
-
 
 /* ==========================================================================
    TIDAK ADA KOLOM YANG 2 BARIS: AUTO-FIT WIDE COLUMNS & NO-WRAP

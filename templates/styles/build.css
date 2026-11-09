@@ -296,8 +296,10 @@ a.pkpLink:hover {
 
 
 
+
+
 /* ==========================================================================
-   ENTERPRISE THEME: ATAS MERAH BATA, BAWAH BIRU PU (FULL-WIDTH & FULL-HEIGHT)
+   ENTERPRISE THEME: MONOKROMATIK MEWAH PUSKIM (SATU JIWA DENGAN FRONTEND)
    Mandat Dany Triyatna - 9 November 2026
    ========================================================================== */
 
@@ -425,18 +427,18 @@ body.pkp_page_index:has(.app) {
 }
 
 .app__navItem:hover {
-  color: #006798 !important;
-  background: #F0F7FB !important;
+  color: #C13D0D !important;
+  background: #FFF5F2 !important;
   transform: translateX(3px) !important;
 }
 
 .app__navItem--isCurrent,
 .app__navItem--isCurrent:hover {
-  background: #006798 !important;
+  background: #C13D0D !important;
   color: #FFFFFF !important;
   border-radius: 6px !important;
   font-weight: 700 !important;
-  box-shadow: 0 2px 6px rgba(0, 103, 152, 0.35) !important;
+  box-shadow: 0 2px 8px rgba(193, 61, 13, 0.35) !important;
   transform: none !important;
 }
 
@@ -488,7 +490,7 @@ body.pkp_page_index:has(.app) {
 }
 
 .app__breadcrumbs a:hover {
-  color: #006798 !important;
+  color: #C13D0D !important;
 }
 
 .pkpWorkflow__header {
@@ -504,7 +506,7 @@ body.pkp_page_index:has(.app) {
 
 .pkpWorkflow__identificationId,
 .pkpWorkflow__identificationAuthor {
-  color: #006798 !important;
+  color: #C13D0D !important;
   font-weight: 700 !important;
 }
 
@@ -518,24 +520,24 @@ body.pkp_page_index:has(.app) {
 }
 
 .pkpTabs__button:hover {
-  color: #006798 !important;
+  color: #C13D0D !important;
 }
 
 .pkpTabs__button[aria-selected="true"] {
-  color: #006798 !important;
+  color: #C13D0D !important;
   font-weight: 800 !important;
 }
 
 .pkpTabs__button:focus:before,
 .pkpTabs__button:hover:before,
 .pkpTabs__button[aria-selected="true"]:before {
-  background: #006798 !important;
+  background: #C13D0D !important;
   width: 100% !important;
 }
 
 .pkpWorkflow .pkpTabs__button[aria-selected="true"] {
-  border-bottom: 3px solid #006798 !important;
-  color: #006798 !important;
+  border-bottom: 3px solid #C13D0D !important;
+  color: #C13D0D !important;
   font-weight: 800 !important;
 }
 
@@ -557,7 +559,7 @@ body.pkp_page_index:has(.app) {
 
 .pkp_submission_workflow .ui-tabs-nav li.ui-state-active a,
 .pkp_submission_workflow .ui-tabs-nav li a:hover {
-  color: #006798 !important;
+  color: #C13D0D !important;
   font-weight: 800 !important;
 }
 
@@ -566,7 +568,7 @@ body.pkp_page_index:has(.app) {
 .pkp_submission_workflow .ui-tabs-nav .initiated a:hover:before,
 .pkp_submission_workflow .ui-tabs-nav .initiated a:focus:before,
 .pkp_submission_workflow .ui-tabs-nav li.ui-state-active a:before {
-  background: #006798 !important;
+  background: #C13D0D !important;
   height: 3px !important;
 }
 
@@ -611,7 +613,7 @@ body.pkp_page_index:has(.app) {
   padding: 1rem !important;
 }
 
-/* 11. Buttons: Biru PU (#006798) */
+/* 11. Buttons: Deep Terracotta Puskim Gradient (#C84313 -> #B03106) */
 .pkpButton--primary,
 button.pkpButton--primary,
 .pkpButton--isPrimary,
@@ -620,14 +622,14 @@ button.pkpButton--primary,
 .pkp_workflow_decisions a.pkp_linkaction_sendToProduction,
 .pkp_workflow_decisions a.pkp_linkaction_schedulePublication,
 .pkp_workflow_decisions a.pkp_linkaction_toPublication {
-  background: #006798 !important;
-  border: 1px solid #00547C !important;
+  background: linear-gradient(180deg, #C84313 0%, #B03106 100%) !important;
+  border: 1px solid #9A2803 !important;
   color: #FFFFFF !important;
   font-weight: 700 !important;
   border-radius: 6px !important;
   font-size: 13px !important;
   padding: 0.55rem 1.25rem !important;
-  box-shadow: 0 2px 6px rgba(0, 103, 152, 0.3) !important;
+  box-shadow: 0 2px 6px rgba(176, 49, 6, 0.35) !important;
   transition: all 0.18s ease !important;
   text-decoration: none !important;
   display: inline-block !important;
@@ -640,14 +642,14 @@ button.pkpButton--primary:hover,
 .pkp_workflow_decisions a.pkp_linkaction_sendToProduction:hover,
 .pkp_workflow_decisions a.pkp_linkaction_schedulePublication:hover,
 .pkp_workflow_decisions a.pkp_linkaction_toPublication:hover {
-  background: #00547C !important;
-  border-color: #004160 !important;
+  background: linear-gradient(180deg, #B03106 0%, #982803 100%) !important;
+  border-color: #802002 !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px rgba(0, 103, 152, 0.4) !important;
+  box-shadow: 0 4px 12px rgba(176, 49, 6, 0.45) !important;
   color: #FFFFFF !important;
 }
 
-/* Tombol Tolak / Decline */
+/* Tombol Tolak / Decline: Soft Rose Alert */
 .pkp_workflow_decisions a.pkp_linkaction_decline,
 .pkp_button_offset {
   background: #FFF1F2 !important;
@@ -683,25 +685,27 @@ button.pkpButton--primary:hover,
 
 .pkpButton:hover,
 .pkp_button:hover {
-  border-color: #006798 !important;
-  color: #006798 !important;
-  background: #F0F7FB !important;
+  border-color: #C13D0D !important;
+  color: #C13D0D !important;
+  background: #FFF7F5 !important;
 }
 
-/* Links */
+/* Links & Help */
 .-linkButton,
 a.pkpLink,
-.pkp_linkaction {
-  color: #006798 !important;
+.pkp_linkaction,
+.pkp_help_link {
+  color: #1E293B !important;
   font-weight: 600 !important;
+  transition: color 0.15s ease !important;
 }
 
 .-linkButton:hover,
 a.pkpLink:hover,
-.pkp_linkaction:hover {
-  color: #00547C !important;
+.pkp_linkaction:hover,
+.pkp_help_link:hover {
+  color: #C13D0D !important;
 }
-
 
 /* ==========================================================================
    TIDAK ADA KOLOM YANG 2 BARIS: AUTO-FIT WIDE COLUMNS & NO-WRAP
