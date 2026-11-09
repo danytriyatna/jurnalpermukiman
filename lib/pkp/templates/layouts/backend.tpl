@@ -27,6 +27,11 @@
 				{ldelim}
 					{include file="controllers/notification/notificationOptions.tpl"}
 				{rdelim});
+
+			// Cegah kolom tabel grid membungkus jadi 2 baris (Single Line Metadata)
+			$(document).ajaxComplete(function() {ldelim}
+				$('.pkp_controllers_grid td .label br').replaceWith(' <span class="grid_line_sep" style="color:#94a3b8; font-weight:normal; margin:0 4px;">•</span> ');
+			{rdelim});
 		{rdelim});
 	</script>
 
