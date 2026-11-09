@@ -33,10 +33,10 @@
 
     /* TOP HEADER: MASTER PANORAMA BANNER KEMENPU (BULLETPROOF RESPONSIVE HEADER) */
     .app__header {
-      height: 86px;
-      flex: 0 0 86px;
+      height: 80px;
+      flex: 0 0 80px;
       background-color: #C13D0D;
-      background-image: url("public/journals/1/header_bg_perfect_text.jpg");
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.05) 35%, rgba(0, 0, 0, 0.05) 65%, rgba(0, 0, 0, 0.45) 100%), url("public/journals/1/header_pure_scenery_3200.jpg");
       background-repeat: no-repeat;
       background-position: left center;
       background-size: cover;
@@ -57,7 +57,7 @@
     .app__contextTitle {
       opacity: 0;
       width: 320px;
-      height: 86px;
+      height: 80px;
       display: block;
       position: relative;
       z-index: 2;
@@ -699,9 +699,10 @@
     <!-- TOP HEADER: MERAH BATA PUSKIM -->
     <header class="app__header">
       <a href="http://localhost/jurnalpermukiman/index.php/JP" class="app__contextTitle">
-        <i class="fa-solid fa-book-journal-whills"></i>
-        <span>Jurnal Permukiman</span>
-        <span class="app__contextBadge">Puskim PU</span>
+        <div class="app__brandLogo">
+          <span class="app__brandLine1">JURNAL</span>
+          <span class="app__brandLine2">PERMUKIMAN</span>
+        </div>
       </a>
 
       <div class="app__headerRight">

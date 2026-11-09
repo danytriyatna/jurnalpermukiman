@@ -499,7 +499,7 @@ body.pkp_page_index:has(.app) {
   height: 80px !important;
   flex: 0 0 80px !important;
   background-color: #C13D0D !important;
-  background-image: url("/jurnalpermukiman/public/journals/1/header_pure_scenery_3200.jpg") !important;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.05) 35%, rgba(0, 0, 0, 0.05) 65%, rgba(0, 0, 0, 0.45) 100%), url("/jurnalpermukiman/public/journals/1/header_pure_scenery_3200.jpg") !important;
   background-repeat: no-repeat !important;
   background-position: center center !important;
   background-size: cover !important;
