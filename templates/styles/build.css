@@ -338,63 +338,70 @@ body.pkp_page_index:has(.app) {
   padding: 0 !important;
 }
 
-/* 2. Top Masthead: Panorama Banner KemenPU Mandat Dany Triyatna */
+/* 2. Top Masthead: Panorama Banner KemenPU (Contain Utuh + Sisa Merah Bata) */
 .app__header {
-  height: 96px !important;
-  flex: 0 0 96px !important;
-  background: #C13D0D url("/jurnalpermukiman/public/journals/1/pageHeaderLogoImage_en_US.jpg") no-repeat center center / cover !important;
+  height: 110px !important;
+  flex: 0 0 110px !important;
+  background-color: #C13D0D !important;
+  background-image: url("/jurnalpermukiman/public/journals/1/pageHeaderLogoImage_en_US.jpg") !important;
+  background-repeat: no-repeat !important;
+  background-position: left center !important;
+  background-size: contain !important; /* Semua gambar tampil 100% utuh tanpa dicrop! */
   border-bottom: 2px solid #802606 !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
-  position: relative !important;
-  overflow: hidden !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
   padding: 0 1.5rem !important;
+  position: relative !important;
   z-index: 1000 !important;
 }
 
 .app__header::after {
-  content: "" !important;
-  position: absolute !important;
-  top: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  width: 360px !important;
-  background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 100%) !important;
-  pointer-events: none !important;
+  display: none !important;
 }
 
-/* Sembunyikan teks polos karena banner sudah memiliki tipografi JURNAL PERMUKIMAN */
+/* Sembunyikan teks polos contextTitle agar tidak tabrakan dengan banner */
 .app__header .app__contextTitle {
   opacity: 0 !important;
-  width: 340px !important;
-  height: 96px !important;
+  width: 680px !important;
+  height: 110px !important;
   display: block !important;
   position: relative !important;
   z-index: 2 !important;
 }
 
-/* Glassmorphism Actions Pill di Kanan */
+/* Action buttons di atas latar merah bata polos di sebelah kanan */
 .app__header .app__headerActions {
   position: relative !important;
   z-index: 10 !important;
-  background: rgba(15, 23, 42, 0.65) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  padding: 6px 14px !important;
-  border-radius: 20px !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important;
+  gap: 16px !important;
 }
 
 .app__header .app__headerActions a,
 .app__header .app__headerActions button,
 .app__header .app__headerActions .icon {
   color: #FFFFFF !important;
+}
+
+.app__header .app__headerAction button {
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 8px !important;
+  border-radius: 6px !important;
+  transition: background 0.15s ease !important;
+}
+
+.app__header .app__headerAction button:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
 }
 
 .app__tasksCount {
@@ -408,7 +415,7 @@ body.pkp_page_index:has(.app) {
   flex: 1 1 auto !important;
   display: flex !important;
   flex-direction: row !important;
-  min-height: calc(100vh - 96px) !important;
+  min-height: calc(100vh - 110px) !important;
   background: #F8FAFC !important;
   width: 100% !important;
   margin: 0 !important;
@@ -422,7 +429,7 @@ body.pkp_page_index:has(.app) {
   min-width: 220px !important;
   background: #FFFFFF !important;
   border-right: 1px solid #E2E8F0 !important;
-  min-height: calc(100vh - 96px) !important;
+  min-height: calc(100vh - 110px) !important;
   padding: 1.25rem 0.75rem !important;
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.02) !important;
   box-sizing: border-box !important;
@@ -479,7 +486,7 @@ body.pkp_page_index:has(.app) {
   flex: 1 1 auto !important;
   width: calc(100% - 220px) !important;
   max-width: none !important;
-  min-height: calc(100vh - 96px) !important;
+  min-height: calc(100vh - 110px) !important;
   background: #F8FAFC !important;
   padding: 1.5rem 2.5rem 3rem 2.5rem !important;
   box-sizing: border-box !important;
