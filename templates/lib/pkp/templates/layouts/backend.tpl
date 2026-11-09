@@ -58,11 +58,17 @@
 			{/if}
 			{if $currentContext}
 				<a class="app__contextTitle" href="{url page="index"}">
-					{$currentContext->getLocalizedData('name')|escape}
+					<div class="app__brandLogo">
+						<span class="app__brandLine1">JURNAL</span>
+						<span class="app__brandLine2">PERMUKIMAN</span>
+					</div>
 				</a>
 			{elseif $siteTitle}
 				<a class="app__contextTitle" href="{$baseUrl}">
-					{$siteTitle|escape}
+					<div class="app__brandLogo">
+						<span class="app__brandLine1">JURNAL</span>
+						<span class="app__brandLine2">PERMUKIMAN</span>
+					</div>
 				</a>
 			{else}
 				<div class="app__contextTitle">
