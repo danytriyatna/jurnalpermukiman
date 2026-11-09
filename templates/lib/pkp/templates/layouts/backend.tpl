@@ -29,8 +29,15 @@
 				{rdelim});
 
 			// Cegah kolom tabel grid membungkus jadi 2 baris (Single Line Metadata)
+			function enforceSingleLineMetadata() {
+				$('.pkp_controllers_grid td .label br').replaceWith(' <span class="grid_line_sep" style="color:#94a3b8; font-weight:normal; margin:0 6px;">&bull;</span> ');
+				$('.pkp_controllers_grid td.column-from br').replaceWith(' <span class="grid_line_sep" style="color:#94a3b8; font-weight:normal; margin:0 6px;">&bull;</span> ');
+				$('.pkp_controllers_grid td.column-date br').replaceWith(' ');
+				$('.pkp_controllers_grid td[class*="date"] br').replaceWith(' ');
+			}
+			enforceSingleLineMetadata();
 			$(document).ajaxComplete(function() {ldelim}
-				$('.pkp_controllers_grid td .label br').replaceWith(' <span class="grid_line_sep" style="color:#94a3b8; font-weight:normal; margin:0 4px;">•</span> ');
+				enforceSingleLineMetadata();
 			{rdelim});
 		{rdelim});
 	</script>

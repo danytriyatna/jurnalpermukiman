@@ -693,3 +693,261 @@ button.pkpButton--primary:hover,
   font-weight: 700 !important;
   color: #0F172A !important;
 }
+
+
+
+/* ==========================================================================
+   ENTERPRISE FRESH UI/UX DESIGN SYSTEM (POLISH 2026)
+   ========================================================================== */
+
+/* 1. SINGLE-LINE METADATA MANDATE (Anti-Wrap) */
+.pkp_controllers_grid td,
+.pkp_controllers_grid th {
+  vertical-align: middle !important;
+}
+
+.pkp_controllers_grid td.gridCell,
+.pkp_controllers_grid td .gridCellContainer,
+.pkp_controllers_grid td .label {
+  white-space: nowrap !important;
+}
+
+.pkp_controllers_grid td.column-date,
+.pkp_controllers_grid th.column-date,
+.pkp_controllers_grid td[class*="date"],
+.pkp_controllers_grid th[class*="date"] {
+  min-width: 175px !important;
+  width: 175px !important;
+  white-space: nowrap !important;
+}
+
+.pkp_controllers_grid td.column-from,
+.pkp_controllers_grid th.column-from,
+.pkp_controllers_grid td[class*="from"],
+.pkp_controllers_grid th[class*="from"] {
+  min-width: 260px !important;
+  white-space: nowrap !important;
+}
+
+.pkp_controllers_grid td.column-from .label,
+.pkp_controllers_grid td[class*="from"] .label {
+  white-space: nowrap !important;
+}
+
+/* 2. MODERN CARD ELEVATION FOR GRIDS & PARTICIPANTS */
+.pkp_controllers_grid,
+.pkpWorkflow__main .pkp_controllers_grid,
+.pkpWorkflow__participants {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+  overflow: hidden !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* Header Grid / Panel */
+.pkp_controllers_grid .header {
+  background: #F8FAFC !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  padding: 12px 20px !important;
+}
+
+.pkp_controllers_grid .header h4 {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+  letter-spacing: -0.2px !important;
+}
+
+/* Grid Table Rows */
+.pkp_controllers_grid tr:hover td {
+  background: #F8FAFC !important;
+}
+
+.pkp_controllers_grid td {
+  padding: 12px 18px !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+  font-size: 13px !important;
+  color: #334155 !important;
+}
+
+/* 3. MODERN MICRO-BUTTONS FOR TABLE HEADER ACTIONS */
+.pkp_controllers_grid .header .actions a,
+.pkp_controllers_grid .actions a,
+.pkp_controllers_grid a.pkp_linkAction_search,
+.pkp_controllers_grid a.pkp_linkAction_addFile,
+.pkp_controllers_grid a.pkp_linkAction_addDiscussion,
+.pkp_controllers_grid a.pkp_linkAction_order {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #006798 !important;
+  padding: 5px 12px !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.15s ease !important;
+  margin-left: 6px !important;
+}
+
+.pkp_controllers_grid .header .actions a:hover,
+.pkp_controllers_grid .actions a:hover {
+  background: #F0F9FF !important;
+  border-color: #008ACB !important;
+  color: #008ACB !important;
+  box-shadow: 0 2px 5px rgba(0, 103, 152, 0.15) !important;
+}
+
+/* 4. DOWNLOAD ALL FILES ACTION */
+.pkp_controllers_grid .download_all_files,
+.pkp_controllers_grid a[class*="downloadAll"] {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #006798 !important;
+  padding: 7px 16px !important;
+  border-radius: 6px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.15s ease !important;
+}
+
+.pkp_controllers_grid .download_all_files:hover,
+.pkp_controllers_grid a[class*="downloadAll"]:hover {
+  background: #F0F9FF !important;
+  border-color: #008ACB !important;
+  color: #008ACB !important;
+}
+
+/* 5. TOP RIGHT UTILITY BUTTONS (Activity Log & Library) */
+.pkpWorkflow__header .pkp_linkAction,
+.pkp_linkAction_activityLog,
+.pkp_linkAction_submissionLibrary {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #334155 !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.15s ease !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.pkpWorkflow__header .pkp_linkAction:hover {
+  background: #F8FAFC !important;
+  border-color: #006798 !important;
+  color: #006798 !important;
+}
+
+/* 6. WORKFLOW STAGE TABS (Submission, Review, Copyediting, Production) */
+.pkpWorkflow .pkpTabs__button {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #64748B !important;
+  padding: 8px 18px !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease !important;
+}
+
+.pkpWorkflow .pkpTabs__button[aria-selected="true"] {
+  color: #006798 !important;
+  background: #F0F9FF !important;
+  font-weight: 700 !important;
+  border-bottom: 2px solid #006798 !important;
+}
+
+/* 7. PARTICIPANTS PANEL REFINEMENT */
+.pkpWorkflow__participants {
+  padding: 18px 20px !important;
+}
+
+.pkpWorkflow__participants .header {
+  background: transparent !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+  padding: 0 0 10px 0 !important;
+}
+
+.pkpWorkflow__participants h3,
+.pkpWorkflow__participants h4 {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+}
+
+/* 8. EDITORIAL ACTION BUTTONS ON RIGHT */
+.pkpWorkflow__sidebar button.pkpButton--primary {
+  background: #006798 !important;
+  border: 1px solid #00527A !important;
+  color: #FFFFFF !important;
+  border-radius: 8px !important;
+  padding: 12px 20px !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 8px rgba(0, 103, 152, 0.3) !important;
+  transition: all 0.2s ease !important;
+  width: 100% !important;
+  display: block !important;
+  text-align: center !important;
+}
+
+.pkpWorkflow__sidebar button.pkpButton--primary:hover {
+  background: #008ACB !important;
+  border-color: #006798 !important;
+  box-shadow: 0 4px 12px rgba(0, 103, 152, 0.4) !important;
+}
+
+.pkpWorkflow__sidebar button.pkpButton:not(.pkpButton--primary):not(.pkpButton--warnable) {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #006798 !important;
+  border-radius: 8px !important;
+  padding: 10px 18px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  transition: all 0.15s ease !important;
+  width: 100% !important;
+  display: block !important;
+  text-align: center !important;
+  margin-top: 8px !important;
+}
+
+.pkpWorkflow__sidebar button.pkpButton:not(.pkpButton--primary):not(.pkpButton--warnable):hover {
+  background: #F0F9FF !important;
+  border-color: #008ACB !important;
+  color: #008ACB !important;
+}
+
+.pkpWorkflow__sidebar button.pkpButton--warnable {
+  color: #E11D48 !important;
+  background: #FFF1F2 !important;
+  border: 1px solid #FDA4AF !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  width: 100% !important;
+  display: block !important;
+  margin-top: 8px !important;
+  transition: all 0.15s ease !important;
+}
+
+.pkpWorkflow__sidebar button.pkpButton--warnable:hover {
+  background: #FFE4E6 !important;
+  border-color: #F43F5E !important;
+  color: #BE123C !important;
+}
