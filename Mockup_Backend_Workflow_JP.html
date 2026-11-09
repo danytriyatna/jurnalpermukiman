@@ -31,17 +31,17 @@
       flex-direction: column;
     }
 
-    /* TOP HEADER: PANORAMA BANNER KEMENPU (CONTAIN UTUH + SISA MERAH BATA) */
+    /* TOP HEADER: MASTER PANORAMA BANNER KEMENPU (FULL-ROW SEAMLESS 3200px) */
     .app__header {
-      height: 110px;
-      flex: 0 0 110px;
+      height: 96px;
+      flex: 0 0 96px;
       background-color: #C13D0D;
-      background-image: url("public/journals/1/pageHeaderLogoImage_en_US.jpg");
+      background-image: url("public/journals/1/pageHeaderLogoImage_fullrow.jpg");
       background-repeat: no-repeat;
-      background-position: left center;
-      background-size: contain; /* Gambar tampil 100% utuh tanpa dicrop! */
+      background-position: center center;
+      background-size: cover; /* Memenuhi 100% seluruh baris secara mulus tanpa batas */
       border-bottom: 2px solid #802606;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
       position: relative;
       display: flex;
       align-items: center;
@@ -56,8 +56,8 @@
 
     .app__contextTitle {
       opacity: 0;
-      width: 680px;
-      height: 110px;
+      width: 340px;
+      height: 96px;
       display: block;
       position: relative;
       z-index: 2;
@@ -66,9 +66,16 @@
     .app__headerActions {
       position: relative;
       z-index: 10;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       color: #FFFFFF;
     }
 
@@ -133,7 +140,7 @@
       flex: 1 1 auto;
       display: flex;
       flex-direction: row;
-      min-height: calc(100vh - 110px);
+      min-height: calc(100vh - 96px);
       width: 100%;
     }
 
@@ -143,7 +150,7 @@
       width: 220px;
       background: #FFFFFF;
       border-right: 1px solid #E2E8F0;
-      min-height: calc(100vh - 110px);
+      min-height: calc(100vh - 96px);
       padding: 1.25rem 0.75rem;
       box-shadow: 2px 0 6px rgba(0, 0, 0, 0.02);
       box-sizing: border-box;
@@ -207,7 +214,7 @@
     .app__main {
       flex: 1 1 auto;
       width: calc(100% - 220px);
-      min-height: calc(100vh - 110px);
+      min-height: calc(100vh - 96px);
       background: #F8FAFC;
       padding: 1.5rem 2.5rem 3rem 2.5rem;
       display: flex;
