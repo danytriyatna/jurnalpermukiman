@@ -70,7 +70,11 @@
 				</div>
 			{/if}
 			{if $currentUser}
-				<div class="app__headerActions" v-cloak>
+				<div class="app__headerRight">
+					<div class="app__headerBadgePU">
+						<img src="{$baseUrl}/public/journals/1/kemenpu_pill_clean.png" alt="Kementerian PU" />
+					</div>
+					<div class="app__headerActions" v-cloak>
 					{call_hook name="Template::Layout::Backend::HeaderActions"}
 					<div class="app__headerAction app__tasks">
 						<button ref="tasksButton" @click="openTasks">
@@ -140,6 +144,7 @@
 							</div>
 						</nav>
 					</dropdown>
+				</div>
 				</div>
 			{/if}
 		</header>
