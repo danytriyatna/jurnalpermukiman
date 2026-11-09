@@ -594,21 +594,26 @@
     }
 
     .btn-primary-action {
-      background: linear-gradient(180deg, #C84313 0%, #B03106 100%);
-      border: 1px solid #A0320A;
-      color: #FFFFFF;
-      font-weight: 700;
-      font-size: 13.5px;
-      padding: 10px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(193, 61, 13, 0.35);
-      transition: all 0.18s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      background: #006798 !important;
+      border: 1px solid #00527A !important;
+      color: #FFFFFF !important;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      padding: 10px 16px !important;
+      border-radius: 6px !important;
+      cursor: pointer !important;
+      text-align: center !important;
+      box-shadow: 0 2px 6px rgba(0, 103, 152, 0.3) !important;
+      transition: all 0.18s ease !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+    }
+    .btn-primary-action:hover {
+      background: #008ACB !important;
+      border-color: #006798 !important;
+      box-shadow: 0 4px 10px rgba(0, 103, 152, 0.4) !important;
     }
 
     .btn-primary-action:hover {
@@ -618,16 +623,21 @@
     }
 
     .btn-secondary-action {
-      background: #FFFFFF;
-      border: 1px solid #CBD5E1;
-      color: #1E293B;
-      font-weight: 600;
-      font-size: 13px;
-      padding: 8px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.15s ease;
+      background: #FFFFFF !important;
+      border: 1px solid #CBD5E1 !important;
+      color: #006798 !important;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      padding: 8px 16px !important;
+      border-radius: 6px !important;
+      cursor: pointer !important;
+      text-align: center !important;
+      transition: all 0.15s ease !important;
+    }
+    .btn-secondary-action:hover {
+      background: #F0F9FF !important;
+      border-color: #006798 !important;
+      color: #006798 !important;
     }
 
     .btn-secondary-action:hover {
@@ -1061,5 +1071,99 @@
       }
     }
   </script>
+
+  <!-- ======================================================== -->
+  <!-- STANDAR MODAL ENTERPRISE: SEND TO REVIEW DIALOG          -->
+  <!-- ======================================================== -->
+  <div id="modal-send-review" class="fixed inset-0 z-[9999] hidden flex items-center justify-center p-4" style="background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+    <div class="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-2xl overflow-hidden transition-all transform scale-100" onclick="event.stopPropagation()">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-sky-100 text-[#006798] flex items-center justify-center font-bold text-base shadow-sm">
+            <i class="fa-solid fa-paper-plane"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-800 leading-tight">Send to Review</h3>
+            <p class="text-xs text-slate-500">Pilih file naskah untuk dikirim ke tahap penelaahan sejawat (Peer Review)</p>
+          </div>
+        </div>
+        <button onclick="closeModal('modal-send-review')" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-200 transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
+        <div class="bg-sky-50 border border-sky-200 rounded-lg p-3 text-xs text-slate-700 flex items-start gap-2.5">
+          <i class="fa-solid fa-circle-info text-sm text-[#006798] mt-0.5"></i>
+          <div>
+            Naskah <strong>#482 - MODEL MANAJEMEN RISIKO RANTAI PASOK AMP DI PROVINSI BALI</strong> akan dipindahkan dari tahap <em>Submission</em> ke tahap <em>Review</em>. File yang dicentang di bawah akan dapat diakses oleh Reviewer.
+          </div>
+        </div>
+
+        <!-- File Selection Table -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Pilih File Naskah (Files for Review)</label>
+          <div class="border border-slate-200 rounded-lg overflow-hidden divide-y divide-slate-100">
+            <label class="flex items-center gap-3 p-3 hover:bg-slate-50 cursor-pointer text-xs">
+              <input type="checkbox" checked class="w-4 h-4 text-[#006798] rounded border-slate-300 focus:ring-[#006798]">
+              <i class="fa-regular fa-file-word text-blue-600 text-sm"></i>
+              <span class="font-semibold text-slate-800 flex-1">1737-1 meydinafa, Journal manager, JURNAL PERMUKIMAN 2022.docx</span>
+              <span class="text-slate-500 text-[11px]">Article Text • 25 Dec 2022</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 hover:bg-slate-50 cursor-pointer text-xs">
+              <input type="checkbox" checked class="w-4 h-4 text-[#006798] rounded border-slate-300 focus:ring-[#006798]">
+              <i class="fa-regular fa-file-lines text-slate-500 text-sm"></i>
+              <span class="font-semibold text-slate-800 flex-1">1738-1 Untitled.pdf</span>
+              <span class="text-slate-500 text-[11px]">Other • 25 Dec 2022</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Internal Notes -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Catatan Kepada Penulis / Instruksi Review (Opsional)</label>
+          <textarea rows="3" class="w-full text-xs p-3 border border-slate-300 rounded-lg focus:outline-none focus:border-[#006798] focus:ring-1 focus:ring-[#006798]" placeholder="Tuliskan catatan atau pesan pengantar bila diperlukan..."></textarea>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-3">
+        <button onclick="closeModal('modal-send-review')" class="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded-md hover:bg-slate-100 transition shadow-sm">
+          Batal
+        </button>
+        <button onclick="submitSendToReview()" class="px-5 py-2 text-xs font-bold text-white bg-[#006798] hover:bg-[#008ACB] rounded-md transition shadow flex items-center gap-2">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>Send to Review</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      const m = document.getElementById(id);
+      if (m) {
+        m.classList.remove('hidden');
+        m.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    function closeModal(id) {
+      const m = document.getElementById(id);
+      if (m) {
+        m.classList.add('hidden');
+        m.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    }
+    function submitSendToReview() {
+      alert('Naskah #482 berhasil dipindahkan ke tahap Review!');
+      closeModal('modal-send-review');
+    }
+  </script>
 </body>
+
 </html>
