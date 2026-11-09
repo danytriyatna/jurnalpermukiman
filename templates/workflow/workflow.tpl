@@ -98,21 +98,7 @@
 				{capture assign=submissionProgressBarUrl}{url op="submissionProgressBar" submissionId=$submission->getId() stageId=$requestedStageId contextId="submission" escape=false}{/capture}
 				{load_url_in_div id="submissionProgressBarDiv" url=$submissionProgressBarUrl}
 
-				<!-- Banner Resmi KemenPU Puskim: Pengisi Ruang Kosong Bawah -->
-				<div class="jp_workflow_footer_banner" style="margin-top: 1.5rem; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04);">
-					<div style="position: relative; width: 100%; overflow: hidden;">
-						<img src="{$baseUrl}/public/journals/1/pageHeaderLogoImage_en_US.jpg" alt="Jurnal Permukiman - KemenPU" style="width: 100%; height: auto; max-height: 140px; object-fit: cover; display: block;" />
-						<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.75) 100%); padding: 10px 18px; display: flex; align-items: center; justify-content: space-between; color: #FFFFFF; font-size: 12px; font-weight: 600;">
-							<div>
-								<i class="fa fa-university" style="margin-right: 6px; color: #F59E0B;"></i>
-								Kementerian Pekerjaan Umum • Direktorat Jenderal Cipta Karya • Balai Sains Bangunan
-							</div>
-							<div style="font-size: 11px; opacity: 0.9;">
-								Terakreditasi SINTA 2 (Kemenristek/BRIN) • e-ISSN 2541-4437
-							</div>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</tab>
 		{if $canAccessPublication}
