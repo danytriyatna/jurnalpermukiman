@@ -494,10 +494,10 @@ body.pkp_page_index:has(.app) {
 
 /* 2. Top Masthead: Master Panorama Banner KemenPU (Bulletproof Responsive Header) */
 .app__header {
-  height: 76px !important;
-  flex: 0 0 76px !important;
+  height: 86px !important;
+  flex: 0 0 86px !important;
   background-color: #C13D0D !important;
-  background-image: url("/jurnalpermukiman/public/journals/1/header_bg_clean_scenery.jpg") !important;
+  background-image: url("/jurnalpermukiman/public/journals/1/header_bg_perfect_text.jpg") !important;
   background-repeat: no-repeat !important;
   background-position: left center !important;
   background-size: cover !important;
@@ -519,7 +519,7 @@ body.pkp_page_index:has(.app) {
 .app__header .app__contextTitle {
   opacity: 0 !important;
   width: 320px !important;
-  height: 76px !important;
+  height: 86px !important;
   display: block !important;
   position: relative !important;
   z-index: 2 !important;
@@ -592,7 +592,7 @@ body.pkp_page_index:has(.app) {
   flex: 1 1 auto !important;
   display: flex !important;
   flex-direction: row !important;
-  min-height: calc(100vh - 76px) !important;
+  min-height: calc(100vh - 86px) !important;
   background: #F8FAFC !important;
   width: 100% !important;
   margin: 0 !important;
@@ -606,7 +606,7 @@ body.pkp_page_index:has(.app) {
   min-width: 220px !important;
   background: #FFFFFF !important;
   border-right: 1px solid #E2E8F0 !important;
-  min-height: calc(100vh - 76px) !important;
+  min-height: calc(100vh - 86px) !important;
   padding: 1.25rem 0.75rem !important;
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.02) !important;
   box-sizing: border-box !important;
@@ -663,7 +663,7 @@ body.pkp_page_index:has(.app) {
   flex: 1 1 auto !important;
   width: calc(100% - 220px) !important;
   max-width: none !important;
-  min-height: calc(100vh - 76px) !important;
+  min-height: calc(100vh - 86px) !important;
   background: #F8FAFC !important;
   padding: 1.5rem 2.5rem 3rem 2.5rem !important;
   box-sizing: border-box !important;
