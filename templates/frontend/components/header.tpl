@@ -31,9 +31,9 @@
     color: #1E293B !important;
   }
 
-  /* WADAH UTAMA KARTU PUTIH FLOATING 1280PX (MAX-W-7XL) */
+  /* WADAH UTAMA KARTU PUTIH FLOATING 1200PX (IDENTIK MOCKUP) */
   .pkp_structure_page {
-    max-width: 1280px !important;
+    max-width: 1200px !important;
     width: 95% !important;
     margin: 24px auto !important;
     background: #FFFFFF !important;
@@ -113,26 +113,44 @@
     color: #CBD5E1 !important;
   }
 
-  /* BANNER WALL TO WALL */
-  .pkp_site_name_wrapper {
+  /* BANNER WALL TO WALL (ANTI-CLIPPING & PRESERVASI ASLI 100%) */
+  .pkp_site_name_wrapper, .pkp_site_name, .bata_banner_wall {
     width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
     line-height: 0 !important;
     margin: 0 !important;
     padding: 0 !important;
     background: #FFFFFF !important;
+    position: static !important;
+    overflow: visible !important;
+    display: block !important;
+    float: none !important;
   }
-  .pkp_site_name, .pkp_site_name a.is_img {
+  .pkp_site_name a.is_img, .bata_banner_wall a {
     display: block !important;
     width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
     margin: 0 !important;
     padding: 0 !important;
     line-height: 0 !important;
+    position: static !important;
+    float: none !important;
   }
-  .pkp_site_name a.is_img img {
+  .pkp_site_name a.is_img img, .bata_banner_wall img {
     width: 100% !important;
+    max-width: 100% !important;
     height: auto !important;
+    max-height: none !important;
+    min-height: auto !important;
     display: block !important;
     border: none !important;
+    position: static !important;
+    object-fit: contain !important;
   }
 
   /* BILAH NAVIGASI MERAH BATA DENGAN HIGHLIGHT HOME */
@@ -667,20 +685,20 @@
 				</div>
 
 				{* BANNER WALL TO WALL PERSIS MOCKUP *}
-				<div class="pkp_site_name_wrapper">
+				<div class="pkp_site_name_wrapper bata_banner_wall">
 					{capture assign="homeUrl"}
 						{url page="index" router=$smarty.const.ROUTE_PAGE}
 					{/capture}
 					<div class="pkp_site_name">
 					{if $displayPageHeaderLogo}
-						<a href="{$homeUrl}" class="is_img">
-							<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{/if} />
+						<a href="{$homeUrl}" class="is_img block_banner_link">
+							<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{/if} />
 						</a>
 					{elseif $displayPageHeaderTitle}
 						<a href="{$homeUrl}" class="is_text">{$displayPageHeaderTitle|escape}</a>
 					{else}
-						<a href="{$homeUrl}" class="is_img">
-							<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />
+						<a href="{$homeUrl}" class="is_img block_banner_link">
+							<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" />
 						</a>
 					{/if}
 					</div>
