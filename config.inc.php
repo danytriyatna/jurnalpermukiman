@@ -29,7 +29,7 @@
 installed = On
 
 ; The canonical URL to the OJS installation (excluding the trailing slash)
-base_url = "https://jurnalpermukiman.pu.go.id/"
+base_url = "http://localhost:8000"
 
 ; Session cookie name
 session_cookie_name = OJSSID
@@ -44,7 +44,7 @@ session_lifetime = 30
 ; Enable support for running scheduled tasks
 ; Set this to On if you have set up the scheduled tasks script to
 ; execute periodically
-scheduled_tasks = Off
+scheduled_tasks = On
 
 ; Site time zone
 ; Please refer to lib/pkp/registry/timeZones.xml for a full list of supported
@@ -132,17 +132,17 @@ sitewide_privacy_statement = Off
 [database]
 
 driver = mysqli
-host = localhost
-username = ado
-password = RinEkamaya@o2^
-name = ojs33_gc2
+host = 127.0.0.1
+username = root
+password = adminadmin
+name = ojs33_pdn
 
 ; Set the non-standard port and/or socket, if used
 ; port = 3306
 ; unix_socket = /var/run/mysqld/mysqld.sock
 
 ; Database collation
-collation = latin1_swedish_ci
+collation = utf8mb4_unicode_ci
 
 ; Enable database debug output (very verbose!)
 debug = Off
@@ -195,7 +195,7 @@ locale = en_US
 client_charset = utf-8
 
 ; Database connection character set
-connection_charset = latin1
+connection_charset = utf8mb4
 
 ; Enable character normalization to utf-8 (recommended)
 ; If disabled, strings will be passed through in their native encoding
@@ -213,7 +213,7 @@ charset_normalization = On
 ; Complete path to directory to store uploaded files
 ; (This directory should not be directly web-accessible)
 ; Windows users should use forward slashes
-files_dir = /opt/unggah
+files_dir = /Users/uzishdq/Works/Jurnal-Permukiman/files_dir
 
 ; Path to the directory to store public uploaded files
 ; (This directory should be web-accessible and the specified path
@@ -271,7 +271,7 @@ encryption = sha1
 salt = "YouMustSetASecretKeyHere!!"
 
 ; The unique secret used for encoding and decoding API keys
-api_key_secret = ""
+api_key_secret = "f39a1c84e2b706d594c18a3f6e2d0b917c4e8a5d2f1b0c93e7a6d4b2f8c109e3"
 
 ; The number of seconds before a password reset hash expires (defaults to 7200 / 2 hours)
 reset_seconds = 7200
@@ -312,7 +312,7 @@ allowed_html = "a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,d
 [email]
 
 ; Use SMTP for sending mail instead of mail()
-smtp = On
+smtp = Off
 
 ; SMTP server settings
 smtp_server = smtp.gmail.com
@@ -510,10 +510,10 @@ xslt_command = ""
 ; Display a stack trace when a fatal error occurs.
 ; Note that this may expose private information and should be disabled
 ; for any production system.
-show_stacktrace = Off
+show_stacktrace = On
 
 ; Display an error message when something goes wrong.
-display_errors = Off
+display_errors = On
 
 ; Display deprecation warnings
 deprecation_warnings = Off
@@ -525,3 +525,16 @@ log_web_service_info = Off
 ; This setting overrides the 'curl.cainfo' parameter of the php.ini configuration file.
 [curl]
 ; cainfo = ""
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+; MQC Assistant Settings ;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[mqc]
+
+; URL endpoint ingest API MQC
+api_url = "http://localhost:3000/api/check-submission"
+
+; Kunci rahasia bersama (harus cocok dengan MQC_API_SECRET di .env.local MQC)
+api_key = "8f4b2e91c6d07a35e81f49b0c2d76a193f85e4c2a1b09d87e6c5a4f3b2d190e8"
+
