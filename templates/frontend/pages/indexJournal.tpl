@@ -26,7 +26,7 @@
 			<div class="section_title_header">
 				<h2>{translate key="about.aboutContext"}</h2>
 				<span class="badge_sinta2">
-					<span class="dot_indicator">●</span> Jurnal Terakreditasi SINTA 2
+					<i class="fa fa-certificate" style="color: #C13D0D; font-size: 11px;"></i> Jurnal Terakreditasi SINTA 2
 				</span>
 			</div>
 			{$currentContext->getLocalizedData('description')}
