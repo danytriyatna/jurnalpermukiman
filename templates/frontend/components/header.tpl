@@ -31,9 +31,9 @@
     color: #1E293B !important;
   }
 
-  /* WADAH UTAMA KARTU PUTIH FLOATING 1240PX */
+  /* WADAH UTAMA KARTU PUTIH FLOATING 1280PX (MAX-W-7XL) */
   .pkp_structure_page {
-    max-width: 1240px !important;
+    max-width: 1280px !important;
     width: 95% !important;
     margin: 24px auto !important;
     background: #FFFFFF !important;
@@ -41,6 +41,7 @@
     box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.25) !important;
     padding: 24px !important;
     box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
   /* MATIKAN CLEARFIX THEME LAMA */
@@ -242,20 +243,54 @@
     padding: 0 !important;
   }
 
-  /* KARTU PUTIH INDIVIDUAL SEGAR */
-  .fresh-card, .homepage_about, .cmp_announcements, .current_issue, .pkp_block {
+  /* KARTU PUTIH INDIVIDUAL SEGAR & RESET MUTLAK DARI LEAK OJS THEME LAMA */
+  .fresh-card,
+  .homepage_about,
+  .cmp_announcements,
+  .current_issue,
+  .pkp_block,
+  .pkp_page_index .homepage_about,
+  .pkp_page_index .cmp_announcements,
+  .pkp_page_index .current_issue,
+  .pkp_page_index .additional_content {
     background: #FFFFFF !important;
     border: 1px solid #E2E8F0 !important;
     border-radius: 14px !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(193, 61, 13, 0.03) !important;
     padding: 24px 28px !important;
-    margin-bottom: 24px !important;
+    margin: 0 0 24px 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
+    float: none !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
   }
   .pkp_block {
     padding: 16px !important;
     margin-bottom: 20px !important;
     border-radius: 12px !important;
+  }
+
+  /* MATIKAN SEMUA FLOAT & NEGATIVE MARGIN BAWAAN PADA ANNOUNCEMENTS */
+  .cmp_announcements:before, .cmp_announcements:after,
+  .cmp_announcements > .obj_announcement_summary:before,
+  .cmp_announcements > .obj_announcement_summary:after,
+  .cmp_announcements .more:before, .cmp_announcements .more:after {
+    display: none !important;
+    content: none !important;
+  }
+  .cmp_announcements > .obj_announcement_summary,
+  .cmp_announcements .more {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
   }
 
   /* JUDUL SEKSI DENGAN AKSI MERAH BATA */
