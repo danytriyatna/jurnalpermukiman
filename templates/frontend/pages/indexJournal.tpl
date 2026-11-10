@@ -62,16 +62,18 @@
 					</article>
 				{else}
 					<article class="obj_announcement_summary standard_card">
-						<h4>
-							<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
-								<i class="fa fa-file-text-o" style="color: #64748B; margin-right: 8px;"></i>
-								{$announcement->getLocalizedTitle()|escape}
-							</a>
-						</h4>
-						<div class="standard_card_right">
-							<span class="date_posted">Dipublikasikan: {$announcement->getDatePosted()|date_format:$dateFormatShort}</span>
-							<i class="fa fa-angle-right chevron_right"></i>
+						<div class="standard_card_left">
+							<i class="fa fa-file-text-o" style="color: #94A3B8; font-size: 15px; margin-right: 12px;"></i>
+							<div class="standard_card_text">
+								<h4>
+									<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
+										{$announcement->getLocalizedTitle()|escape}
+									</a>
+								</h4>
+								<span class="date_posted">Dipublikasikan: {$announcement->getDatePosted()|date_format:$dateFormatShort}</span>
+							</div>
 						</div>
+						<i class="fa fa-angle-right chevron_right" style="color: #94A3B8; font-size: 14px;"></i>
 					</article>
 				{/if}
 			{/foreach}

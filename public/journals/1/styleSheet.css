@@ -383,25 +383,35 @@ body, html {
   background: #F8FAFC !important;
   border-color: #CBD5E1 !important;
 }
-.standard_card h4 {
-  margin: 0 !important;
-  font-size: 13.5px !important;
-  font-weight: 600 !important;
-}
-.standard_card h4 a {
-  color: #1E293B !important;
-  text-decoration: none !important;
-}
-.standard_card_right {
+.standard_card_left {
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important;
-  font-size: 12px !important;
-  color: #64748B !important;
 }
-.standard_card_right .chevron_right {
+.standard_card_text h4 {
+  margin: 0 !important;
   font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+}
+.standard_card_text h4 a {
+  color: #1E293B !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+}
+.standard_card_text h4 a:hover {
+  color: #C13D0D !important;
+}
+.standard_card_text .date_posted {
+  font-size: 12px !important;
   color: #94A3B8 !important;
+  margin-top: 2px !important;
+  display: block !important;
+}
+
+/* TABEL IDENTITAS JURNAL: EMAIL & ISSN WARNA BATA */
+.homepage_about table a, .homepage_about table tr:last-child td:last-child {
+  color: #C13D0D !important;
+  font-weight: 600 !important;
 }
 
 /* SIDEBAR: BLOCK TITLE */
