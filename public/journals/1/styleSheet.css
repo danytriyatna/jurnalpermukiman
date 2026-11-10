@@ -821,7 +821,7 @@ body.pkp_page_login {
   color: #1E293B !important;
 }
 
-/* 2. MATIKAN SEMUA CLEARFIX & PSEUDO-ELEMENT THEME LAMA YANG MERUSAK GRID/FLEX */
+/* 2. MATIKAN SEMUA CLEARFIX & PSEUDO-ELEMENT THEME LAMA YANG MERUSAK TATA LETAK */
 .pkp_structure_page:before, .pkp_structure_page:after,
 .pkp_head_wrapper:before, .pkp_head_wrapper:after,
 .pkp_site_name_wrapper:before, .pkp_site_name_wrapper:after,
@@ -868,7 +868,7 @@ body.pkp_page_login {
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  border-radius: 12px !important;
+  border-radius: 14px !important;
   overflow: hidden !important;
   background: #FFFFFF !important;
   border: 1px solid #E2E8F0 !important;
@@ -876,6 +876,50 @@ body.pkp_page_login {
   float: none !important;
 }
 
+/* TOP UTILITY BAR */
+.pkp_top_utility_bar {
+  background: #F8FAFC !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  padding: 8px 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  font-size: 12.5px !important;
+  color: #475569 !important;
+}
+
+.pkp_top_utility_left {
+  display: flex !important;
+  align-items: center !important;
+  font-weight: 600 !important;
+  color: #334155 !important;
+}
+
+.pkp_top_utility_right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.pkp_top_utility_right a {
+  color: #475569 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  transition: color 0.15s ease !important;
+}
+
+.pkp_top_utility_right a:hover {
+  color: #C13D0D !important;
+}
+
+.pkp_top_utility_right .utility_divider {
+  color: #CBD5E1 !important;
+}
+
+/* BANNER LOGO UTAMA */
 .pkp_site_name_wrapper {
   padding: 0 !important;
   margin: 0 !important;
@@ -884,6 +928,7 @@ body.pkp_page_login {
   max-width: 100% !important;
   display: block !important;
   float: none !important;
+  border: none !important;
 }
 
 .pkp_site_name {
@@ -951,6 +996,22 @@ body.pkp_page_login {
   float: none !important;
 }
 
+/* Home Capsule Button */
+.nav_home_capsule {
+  background: rgba(0, 0, 0, 0.25) !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25) !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  font-size: 13.5px !important;
+  padding: 6px 14px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-right: 4px !important;
+}
+
 .pkp_navigation_primary {
   display: flex !important;
   align-items: center !important;
@@ -969,42 +1030,63 @@ body.pkp_page_login {
 .pkp_navigation_primary > li > a {
   color: #FFFFFF !important;
   font-weight: 700 !important;
-  font-size: 13.5px !important;
-  padding: 8px 14px !important;
+  font-size: 13px !important;
+  padding: 6px 12px !important;
   border-radius: 6px !important;
   text-decoration: none !important;
   display: block !important;
   transition: all 0.15s ease !important;
 }
 
-.pkp_navigation_primary > li:first-child > a,
-.pkp_navigation_primary > li.current > a {
-  background: rgba(0, 0, 0, 0.25) !important;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2) !important;
-}
-
 .pkp_navigation_primary > li > a:hover {
   background: rgba(0, 0, 0, 0.2) !important;
 }
 
-.pkp_navigation_search_wrapper a.pkp_search {
-  color: #FFFFFF !important;
-  font-size: 12.5px !important;
-  font-weight: 600 !important;
-  padding: 5px 12px !important;
-  border-radius: 6px !important;
-  background: rgba(255, 255, 255, 0.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  text-decoration: none !important;
-  display: inline-flex !important;
+.pkp_navigation_right_tools {
+  display: flex !important;
   align-items: center !important;
-  gap: 6px !important;
+  gap: 12px !important;
+}
+
+.search_input_wrap {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.search_input_wrap .search_icon {
+  position: absolute !important;
+  left: 10px !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 12px !important;
+}
+
+.search_input_field {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border-radius: 8px !important;
+  color: #FFFFFF !important;
+  font-size: 12px !important;
+  padding: 5px 12px 5px 28px !important;
+  outline: none !important;
+  transition: all 0.15s ease !important;
+  width: 170px !important;
+}
+
+.search_input_field::placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.search_input_field:focus {
+  background: #FFFFFF !important;
+  color: #1E293B !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4) !important;
 }
 
 .jp_ecosystem_nav_links {
   display: flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 6px !important;
 }
 
 .jp_ecosystem_btn {
@@ -1023,23 +1105,9 @@ body.pkp_page_login {
   color: #C13D0D !important;
 }
 
+/* Matikan tombol user duplikat di pojok */
 .pkp_navigation_user_wrapper {
-  position: absolute !important;
-  top: 14px !important;
-  right: 1.5rem !important;
-  z-index: 100 !important;
-}
-
-.pkp_navigation_user > li > a {
-  color: #475569 !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  padding: 4px 10px !important;
-  border-radius: 6px !important;
-  background: #FFFFFF !important;
-  border: 1px solid #CBD5E1 !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
-  text-decoration: none !important;
+  display: none !important;
 }
 
 /* 6. TATA LETAK 2 KOLOM KONTEN KIRI (8 COLS) & SIDEBAR KANAN (4 COLS) */
@@ -1101,10 +1169,104 @@ body.pkp_page_login {
   border-color: #F4D4C9 !important;
 }
 
-/* Judul dengan Aksen Vertikal Merah Bata */
-.homepage_about h2,
-.cmp_announcements h2,
-.current_issue h2 {
+/* Judul Header Row dengan SINTA 2 Badge */
+.section_title_header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: 2px solid rgba(193, 61, 13, 0.15) !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 16px !important;
+}
+
+.section_title_header h2 {
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: #0F172A !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.section_title_header h2::before,
+.cmp_announcements h2::before,
+.current_issue h2::before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 8px !important;
+  height: 22px !important;
+  background: #C13D0D !important;
+  border-radius: 4px !important;
+}
+
+.badge_sinta2 {
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  color: #C13D0D !important;
+  background: #FDF4F0 !important;
+  border: 1px solid #F4D4C9 !important;
+  padding: 3px 12px !important;
+  border-radius: 9999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+.badge_sinta2 .dot_indicator {
+  color: #C13D0D !important;
+  font-size: 9px !important;
+}
+
+/* Tabel Identitas Jurnal */
+.homepage_about table {
+  width: 100% !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  background: #FFFFFF !important;
+  margin-top: 16px !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.homepage_about table tr {
+  border-bottom: 1px solid #F1F5F9 !important;
+}
+
+.homepage_about table td {
+  padding: 10px 16px !important;
+  font-size: 13.5px !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+}
+
+.homepage_about table td:first-child {
+  width: 220px !important;
+  background: #F8FAFC !important;
+  font-weight: 700 !important;
+  color: #334155 !important;
+}
+
+.homepage_about table td:last-child {
+  color: #1E293B !important;
+  font-weight: 500 !important;
+}
+
+.homepage_about table tr:last-child td {
+  border-bottom: none !important;
+}
+
+.homepage_about table a[href*="issn"] {
+  color: #C13D0D !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+
+/* Seksi Pengumuman */
+.cmp_announcements h2 {
   font-size: 18px !important;
   font-weight: 800 !important;
   color: #0F172A !important;
@@ -1116,61 +1278,89 @@ body.pkp_page_login {
   margin-bottom: 16px !important;
 }
 
-.homepage_about h2::before,
-.cmp_announcements h2::before,
-.current_issue h2::before {
-  content: "" !important;
-  display: inline-block !important;
-  width: 8px !important;
-  height: 22px !important;
-  background: #C13D0D !important;
-  border-radius: 4px !important;
+.announcements_list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
 }
 
-/* Tabel Identitas Jurnal */
-.homepage_about table {
-  width: 100% !important;
-  border-collapse: collapse !important;
-  border: 1px solid #E2E8F0 !important;
-  border-radius: 10px !important;
-  overflow: hidden !important;
-  font-size: 13px !important;
-  margin-top: 16px !important;
-  background: #FAFAFA !important;
-}
-
-.homepage_about table tr {
-  border-bottom: 1px solid #F1F5F9 !important;
-}
-
-.homepage_about table td:first-child {
-  font-weight: 700 !important;
-  color: #334155 !important;
-  background: #F1F5F9 !important;
-  width: 220px !important;
-  padding: 10px 14px !important;
-}
-
-.homepage_about table td:last-child {
-  padding: 10px 14px !important;
-  color: #1E293B !important;
-  font-weight: 600 !important;
-}
-
-/* Pengumuman Highlight Card */
-.cmp_announcements .obj_announcement_summary {
+.obj_announcement_summary.highlight_card {
   background: #FDF4F0 !important;
   border: 1px solid #F4D4C9 !important;
-  border-radius: 10px !important;
-  padding: 18px 20px !important;
-  margin-bottom: 14px !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin-bottom: 0 !important;
 }
 
-.cmp_announcements .obj_announcement_summary h3 a {
+.announcement_meta_row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin-bottom: 8px !important;
+}
+
+.obj_announcement_summary.highlight_card h3 a {
   color: #C13D0D !important;
   font-weight: 800 !important;
   font-size: 15px !important;
   text-decoration: none !important;
+}
+
+.obj_announcement_summary.highlight_card .date_badge {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #64748B !important;
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  padding: 2px 8px !important;
+  border-radius: 6px !important;
+  white-space: nowrap !important;
+}
+
+.obj_announcement_summary.highlight_card .description {
+  font-size: 13px !important;
+  color: #475569 !important;
+  line-height: 1.5 !important;
+}
+
+.obj_announcement_summary.standard_card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 10px !important;
+  padding: 14px 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  transition: all 0.15s ease !important;
+}
+
+.obj_announcement_summary.standard_card:hover {
+  border-color: #F4D4C9 !important;
+  background: #FAFAFA !important;
+}
+
+.obj_announcement_summary.standard_card h4 a {
+  color: #1E293B !important;
+  font-weight: 700 !important;
+  font-size: 13.5px !important;
+  text-decoration: none !important;
+}
+
+.standard_card_right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.obj_announcement_summary.standard_card .date_posted {
+  font-size: 11.5px !important;
+  color: #94A3B8 !important;
+}
+
+.obj_announcement_summary.standard_card .chevron_right {
+  color: #CBD5E1 !important;
+  font-size: 14px !important;
 }
 
 /* 7. SIDEBAR KANAN (310PX) */
@@ -1211,21 +1401,40 @@ body.pkp_page_login {
 }
 
 /* Make a Submission Call-To-Action */
-.pkp_block.block_make_submission a,
+.pkp_block.block_make_submission a.block_make_submission_link,
 .pkp_block a.action {
   background: #C13D0D !important;
   color: #FFFFFF !important;
   padding: 14px 16px !important;
-  border-radius: 10px !important;
+  border-radius: 12px !important;
   font-weight: 800 !important;
   font-size: 13.5px !important;
   text-align: center !important;
   text-decoration: none !important;
   box-shadow: 0 4px 12px rgba(193, 61, 13, 0.3) !important;
-  display: block !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
   transition: all 0.2s ease !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
+}
+
+.pkp_block.block_make_submission a.block_make_submission_link::before {
+  content: "✈ ";
+  margin-right: 4px;
+}
+
+.pkp_block.block_make_submission a.block_make_submission_link::after {
+  content: "Submit your research manuscript online";
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: none;
+  opacity: 0.85;
+  margin-top: 3px;
+  letter-spacing: normal;
 }
 
 .pkp_block.block_make_submission a:hover,
@@ -1235,7 +1444,54 @@ body.pkp_page_login {
   box-shadow: 0 6px 16px rgba(193, 61, 13, 0.4) !important;
 }
 
-/* 18 JOURNAL POLICY BUTTONS */
+/* Registration block: Dark button #1E293B */
+#customblock-registration .content p {
+  background: #1E293B !important;
+  border-radius: 8px !important;
+  padding: 10px 14px !important;
+  text-align: center !important;
+  margin: 0 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2) !important;
+  transition: all 0.15s ease !important;
+}
+
+#customblock-registration .content p:hover {
+  background: #0F172A !important;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.3) !important;
+}
+
+#customblock-registration .content a {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  font-size: 12.5px !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+}
+
+/* Journal Policy Header Badge: 18 Menu Resmi */
+#customblock-journal-policy .title {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+#customblock-journal-policy .title::after {
+  content: "18 Menu Resmi";
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #C13D0D;
+  background: #FDF4F0;
+  border: 1px solid #F4D4C9;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* 18 Policy buttons with chevron › */
 #customblock-journal-policy .content {
   display: flex !important;
   flex-direction: column !important;
@@ -1267,6 +1523,15 @@ body.pkp_page_login {
   align-items: center !important;
   justify-content: space-between !important;
   width: 100% !important;
+}
+
+#customblock-journal-policy p a::after {
+  content: "›";
+  font-size: 15px;
+  font-weight: 700;
+  opacity: 0.75;
+  margin-left: auto;
+  padding-left: 8px;
 }
 
 #customblock-journal-policy p:first-child {

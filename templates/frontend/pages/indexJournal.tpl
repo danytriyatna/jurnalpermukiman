@@ -5,16 +5,7 @@
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @brief Display the index page for a journal
- *
- * @uses $currentJournal Journal This journal
- * @uses $journalDescription string Journal description from HTML text editor
- * @uses $homepageImage object Image to be displayed on the homepage
- * @uses $additionalHomeContent string Arbitrary input from HTML text editor
- * @uses $announcements array List of announcements
- * @uses $numAnnouncementsHomepage int Number of announcements to display on the
- *       homepage
- * @uses $issue Issue Current issue
+ * @brief Display the index page for a journal with SINTA 2 badge & clean cards.
  *}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$currentJournal->getLocalizedName()}
 
@@ -32,7 +23,12 @@
 	{if $activeTheme->getOption('showDescriptionInJournalIndex')}
 		<section class="homepage_about">
 			<a id="homepageAbout"></a>
-			<h2>{translate key="about.aboutContext"}</h2>
+			<div class="section_title_header">
+				<h2>{translate key="about.aboutContext"}</h2>
+				<span class="badge_sinta2">
+					<span class="dot_indicator">●</span> Jurnal Terakreditasi SINTA 2
+				</span>
+			</div>
 			{$currentContext->getLocalizedData('description')}
 		</section>
 	{/if}
@@ -44,27 +40,42 @@
 			<h2>
 				{translate key="announcement.announcements"}
 			</h2>
+			<div class="announcements_list">
 			{foreach name=announcements from=$announcements item=announcement}
 				{if $smarty.foreach.announcements.iteration > $numAnnouncementsHomepage}
 					{break}
 				{/if}
 				{if $smarty.foreach.announcements.iteration == 1}
-					{include file="frontend/objects/announcement_summary.tpl" heading="h3"}
-					<div class="more">
+					<article class="obj_announcement_summary highlight_card">
+						<div class="announcement_meta_row">
+							<h3>
+								<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
+									<i class="fa fa-bullhorn" style="color: #C13D0D; margin-right: 6px;"></i>
+									{$announcement->getLocalizedTitle()|escape}
+								</a>
+							</h3>
+							<span class="date_badge">{$announcement->getDatePosted()|date_format:$dateFormatShort}</span>
+						</div>
+						<div class="description">
+							{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
+						</div>
+					</article>
 				{else}
-					<article class="obj_announcement_summary">
+					<article class="obj_announcement_summary standard_card">
 						<h4>
 							<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
+								<i class="fa fa-file-text-o" style="color: #64748B; margin-right: 8px;"></i>
 								{$announcement->getLocalizedTitle()|escape}
 							</a>
 						</h4>
-						<div class="date">
-							{$announcement->getDatePosted()|date_format:$dateFormatShort}
+						<div class="standard_card_right">
+							<span class="date_posted">Dipublikasikan: {$announcement->getDatePosted()|date_format:$dateFormatShort}</span>
+							<i class="fa fa-angle-right chevron_right"></i>
 						</div>
 					</article>
 				{/if}
 			{/foreach}
-			</div><!-- .more -->
+			</div>
 		</section>
 	{/if}
 

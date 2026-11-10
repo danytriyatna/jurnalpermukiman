@@ -29,6 +29,37 @@
 
 			<div class="pkp_head_wrapper">
 
+				{* TOP UTILITY BAR (PERSIS MOCKUP) *}
+				<div class="pkp_top_utility_bar">
+					<div class="pkp_top_utility_left">
+						<i class="fa fa-university text-brick" style="color: #C13D0D; margin-right: 6px;"></i>
+						<span>Balai Sains Bangunan dan Permukiman, Bandung</span>
+					</div>
+					<div class="pkp_top_utility_right">
+						{if $isUserLoggedIn}
+							<a href="{url page="submissions" router=$smarty.const.ROUTE_PAGE}" class="utility_link font-bold">
+								<i class="fa fa-user" style="color: #C13D0D;"></i>
+								<span>{$currentUser->getUsername()|escape} (Dashboard)</span>
+							</a>
+							<span class="utility_divider">|</span>
+							<a href="{url page="login" op="signOut" router=$smarty.const.ROUTE_PAGE}" class="utility_link">
+								<i class="fa fa-sign-out"></i>
+								<span>Logout</span>
+							</a>
+						{else}
+							<a href="{url page="user" op="register" router=$smarty.const.ROUTE_PAGE}" class="utility_link">
+								<i class="fa fa-user-plus" style="color: #C13D0D;"></i>
+								<span>Register</span>
+							</a>
+							<span class="utility_divider">|</span>
+							<a href="{url page="login" router=$smarty.const.ROUTE_PAGE}" class="utility_link">
+								<i class="fa fa-sign-in" style="color: #C13D0D;"></i>
+								<span>Login</span>
+							</a>
+						{/if}
+					</div>
+				</div>
+
 				<div class="pkp_site_name_wrapper">
 					<button class="pkp_site_nav_toggle">
 						<span>Open Menu</span>
@@ -68,34 +99,39 @@
 					<a id="siteNav"></a>
 					<div class="pkp_navigation_primary_row">
 						<div class="pkp_navigation_primary_wrapper">
+							<a href="{$homeUrl}" class="nav_home_capsule">
+								<i class="fa fa-home"></i> <span>Home</span>
+							</a>
 							{* Primary navigation menu for current application *}
 							{$primaryMenu}
+						</div>
 
-							{* Search form *}
+						{* Search form & Quick Access *}
+						<div class="pkp_navigation_right_tools">
 							{if $currentContext && $requestedPage !== 'search'}
 								<div class="pkp_navigation_search_wrapper">
-									<a href="{url page="search"}" class="pkp_search pkp_search_desktop">
-										<span class="fa fa-search" aria-hidden="true"></span>
-										{translate key="common.search"}
-									</a>
+									<form class="pkp_search_form" action="{url page="search" op="search" router=$smarty.const.ROUTE_PAGE}" method="post">
+										{csrf}
+										<div class="search_input_wrap">
+											<i class="fa fa-search search_icon"></i>
+											<input type="text" name="query" placeholder="Search articles..." class="search_input_field">
+										</div>
+									</form>
 								</div>
 							{/if}
-						</div>
 
-						{* Ecosystem Quick Access Buttons: MQC & JP *}
-						<div class="jp_ecosystem_nav_links">
-							<a href="http://{$smarty.server.SERVER_NAME|default:'localhost'}:3000" target="_blank" rel="noopener noreferrer" class="jp_ecosystem_btn mqc" title="Akses MQC Assistant (Pemeriksaan Kepatuhan Naskah)">
-								<span>MQC</span>
-								<span class="fa fa-external-link" aria-hidden="true"></span>
-							</a>
-							<a href="http://{$smarty.server.SERVER_NAME|default:'localhost'}:3001" target="_blank" rel="noopener noreferrer" class="jp_ecosystem_btn jp" title="Akses JP-Insight (Knowledge System & RAG)">
-								<span>JP</span>
-								<span class="fa fa-external-link" aria-hidden="true"></span>
-							</a>
+							{* Ecosystem Quick Access Buttons: MQC & JP *}
+							<div class="jp_ecosystem_nav_links">
+								<a href="http://{$smarty.server.SERVER_NAME|default:'localhost'}:3000" target="_blank" rel="noopener noreferrer" class="jp_ecosystem_btn mqc" title="Akses MQC Assistant (Pemeriksaan Kepatuhan Naskah)">
+									<span>MQC</span>
+									<span class="fa fa-external-link" aria-hidden="true"></span>
+								</a>
+								<a href="http://{$smarty.server.SERVER_NAME|default:'localhost'}:3001" target="_blank" rel="noopener noreferrer" class="jp_ecosystem_btn jp" title="Akses JP-Insight (Knowledge System & RAG)">
+									<span>JP</span>
+									<span class="fa fa-external-link" aria-hidden="true"></span>
+								</a>
+							</div>
 						</div>
-					</div>
-					<div class="pkp_navigation_user_wrapper" id="navigationUserWrapper">
-						{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
 					</div>
 				</nav>
 			</div><!-- .pkp_head_wrapper -->
