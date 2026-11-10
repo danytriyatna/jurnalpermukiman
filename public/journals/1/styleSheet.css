@@ -233,15 +233,20 @@ body, html {
   float: none !important;
   margin: 0 !important;
   padding: 0 !important;
+  position: relative !important;
+  z-index: 5 !important;
 }
+.pkp_structure_sidebar,
 .pkp_sidebar {
   flex: 0 0 32% !important;
   width: 32% !important;
-  max-width: 380px !important;
+  max-width: 360px !important;
   min-width: 300px !important;
   float: none !important;
   margin: 0 !important;
   padding: 0 !important;
+  position: relative !important;
+  z-index: 20 !important;
 }
 
 /* KARTU PUTIH INDIVIDUAL SEGAR & RESET MUTLAK DARI LEAK OJS THEME LAMA */
@@ -250,6 +255,7 @@ body, html {
 .cmp_announcements,
 .current_issue,
 .pkp_block,
+.pkp_structure_main > .page,
 .pkp_page_index .homepage_about,
 .pkp_page_index .cmp_announcements,
 .pkp_page_index .current_issue,
@@ -480,45 +486,64 @@ body, html {
 }
 
 /* MAKE A SUBMISSION */
-.block_make_submission .content a {
+.block_make_submission .content a,
+.block_make_submission .content a.block_make_submission_link {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
+  gap: 3px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
   padding: 14px 16px !important;
   background: linear-gradient(135deg, #C13D0D 0%, #A0320A 100%) !important;
+  border: none !important;
   border-radius: 12px !important;
   color: #FFFFFF !important;
   text-decoration: none !important;
   box-shadow: 0 4px 12px rgba(193, 61, 13, 0.25) !important;
   text-align: center !important;
+  line-height: 1.35 !important;
   transition: all 0.18s ease !important;
-  font-size: 0 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 25 !important;
 }
 .block_make_submission .content a:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 6px 16px rgba(193, 61, 13, 0.35) !important;
+  color: #FFFFFF !important;
 }
-.block_make_submission .content a::before {
-  content: '\f1d8  MAKE A SUBMISSION' !important;
-  font-family: FontAwesome, 'Plus Jakarta Sans', sans-serif !important;
+.block_make_submission .content a::before,
+.block_make_submission .content a::after {
+  display: none !important;
+  content: none !important;
+}
+.block_make_submission .content a span,
+.block_make_submission .content a i {
+  display: inline !important;
+}
+.block_make_submission .content a span.ms_title_row,
+.block_make_submission .ms_title_row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
   font-size: 14px !important;
   font-weight: 800 !important;
   letter-spacing: 0.05em !important;
   text-transform: uppercase !important;
-  display: block !important;
-  margin-bottom: 2px !important;
+  color: #FFFFFF !important;
+  line-height: 1.3 !important;
 }
-.block_make_submission .content a::after {
-  content: 'Submit your research manuscript online' !important;
-  font-family: 'Plus Jakarta Sans', sans-serif !important;
+.block_make_submission .content a span.ms_subtitle,
+.block_make_submission .ms_subtitle {
+  display: block !important;
   font-size: 11px !important;
   font-weight: 400 !important;
   color: rgba(255, 255, 255, 0.85) !important;
-  display: block !important;
-}
-.block_make_submission .content a span, .block_make_submission .content a i {
-  display: none !important;
+  line-height: 1.3 !important;
 }
 
 /* REGISTRATION BLOCK */

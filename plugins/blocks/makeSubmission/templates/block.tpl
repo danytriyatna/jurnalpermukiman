@@ -8,13 +8,13 @@
  * Common site sidebar menu -- "Make a Submission" block.
  *}
 <div class="pkp_block block_make_submission">
-	<h2 class="pkp_screen_reader">
-		{translate key="plugins.block.makeSubmission.linkLabel"}
-	</h2>
-
 	<div class="content">
-		<a class="block_make_submission_link" href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}">
-			{translate key="plugins.block.makeSubmission.linkLabel"}
+		<a class="block_make_submission_link make_submission_cta_btn" href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}" aria-label="{translate|escape key="plugins.block.makeSubmission.linkLabel"}">
+			<span class="ms_title_row">
+				<i class="fa fa-paper-plane" aria-hidden="true"></i>
+				<span>MAKE A SUBMISSION</span>
+			</span>
+			<span class="ms_subtitle">Submit your research manuscript online</span>
 		</a>
 	</div>
 </div>
