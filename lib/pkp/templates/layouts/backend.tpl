@@ -22,24 +22,24 @@
      PUSKIM BACKEND WORKSPACE UNIFICATION (MERAH BATA #C13D0D + CLEAN UI)
      ===================================================================== */
   html:has(#app), body:has(#app) {
-    background: #F1F5F9 !important;
+    background: #F3F4F6 !important;
     background-image: none !important;
     color: #1E293B !important;
   }
 
   #app, .app {
-    background: #F1F5F9 !important;
+    background: #F3F4F6 !important;
   }
 
   .app__body {
-    background: #F1F5F9 !important;
+    background: #F3F4F6 !important;
   }
 
-  /* SIDEBAR KIRI MODERN DENGAN IKON & AKSEN MERAH BATA */
+  /* SIDEBAR KIRI: WARM SURFACE (STRUKTUR TETAP, WARNA & KONTRAS SELARAS) */
   .app__nav {
-    background: #FFFFFF !important;
-    border-right: 1px solid #E2E8F0 !important;
-    box-shadow: 2px 0 12px rgba(15, 23, 42, 0.03) !important;
+    background: #FAF8F6 !important;
+    border-right: 1px solid #E5DCD5 !important;
+    box-shadow: 2px 0 10px rgba(15, 23, 42, 0.03) !important;
     flex: 0 0 248px !important;
     width: 248px !important;
     padding: 1.25rem 0.9rem !important;
@@ -49,7 +49,7 @@
     margin-top: 1.15rem !important;
     margin-bottom: 0.75rem !important;
     padding-top: 0.9rem !important;
-    border-top: 1px solid #F1F5F9 !important;
+    border-top: 1px solid #EDE5DF !important;
   }
 
   .app__navGroup .app__navItem--hasSubmenu {
@@ -132,7 +132,7 @@
 
   /* WORKSPACE MAIN & PAGE HEADING */
   .app__main {
-    background: #F1F5F9 !important;
+    background: #F3F4F6 !important;
     padding: 1.75rem 2.25rem !important;
   }
 
@@ -376,6 +376,181 @@
   .pkp_controllers_grid .download_all_files:hover {
     background: #FDF4F0 !important;
     border-color: #C13D0D !important;
+  }
+
+  /* =====================================================================
+     FORM, SIDE-TABS & MODAL REDESIGN (STRUKTUR TETAP, WARNA & SURFACE SELARAS)
+     ===================================================================== */
+  /* Side Tabs di Halaman Settings (Masthead, Contact, Appearance, dll) */
+  .pkpTabs--side .pkpTabs__buttons {
+    background: #FAF8F6 !important;
+    border: 1px solid #E5DCD5 !important;
+    border-radius: 12px !important;
+    padding: 8px !important;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+  }
+  .pkpTabs--side .pkpTabs__button {
+    border: none !important;
+    border-left: 3px solid transparent !important;
+    border-radius: 8px !important;
+    margin: 2px 0 !important;
+    padding: 9px 14px !important;
+    color: #475569 !important;
+    text-align: left !important;
+  }
+  .pkpTabs--side .pkpTabs__button:hover {
+    background: #FDF4F0 !important;
+    color: #C13D0D !important;
+  }
+  .pkpTabs--side .pkpTabs__button[aria-selected="true"] {
+    background: #FDF4F0 !important;
+    color: #C13D0D !important;
+    font-weight: 800 !important;
+    border-bottom: none !important;
+    border-left: 3px solid #C13D0D !important;
+    box-shadow: none !important;
+  }
+
+  /* Form Container & Group Surfaces (Tanpa Merubah Struktur Kolom) */
+  .pkpForm {
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 14px !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+    overflow: hidden !important;
+  }
+  .pkpFormPages {
+    background: #FFFFFF !important;
+  }
+  .pkpFormGroup {
+    border-color: #F1F5F9 !important;
+  }
+  .pkpFormGroup__legend {
+    color: #0F172A !important;
+    font-weight: 800 !important;
+  }
+  .pkpFormGroup__description {
+    color: #64748B !important;
+  }
+  .pkpFormPage__footer {
+    background: #F8FAFC !important;
+    border-top: 1px solid #E2E8F0 !important;
+  }
+
+  /* Language Tabs inside Form */
+  .pkpFormLocales {
+    background: #FAF8F6 !important;
+    border-bottom: 1px solid #E5DCD5 !important;
+  }
+  .pkpFormLocales__locale {
+    color: #64748B !important;
+    font-weight: 600 !important;
+  }
+  .pkpFormLocales__locale:hover,
+  .pkpFormLocales__locale--isActive {
+    color: #C13D0D !important;
+    border-color: #C13D0D !important;
+    font-weight: 700 !important;
+  }
+
+  /* Form Inputs, Selects & Textareas (Vue & Legacy .pkp_form) */
+  .pkpFormField--text__input,
+  .pkpFormField--textarea__input,
+  .pkpFormField--select__input,
+  .pkpFormField--autosuggest__input,
+  .pkp_form input[type="text"],
+  .pkp_form input[type="email"],
+  .pkp_form input[type="url"],
+  .pkp_form input[type="password"],
+  .pkp_form input[type="number"],
+  .pkp_form select,
+  .pkp_form textarea {
+    background: #F8FAFC !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 8px !important;
+    color: #1E293B !important;
+    transition: all 0.15s ease !important;
+  }
+  .pkpFormField--text__input:focus,
+  .pkpFormField--textarea__input:focus,
+  .pkpFormField--select__input:focus,
+  .pkpFormField--autosuggest__input:focus,
+  .pkp_form input[type="text"]:focus,
+  .pkp_form input[type="email"]:focus,
+  .pkp_form input[type="url"]:focus,
+  .pkp_form input[type="password"]:focus,
+  .pkp_form input[type="number"]:focus,
+  .pkp_form select:focus,
+  .pkp_form textarea:focus {
+    background: #FFFFFF !important;
+    border-color: #C13D0D !important;
+    box-shadow: 0 0 0 3px rgba(193, 61, 13, 0.12) !important;
+    outline: none !important;
+  }
+  #app input[type="checkbox"],
+  #app input[type="radio"],
+  .pkp_modal_panel input[type="checkbox"],
+  .pkp_modal_panel input[type="radio"] {
+    accent-color: #C13D0D !important;
+  }
+
+  /* MODAL & DIALOG SYSTEM (LEGACY PKP MODAL + VUE MODAL + JQUERY UI DIALOG) */
+  .pkp_modal,
+  .ui-widget-overlay,
+  .v--modal-overlay {
+    background: rgba(15, 23, 42, 0.6) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+  }
+
+  .pkp_modal_panel,
+  .ui-dialog,
+  .v--modal-box.v--modal {
+    background: #FFFFFF !important;
+    border-radius: 14px !important;
+    border: 1px solid #E2E8F0 !important;
+    border-top: 4px solid #C13D0D !important;
+    box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.35) !important;
+    overflow: hidden !important;
+  }
+
+  .pkp_modal_panel .header,
+  .ui-dialog-titlebar {
+    background: #FDF9F7 !important;
+    border-bottom: 1px solid #F4D4C9 !important;
+    color: #0F172A !important;
+    font-weight: 800 !important;
+    padding: 1rem 1.5rem !important;
+  }
+
+  .pkp_modal_panel .close,
+  .ui-dialog-titlebar-close {
+    color: #64748B !important;
+    border-radius: 8px !important;
+    transition: all 0.15s ease !important;
+  }
+  .pkp_modal_panel .close:hover,
+  .ui-dialog-titlebar-close:hover {
+    background: #FDF4F0 !important;
+    color: #C13D0D !important;
+  }
+
+  .pkp_modal_panel .footer,
+  .pkp_modal_panel .formButtons {
+    background: #F8FAFC !important;
+    border-top: 1px solid #E2E8F0 !important;
+  }
+  .pkp_modal_panel .pkp_button_primary,
+  .pkp_modal_panel button.submitFormButton {
+    background: linear-gradient(135deg, #C13D0D 0%, #A0320A 100%) !important;
+    border: 1px solid #A0320A !important;
+    color: #FFFFFF !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(193, 61, 13, 0.28) !important;
+  }
+  .pkp_modal_panel .pkp_button_primary:hover,
+  .pkp_modal_panel button.submitFormButton:hover {
+    background: linear-gradient(135deg, #A0320A 0%, #862908 100%) !important;
   }
 </style>
 {/literal}
