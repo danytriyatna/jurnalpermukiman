@@ -247,6 +247,9 @@
   .listPanel__item:hover {
     background: #FDF9F7 !important;
   }
+  .listPanel__itemIdentity--submission {
+    padding-left: 3.75rem !important;
+  }
   .listPanel__item--submission__id {
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace !important;
     font-size: 12px !important;
@@ -551,6 +554,128 @@
   .pkp_modal_panel .pkp_button_primary:hover,
   .pkp_modal_panel button.submitFormButton:hover {
     background: linear-gradient(135deg, #A0320A 0%, #862908 100%) !important;
+  }
+
+  /* =====================================================================
+     ISSUES, TOOLS (.pkp_controllers_tab), STATISTICS (.pkpStats/.pkpTable),
+     & ADMINISTRATION (.app__contentPanel)
+     ===================================================================== */
+  /* Legacy jQuery UI Tabs (Issues, Tools, Plugins, Modals) */
+  .pkp_controllers_tab .ui-tabs-nav {
+    background: transparent !important;
+    border-bottom: 2px solid #E2E8F0 !important;
+    padding: 0 !important;
+    margin-bottom: 18px !important;
+  }
+  .pkp_controllers_tab .ui-tabs-nav li a {
+    color: #64748B !important;
+    font-weight: 600 !important;
+    border-radius: 8px 8px 0 0 !important;
+    transition: all 0.15s ease !important;
+  }
+  .pkp_controllers_tab .ui-tabs-nav li a:before {
+    background: transparent !important;
+  }
+  .pkp_controllers_tab .ui-tabs-nav li a:hover {
+    background: rgba(193, 61, 13, 0.06) !important;
+    color: #C13D0D !important;
+  }
+  .pkp_controllers_tab .ui-tabs-nav .ui-state-active {
+    background: #FFFFFF !important;
+    border-bottom: 3px solid #C13D0D !important;
+    margin-bottom: -2px !important;
+  }
+  .pkp_controllers_tab .ui-tabs-nav .ui-state-active a {
+    color: #C13D0D !important;
+    font-weight: 800 !important;
+  }
+  .pkp_controllers_tab .ui-tabs-nav .ui-state-active a:before,
+  .pkp_controllers_tab .ui-tabs-nav li a:hover:before,
+  .pkp_controllers_tab .ui-tabs-nav li a:focus:before {
+    background: #C13D0D !important;
+  }
+
+  /* Statistics (Articles, Editorial Activity, Users, Reports) */
+  .pkpStats {
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 14px !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+    padding: 20px 24px !important;
+  }
+  .pkpStats__graph {
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+  }
+  .pkpTable {
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+  }
+  .pkpTable caption {
+    background: #F8FAFC !important;
+    border-bottom: 1px solid #E2E8F0 !important;
+    color: #0F172A !important;
+    font-weight: 700 !important;
+  }
+  .pkpTable thead th {
+    background: #F8FAFC !important;
+    color: #334155 !important;
+    border-bottom: 1px solid #E2E8F0 !important;
+  }
+  .pkpTable th:focus {
+    box-shadow: inset 0 0 0 2px #C13D0D !important;
+  }
+  .pkpTable tr:hover td {
+    background: #FDF9F7 !important;
+  }
+  .pkpStats__itemLink,
+  .pkpTable a {
+    color: #C13D0D !important;
+    font-weight: 600 !important;
+  }
+  .pkpPagination {
+    background: #F8FAFC !important;
+    border: 1px solid #E2E8F0 !important;
+    border-top: none !important;
+    border-radius: 0 0 12px 12px !important;
+  }
+
+  /* Administration & Content Panels */
+  .app__contentPanel {
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 14px !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+    padding: 24px 28px !important;
+  }
+  .app__contentPanel h2 {
+    color: #0F172A !important;
+    font-weight: 800 !important;
+    border-bottom: 2px solid rgba(193, 61, 13, 0.18) !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 12px !important;
+  }
+  .app__contentPanel li {
+    padding: 6px 0 !important;
+    border-bottom: 1px solid #F1F5F9 !important;
+  }
+  .app__contentPanel li:last-child {
+    border-bottom: none !important;
+  }
+  .app__contentPanel a,
+  .app__main .pkp_controllers_grid td a:not(.pkp_button):not(.pkpButton) {
+    color: #C13D0D !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+  }
+  .app__contentPanel a:hover,
+  .app__main .pkp_controllers_grid td a:not(.pkp_button):not(.pkpButton):hover {
+    text-decoration: underline !important;
+    color: #A0320A !important;
   }
 </style>
 {/literal}
