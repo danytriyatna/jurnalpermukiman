@@ -238,44 +238,7 @@
       transition: max-width 0.3s ease;
     }
 
-    /* TOGGLE BAR (DEMO CONTROL) */
-    .demo-bar {
-      background: #0F172A;
-      color: #F8FAFC;
-      padding: 8px 16px;
-      border-radius: 8px;
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 12.5px;
-    }
-
-    .demo-bar span strong {
-      color: #38BDF8;
-    }
-
-    .demo-btn-group {
-      display: flex;
-      gap: 8px;
-    }
-
-    .demo-btn {
-      background: #334155;
-      color: #FFFFFF;
-      border: 1px solid #475569;
-      padding: 4px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .demo-btn.active {
-      background: #C13D0D;
-      border-color: #38BDF8;
-      color: #FFFFFF;
-    }
+    
 
     /* BREADCRUMB & METADATA BAR */
     .app__breadcrumbBar {
@@ -812,15 +775,6 @@
 
       <!-- MAIN OPERATIONAL WORKSPACE: FULL WIDTH & FULL HEIGHT -->
       <main class="app__main" id="mainWorkspace">
-        
-        <!-- DEMO CONTROL BAR -->
-        <div class="demo-bar">
-          <span>Mode Tampilan: <strong id="modeLabel">Mandat Dany: Full-Width & Full-Height Fluid (Zero Dead Space)</strong></span>
-          <div class="demo-btn-group">
-            <button class="demo-btn active" id="btnFull" onclick="setMode('full')">Full-Width (Mandat Baru)</button>
-            <button class="demo-btn" id="btnNarrow" onclick="setMode('narrow')">992px Sempit (Legacy Lama)</button>
-          </div>
-        </div>
 
         <!-- BREADCRUMB & METADATA -->
         <div class="app__breadcrumbBar">
@@ -1050,19 +1004,7 @@
   </div>
 
   <script>
-    function setMode(mode) {
-      const main = document.getElementById('mainWorkspace');
-      const label = document.getElementById('modeLabel');
-      const btnFull = document.getElementById('btnFull');
-      const btnNarrow = document.getElementById('btnNarrow');
-
-      if (mode === 'full') {
-        main.style.maxWidth = 'none';
-        main.style.margin = '0';
-        label.innerHTML = 'Mandat Dany: Full-Width & Full-Height Fluid (Zero Dead Space)';
-        btnFull.classList.add('active');
-        btnNarrow.classList.remove('active');
-      } else {
+     else {
         main.style.maxWidth = '992px';
         main.style.margin = '0 auto';
         label.innerHTML = 'Legacy Lama: Terjepit di Tengah 992px (Area Merah di Kanan & Bawah)';
