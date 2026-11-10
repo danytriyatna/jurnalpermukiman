@@ -36,28 +36,33 @@
   }
 
   #app, .app, .app__body, .app__main {
-    background: #F4F1EE !important;
+    background-color: #F2EFE9 !important;
+    background-image: radial-gradient(#DDD6CC 0.9px, transparent 0.9px) !important;
+    background-size: 18px 18px !important;
   }
 
-  /* SIDEBAR KIRI: WARM SURFACE (STRUKTUR TETAP, WARNA & KONTRAS SELARAS) */
+  /* SIDEBAR KIRI: OBSIDIAN DARK SLATE (ANTI-FLAT, HIGH CONTRAST, MEMBUMI) */
   .app__nav {
-    background: #FAF8F6 !important;
-    border-right: 1px solid #E5DCD5 !important;
-    box-shadow: 2px 0 10px rgba(15, 23, 42, 0.03) !important;
+    background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%) !important;
+    border-right: 1px solid #0B1120 !important;
+    box-shadow: 4px 0 20px rgba(15, 23, 42, 0.14) !important;
     flex: 0 0 248px !important;
     width: 248px !important;
     padding: 1.25rem 0.9rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
   }
 
   .app__navGroup {
     margin-top: 1.15rem !important;
     margin-bottom: 0.75rem !important;
     padding-top: 0.9rem !important;
-    border-top: 1px solid #EDE5DF !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
   }
 
   .app__navGroup .app__navItem--hasSubmenu {
-    color: #94A3B8 !important;
+    color: #64748B !important;
     font-weight: 800 !important;
     font-size: 10.5px !important;
     text-transform: uppercase !important;
@@ -72,10 +77,10 @@
     gap: 10px !important;
     padding: 9px 12px !important;
     margin-bottom: 3px !important;
-    border-radius: 8px !important;
+    border-radius: 9px !important;
     font-size: 13.5px !important;
     font-weight: 600 !important;
-    color: #334155 !important;
+    color: #CBD5E1 !important;
     text-decoration: none !important;
     transition: all 0.16s ease !important;
   }
@@ -108,20 +113,20 @@
   .app__navItem[data-menu-key="admin"]::before { content: "\f013" !important; }
 
   .app__navItem[data-menu-key]:hover {
-    background: #FDF4F0 !important;
-    color: #C13D0D !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #FFFFFF !important;
     transform: translateX(3px) !important;
   }
   .app__navItem[data-menu-key]:hover::before {
-    color: #C13D0D !important;
+    color: #FDBA74 !important;
   }
 
   .app__navItem--isCurrent,
   .app__navItem--isCurrent[data-menu-key] {
-    background: linear-gradient(135deg, #C13D0D 0%, #A0320A 100%) !important;
+    background: linear-gradient(135deg, #D14715 0%, #A0320A 100%) !important;
     color: #FFFFFF !important;
     font-weight: 700 !important;
-    box-shadow: 0 4px 12px rgba(193, 61, 13, 0.28) !important;
+    box-shadow: 0 4px 14px rgba(193, 61, 13, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
     transform: none !important;
   }
   .app__navItem--isCurrent[data-menu-key]::before,
@@ -130,13 +135,40 @@
   }
   .app__navItem--isCurrent:hover,
   .app__navItem--isCurrent[data-menu-key]:hover {
-    background: linear-gradient(135deg, #A0320A 0%, #862908 100%) !important;
+    background: linear-gradient(135deg, #C13D0D 0%, #862908 100%) !important;
+    color: #FFFFFF !important;
+  }
+
+  .app__navFooter {
+    margin-top: 1.5rem !important;
+    padding-top: 1rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .app__navFooterLink {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 9px 12px !important;
+    border-radius: 9px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #E2E8F0 !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.16s ease !important;
+  }
+  .app__navFooterLink:hover {
+    background: rgba(193, 61, 13, 0.25) !important;
+    border-color: rgba(209, 71, 21, 0.5) !important;
     color: #FFFFFF !important;
   }
 
   /* WORKSPACE MAIN & PAGE HEADING */
   .app__main {
-    background: #F4F1EE !important;
+    background-color: #F2EFE9 !important;
+    background-image: radial-gradient(#DDD6CC 0.9px, transparent 0.9px) !important;
+    background-size: 18px 18px !important;
     padding: 1.75rem 2.25rem !important;
   }
 
@@ -144,42 +176,45 @@
     display: flex !important;
     align-items: center !important;
     gap: 10px !important;
-    font-size: 20px !important;
+    font-size: 21px !important;
     font-weight: 800 !important;
     color: #0F172A !important;
     margin: 0 0 18px 0 !important;
-    letter-spacing: -0.01em !important;
+    letter-spacing: -0.02em !important;
   }
   .app__pageHeading::before {
     content: "" !important;
     display: inline-block !important;
-    width: 6px !important;
-    height: 22px !important;
-    background: #C13D0D !important;
+    width: 7px !important;
+    height: 24px !important;
+    background: linear-gradient(180deg, #D14715 0%, #A0320A 100%) !important;
     border-radius: 9999px !important;
+    box-shadow: 0 2px 6px rgba(193, 61, 13, 0.35) !important;
   }
 
-  /* TABS ANTREAN MODERN (MY QUEUE, UNASSIGNED, ALL ACTIVE, ARCHIVES) */
+  /* TABS ANTREAN: SEGMENTED PILL TRACK (BERDIMENSI & ANTI-FLAT) */
   .pkpTabs__buttons {
-    border-bottom: 2px solid #E2E8F0 !important;
-    padding: 0 !important;
+    background: #E5E0D8 !important;
+    border: 1px solid #D9D2C7 !important;
+    border-radius: 12px !important;
+    padding: 5px !important;
     margin-bottom: 18px !important;
-    display: flex !important;
+    display: inline-flex !important;
     flex-wrap: wrap !important;
     align-items: center !important;
-    gap: 6px !important;
+    gap: 4px !important;
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.06) !important;
   }
 
   .pkpTabs__button {
     background: transparent !important;
     border: none !important;
-    border-bottom: 3px solid transparent !important;
-    border-radius: 8px 8px 0 0 !important;
-    padding: 10px 16px !important;
-    margin: 0 0 -2px 0 !important;
+    border-radius: 8px !important;
+    padding: 8px 15px !important;
+    margin: 0 !important;
     top: 0 !important;
-    color: #64748B !important;
-    font-size: 13.5px !important;
+    color: #475569 !important;
+    font-size: 13px !important;
     font-weight: 600 !important;
     transition: all 0.16s ease !important;
   }
@@ -189,19 +224,19 @@
     content: none !important;
   }
   .pkpTabs__button:hover {
-    background: rgba(193, 61, 13, 0.06) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
     color: #C13D0D !important;
   }
   .pkpTabs__button[aria-selected="true"] {
     background: #FFFFFF !important;
     color: #C13D0D !important;
     font-weight: 800 !important;
-    border-bottom: 3px solid #C13D0D !important;
-    box-shadow: 0 -2px 8px rgba(15, 23, 42, 0.04) !important;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1), 0 1px 2px rgba(15, 23, 42, 0.06) !important;
   }
   .pkpTabs__button .pkpBadge {
-    background: #E2E8F0 !important;
-    color: #475569 !important;
+    background: rgba(15, 23, 42, 0.08) !important;
+    color: #334155 !important;
     border: none !important;
     font-size: 11px !important;
     font-weight: 700 !important;
@@ -215,22 +250,23 @@
     border: 1px solid #F4D4C9 !important;
   }
 
-  /* LIST PANEL SUBMISSIONS / ISSUES / ANNOUNCEMENTS */
+  /* LIST PANEL SUBMISSIONS / ISSUES / ANNOUNCEMENTS (3D ELEVATION) */
   .listPanel {
     background: #FFFFFF !important;
-    border: 1px solid #E2E8F0 !important;
+    border: 1px solid #DFD9D2 !important;
+    border-top: 3px solid #C13D0D !important;
     border-radius: 14px !important;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02) !important;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(193, 61, 13, 0.04) !important;
     overflow: hidden !important;
   }
   .listPanel__header {
-    background: #F8FAFC !important;
-    border-bottom: 1px solid #E2E8F0 !important;
-    padding: 14px 20px !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FAF8F6 100%) !important;
+    border-bottom: 1px solid #EDE7E0 !important;
+    padding: 15px 22px !important;
   }
   .listPanel__header .pkpHeader__title,
   .listPanel__header .pkpHeader__title > h2 {
-    font-size: 15px !important;
+    font-size: 15.5px !important;
     font-weight: 800 !important;
     color: #0F172A !important;
   }
@@ -241,21 +277,22 @@
     background: #FFFFFF !important;
   }
   .listPanel__item {
-    padding: 16px 20px !important;
-    border-bottom: 1px solid #F1F5F9 !important;
-    transition: background 0.15s ease !important;
+    padding: 16px 22px !important;
+    border-bottom: 1px solid #F1ECE6 !important;
+    transition: all 0.15s ease !important;
   }
   .listPanel__item:last-child {
     border-bottom: none !important;
   }
   .listPanel__item:hover {
-    background: #FDF9F7 !important;
+    background: #FDF9F6 !important;
+    box-shadow: inset 3px 0 0 #C13D0D !important;
   }
   .listPanel__itemIdentity--submission {
     padding-left: 3.75rem !important;
   }
   .listPanel__item--submission__id {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace !important;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
     font-size: 12px !important;
     font-weight: 700 !important;
     color: #C13D0D !important;
@@ -266,11 +303,12 @@
     text-align: center !important;
     width: auto !important;
     min-width: 44px !important;
+    box-shadow: 0 1px 2px rgba(193, 61, 13, 0.08) !important;
   }
   .listPanel__item--submission__author {
     font-weight: 700 !important;
     color: #0F172A !important;
-    font-size: 13.5px !important;
+    font-size: 14px !important;
   }
   .listPanel__item--submission__title {
     color: #475569 !important;
@@ -285,28 +323,31 @@
     background: #FFFFFF !important;
     font-size: 13px !important;
     color: #1E293B !important;
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04) !important;
     transition: all 0.15s ease !important;
   }
   .pkpSearch .pkpSearch__input:focus {
     border-color: #C13D0D !important;
-    box-shadow: 0 0 0 3px rgba(193, 61, 13, 0.12) !important;
+    box-shadow: 0 0 0 3px rgba(193, 61, 13, 0.14) !important;
     outline: none !important;
   }
 
-  /* BUTTONS & PRIMARY CTA MERAH BATA */
+  /* TACTILE BUTTONS (BEVEL & SHADOW ANTI-FLAT) */
   .pkpButton {
     border: 1px solid #CBD5E1 !important;
-    background: #FFFFFF !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
     color: #334155 !important;
     border-radius: 8px !important;
     font-weight: 600 !important;
     font-size: 12.5px !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), inset 0 -1px 0 rgba(0, 0, 0, 0.04) !important;
     transition: all 0.15s ease !important;
   }
   .pkpButton:hover {
     border-color: #C13D0D !important;
     color: #C13D0D !important;
     background: #FDF4F0 !important;
+    box-shadow: 0 2px 6px rgba(193, 61, 13, 0.12) !important;
   }
 
   .pkpButton--primary,
@@ -315,13 +356,13 @@
   .pkp_button_primary,
   .listPanel__header .pkpHeader__actions a[href*="submission/wizard"],
   .listPanel--submissions .pkpHeader__actions a.pkpButton {
-    background: linear-gradient(135deg, #C13D0D 0%, #A0320A 100%) !important;
-    border: 1px solid #A0320A !important;
+    background: linear-gradient(135deg, #D14715 0%, #A0320A 100%) !important;
+    border: 1px solid #962D08 !important;
     color: #FFFFFF !important;
     border-radius: 8px !important;
     font-weight: 700 !important;
     font-size: 12.5px !important;
-    box-shadow: 0 2px 8px rgba(193, 61, 13, 0.25) !important;
+    box-shadow: 0 3px 10px rgba(193, 61, 13, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
   }
   .pkpButton--primary:hover,
   button.pkpButton--primary:hover,
@@ -329,10 +370,10 @@
   .pkp_button_primary:hover,
   .listPanel__header .pkpHeader__actions a[href*="submission/wizard"]:hover,
   .listPanel--submissions .pkpHeader__actions a.pkpButton:hover {
-    background: linear-gradient(135deg, #A0320A 0%, #862908 100%) !important;
-    border-color: #862908 !important;
+    background: linear-gradient(135deg, #C13D0D 0%, #862908 100%) !important;
+    border-color: #782306 !important;
     color: #FFFFFF !important;
-    box-shadow: 0 4px 12px rgba(193, 61, 13, 0.35) !important;
+    box-shadow: 0 5px 14px rgba(193, 61, 13, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
     transform: translateY(-1px) !important;
   }
 
@@ -390,11 +431,14 @@
      ===================================================================== */
   /* Side Tabs di Halaman Settings (Masthead, Contact, Appearance, dll) */
   .pkpTabs--side .pkpTabs__buttons {
-    background: #FAF8F6 !important;
-    border: 1px solid #E5DCD5 !important;
+    background: #FFFFFF !important;
+    border: 1px solid #DFD9D2 !important;
     border-radius: 12px !important;
     padding: 8px !important;
-    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05) !important;
   }
   .pkpTabs--side .pkpTabs__button {
     border: none !important;
@@ -404,6 +448,7 @@
     padding: 9px 14px !important;
     color: #475569 !important;
     text-align: left !important;
+    width: 100% !important;
   }
   .pkpTabs--side .pkpTabs__button:hover {
     background: #FDF4F0 !important;
@@ -415,15 +460,16 @@
     font-weight: 800 !important;
     border-bottom: none !important;
     border-left: 3px solid #C13D0D !important;
-    box-shadow: none !important;
+    box-shadow: 0 1px 3px rgba(193, 61, 13, 0.08) !important;
   }
 
-  /* Form Container & Group Surfaces (Tanpa Merubah Struktur Kolom) */
+  /* Form Container & Group Surfaces (3D Elevation + Top Accent) */
   .pkpForm {
     background: #FFFFFF !important;
-    border: 1px solid #E2E8F0 !important;
+    border: 1px solid #DFD9D2 !important;
+    border-top: 3px solid #C13D0D !important;
     border-radius: 14px !important;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(193, 61, 13, 0.04) !important;
     overflow: hidden !important;
   }
   .pkpFormPages {
@@ -564,47 +610,51 @@
      ISSUES, TOOLS (.pkp_controllers_tab), STATISTICS (.pkpStats/.pkpTable),
      & ADMINISTRATION (.app__contentPanel)
      ===================================================================== */
-  /* Legacy jQuery UI Tabs (Issues, Tools, Plugins, Modals) */
+  /* Legacy jQuery UI Tabs (Issues, Tools, Plugins, Modals) - Segmented Pill */
   .pkp_controllers_tab .ui-tabs-nav {
-    background: transparent !important;
-    border-bottom: 2px solid #E2E8F0 !important;
-    padding: 0 !important;
+    background: #E5E0D8 !important;
+    border: 1px solid #D9D2C7 !important;
+    border-radius: 12px !important;
+    padding: 5px !important;
     margin-bottom: 18px !important;
+    display: inline-flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
   }
   .pkp_controllers_tab .ui-tabs-nav li a {
-    color: #64748B !important;
+    color: #475569 !important;
     font-weight: 600 !important;
-    border-radius: 8px 8px 0 0 !important;
+    border-radius: 8px !important;
+    line-height: 2.3rem !important;
     transition: all 0.15s ease !important;
   }
   .pkp_controllers_tab .ui-tabs-nav li a:before {
-    background: transparent !important;
+    display: none !important;
+    content: none !important;
   }
   .pkp_controllers_tab .ui-tabs-nav li a:hover {
-    background: rgba(193, 61, 13, 0.06) !important;
+    background: rgba(255, 255, 255, 0.55) !important;
     color: #C13D0D !important;
   }
   .pkp_controllers_tab .ui-tabs-nav .ui-state-active {
     background: #FFFFFF !important;
-    border-bottom: 3px solid #C13D0D !important;
-    margin-bottom: -2px !important;
+    border: none !important;
+    border-radius: 8px !important;
+    margin-bottom: 0 !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1) !important;
   }
   .pkp_controllers_tab .ui-tabs-nav .ui-state-active a {
     color: #C13D0D !important;
     font-weight: 800 !important;
   }
-  .pkp_controllers_tab .ui-tabs-nav .ui-state-active a:before,
-  .pkp_controllers_tab .ui-tabs-nav li a:hover:before,
-  .pkp_controllers_tab .ui-tabs-nav li a:focus:before {
-    background: #C13D0D !important;
-  }
 
   /* Statistics (Articles, Editorial Activity, Users, Reports) */
   .pkpStats {
     background: #FFFFFF !important;
-    border: 1px solid #E2E8F0 !important;
+    border: 1px solid #DFD9D2 !important;
+    border-top: 3px solid #C13D0D !important;
     border-radius: 14px !important;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(193, 61, 13, 0.04) !important;
     padding: 20px 24px !important;
   }
   .pkpStats__graph {
@@ -651,9 +701,10 @@
   /* Administration & Content Panels */
   .app__contentPanel {
     background: #FFFFFF !important;
-    border: 1px solid #E2E8F0 !important;
+    border: 1px solid #DFD9D2 !important;
+    border-top: 3px solid #C13D0D !important;
     border-radius: 14px !important;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(193, 61, 13, 0.04) !important;
     padding: 24px 28px !important;
   }
   .app__contentPanel h2 {
@@ -983,6 +1034,12 @@
 							</ul>
 						</li>
 					</ul>
+					<div class="app__navFooter">
+						<a href="{url page="index"}" target="_blank" rel="noopener" class="app__navFooterLink">
+							<span><i class="fa fa-globe" style="margin-right: 8px; color: #FDBA74;"></i>View Live Journal</span>
+							<i class="fa fa-external-link" style="font-size: 11px; opacity: 0.75;"></i>
+						</a>
+					</div>
 				</nav>
 			{/block}
 
