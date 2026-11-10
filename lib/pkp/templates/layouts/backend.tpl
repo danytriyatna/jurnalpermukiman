@@ -41,11 +41,11 @@
     background-size: 18px 18px !important;
   }
 
-  /* SIDEBAR KIRI: OBSIDIAN DARK SLATE (ANTI-FLAT, HIGH CONTRAST, MEMBUMI) */
+  /* SIDEBAR KIRI: MERAH BATA PUSKIM GRADIENT (IDENTITAS RESMI 100%, ZERO BIRU/HITAM) */
   .app__nav {
-    background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%) !important;
-    border-right: 1px solid #0B1120 !important;
-    box-shadow: 4px 0 20px rgba(15, 23, 42, 0.14) !important;
+    background: linear-gradient(180deg, #B93A0C 0%, #8C2806 100%) !important;
+    border-right: 1px solid #752004 !important;
+    box-shadow: 4px 0 22px rgba(140, 40, 6, 0.22) !important;
     flex: 0 0 248px !important;
     width: 248px !important;
     padding: 1.25rem 0.9rem !important;
@@ -58,11 +58,11 @@
     margin-top: 1.15rem !important;
     margin-bottom: 0.75rem !important;
     padding-top: 0.9rem !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.16) !important;
   }
 
   .app__navGroup .app__navItem--hasSubmenu {
-    color: #64748B !important;
+    color: rgba(255, 255, 255, 0.62) !important;
     font-weight: 800 !important;
     font-size: 10.5px !important;
     text-transform: uppercase !important;
@@ -80,7 +80,7 @@
     border-radius: 9px !important;
     font-size: 13.5px !important;
     font-weight: 600 !important;
-    color: #CBD5E1 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
     text-decoration: none !important;
     transition: all 0.16s ease !important;
   }
@@ -90,7 +90,7 @@
     font-size: 13.5px !important;
     width: 16px !important;
     text-align: center !important;
-    color: #94A3B8 !important;
+    color: rgba(255, 255, 255, 0.75) !important;
     transition: color 0.16s ease !important;
     content: "\f111";
   }
@@ -113,36 +113,37 @@
   .app__navItem[data-menu-key="admin"]::before { content: "\f013" !important; }
 
   .app__navItem[data-menu-key]:hover {
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(0, 0, 0, 0.18) !important;
     color: #FFFFFF !important;
     transform: translateX(3px) !important;
   }
   .app__navItem[data-menu-key]:hover::before {
-    color: #FDBA74 !important;
+    color: #FFFFFF !important;
   }
 
+  /* MENU AKTIF: KAPSUL PUTIH BERSIH KONTRAS TEKS MERAH BATA */
   .app__navItem--isCurrent,
   .app__navItem--isCurrent[data-menu-key] {
-    background: linear-gradient(135deg, #D14715 0%, #A0320A 100%) !important;
-    color: #FFFFFF !important;
-    font-weight: 700 !important;
-    box-shadow: 0 4px 14px rgba(193, 61, 13, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    background: #FFFFFF !important;
+    color: #C13D0D !important;
+    font-weight: 800 !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
     transform: none !important;
   }
   .app__navItem--isCurrent[data-menu-key]::before,
   .app__navItem--isCurrent[data-menu-key]:hover::before {
-    color: #FFFFFF !important;
+    color: #C13D0D !important;
   }
   .app__navItem--isCurrent:hover,
   .app__navItem--isCurrent[data-menu-key]:hover {
-    background: linear-gradient(135deg, #C13D0D 0%, #862908 100%) !important;
-    color: #FFFFFF !important;
+    background: #FDF4F0 !important;
+    color: #A0320A !important;
   }
 
   .app__navFooter {
     margin-top: 1.5rem !important;
     padding-top: 1rem !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.16) !important;
   }
   .app__navFooterLink {
     display: flex !important;
@@ -150,18 +151,21 @@
     justify-content: space-between !important;
     padding: 9px 12px !important;
     border-radius: 9px !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    color: #E2E8F0 !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    color: #FFFFFF !important;
     font-size: 12.5px !important;
-    font-weight: 600 !important;
+    font-weight: 700 !important;
     text-decoration: none !important;
     transition: all 0.16s ease !important;
   }
   .app__navFooterLink:hover {
-    background: rgba(193, 61, 13, 0.25) !important;
-    border-color: rgba(209, 71, 21, 0.5) !important;
-    color: #FFFFFF !important;
+    background: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+    color: #C13D0D !important;
+  }
+  .app__navFooterLink:hover i {
+    color: #C13D0D !important;
   }
 
   /* WORKSPACE MAIN & PAGE HEADING */
@@ -748,29 +752,73 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 18px rgba(193, 61, 13, 0.045) !important;
   }
 
-  /* Hilangkan Sisa Biru #006798 pada Kotak Ikon Search */
+  /* Hilangkan Double Box Putih pada Tab yang Membungkus .listPanel / .pkpForm */
+  .pkpTab:has(.listPanel),
+  .pkpTab:has(.pkpForm) {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Ubah Tombol ? Help (Dari Hijau Neon Bawaan OJS ke Pill Netral Hangat) */
+  .pkp_help_tab,
+  .pkp_help_link {
+    background: #FFFFFF !important;
+    color: #64748B !important;
+    border: 1px solid #DFD9D2 !important;
+    border-radius: 9999px !important;
+    padding: 4px 12px !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05) !important;
+    transition: all 0.15s ease !important;
+  }
+  .pkp_help_tab {
+    top: -2.4rem !important;
+    right: 0 !important;
+  }
+  .pkp_help_link:hover,
+  .pkp_help_link:focus {
+    background: #FDF4F0 !important;
+    color: #C13D0D !important;
+    border-color: #F4D4C9 !important;
+    box-shadow: 0 2px 8px rgba(193, 61, 13, 0.12) !important;
+  }
+
+  /* Hilangkan Sisa Biru #006798 pada Kotak Ikon Search & Input */
+  .pkpSearch .pkpSearch__input {
+    padding-left: 3.1em !important;
+    height: 36px !important;
+    line-height: 36px !important;
+  }
   .pkpSearch__icons {
     border-right: 1px solid #E2E8F0 !important;
     border-top-left-radius: 8px !important;
     border-bottom-left-radius: 8px !important;
-    background: #F8FAFC !important;
+    background: #FAF8F6 !important;
     transition: all 0.15s ease !important;
   }
   .pkpSearch__icons--search,
-  .pkpSearch__icons--search::before {
+  .pkpSearch__icons--search::before,
+  .pkpSearch__icons .fa {
     color: #64748B !important;
   }
   .pkpSearch__input:hover + .pkpSearch__icons {
     border-color: #C13D0D !important;
   }
-  .pkpSearch__input:hover + .pkpSearch__icons .pkpSearch__icons--search::before {
+  .pkpSearch__input:hover + .pkpSearch__icons .pkpSearch__icons--search,
+  .pkpSearch__input:hover + .pkpSearch__icons .pkpSearch__icons--search::before,
+  .pkpSearch__input:hover + .pkpSearch__icons .fa {
     color: #C13D0D !important;
   }
   .pkpSearch__input:focus + .pkpSearch__icons {
     border-color: #C13D0D !important;
     background: #C13D0D !important;
   }
-  .pkpSearch__input:focus + .pkpSearch__icons .pkpSearch__icons--search::before {
+  .pkpSearch__input:focus + .pkpSearch__icons .pkpSearch__icons--search,
+  .pkpSearch__input:focus + .pkpSearch__icons .pkpSearch__icons--search::before,
+  .pkpSearch__input:focus + .pkpSearch__icons .fa {
     color: #FFFFFF !important;
   }
 
