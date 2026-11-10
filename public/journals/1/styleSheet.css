@@ -803,43 +803,60 @@ button.pkpButton--primary:hover,
 /* ========================================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
+/* 1. LATAR BELAKANG MERAH BATA OJS RADIAL GRADIENT (PERSIS MOCKUP) */
 body.pkp_page_index,
 body.has_site_logo,
-.pkp_structure_page {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-  background-color: #F8FAFC !important;
+body.pkp_page_about,
+body.pkp_page_issue,
+body.pkp_page_article {
+  background-color: #C13D0D !important;
+  background-image: radial-gradient(circle at 50% 0%, #C84313 0%, #9C2E07 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh !important;
+  padding: 24px 16px 40px 16px !important;
+  margin: 0 !important;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
   color: #1E293B !important;
-  font-size: 14px !important;
-  line-height: 1.6 !important;
 }
 
-/* 1. ELIMINASI VOID ORANYE RAKSASA DI HEADER DEPAN */
+/* 2. KARTU FLOATING 1200PX DI TENGAH (IDENTIK #main-page-card MOCKUP) */
+.pkp_structure_page {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  background: #FFFFFF !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.25) !important;
+  padding: 24px !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+/* 3. HEADER JURNAL DI ATAS KARTU */
 .pkp_structure_head {
-  background-color: #F8FAFC !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin-bottom: 24px !important;
   border-bottom: none !important;
-  padding: 1.25rem 0 0 0 !important;
 }
 
 .pkp_head_wrapper {
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  padding: 0 1rem !important;
-  background: transparent !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Container Banner Gambar 100% Presisi (Tidak Terpotong / Terjepit) */
-.pkp_site_name_wrapper {
-  background: #FFFFFF !important;
-  border-radius: 12px 12px 0 0 !important;
-  overflow: hidden !important;
-  border: 1px solid #E2E8F0 !important;
-  border-bottom: none !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  max-width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  background: #FFFFFF !important;
+}
+
+.pkp_site_name_wrapper {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: #FFFFFF !important;
   width: 100% !important;
+  display: block !important;
+  border: none !important;
 }
 
 .pkp_site_name {
@@ -867,26 +884,23 @@ body.has_site_logo,
   border: none !important;
 }
 
-/* 2. BILAH NAVIGASI UTAMA: MERAH BATA GRADASI ELEGAN DENGAN SHADOW */
+/* 4. BILAH NAVIGASI MERAH BATA ELEGAN */
 .pkp_site_nav_menu {
-  background: #FFFFFF !important;
-  border-radius: 0 0 12px 12px !important;
-  overflow: visible !important;
-  border: 1px solid #E2E8F0 !important;
-  border-top: none !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
-  margin-bottom: 1.5rem !important;
+  background: linear-gradient(135deg, #C13D0D 0%, #A5330A 100%) !important;
+  margin: 0 !important;
   padding: 0 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  border: none !important;
+  border-radius: 0 !important;
 }
 
 .pkp_navigation_primary_row {
-  background: linear-gradient(135deg, #C13D0D 0%, #A5330A 100%) !important;
+  background: transparent !important;
   padding: 4px 16px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  border-radius: 0 0 12px 12px !important;
-  min-height: 48px !important;
+  min-height: 44px !important;
   box-sizing: border-box !important;
 }
 
@@ -909,36 +923,33 @@ body.has_site_logo,
   color: #FFFFFF !important;
   font-weight: 700 !important;
   font-size: 13.5px !important;
-  padding: 8px 14px !important;
+  padding: 6px 14px !important;
   border-radius: 6px !important;
   text-decoration: none !important;
   transition: all 0.15s ease !important;
 }
 
-.pkp_navigation_primary > li > a:hover {
-  background: rgba(0, 0, 0, 0.22) !important;
-  color: #FFFFFF !important;
+.pkp_navigation_primary > li:first-child > a,
+.pkp_navigation_primary > li.current > a {
+  background: rgba(0, 0, 0, 0.25) !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2) !important;
 }
 
-/* Search Box Desktop */
+.pkp_navigation_primary > li > a:hover {
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+
 .pkp_navigation_search_wrapper a.pkp_search {
   color: #FFFFFF !important;
-  font-size: 13px !important;
+  font-size: 12.5px !important;
   font-weight: 600 !important;
-  padding: 6px 14px !important;
+  padding: 5px 12px !important;
   border-radius: 6px !important;
-  background: rgba(255, 255, 255, 0.18) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
   text-decoration: none !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
 }
 
-.pkp_navigation_search_wrapper a.pkp_search:hover {
-  background: rgba(255, 255, 255, 0.3) !important;
-}
-
-/* Quick Access Ecosystem Links (MQC & JP) */
 .jp_ecosystem_nav_links {
   display: flex !important;
   align-items: center !important;
@@ -950,13 +961,10 @@ body.has_site_logo,
   border: 1px solid rgba(255, 255, 255, 0.4) !important;
   color: #FFFFFF !important;
   font-weight: 700 !important;
-  font-size: 11.5px !important;
-  padding: 4px 10px !important;
+  font-size: 11px !important;
+  padding: 4px 8px !important;
   border-radius: 6px !important;
   text-decoration: none !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 5px !important;
 }
 
 .jp_ecosystem_btn:hover {
@@ -964,21 +972,11 @@ body.has_site_logo,
   color: #C13D0D !important;
 }
 
-/* User Menu Profile di Atas */
 .pkp_navigation_user_wrapper {
   position: absolute !important;
-  top: 14px !important;
+  top: 10px !important;
   right: 1.5rem !important;
   z-index: 100 !important;
-}
-
-.pkp_navigation_user {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
 .pkp_navigation_user > li > a {
@@ -993,67 +991,133 @@ body.has_site_logo,
   text-decoration: none !important;
 }
 
-.pkp_navigation_user > li > a:hover {
-  color: #C13D0D !important;
-  border-color: #C13D0D !important;
-}
-
-/* 3. KONTEN UTAMA: SYSTEM 1200PX DENGAN CARD ELEVATION */
+/* 5. TATA LETAK 2 KOLOM KONTEN DI DALAM KARTU */
 .pkp_structure_content {
-  max-width: 1200px !important;
-  margin: 0 auto 3rem auto !important;
-  padding: 0 1rem !important;
-  display: flex !important;
-  gap: 1.75rem !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr 310px !important;
+  gap: 24px !important;
   box-sizing: border-box !important;
 }
 
 .pkp_structure_main {
-  flex: 1 1 auto !important;
-  width: calc(100% - 330px) !important;
+  width: 100% !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+/* KARTU KONTEN UTAMA (FRESH-CARD) */
+.homepage_about,
+.cmp_announcements,
+.current_issue {
   background: #FFFFFF !important;
   border: 1px solid #E2E8F0 !important;
   border-radius: 12px !important;
-  padding: 2rem 2.25rem !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
-  box-sizing: border-box !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(193, 61, 13, 0.03) !important;
+  transition: all 0.2s ease !important;
+  margin-bottom: 0 !important;
 }
 
-/* Headings H2 & H3 dengan Puskim Accent Line */
-.pkp_structure_main h2,
+.homepage_about:hover,
+.cmp_announcements:hover,
+.current_issue:hover {
+  box-shadow: 0 6px 20px rgba(193, 61, 13, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+  border-color: #F4D4C9 !important;
+}
+
+/* Judul dengan Aksen Vertikal Merah Bata */
 .homepage_about h2,
-.cmp_announcements h2 {
-  font-size: 19px !important;
+.cmp_announcements h2,
+.current_issue h2 {
+  font-size: 18px !important;
   font-weight: 800 !important;
   color: #0F172A !important;
-  letter-spacing: -0.02em !important;
-  border-bottom: 2px solid #FDF4F0 !important;
-  padding-bottom: 10px !important;
-  margin-bottom: 1.25rem !important;
   display: flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 10px !important;
+  border-bottom: 2px solid rgba(193, 61, 13, 0.15) !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 16px !important;
 }
 
-.pkp_structure_main h2::before,
 .homepage_about h2::before,
-.cmp_announcements h2::before {
+.cmp_announcements h2::before,
+.current_issue h2::before {
   content: "" !important;
   display: inline-block !important;
-  width: 6px !important;
+  width: 8px !important;
   height: 22px !important;
   background: #C13D0D !important;
   border-radius: 4px !important;
 }
 
-/* 4. SIDEBAR KANAN (310PX CARD SYSTEM) */
+/* Tabel Identitas Jurnal */
+.homepage_about table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  font-size: 13px !important;
+  margin-top: 16px !important;
+  background: #FAFAFA !important;
+}
+
+.homepage_about table tr {
+  border-bottom: 1px solid #F1F5F9 !important;
+}
+
+.homepage_about table td:first-child {
+  font-weight: 700 !important;
+  color: #334155 !important;
+  background: #F1F5F9 !important;
+  width: 220px !important;
+  padding: 10px 14px !important;
+}
+
+.homepage_about table td:last-child {
+  padding: 10px 14px !important;
+  color: #1E293B !important;
+  font-weight: 600 !important;
+}
+
+/* Pengumuman Highlight Card */
+.cmp_announcements .obj_announcement_summary {
+  background: #FDF4F0 !important;
+  border: 1px solid #F4D4C9 !important;
+  border-radius: 10px !important;
+  padding: 18px 20px !important;
+  margin-bottom: 14px !important;
+}
+
+.cmp_announcements .obj_announcement_summary h3 a {
+  color: #C13D0D !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  text-decoration: none !important;
+}
+
+.cmp_announcements .obj_announcement_summary h3 a:hover {
+  text-decoration: underline !important;
+}
+
+/* 6. SIDEBAR KANAN 310PX */
 .pkp_structure_sidebar,
 .pkp_sidebar.left {
-  flex: 0 0 310px !important;
   width: 310px !important;
+  padding: 0 !important;
+  margin: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 1.25rem !important;
+  gap: 16px !important;
   float: none !important;
 }
 
@@ -1061,64 +1125,62 @@ body.has_site_logo,
   background: #FFFFFF !important;
   border: 1px solid #E2E8F0 !important;
   border-radius: 12px !important;
-  padding: 1.25rem !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
-  margin-bottom: 0 !important;
-  overflow: hidden !important;
+  padding: 16px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(193, 61, 13, 0.03) !important;
+  margin: 0 !important;
   box-sizing: border-box !important;
 }
 
 .pkp_block .title {
-  font-size: 12px !important;
+  font-size: 11.5px !important;
   font-weight: 800 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.8px !important;
   color: #1E293B !important;
-  border-bottom: 2px solid #F1F5F9 !important;
-  padding-bottom: 0.5rem !important;
-  margin-bottom: 1rem !important;
+  border-bottom: 2px solid rgba(193, 61, 13, 0.25) !important;
+  padding-bottom: 8px !important;
+  margin-bottom: 12px !important;
 }
 
 /* Make a Submission Call-To-Action */
 .pkp_block.block_make_submission a,
 .pkp_block a.action {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
   background: #C13D0D !important;
   color: #FFFFFF !important;
-  padding: 12px 16px !important;
+  padding: 14px 16px !important;
   border-radius: 10px !important;
   font-weight: 800 !important;
   font-size: 13.5px !important;
   text-align: center !important;
   text-decoration: none !important;
-  box-shadow: 0 2px 8px rgba(193, 61, 13, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(193, 61, 13, 0.3) !important;
+  display: block !important;
   transition: all 0.2s ease !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
 }
 
 .pkp_block.block_make_submission a:hover,
 .pkp_block a.action:hover {
   background: #A0320A !important;
-  box-shadow: 0 4px 14px rgba(193, 61, 13, 0.4) !important;
   transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(193, 61, 13, 0.4) !important;
 }
 
-/* 5. JOURNAL POLICY MENU (18 MENU RESMI - MODERN PILL BUTTONS) */
+/* 7. 18 JOURNAL POLICY BUTTONS (IDENTIK MOCKUP) */
 #customblock-journal-policy .content {
   display: flex !important;
   flex-direction: column !important;
-  gap: 4px !important;
+  gap: 3.5px !important;
 }
 
 #customblock-journal-policy p {
   background: #C13D0D !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
   border-radius: 6px !important;
-  padding: 8px 12px !important;
+  padding: 8.5px 12px !important;
   margin: 0 !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08) !important;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
@@ -1140,44 +1202,25 @@ body.has_site_logo,
 }
 
 #customblock-journal-policy p:first-child {
-  background: #64748B !important;
+  background: #778899 !important; /* Warna Abu-abu Khusus Home Eksisting */
 }
 
 #customblock-journal-policy p:first-child:hover {
-  background: #475569 !important;
+  background: #5A6978 !important;
 }
 
-/* 6. ANNOUNCEMENT CARDS (SEGAR & HIGHLIGHT LEMBUT) */
-.cmp_announcements .obj_announcement_summary {
-  background: #FDF4F0 !important;
-  border: 1px solid #F4D4C9 !important;
-  border-radius: 10px !important;
-  padding: 1.25rem !important;
-  margin-bottom: 1.25rem !important;
-}
-
-.cmp_announcements .obj_announcement_summary h3 a {
-  color: #C13D0D !important;
-  font-weight: 800 !important;
-  font-size: 15px !important;
-  text-decoration: none !important;
-}
-
-.cmp_announcements .obj_announcement_summary h3 a:hover {
-  text-decoration: underline !important;
-}
-
-/* 7. FOOTER CONTAINER */
+/* Footer di Dalam Kartu */
 .pkp_structure_footer_wrapper {
-  background: #FFFFFF !important;
+  background: transparent !important;
   border-top: 1px solid #E2E8F0 !important;
-  padding: 2.5rem 1rem !important;
+  padding: 24px 0 0 0 !important;
+  margin-top: 24px !important;
   color: #64748B !important;
   font-size: 12.5px !important;
 }
 
 .pkp_structure_footer {
-  max-width: 1200px !important;
+  max-width: 100% !important;
   margin: 0 auto !important;
   text-align: center !important;
 }
