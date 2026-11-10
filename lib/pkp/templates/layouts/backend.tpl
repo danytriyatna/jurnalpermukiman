@@ -16,23 +16,27 @@
 	{load_header context="backend"}
 	{load_stylesheet context="backend"}
 	{load_script context="backend"}
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 {literal}
 <style id="puskim-backend-unified">
   /* =====================================================================
      PUSKIM BACKEND WORKSPACE UNIFICATION (MERAH BATA #C13D0D + CLEAN UI)
      ===================================================================== */
   html:has(#app), body:has(#app) {
-    background: #F3F4F6 !important;
+    background: #F4F1EE !important;
     background-image: none !important;
     color: #1E293B !important;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   }
 
-  #app, .app {
-    background: #F3F4F6 !important;
+  #app, .app, .app button, .app input, .app select, .app textarea {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   }
 
-  .app__body {
-    background: #F3F4F6 !important;
+  #app, .app, .app__body, .app__main {
+    background: #F4F1EE !important;
   }
 
   /* SIDEBAR KIRI: WARM SURFACE (STRUKTUR TETAP, WARNA & KONTRAS SELARAS) */
@@ -132,7 +136,7 @@
 
   /* WORKSPACE MAIN & PAGE HEADING */
   .app__main {
-    background: #F3F4F6 !important;
+    background: #F4F1EE !important;
     padding: 1.75rem 2.25rem !important;
   }
 
@@ -676,6 +680,133 @@
   .app__main .pkp_controllers_grid td a:not(.pkp_button):not(.pkpButton):hover {
     text-decoration: underline !important;
     color: #A0320A !important;
+  }
+
+  /* =====================================================================
+     FRESH FINISH POLISH: SEARCH ICON, AMBIENT SHADOW, NOTIFICATIONS,
+     DROPDOWNS, STAGE BADGES, TABLE HEADERS & SCROLLBAR
+     ===================================================================== */
+  /* Card Ambient Elevation (Match Frontend .fresh-card) */
+  .listPanel,
+  .pkpForm,
+  .pkpStats,
+  .app__contentPanel,
+  .pkp_controllers_grid,
+  .pkpWorkflow__content,
+  .pkpWorkflow__participants {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 18px rgba(193, 61, 13, 0.045) !important;
+  }
+
+  /* Hilangkan Sisa Biru #006798 pada Kotak Ikon Search */
+  .pkpSearch__icons {
+    border-right: 1px solid #E2E8F0 !important;
+    border-top-left-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+    background: #F8FAFC !important;
+    transition: all 0.15s ease !important;
+  }
+  .pkpSearch__icons--search,
+  .pkpSearch__icons--search::before {
+    color: #64748B !important;
+  }
+  .pkpSearch__input:hover + .pkpSearch__icons {
+    border-color: #C13D0D !important;
+  }
+  .pkpSearch__input:hover + .pkpSearch__icons .pkpSearch__icons--search::before {
+    color: #C13D0D !important;
+  }
+  .pkpSearch__input:focus + .pkpSearch__icons {
+    border-color: #C13D0D !important;
+    background: #C13D0D !important;
+  }
+  .pkpSearch__input:focus + .pkpSearch__icons .pkpSearch__icons--search::before {
+    color: #FFFFFF !important;
+  }
+
+  /* Soft-Tinted Semantic Badges */
+  .listPanel__item--submission__stage .pkpBadge,
+  .pkpBadge--dot {
+    background: #FDF4F0 !important;
+    border-color: #F4D4C9 !important;
+    color: #9A3412 !important;
+    font-weight: 700 !important;
+    padding: 3px 11px !important;
+  }
+  .pkpBadge--isSuccess {
+    background: #ECFDF5 !important;
+    border-color: #A7F3D0 !important;
+    color: #065F46 !important;
+  }
+
+  /* Dropdowns (Modern Rounded Menu) */
+  .pkpDropdown__content {
+    border-radius: 10px !important;
+    border: 1px solid #E2E8F0 !important;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.05) !important;
+    padding: 6px !important;
+  }
+  .pkpDropdown__action {
+    border-radius: 6px !important;
+    color: #334155 !important;
+    font-weight: 600 !important;
+    transition: all 0.12s ease !important;
+  }
+  .pkpDropdown__action:hover,
+  .pkpDropdown__action:focus {
+    background: #FDF4F0 !important;
+    color: #C13D0D !important;
+  }
+
+  /* Notifications & Alerts */
+  .pkpNotification {
+    border-radius: 10px !important;
+    border: 1px solid #F4D4C9 !important;
+    background: #FDF9F7 !important;
+    box-shadow: inset 4px 0 0 #C13D0D !important;
+    color: #1E293B !important;
+  }
+  .pkpNotification--success {
+    border-color: #A7F3D0 !important;
+    background: #ECFDF5 !important;
+    box-shadow: inset 4px 0 0 #10B981 !important;
+  }
+  .pkpNotification--warning {
+    border-color: #FDE68A !important;
+    background: #FFFBEB !important;
+    box-shadow: inset 4px 0 0 #F59E0B !important;
+  }
+
+  /* Monospace JetBrains untuk ID & Angka */
+  .listPanel__item--submission__id,
+  .pkpWorkflow__identificationId {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+  }
+
+  /* Table Header Labels Refinement */
+  .pkp_controllers_grid th,
+  .pkpTable thead th {
+    background: #FAF8F6 !important;
+    color: #64748B !important;
+    font-size: 11.5px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  /* Subtle Sleek Scrollbar */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F4F1EE;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C13D0D;
   }
 </style>
 {/literal}
