@@ -16,6 +16,369 @@
 	{load_header context="backend"}
 	{load_stylesheet context="backend"}
 	{load_script context="backend"}
+{literal}
+<style id="puskim-backend-unified">
+  /* =====================================================================
+     PUSKIM BACKEND WORKSPACE UNIFICATION (MERAH BATA #C13D0D + CLEAN UI)
+     ===================================================================== */
+  html:has(#app), body:has(#app) {
+    background: #F1F5F9 !important;
+    background-image: none !important;
+    color: #1E293B !important;
+  }
+
+  #app, .app {
+    background: #F1F5F9 !important;
+  }
+
+  .app__body {
+    background: #F1F5F9 !important;
+  }
+
+  /* SIDEBAR KIRI MODERN DENGAN IKON & AKSEN MERAH BATA */
+  .app__nav {
+    background: #FFFFFF !important;
+    border-right: 1px solid #E2E8F0 !important;
+    box-shadow: 2px 0 12px rgba(15, 23, 42, 0.03) !important;
+    flex: 0 0 248px !important;
+    width: 248px !important;
+    padding: 1.25rem 0.9rem !important;
+  }
+
+  .app__navGroup {
+    margin-top: 1.15rem !important;
+    margin-bottom: 0.75rem !important;
+    padding-top: 0.9rem !important;
+    border-top: 1px solid #F1F5F9 !important;
+  }
+
+  .app__navGroup .app__navItem--hasSubmenu {
+    color: #94A3B8 !important;
+    font-weight: 800 !important;
+    font-size: 10.5px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.09em !important;
+    padding: 0 0.75rem 0.45rem !important;
+    margin: 0 !important;
+  }
+
+  .app__navItem[data-menu-key] {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 9px 12px !important;
+    margin-bottom: 3px !important;
+    border-radius: 8px !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    text-decoration: none !important;
+    transition: all 0.16s ease !important;
+  }
+
+  .app__navItem[data-menu-key]::before {
+    font-family: FontAwesome !important;
+    font-size: 13.5px !important;
+    width: 16px !important;
+    text-align: center !important;
+    color: #94A3B8 !important;
+    transition: color 0.16s ease !important;
+    content: "\f111";
+  }
+
+  .app__navItem[data-menu-key="submissions"]::before { content: "\f0ea" !important; }
+  .app__navItem[data-menu-key="submit"]::before { content: "\f1d8" !important; }
+  .app__navItem[data-menu-key="issues"]::before { content: "\f02d" !important; }
+  .app__navItem[data-menu-key="announcements"]::before { content: "\f0a1" !important; }
+  .app__navItem[data-menu-key="payments"]::before { content: "\f0d6" !important; }
+  .app__navItem[data-menu-key="context"]::before { content: "\f19c" !important; }
+  .app__navItem[data-menu-key="website"]::before { content: "\f0ac" !important; }
+  .app__navItem[data-menu-key="workflow"]::before { content: "\f085" !important; }
+  .app__navItem[data-menu-key="distribution"]::before { content: "\f1e0" !important; }
+  .app__navItem[data-menu-key="access"]::before { content: "\f0c0" !important; }
+  .app__navItem[data-menu-key="publications"]::before { content: "\f02e" !important; }
+  .app__navItem[data-menu-key="editorial"]::before { content: "\f080" !important; }
+  .app__navItem[data-menu-key="users"]::before { content: "\f007" !important; }
+  .app__navItem[data-menu-key="reports"]::before { content: "\f0ce" !important; }
+  .app__navItem[data-menu-key="tools"]::before { content: "\f0ad" !important; }
+  .app__navItem[data-menu-key="admin"]::before { content: "\f013" !important; }
+
+  .app__navItem[data-menu-key]:hover {
+    background: #FDF4F0 !important;
+    color: #C13D0D !important;
+    transform: translateX(3px) !important;
+  }
+  .app__navItem[data-menu-key]:hover::before {
+    color: #C13D0D !important;
+  }
+
+  .app__navItem--isCurrent,
+  .app__navItem--isCurrent[data-menu-key] {
+    background: linear-gradient(135deg, #C13D0D 0%, #A0320A 100%) !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(193, 61, 13, 0.28) !important;
+    transform: none !important;
+  }
+  .app__navItem--isCurrent[data-menu-key]::before,
+  .app__navItem--isCurrent[data-menu-key]:hover::before {
+    color: #FFFFFF !important;
+  }
+  .app__navItem--isCurrent:hover,
+  .app__navItem--isCurrent[data-menu-key]:hover {
+    background: linear-gradient(135deg, #A0320A 0%, #862908 100%) !important;
+    color: #FFFFFF !important;
+  }
+
+  /* WORKSPACE MAIN & PAGE HEADING */
+  .app__main {
+    background: #F1F5F9 !important;
+    padding: 1.75rem 2.25rem !important;
+  }
+
+  .app__pageHeading {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    color: #0F172A !important;
+    margin: 0 0 18px 0 !important;
+    letter-spacing: -0.01em !important;
+  }
+  .app__pageHeading::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 6px !important;
+    height: 22px !important;
+    background: #C13D0D !important;
+    border-radius: 9999px !important;
+  }
+
+  /* TABS ANTREAN MODERN (MY QUEUE, UNASSIGNED, ALL ACTIVE, ARCHIVES) */
+  .pkpTabs__buttons {
+    border-bottom: 2px solid #E2E8F0 !important;
+    padding: 0 !important;
+    margin-bottom: 18px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  .pkpTabs__button {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 3px solid transparent !important;
+    border-radius: 8px 8px 0 0 !important;
+    padding: 10px 16px !important;
+    margin: 0 0 -2px 0 !important;
+    top: 0 !important;
+    color: #64748B !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    transition: all 0.16s ease !important;
+  }
+  .pkpTabs__button:before,
+  .pkpTabs__button:after {
+    display: none !important;
+    content: none !important;
+  }
+  .pkpTabs__button:hover {
+    background: rgba(193, 61, 13, 0.06) !important;
+    color: #C13D0D !important;
+  }
+  .pkpTabs__button[aria-selected="true"] {
+    background: #FFFFFF !important;
+    color: #C13D0D !important;
+    font-weight: 800 !important;
+    border-bottom: 3px solid #C13D0D !important;
+    box-shadow: 0 -2px 8px rgba(15, 23, 42, 0.04) !important;
+  }
+  .pkpTabs__button .pkpBadge {
+    background: #E2E8F0 !important;
+    color: #475569 !important;
+    border: none !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 2px 8px !important;
+    margin-left: 6px !important;
+    border-radius: 9999px !important;
+  }
+  .pkpTabs__button[aria-selected="true"] .pkpBadge {
+    background: #FDF4F0 !important;
+    color: #C13D0D !important;
+    border: 1px solid #F4D4C9 !important;
+  }
+
+  /* LIST PANEL SUBMISSIONS / ISSUES / ANNOUNCEMENTS */
+  .listPanel {
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 14px !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02) !important;
+    overflow: hidden !important;
+  }
+  .listPanel__header {
+    background: #F8FAFC !important;
+    border-bottom: 1px solid #E2E8F0 !important;
+    padding: 14px 20px !important;
+  }
+  .listPanel__header .pkpHeader__title,
+  .listPanel__header .pkpHeader__title > h2 {
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    color: #0F172A !important;
+  }
+  .listPanel__body {
+    border-top: none !important;
+  }
+  .listPanel__items {
+    background: #FFFFFF !important;
+  }
+  .listPanel__item {
+    padding: 16px 20px !important;
+    border-bottom: 1px solid #F1F5F9 !important;
+    transition: background 0.15s ease !important;
+  }
+  .listPanel__item:last-child {
+    border-bottom: none !important;
+  }
+  .listPanel__item:hover {
+    background: #FDF9F7 !important;
+  }
+  .listPanel__item--submission__id {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #C13D0D !important;
+    background: #FDF4F0 !important;
+    border: 1px solid #F4D4C9 !important;
+    padding: 2px 8px !important;
+    border-radius: 6px !important;
+    text-align: center !important;
+    width: auto !important;
+    min-width: 44px !important;
+  }
+  .listPanel__item--submission__author {
+    font-weight: 700 !important;
+    color: #0F172A !important;
+    font-size: 13.5px !important;
+  }
+  .listPanel__item--submission__title {
+    color: #475569 !important;
+    font-size: 13px !important;
+    margin-top: 2px !important;
+  }
+
+  /* SEARCH INPUT MODERN */
+  .pkpSearch .pkpSearch__input {
+    border-radius: 8px !important;
+    border: 1px solid #CBD5E1 !important;
+    background: #FFFFFF !important;
+    font-size: 13px !important;
+    color: #1E293B !important;
+    transition: all 0.15s ease !important;
+  }
+  .pkpSearch .pkpSearch__input:focus {
+    border-color: #C13D0D !important;
+    box-shadow: 0 0 0 3px rgba(193, 61, 13, 0.12) !important;
+    outline: none !important;
+  }
+
+  /* BUTTONS & PRIMARY CTA MERAH BATA */
+  .pkpButton {
+    border: 1px solid #CBD5E1 !important;
+    background: #FFFFFF !important;
+    color: #334155 !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 12.5px !important;
+    transition: all 0.15s ease !important;
+  }
+  .pkpButton:hover {
+    border-color: #C13D0D !important;
+    color: #C13D0D !important;
+    background: #FDF4F0 !important;
+  }
+
+  .pkpButton--primary,
+  button.pkpButton--primary,
+  .pkpButton--isPrimary,
+  .pkp_button_primary,
+  .listPanel__header .pkpHeader__actions a[href*="submission/wizard"],
+  .listPanel--submissions .pkpHeader__actions a.pkpButton {
+    background: linear-gradient(135deg, #C13D0D 0%, #A0320A 100%) !important;
+    border: 1px solid #A0320A !important;
+    color: #FFFFFF !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    font-size: 12.5px !important;
+    box-shadow: 0 2px 8px rgba(193, 61, 13, 0.25) !important;
+  }
+  .pkpButton--primary:hover,
+  button.pkpButton--primary:hover,
+  .pkpButton--isPrimary:hover,
+  .pkp_button_primary:hover,
+  .listPanel__header .pkpHeader__actions a[href*="submission/wizard"]:hover,
+  .listPanel--submissions .pkpHeader__actions a.pkpButton:hover {
+    background: linear-gradient(135deg, #A0320A 0%, #862908 100%) !important;
+    border-color: #862908 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(193, 61, 13, 0.35) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* STAGE BADGE & FORM ACCENT */
+  .pkpBadge--isPrimary {
+    background: #C13D0D !important;
+    border-color: #C13D0D !important;
+    color: #FFFFFF !important;
+  }
+  .pkpBadge {
+    font-weight: 700 !important;
+    font-size: 11.5px !important;
+    border-radius: 9999px !important;
+  }
+
+  /* GLOBAL WORKFLOW / LINK / TAB OVERRIDES (UNIFY BIRU PU -> MERAH BATA) */
+  .-linkButton,
+  a.pkpLink,
+  .pkpWorkflow__identificationId,
+  .pkpWorkflow__identificationAuthor,
+  .app__breadcrumbs a:hover,
+  .pkpWorkflow .pkpTabs__button[aria-selected="true"],
+  .pkp_controllers_grid .actions a,
+  .pkp_controllers_grid .header .actions a,
+  .pkp_controllers_grid .download_all_files {
+    color: #C13D0D !important;
+  }
+  .pkpWorkflow .pkpTabs__button[aria-selected="true"] {
+    background: #FDF4F0 !important;
+    border-bottom: 3px solid #C13D0D !important;
+  }
+  .pkpWorkflow__sidebar button.pkpButton--primary {
+    background: linear-gradient(135deg, #C13D0D 0%, #A0320A 100%) !important;
+    border-color: #A0320A !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 2px 8px rgba(193, 61, 13, 0.28) !important;
+  }
+  .pkpWorkflow__sidebar button.pkpButton:not(.pkpButton--primary):not(.pkpButton--warnable) {
+    color: #C13D0D !important;
+    border-color: #F4D4C9 !important;
+  }
+  .pkpWorkflow__sidebar button.pkpButton:not(.pkpButton--primary):not(.pkpButton--warnable):hover {
+    background: #FDF4F0 !important;
+    border-color: #C13D0D !important;
+  }
+  .pkp_controllers_grid .actions a:hover,
+  .pkp_controllers_grid .header .actions a:hover,
+  .pkp_controllers_grid .download_all_files:hover {
+    background: #FDF4F0 !important;
+    border-color: #C13D0D !important;
+  }
+</style>
+{/literal}
 </head>
 <body class="pkp_page_{$requestedPage|escape|default:"index"} pkp_op_{$requestedOp|escape|default:"index"}" dir="{$currentLocaleLangDir|escape|default:"ltr"}">
 
@@ -177,12 +540,12 @@
 							<div v-if="!!menuItem.submenu" class="app__navItem app__navItem--hasSubmenu">
 								{{ menuItem.name }}
 							</div>
-							<a v-else class="app__navItem" :class="menuItem.isCurrent ? 'app__navItem--isCurrent' : ''" :href="menuItem.url">
+							<a v-else class="app__navItem" :class="menuItem.isCurrent ? 'app__navItem--isCurrent' : ''" :data-menu-key="key" :href="menuItem.url">
 								{{ menuItem.name }}
 							</a>
 							<ul v-if="!!menuItem.submenu">
 								<li v-for="(submenuItem, submenuKey) in menuItem.submenu" :key="submenuKey">
-									<a class="app__navItem" :class="submenuItem.isCurrent ? 'app__navItem--isCurrent' : ''" :href="submenuItem.url">
+									<a class="app__navItem" :class="submenuItem.isCurrent ? 'app__navItem--isCurrent' : ''" :data-menu-key="submenuKey" :href="submenuItem.url">
 										{{ submenuItem.name }}
 									</a>
 								</li>
