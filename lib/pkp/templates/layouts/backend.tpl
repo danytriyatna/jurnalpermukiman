@@ -907,6 +907,28 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #C13D0D;
   }
+
+  /* Badge Logo PU di sebelah kiri nama JURNAL PERMUKIMAN (selaras dengan MQC) */
+  .app__brandIconBox {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 9px !important;
+    background: #FFFFFF !important;
+    padding: 4px !important;
+    margin-right: 12px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25) !important;
+    flex-shrink: 0 !important;
+  }
+  .app__brandIconBox img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+    border-radius: 3px !important;
+  }
 </style>
 {/literal}
 </head>
@@ -958,6 +980,9 @@
 			{/if}
 			{if $currentContext}
 				<a class="app__contextTitle" href="{url page="index"}">
+					<span class="app__brandIconBox">
+						<img src="{$baseUrl}/public/journals/1/logo-pu-badge.png" alt="Logo PU" />
+					</span>
 					<div class="app__brandLogo">
 						<span class="app__brandLine1">JURNAL</span>
 						<span class="app__brandLine2">PERMUKIMAN</span>
@@ -965,6 +990,9 @@
 				</a>
 			{elseif $siteTitle}
 				<a class="app__contextTitle" href="{$baseUrl}">
+					<span class="app__brandIconBox">
+						<img src="{$baseUrl}/public/journals/1/logo-pu-badge.png" alt="Logo PU" />
+					</span>
 					<div class="app__brandLogo">
 						<span class="app__brandLine1">JURNAL</span>
 						<span class="app__brandLine2">PERMUKIMAN</span>
