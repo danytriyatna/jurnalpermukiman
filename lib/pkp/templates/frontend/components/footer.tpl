@@ -49,6 +49,6 @@
 {load_script context="frontend"}
 
 {call_hook name="Templates::Common::Footer::PageFooter"}
-<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261111_nobox" data-endpoint="http://localhost:3001/api/widget/chat"></script>
+<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261111_center" data-endpoint="http://localhost:3001/api/widget/chat"></script>
 </body>
 </html>
