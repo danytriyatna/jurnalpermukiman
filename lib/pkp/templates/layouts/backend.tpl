@@ -1211,6 +1211,6 @@
 		</div>
 	</div>
 
-	<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261111_center" data-endpoint="http://localhost:3001/api/widget/chat"></script>
+	<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261111_navy" data-endpoint="http://localhost:3001/api/widget/chat"></script>
 </body>
 </html>
