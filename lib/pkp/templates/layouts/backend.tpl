@@ -908,6 +908,15 @@
     background: #C13D0D;
   }
 
+  /* Pastikan [PU] JURNAL PERMUKIMAN selalu terkunci di kiri atas (termasuk di halaman Administration saat .app__contexts muncul) */
+  .app__header {
+    gap: 14px !important;
+  }
+  .app__header .app__contextTitle {
+    margin-right: auto !important;
+    flex-shrink: 0 !important;
+  }
+
   /* Badge Logo PU di sebelah kiri nama JURNAL PERMUKIMAN (selaras dengan MQC) */
   .app__brandIconBox {
     display: inline-flex !important;

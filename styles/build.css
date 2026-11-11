@@ -508,6 +508,7 @@ body.pkp_page_index:has(.app) {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
+  gap: 14px !important;
   padding: 0 1.75rem !important;
   position: relative !important;
   z-index: 1000 !important;
@@ -525,6 +526,8 @@ body.pkp_page_index:has(.app) {
   height: auto !important;
   display: flex !important;
   align-items: center !important;
+  margin-right: auto !important;
+  flex-shrink: 0 !important;
   text-decoration: none !important;
   position: relative !important;
   z-index: 10 !important;
