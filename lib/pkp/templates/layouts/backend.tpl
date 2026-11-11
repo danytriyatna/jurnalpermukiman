@@ -1202,5 +1202,6 @@
 		</div>
 	</div>
 
+	<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261111_cartoon" data-endpoint="http://localhost:3001/api/widget/chat"></script>
 </body>
 </html>
