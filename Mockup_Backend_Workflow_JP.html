@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mockup Backend OJS 3.3 - Redesign Alur Kerja Editorial (Atas Merah, Bawah Biru PU Full-Width)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      }
+    }
+  </script>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #F8FAFC;
+      color: #1E293B;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    #app {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP HEADER: MASTER PANORAMA BANNER KEMENPU (BULLETPROOF RESPONSIVE HEADER) */
+    .app__header {
+      height: 80px;
+      flex: 0 0 80px;
+      background-color: #C13D0D;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.05) 35%, rgba(0, 0, 0, 0.05) 65%, rgba(0, 0, 0, 0.45) 100%), url("public/journals/1/header_pure_scenery_3200.jpg");
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: cover;
+      border-bottom: 2px solid #802606;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.75rem;
+      z-index: 1000;
+    }
+
+    .app__contextTitle {
+      display: flex !important;
+      align-items: center !important;
+      text-decoration: none !important;
+      cursor: pointer;
+    }
+
+    .app__header .app__brandLogo {
+      display: flex !important;
+      flex-direction: column !important;
+      line-height: 1.05 !important;
+      user-select: none !important;
+      text-decoration: none !important;
+    }
+
+    .app__header .app__brandLine1 {
+      font-family: Georgia, 'Times New Roman', serif !important;
+      font-size: 20px !important;
+      font-weight: 800 !important;
+      letter-spacing: 2px !important;
+      color: #FFFFFF !important;
+      text-transform: uppercase !important;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.85), 0 1px 2px rgba(0,0,0,0.95) !important;
+    }
+
+    .app__header .app__brandLine2 {
+      font-family: Georgia, 'Times New Roman', serif !important;
+      font-size: 25px !important;
+      font-weight: 800 !important;
+      letter-spacing: 1.5px !important;
+      color: #FFFFFF !important;
+      text-transform: uppercase !important;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.85), 0 1px 2px rgba(0,0,0,0.95) !important;
+    }
+
+    .app__headerRight {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .app__headerBadgePU img {
+      height: 40px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+    }
+
+    .app__headerActions {
+      position: relative;
+      z-index: 10;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #FFFFFF;
+    }
+
+    .app__headerBtn {
+      background: transparent;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.15s ease;
+      position: relative;
+    }
+
+    .app__headerBtn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .app__tasksBadge {
+      background: #FFFFFF;
+      color: #C13D0D;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 10px;
+      padding: 1px 6px;
+      margin-left: 4px;
+    }
+
+    /* BODY LAYOUT: FLEX ROW FULL HEIGHT */
+    .app__body {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: row;
+      min-height: calc(100vh - 80px);
+      width: 100%;
+    }
+
+    /* LEFT SIDEBAR NAVIGATION */
+    .app__nav {
+      flex: 0 0 220px;
+      width: 220px;
+      background: #FFFFFF;
+      border-right: 1px solid #E2E8F0;
+      min-height: calc(100vh - 80px);
+      padding: 1.25rem 0.75rem;
+      box-shadow: 2px 0 6px rgba(0, 0, 0, 0.02);
+      box-sizing: border-box;
+    }
+
+    .app__navSectionTitle {
+      color: #94A3B8;
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.75rem 0.75rem 0.35rem 0.75rem;
+    }
+
+    .app__navGroup:first-child .app__navSectionTitle {
+      padding-top: 0;
+    }
+
+    .app__navItem {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+      cursor: pointer;
+    }
+
+    .app__navItem i {
+      width: 16px;
+      color: #64748B;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .app__navItem:hover {
+      color: #C13D0D;
+      background: #FFF5F2;
+      transform: translateX(3px);
+    }
+
+    .app__navItem:hover i {
+      color: #C13D0D;
+    }
+
+    .app__navItem.active {
+      background: #C13D0D;
+      color: #FFFFFF;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(193, 61, 13, 0.35);
+    }
+
+    .app__navItem.active i {
+      color: #FFFFFF;
+    }
+
+    /* MAIN OPERATIONAL WORKSPACE: FULL WIDTH & FULL HEIGHT */
+    .app__main {
+      flex: 1 1 auto;
+      width: calc(100% - 220px);
+      min-height: calc(100vh - 80px);
+      background: #F8FAFC;
+      padding: 1.5rem 2.5rem 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    /* BREADCRUMB & METADATA BAR */
+    .app__breadcrumbBar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .app__breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .app__breadcrumbs .sub-id {
+      color: #C13D0D;
+      font-weight: 800;
+    }
+
+    .app__breadcrumbs .sub-author {
+      color: #64748B;
+    }
+
+    .app__breadcrumbs .sub-title {
+      color: #1E293B;
+      font-weight: 700;
+    }
+
+    .app__topActions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-secondary {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #334155;
+      font-weight: 600;
+      font-size: 12.5px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+      background: #F1F5F9;
+      border-color: #94A3B8;
+      color: #0F172A;
+    }
+
+    /* TOP TABS: WORKFLOW VS PUBLICATION */
+    .top-tabs {
+      display: flex;
+      border-bottom: 2px solid #E2E8F0;
+      margin-bottom: 1.5rem;
+      gap: 8px;
+    }
+
+    .top-tab {
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      font-size: 13.5px;
+      color: #64748B;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.18s ease;
+      user-select: none;
+    }
+
+    .top-tab:hover {
+      color: #C13D0D;
+    }
+
+    .top-tab.active {
+      color: #C13D0D;
+      border-bottom-color: #C13D0D;
+    }
+
+    /* STAGE TABS: SUBMISSION, REVIEW, COPYEDITING, PRODUCTION */
+    .stage-tabs-wrapper {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+    }
+
+    .stage-nav {
+      display: flex;
+      align-items: center;
+      background: #FFFFFF;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 0 1rem;
+    }
+
+    .stage-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 1rem 1.25rem;
+      font-weight: 700;
+      font-size: 13px;
+      color: #64748B;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -1px;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .stage-nav-item:hover {
+      color: #006798;
+    }
+
+    .stage-nav-item.active {
+      color: #006798;
+      border-bottom-color: #006798;
+    }
+
+    .stage-nav-item i {
+      font-size: 13px;
+    }
+
+    .stage-nav-item.active i {
+      color: #006798;
+    }
+
+    .stage-nav-help {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #059669;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.15s ease;
+    }
+
+    .stage-nav-help:hover {
+      background: #ECFDF5;
+    }
+
+    /* 2-COLUMN OPERATIONAL WORKSPACE */
+    .stage-workspace {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+
+    .stage-content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .stage-sidebar-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* CARD PANELS */
+    .panel-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      background: #FFFFFF;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #FAFAFA;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .panel-title {
+      font-weight: 700;
+      font-size: 13.5px;
+      color: #1E293B;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-panel-action {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #334155;
+      font-weight: 600;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-panel-action:hover {
+      background: #F1F5F9;
+      border-color: #94A3B8;
+      color: #0F172A;
+    }
+
+    /* DATA TABLES */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+    }
+
+    .data-table th {
+      background: #F8FAFC;
+      padding: 10px 16px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .data-table td {
+      white-space: nowrap;
+      padding: 12px 16px;
+      border-bottom: 1px solid #F1F5F9;
+      color: #334155;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:hover td {
+      background: #F8FAFC;
+    }
+
+    .file-doc-link {
+      font-weight: 600;
+      color: #1E293B;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .file-doc-link:hover {
+      text-decoration: underline;
+      color: #006798;
+    }
+
+    .file-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: #E2E8F0;
+      color: #475569;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    /* EDITORIAL DECISION BUTTONS (BIRU PU STANDAR) */
+    .decisions-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 16px;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-primary-action {
+      background: #006798 !important;
+      border: 1px solid #00527A !important;
+      color: #FFFFFF !important;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      padding: 10px 16px !important;
+      border-radius: 6px !important;
+      cursor: pointer !important;
+      text-align: center !important;
+      box-shadow: 0 2px 6px rgba(0, 103, 152, 0.3) !important;
+      transition: all 0.18s ease !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+    }
+
+    .btn-primary-action:hover {
+      background: #008ACB !important;
+      border-color: #006798 !important;
+      box-shadow: 0 4px 10px rgba(0, 103, 152, 0.4) !important;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary-action {
+      background: #FFFFFF !important;
+      border: 1px solid #CBD5E1 !important;
+      color: #006798 !important;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      padding: 8px 16px !important;
+      border-radius: 6px !important;
+      cursor: pointer !important;
+      text-align: center !important;
+      transition: all 0.15s ease !important;
+    }
+
+    .btn-secondary-action:hover {
+      background: #F0F9FF !important;
+      border-color: #006798 !important;
+    }
+
+    .btn-decline-action {
+      background: #FFFFFF !important;
+      border: 1px solid #FECDD3 !important;
+      color: #E11D48 !important;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      padding: 8px 16px !important;
+      border-radius: 6px !important;
+      cursor: pointer !important;
+      text-align: center !important;
+      transition: all 0.15s ease !important;
+    }
+
+    .btn-decline-action:hover {
+      background: #FFF1F2 !important;
+      border-color: #E11D48 !important;
+    }
+
+    /* PARTICIPANTS CARD */
+    .participants-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      background: #FFFFFF;
+      overflow: hidden;
+    }
+
+    .participant-row {
+      padding: 12px 16px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .participant-row:last-child {
+      border-bottom: none;
+    }
+
+    .participant-role {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #64748B;
+      margin-bottom: 3px;
+    }
+
+    .participant-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1E293B;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* TOAST NOTIFICATION */
+    #toast-notification {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 10000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    #toast-notification.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <!-- TOP HEADER: MERAH BATA PUSKIM + WALLPAPER PANORAMA -->
+    <header class="app__header">
+      <a href="http://localhost/jurnalpermukiman/index.php/JP" class="app__contextTitle" title="Kembali ke Beranda Live Jurnal Permukiman">
+        <div class="app__brandLogo">
+          <span class="app__brandLine1">JURNAL</span>
+          <span class="app__brandLine2">PERMUKIMAN</span>
+        </div>
+      </a>
+
+      <div class="app__headerRight">
+        <div class="app__headerBadgePU">
+          <img src="public/journals/1/kemenpu_pill_clean.png" alt="Kementerian PU" />
+        </div>
+        <div class="app__headerActions">
+          <button class="app__headerBtn" onclick="showToast('Membuka daftar 3 tugas pending editorial...')">
+            <i class="fa-regular fa-bell"></i>
+            <span>Tugas</span>
+            <span class="app__tasksBadge">3</span>
+          </button>
+          <button class="app__headerBtn" onclick="toggleUserMenu()">
+            <i class="fa-regular fa-circle-user"></i>
+            <span>ado (Admin)</span>
+            <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- BODY CONTAINER: FLEX ROW FULL HEIGHT -->
+    <div class="app__body">
+      <!-- LEFT SIDEBAR NAVIGATION (KLIK LANGSUNG MENUJU HALAMAN LIVE OJS) -->
+      <nav class="app__nav">
+        <div class="app__navGroup">
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/submissions" class="app__navItem active" title="Daftar Pengajuan Naskah Live OJS">
+            <i class="fa-solid fa-inbox"></i>
+            <span>Submissions</span>
+          </a>
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/manageIssues" class="app__navItem" title="Kelola Nomor Terbitan Live OJS">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Issues</span>
+          </a>
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/management/settings/website#announcements" class="app__navItem" title="Pengumuman Jurnal Live OJS">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>Announcements</span>
+          </a>
+        </div>
+
+        <div class="app__navGroup">
+          <div class="app__navSectionTitle">Settings</div>
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/management/settings/context" class="app__navItem" title="Pengaturan Jurnal Live OJS">
+            <i class="fa-solid fa-newspaper"></i>
+            <span>Journal</span>
+          </a>
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/management/settings/website" class="app__navItem" title="Pengaturan Tampilan & Website Live OJS">
+            <i class="fa-solid fa-globe"></i>
+            <span>Website</span>
+          </a>
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/management/settings/workflow" class="app__navItem" title="Pengaturan Alur Kerja Editorial Live OJS">
+            <i class="fa-solid fa-arrows-split-up-and-left"></i>
+            <span>Workflow</span>
+          </a>
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/management/settings/distribution" class="app__navItem" title="Pengaturan Distribusi & Pengindeksan Live OJS">
+            <i class="fa-solid fa-share-nodes"></i>
+            <span>Distribution</span>
+          </a>
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/management/settings/access" class="app__navItem" title="Pengguna & Hak Akses Live OJS">
+            <i class="fa-solid fa-users-gear"></i>
+            <span>Users & Roles</span>
+          </a>
+        </div>
+
+        <div class="app__navGroup">
+          <div class="app__navSectionTitle">Statistics</div>
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/stats/publications" class="app__navItem" title="Statistik Artikel Live OJS">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Articles</span>
+          </a>
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/stats/editorial" class="app__navItem" title="Statistik Aktivitas Editorial Live OJS">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Editorial Activity</span>
+          </a>
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/stats/users" class="app__navItem" title="Statistik Pengguna Live OJS">
+            <i class="fa-solid fa-user-group"></i>
+            <span>Users</span>
+          </a>
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/stats/reports" class="app__navItem" title="Laporan & Ekspor Data Live OJS">
+            <i class="fa-solid fa-file-invoice"></i>
+            <span>Reports</span>
+          </a>
+        </div>
+
+        <div class="app__navGroup">
+          <div class="app__navSectionTitle">System</div>
+          <a href="http://localhost/jurnalpermukiman/index.php/JP/management/tools" class="app__navItem" title="Alat Sistem Live OJS">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <span>Tools</span>
+          </a>
+          <a href="http://localhost/jurnalpermukiman/index.php/index/admin" class="app__navItem" title="Administrasi Multi-Jurnal Live OJS">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Administration</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- MAIN OPERATIONAL WORKSPACE: FULL WIDTH & FULL HEIGHT -->
+      <main class="app__main" id="mainWorkspace">
+
+        <!-- BREADCRUMB & METADATA -->
+        <div class="app__breadcrumbBar">
+          <div class="app__breadcrumbs">
+            <span class="sub-id">482</span>
+            <span>/</span>
+            <span class="sub-author">muka</span>
+            <span>/</span>
+            <span class="sub-title">MODEL MANAJEMEN RISIKO RANTAI PASOK AMP DI PROVINSI BALI</span>
+          </div>
+          <div class="app__topActions">
+            <button class="btn-secondary" onclick="openModal('modal-activity-log')">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>Activity Log</span>
+            </button>
+            <button class="btn-secondary" onclick="openModal('modal-library')">
+              <i class="fa-solid fa-folder-open"></i>
+              <span>Library</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TOP TABS: WORKFLOW VS PUBLICATION -->
+        <div class="top-tabs">
+          <div class="top-tab active" id="tab-workflow-btn" onclick="switchTopTab('workflow')">Workflow</div>
+          <div class="top-tab" id="tab-publication-btn" onclick="switchTopTab('publication')">Publication</div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 1: WORKFLOW STAGES CONTAINER          -->
+        <!-- ========================================== -->
+        <div id="view-workflow" class="stage-tabs-wrapper">
+          <div class="stage-nav">
+            <div class="stage-nav-item active" id="stage-btn-submission" onclick="switchStage('submission')">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Submission</span>
+            </div>
+            <div class="stage-nav-item" id="stage-btn-review" onclick="switchStage('review')">
+              <i class="fa-regular fa-circle"></i>
+              <span>Review</span>
+            </div>
+            <div class="stage-nav-item" id="stage-btn-copyediting" onclick="switchStage('copyediting')">
+              <i class="fa-regular fa-circle"></i>
+              <span>Copyediting</span>
+            </div>
+            <div class="stage-nav-item" id="stage-btn-production" onclick="switchStage('production')">
+              <i class="fa-regular fa-circle"></i>
+              <span>Production</span>
+            </div>
+            <div class="stage-nav-help" onclick="showToast('Panduan alur editorial OJS 3.3 JP Kementerian PU')">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>Help</span>
+            </div>
+          </div>
+
+          <!-- STAGE CONTENT 1: SUBMISSION -->
+          <div id="panel-stage-submission" class="stage-workspace">
+            <!-- LEFT: SUBMISSION FILES & PRE-REVIEW DISCUSSIONS -->
+            <div class="stage-content-area">
+              <!-- SUBMISSION FILES PANEL -->
+              <div class="panel-card">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <i class="fa-regular fa-folder-closed text-sky-600"></i>
+                    <span>Submission Files</span>
+                  </div>
+                  <div class="panel-actions">
+                    <button class="btn-panel-action" onclick="showToast('Mencari file naskah...')">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                      <span>Search</span>
+                    </button>
+                    <button class="btn-panel-action" onclick="openModal('modal-upload-file')" style="background: #006798; color: #fff; border-color: #00527A;">
+                      <i class="fa-solid fa-cloud-arrow-up"></i>
+                      <span>Upload File</span>
+                    </button>
+                  </div>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 50px;">ID</th>
+                      <th>Nama File & Uploader</th>
+                      <th style="min-width: 175px;">Tanggal Upload</th>
+                      <th>Kategori</th>
+                      <th style="text-align: right;">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="file-badge">1737</span></td>
+                      <td>
+                        <a href="#" onclick="showToast('Mengunduh draft naskah 1737...'); return false;" class="file-doc-link">
+                          <i class="fa-regular fa-file-word" style="color: #2563EB;"></i>
+                          <span>meydinafa, Journal manager, JURNAL PERMUKIMAN 2022.docx</span>
+                        </a>
+                      </td>
+                      <td>25 December 2022</td>
+                      <td><span style="color: #64748B;">Article Text</span></td>
+                      <td style="text-align: right;">
+                        <button class="btn-panel-action" onclick="showToast('Pilihan file 1737');" style="padding: 2px 8px; display: inline-flex;"><i class="fa-solid fa-ellipsis"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><span class="file-badge">1736</span></td>
+                      <td>
+                        <a href="#" onclick="showToast('Mengunduh file pendukung 1736...'); return false;" class="file-doc-link">
+                          <i class="fa-regular fa-file-lines" style="color: #64748B;"></i>
+                          <span>Untitled</span>
+                        </a>
+                      </td>
+                      <td>25 December 2022</td>
+                      <td><span style="color: #64748B;">Other</span></td>
+                      <td style="text-align: right;">
+                        <button class="btn-panel-action" onclick="showToast('Pilihan file 1736');" style="padding: 2px 8px; display: inline-flex;"><i class="fa-solid fa-ellipsis"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div style="padding: 10px 16px; background: #FAFAFA; border-top: 1px solid #E2E8F0; text-align: right;">
+                  <button class="btn-secondary" onclick="showToast('Mengunduh semua file submission (.zip)...')" style="display: inline-flex;">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Download All Files</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- PRE-REVIEW DISCUSSIONS PANEL -->
+              <div class="panel-card">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <i class="fa-regular fa-comments text-amber-600"></i>
+                    <span>Pre-Review Discussions</span>
+                  </div>
+                  <div class="panel-actions">
+                    <button class="btn-panel-action" onclick="showToast('Menata urutan diskusi...')">Order</button>
+                    <button class="btn-panel-action" onclick="openModal('modal-add-discussion')" style="background: #006798; color: #fff; border-color: #00527A;">
+                      <i class="fa-solid fa-plus"></i>
+                      <span>Add discussion</span>
+                    </button>
+                  </div>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Topik Diskusi</th>
+                      <th style="min-width: 175px;">Pengirim</th>
+                      <th>Balasan Terakhir</th>
+                      <th style="text-align: center;">Replies</th>
+                      <th style="text-align: center;">Closed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <a href="#" onclick="showToast('Membuka diskusi: Comments for the Editor'); return false;" class="file-doc-link">
+                          <i class="fa-solid fa-caret-right" style="color: #64748B;"></i>
+                          <span>Comments for the Editor</span>
+                        </a>
+                      </td>
+                      <td>wayanmuka <span style="color:#94A3B8; font-weight:normal; margin:0 4px;">•</span> <span style="font-size: 12px; color: #64748B;">12/25/2022 17:31</span></td>
+                      <td>-</td>
+                      <td style="text-align: center;"><span class="file-badge">0</span></td>
+                      <td style="text-align: center;"><input type="checkbox" disabled></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#" onclick="showToast('Membuka diskusi: Catatan Koreksi Gaya Selingkung'); return false;" class="file-doc-link">
+                          <i class="fa-solid fa-caret-right" style="color: #64748B;"></i>
+                          <span>Catatan Koreksi Gaya Selingkung Naskah - Sekretariat Redaksi</span>
+                        </a>
+                      </td>
+                      <td>aris <span style="color:#94A3B8; font-weight:normal; margin:0 4px;">•</span> <span style="font-size: 12px; color: #64748B;">07/17/2023 14:18</span></td>
+                      <td>-</td>
+                      <td style="text-align: center;"><span class="file-badge">0</span></td>
+                      <td style="text-align: center;"><input type="checkbox" disabled></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- RIGHT: EDITORIAL ACTION BUTTONS & PARTICIPANTS -->
+            <div class="stage-sidebar-area">
+              <div class="decisions-card">
+                <button class="btn-primary-action" onclick="openModal('modal-send-review')">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span>Send to Review</span>
+                </button>
+                <button class="btn-secondary-action" onclick="openModal('modal-accept-skip')">
+                  <span>Accept and Skip Review</span>
+                </button>
+                <button class="btn-decline-action" onclick="openModal('modal-decline')">
+                  <i class="fa-solid fa-ban" style="margin-right: 4px;"></i>
+                  <span>Decline Submission</span>
+                </button>
+              </div>
+
+              <div class="participants-card">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <i class="fa-solid fa-user-group text-slate-500"></i>
+                    <span>Participants</span>
+                  </div>
+                  <button class="btn-panel-action" onclick="openModal('modal-assign-user')" style="font-size: 11.5px; padding: 2px 8px;">Assign</button>
+                </div>
+                <div class="participant-row">
+                  <div class="participant-role">Journal editor</div>
+                  <div class="participant-name">
+                    <i class="fa-solid fa-caret-right" style="font-size: 11px; color: #64748B;"></i>
+                    <span>Rindo Herdinto</span>
+                  </div>
+                </div>
+                <div class="participant-row">
+                  <div class="participant-role">Author</div>
+                  <div class="participant-name">
+                    <i class="fa-solid fa-caret-right" style="font-size: 11px; color: #64748B;"></i>
+                    <span>yanka wayan master muka</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STAGE CONTENT 2: REVIEW (PEER REVIEW) -->
+          <div id="panel-stage-review" class="stage-workspace" style="display: none;">
+            <div class="stage-content-area">
+              <!-- ROUND 1 REVIEW CARD -->
+              <div class="panel-card">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <i class="fa-solid fa-glasses text-sky-600"></i>
+                    <span>Round 1 Review Details</span>
+                  </div>
+                  <div class="panel-actions">
+                    <button class="btn-panel-action" onclick="showToast('Round review history')">History</button>
+                  </div>
+                </div>
+                <div class="p-4 bg-white space-y-4">
+                  <div class="flex items-center justify-between p-3 bg-sky-50 rounded-lg border border-sky-200 text-xs">
+                    <div>
+                      <strong class="text-slate-800">Review Round 1 Aktif</strong> • Dikirim ke penelaah sejak 26 Desember 2022
+                    </div>
+                    <span class="px-2.5 py-1 bg-[#006798] text-white rounded font-bold text-[11px]">In Review</span>
+                  </div>
+
+                  <!-- Review Files -->
+                  <div>
+                    <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Files for Review</h4>
+                    <div class="border border-slate-200 rounded-lg p-3 text-xs flex items-center justify-between bg-slate-50">
+                      <div class="flex items-center gap-2">
+                        <i class="fa-regular fa-file-word text-blue-600 text-sm"></i>
+                        <span class="font-semibold text-slate-800">1737-1 meydinafa, JURNAL PERMUKIMAN 2022.docx</span>
+                      </div>
+                      <span class="text-slate-500 text-[11px]">Article Text</span>
+                    </div>
+                  </div>
+
+                  <!-- Reviewers Table -->
+                  <div>
+                    <div class="flex items-center justify-between mb-2">
+                      <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Assigned Reviewers</h4>
+                      <button onclick="openModal('modal-add-reviewer')" class="btn-panel-action" style="background:#006798; color:#fff; border-color:#00527A;">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Add Reviewer</span>
+                      </button>
+                    </div>
+                    <table class="data-table border border-slate-200 rounded-lg overflow-hidden">
+                      <thead>
+                        <tr>
+                          <th>Nama Reviewer</th>
+                          <th>Tenggat Respon</th>
+                          <th>Tenggat Telaah</th>
+                          <th>Status Rekomendasi</th>
+                          <th style="text-align: right;">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>Dr. Ir. Hendra S., M.T.</strong></td>
+                          <td>05 Jan 2023</td>
+                          <td>19 Jan 2023</td>
+                          <td><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">Menunggu Review</span></td>
+                          <td style="text-align: right;"><button class="btn-panel-action" onclick="showToast('Kirim email pengingat ke Dr. Hendra')"><i class="fa-regular fa-envelope"></i> Remind</button></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Prof. Dr. Ratna W., S.T.</strong></td>
+                          <td>05 Jan 2023</td>
+                          <td>19 Jan 2023</td>
+                          <td><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">Revisions Required</span></td>
+                          <td style="text-align: right;"><button class="btn-panel-action" onclick="showToast('Melihat hasil telaah Prof. Ratna')"><i class="fa-regular fa-eye"></i> View</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- REVIEW DECISIONS -->
+            <div class="stage-sidebar-area">
+              <div class="decisions-card">
+                <button class="btn-primary-action" onclick="showToast('Membuka form Request Revisions...');">
+                  <i class="fa-solid fa-rotate-left"></i>
+                  <span>Request Revisions</span>
+                </button>
+                <button class="btn-secondary-action" onclick="showToast('Menerima naskah (Accept Submission)...');">
+                  <i class="fa-solid fa-check"></i>
+                  <span>Accept Submission</span>
+                </button>
+                <button class="btn-secondary-action" onclick="showToast('Membuka Review Round 2...');">
+                  <i class="fa-solid fa-arrows-rotate"></i>
+                  <span>New Review Round</span>
+                </button>
+                <button class="btn-decline-action" onclick="openModal('modal-decline')">
+                  <i class="fa-solid fa-ban" style="margin-right: 4px;"></i>
+                  <span>Decline Submission</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STAGE CONTENT 3: COPYEDITING -->
+          <div id="panel-stage-copyediting" class="stage-workspace" style="display: none;">
+            <div class="stage-content-area">
+              <div class="panel-card">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <i class="fa-solid fa-pen-nib text-sky-600"></i>
+                    <span>Copyedited Files</span>
+                  </div>
+                  <div class="panel-actions">
+                    <button class="btn-panel-action" onclick="openModal('modal-upload-file')" style="background: #006798; color: #fff; border-color: #00527A;">
+                      <i class="fa-solid fa-cloud-arrow-up"></i>
+                      <span>Upload Copyedit File</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="p-6 text-center text-slate-500 text-xs">
+                  <i class="fa-solid fa-file-pen text-3xl text-slate-300 mb-2"></i>
+                  <p>Tahap penyuntingan tata bahasa, gaya selingkung, dan referensi naskah.</p>
+                </div>
+              </div>
+            </div>
+            <div class="stage-sidebar-area">
+              <div class="decisions-card">
+                <button class="btn-primary-action" onclick="showToast('Kirim naskah ke tahap Production...');">
+                  <i class="fa-solid fa-forward"></i>
+                  <span>Send to Production</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STAGE CONTENT 4: PRODUCTION -->
+          <div id="panel-stage-production" class="stage-workspace" style="display: none;">
+            <div class="stage-content-area">
+              <div class="panel-card">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <i class="fa-solid fa-box-archive text-sky-600"></i>
+                    <span>Production Ready Files & Galleys</span>
+                  </div>
+                  <div class="panel-actions">
+                    <button class="btn-panel-action" onclick="openModal('modal-upload-file')" style="background: #006798; color: #fff; border-color: #00527A;">
+                      <i class="fa-solid fa-plus"></i>
+                      <span>Add Galley (PDF)</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="p-6 text-center text-slate-500 text-xs">
+                  <i class="fa-solid fa-file-pdf text-3xl text-rose-400 mb-2"></i>
+                  <p>Layout akhir siap terbit. Naskah siap dijadwalkan ke nomor terbitan.</p>
+                </div>
+              </div>
+            </div>
+            <div class="stage-sidebar-area">
+              <div class="decisions-card">
+                <button class="btn-primary-action" onclick="switchTopTab('publication'); showToast('Membuka tab Publication untuk menjadwalkan terbitan...');">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Schedule for Publication</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: PUBLICATION TAB METADATA VIEW      -->
+        <!-- ========================================== -->
+        <div id="view-publication" class="stage-tabs-wrapper" style="display: none; padding: 1.75rem;">
+          <div class="max-w-4xl mx-auto space-y-6">
+            <!-- Header bar -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+              <div>
+                <h2 class="text-base font-bold text-slate-800">Metadata & Penerbitan Artikel #482</h2>
+                <p class="text-xs text-slate-500">Kelola judul, abstrak, kontributor, dan penjadwalan terbitan</p>
+              </div>
+              <div class="flex items-center gap-3">
+                <button class="btn-secondary" onclick="showToast('Pratinjau artikel live...');">
+                  <i class="fa-regular fa-eye"></i>
+                  <span>Preview</span>
+                </button>
+                <button class="btn-primary-action" onclick="showToast('Artikel berhasil dijadwalkan terbit!');" style="padding: 6px 16px !important;">
+                  <i class="fa-solid fa-bullhorn"></i>
+                  <span>Publish / Schedule</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Form Fields -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-4 shadow-sm">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Judul Artikel</label>
+                <input type="text" class="w-full text-xs p-3 border border-slate-300 rounded-lg font-semibold text-slate-800" value="MODEL MANAJEMEN RISIKO RANTAI PASOK AMP DI PROVINSI BALI">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Abstrak (Bahasa Indonesia & English)</label>
+                <textarea rows="4" class="w-full text-xs p-3 border border-slate-300 rounded-lg text-slate-700">Asphalt Mixing Plant (AMP) merupakan industri manufaktur yang memproduksi campuran aspal panas dengan tingkat risiko rantai pasok yang tinggi. Penelitian ini menganalisis manajemen risiko operasional rantai pasok AMP di Provinsi Bali menggunakan pendekatan Analytical Hierarchy Process (AHP) dan Failure Mode and Effect Analysis (FMEA)...</textarea>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Jadwalkan pada Nomor Terbitan (Issue)</label>
+                  <select class="w-full text-xs p-2.5 border border-slate-300 rounded-lg font-medium text-slate-800">
+                    <option>Vol. 18 No. 2 (2023): Jurnal Permukiman</option>
+                    <option selected>Vol. 19 No. 1 (2024): Jurnal Permukiman (In Progress)</option>
+                    <option>Vol. 19 No. 2 (2024): Jurnal Permukiman</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nomor Halaman</label>
+                  <input type="text" class="w-full text-xs p-2.5 border border-slate-300 rounded-lg font-medium text-slate-800" value="45-56">
+                </div>
+              </div>
+
+              <div class="pt-3 border-t border-slate-100 flex justify-end">
+                <button class="btn-primary-action" onclick="showToast('Perubahan metadata berhasil disimpan!');" style="padding: 8px 18px !important;">
+                  <i class="fa-solid fa-floppy-disk"></i>
+                  <span>Simpan Perubahan</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- STANDAR MODAL ENTERPRISE: SEND TO REVIEW DIALOG          -->
+  <!-- ======================================================== -->
+  <div id="modal-send-review" class="fixed inset-0 z-[9999] hidden items-center justify-center p-4" style="background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
+    <div class="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-2xl overflow-hidden transition-all transform scale-100" onclick="event.stopPropagation()">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-sky-100 text-[#006798] flex items-center justify-center font-bold text-base shadow-sm">
+            <i class="fa-solid fa-paper-plane"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-800 leading-tight">Send to Review</h3>
+            <p class="text-xs text-slate-500">Pilih file naskah untuk dikirim ke tahap penelaahan sejawat (Peer Review)</p>
+          </div>
+        </div>
+        <button onclick="closeModal('modal-send-review')" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-200 transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
+        <div class="bg-sky-50 border border-sky-200 rounded-lg p-3 text-xs text-slate-700 flex items-start gap-2.5">
+          <i class="fa-solid fa-circle-info text-sm text-[#006798] mt-0.5"></i>
+          <div>
+            Naskah <strong>#482 - MODEL MANAJEMEN RISIKO RANTAI PASOK AMP DI PROVINSI BALI</strong> akan dipindahkan dari tahap <em>Submission</em> ke tahap <em>Review</em>. File yang dicentang di bawah akan dapat diakses oleh Reviewer.
+          </div>
+        </div>
+
+        <!-- File Selection Table -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Pilih File Naskah (Files for Review)</label>
+          <div class="border border-slate-200 rounded-lg overflow-hidden divide-y divide-slate-100">
+            <label class="flex items-center gap-3 p-3 hover:bg-slate-50 cursor-pointer text-xs">
+              <input type="checkbox" checked class="w-4 h-4 text-[#006798] rounded border-slate-300 focus:ring-[#006798]">
+              <i class="fa-regular fa-file-word text-blue-600 text-sm"></i>
+              <span class="font-semibold text-slate-800 flex-1">1737-1 meydinafa, Journal manager, JURNAL PERMUKIMAN 2022.docx</span>
+              <span class="text-slate-500 text-[11px]">Article Text • 25 Dec 2022</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 hover:bg-slate-50 cursor-pointer text-xs">
+              <input type="checkbox" checked class="w-4 h-4 text-[#006798] rounded border-slate-300 focus:ring-[#006798]">
+              <i class="fa-regular fa-file-lines text-slate-500 text-sm"></i>
+              <span class="font-semibold text-slate-800 flex-1">1738-1 Untitled.pdf</span>
+              <span class="text-slate-500 text-[11px]">Other • 25 Dec 2022</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Internal Notes -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Catatan Kepada Penulis / Instruksi Review (Opsional)</label>
+          <textarea rows="3" class="w-full text-xs p-3 border border-slate-300 rounded-lg focus:outline-none focus:border-[#006798] focus:ring-1 focus:ring-[#006798]" placeholder="Tuliskan catatan atau pesan pengantar bila diperlukan..."></textarea>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-3">
+        <button onclick="closeModal('modal-send-review')" class="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded-md hover:bg-slate-100 transition shadow-sm">
+          Batal
+        </button>
+        <button onclick="submitSendToReview()" class="px-5 py-2 text-xs font-bold text-white bg-[#006798] hover:bg-[#008ACB] rounded-md transition shadow flex items-center gap-2">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>Send to Review</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ACCEPT AND SKIP REVIEW -->
+  <div id="modal-accept-skip" class="fixed inset-0 z-[9999] hidden items-center justify-center p-4" style="background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px);">
+    <div class="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-lg overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <h3 class="text-base font-bold text-slate-800">Accept and Skip Review</h3>
+        <button onclick="closeModal('modal-accept-skip')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="p-6 text-xs text-slate-600 space-y-3">
+        <p>Apakah Anda yakin ingin menerima naskah ini langsung tanpa melewati tahap Peer Review dan langsung memindahkannya ke tahap Copyediting?</p>
+      </div>
+      <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 flex justify-end gap-3">
+        <button onclick="closeModal('modal-accept-skip')" class="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded-md">Batal</button>
+        <button onclick="closeModal('modal-accept-skip'); switchStage('copyediting'); showToast('Naskah berhasil diterima dan dipindahkan ke Copyediting!');" class="px-4 py-2 text-xs font-bold text-white bg-[#006798] rounded-md">Konfirmasi Terima</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DECLINE SUBMISSION -->
+  <div id="modal-decline" class="fixed inset-0 z-[9999] hidden items-center justify-center p-4" style="background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px);">
+    <div class="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-lg overflow-hidden">
+      <div class="px-6 py-4 border-b border-rose-200 bg-rose-50 flex items-center justify-between">
+        <h3 class="text-base font-bold text-rose-800"><i class="fa-solid fa-triangle-exclamation mr-2"></i>Tolak Naskah (Decline Submission)</h3>
+        <button onclick="closeModal('modal-decline')" class="text-rose-400 hover:text-rose-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="p-6 text-xs text-slate-600 space-y-3">
+        <p>Naskah ini akan ditolak dan diarsipkan. Email pemberitahuan penolakan beserta alasan editorial dapat dikirimkan ke Penulis.</p>
+        <textarea rows="3" class="w-full p-2.5 border border-slate-300 rounded-lg text-xs" placeholder="Tuliskan alasan penolakan naskah..."></textarea>
+      </div>
+      <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 flex justify-end gap-3">
+        <button onclick="closeModal('modal-decline')" class="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded-md">Batal</button>
+        <button onclick="closeModal('modal-decline'); showToast('Naskah #482 telah ditolak.');" class="px-4 py-2 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 rounded-md">Tolak Naskah</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: UPLOAD FILE -->
+  <div id="modal-upload-file" class="fixed inset-0 z-[9999] hidden items-center justify-center p-4" style="background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px);">
+    <div class="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-md overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <h3 class="text-sm font-bold text-slate-800">Upload File Naskah</h3>
+        <button onclick="closeModal('modal-upload-file')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="p-6 space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Komponen File</label>
+          <select class="w-full p-2 border border-slate-300 rounded-lg text-xs">
+            <option>Article Text (.docx)</option>
+            <option>Supplementary Material / Other</option>
+          </select>
+        </div>
+        <div class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center text-slate-500 hover:border-[#006798] cursor-pointer">
+          <i class="fa-solid fa-cloud-arrow-up text-2xl text-[#006798] mb-2"></i>
+          <p class="font-semibold text-slate-700">Tarik file ke sini atau klik untuk browse</p>
+          <p class="text-[11px] text-slate-400 mt-1">Maksimum 30MB (.doc, .docx, .pdf)</p>
+        </div>
+      </div>
+      <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 flex justify-end gap-2">
+        <button onclick="closeModal('modal-upload-file')" class="px-3 py-1.5 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded">Batal</button>
+        <button onclick="closeModal('modal-upload-file'); showToast('File berhasil diupload!');" class="px-4 py-1.5 text-xs font-bold text-white bg-[#006798] rounded">Upload</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST POPUP NOTIFICATION -->
+  <div id="toast-notification">
+    <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+    <span id="toast-message">Pesan notifikasi</span>
+  </div>
+
+  <script>
+    // TOAST HELPER
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      const text = document.getElementById('toast-message');
+      text.innerText = msg;
+      toast.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3200);
+    }
+
+    // TOP TABS SWITCHER (WORKFLOW vs PUBLICATION)
+    function switchTopTab(tabName) {
+      const tabWorkflowBtn = document.getElementById('tab-workflow-btn');
+      const tabPublicationBtn = document.getElementById('tab-publication-btn');
+      const viewWorkflow = document.getElementById('view-workflow');
+      const viewPublication = document.getElementById('view-publication');
+
+      if (tabName === 'workflow') {
+        tabWorkflowBtn.classList.add('active');
+        tabPublicationBtn.classList.remove('active');
+        viewWorkflow.style.display = 'block';
+        viewPublication.style.display = 'none';
+      } else {
+        tabPublicationBtn.classList.add('active');
+        tabWorkflowBtn.classList.remove('active');
+        viewWorkflow.style.display = 'none';
+        viewPublication.style.display = 'block';
+      }
+    }
+
+    // STAGE TABS SWITCHER (SUBMISSION, REVIEW, COPYEDITING, PRODUCTION)
+    function switchStage(stageName) {
+      const stages = ['submission', 'review', 'copyediting', 'production'];
+      stages.forEach(st => {
+        const btn = document.getElementById('stage-btn-' + st);
+        const panel = document.getElementById('panel-stage-' + st);
+        if (st === stageName) {
+          btn.classList.add('active');
+          btn.querySelector('i').className = 'fa-solid fa-circle-check';
+          if (panel) panel.style.display = 'grid';
+        } else {
+          btn.classList.remove('active');
+          btn.querySelector('i').className = 'fa-regular fa-circle';
+          if (panel) panel.style.display = 'none';
+        }
+      });
+      showToast('Beralih ke tahap ' + stageName.charAt(0).toUpperCase() + stageName.slice(1));
+    }
+
+    // MODAL HELPERS
+    function openModal(id) {
+      const m = document.getElementById(id);
+      if (m) {
+        m.classList.remove('hidden');
+        m.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(id) {
+      const m = document.getElementById(id);
+      if (m) {
+        m.classList.add('hidden');
+        m.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function submitSendToReview() {
+      closeModal('modal-send-review');
+      switchStage('review');
+      showToast('Naskah #482 berhasil dikirim ke tahap Review!');
+    }
+
+    function toggleUserMenu() {
+      showToast('Profil pengguna: ado (Journal Manager / Administrator)');
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.fixed.z-\[9999\]').forEach(el => {
+          el.classList.add('hidden');
+          el.classList.remove('flex');
+        });
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+</html>

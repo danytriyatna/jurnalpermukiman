@@ -27,6 +27,18 @@
 				{ldelim}
 					{include file="controllers/notification/notificationOptions.tpl"}
 				{rdelim});
+
+			// Cegah kolom tabel grid membungkus jadi 2 baris (Single Line Metadata)
+			function enforceSingleLineMetadata() {
+				$('.pkp_controllers_grid td .label br').replaceWith(' <span class="grid_line_sep" style="color:#94a3b8; font-weight:normal; margin:0 6px;">&bull;</span> ');
+				$('.pkp_controllers_grid td.column-from br').replaceWith(' <span class="grid_line_sep" style="color:#94a3b8; font-weight:normal; margin:0 6px;">&bull;</span> ');
+				$('.pkp_controllers_grid td.column-date br').replaceWith(' ');
+				$('.pkp_controllers_grid td[class*="date"] br').replaceWith(' ');
+			}
+			enforceSingleLineMetadata();
+			$(document).ajaxComplete(function() {ldelim}
+				enforceSingleLineMetadata();
+			{rdelim});
 		{rdelim});
 	</script>
 
@@ -53,11 +65,17 @@
 			{/if}
 			{if $currentContext}
 				<a class="app__contextTitle" href="{url page="index"}">
-					{$currentContext->getLocalizedData('name')|escape}
+					<div class="app__brandLogo">
+						<span class="app__brandLine1">JURNAL</span>
+						<span class="app__brandLine2">PERMUKIMAN</span>
+					</div>
 				</a>
 			{elseif $siteTitle}
 				<a class="app__contextTitle" href="{$baseUrl}">
-					{$siteTitle|escape}
+					<div class="app__brandLogo">
+						<span class="app__brandLine1">JURNAL</span>
+						<span class="app__brandLine2">PERMUKIMAN</span>
+					</div>
 				</a>
 			{else}
 				<div class="app__contextTitle">
@@ -65,7 +83,11 @@
 				</div>
 			{/if}
 			{if $currentUser}
-				<div class="app__headerActions" v-cloak>
+				<div class="app__headerRight">
+					<div class="app__headerBadgePU">
+						<img src="{$baseUrl}/public/journals/1/kemenpu_pill_clean.png" alt="Kementerian PU" />
+					</div>
+					<div class="app__headerActions" v-cloak>
 					{call_hook name="Template::Layout::Backend::HeaderActions"}
 					<div class="app__headerAction app__tasks">
 						<button ref="tasksButton" @click="openTasks">
@@ -135,6 +157,7 @@
 							</div>
 						</nav>
 					</dropdown>
+				</div>
 				</div>
 			{/if}
 		</header>
