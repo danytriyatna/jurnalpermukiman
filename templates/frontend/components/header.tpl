@@ -31,11 +31,11 @@
     color: #1E293B !important;
   }
 
-  /* WADAH UTAMA KARTU PUTIH FLOATING 1200PX (IDENTIK MOCKUP) */
+  /* WADAH UTAMA KARTU PUTIH FLOATING 1520PX */
   .pkp_structure_page {
-    max-width: 1200px !important;
-    width: 95% !important;
-    margin: 24px auto !important;
+    max-width: 1520px !important;
+    width: 94% !important;
+    margin: 16px auto !important;
     background: #FFFFFF !important;
     border-radius: 16px !important;
     box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.25) !important;
@@ -255,9 +255,9 @@
   }
   .pkp_structure_sidebar,
   .pkp_sidebar {
-    flex: 0 0 32% !important;
-    width: 32% !important;
-    max-width: 360px !important;
+    flex: 0 0 30% !important;
+    width: 30% !important;
+    max-width: 380px !important;
     min-width: 300px !important;
     float: none !important;
     margin: 0 !important;
