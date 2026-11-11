@@ -58,12 +58,16 @@
 
   /* HEADER CARD */
   .pkp_structure_head {
+    width: 100% !important;
+    max-width: 100% !important;
     background: transparent !important;
     border: none !important;
     padding: 0 !important;
-    margin-bottom: 24px !important;
+    margin: 0 0 24px 0 !important;
   }
   .pkp_head_wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
     background: #FFFFFF !important;
     border-radius: 16px !important;
     border: 1px solid rgba(226, 232, 240, 0.8) !important;
@@ -239,6 +243,7 @@
     align-items: flex-start !important;
     gap: 28px !important;
     width: 100% !important;
+    max-width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
     float: none !important;
