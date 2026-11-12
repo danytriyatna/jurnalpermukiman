@@ -164,7 +164,134 @@ class QueryNoteForm extends Form {
 
 		parent::execute(...$functionArgs);
 
+		// Synchronize attached revision manuscript (.docx) to MQC if present
+		$this->_syncRevisionToMqc($request, $note);
+
 		return $note;
+	}
+
+	/**
+	 * Synchronize revision manuscript (.docx) to MQC if attached in this note.
+	 * Filters strictly by Article Component (genreId 1 = Naskah / Article Text or 15 = Revised Manuscript).
+	 *
+	 * @param PKPRequest $request
+	 * @param Note $note
+	 */
+	protected function _syncRevisionToMqc($request, $note) {
+		try {
+			$query = $this->getQuery();
+			if (!$query) return;
+
+			// Pastikan query terikat ke naskah (ASSOC_TYPE_SUBMISSION = 1048585)
+			if ($query->getAssocType() != ASSOC_TYPE_SUBMISSION) return;
+
+			$submissionId = (int) $query->getAssocId();
+			if (!$submissionId) return;
+
+			// Periksa apakah konfigurasi MQC ada di config.inc.php
+			$mqcUrl = Config::getVar('mqc', 'api_url') ?: 'http://localhost:3000/api/check-submission';
+			$mqcKey = trim((string) Config::getVar('mqc', 'api_key'));
+			if ($mqcKey === '') {
+				return;
+			}
+
+			// Ambil berkas lampiran yang terikat pada note ini
+			import('classes.core.Services');
+			import('lib.pkp.classes.submission.SubmissionFile');
+			$filesService = Services::get('submissionFile');
+			$files = $filesService->getMany([
+				'assocTypes' => [ASSOC_TYPE_NOTE],
+				'assocIds' => [(int) $note->getId()],
+				'submissionIds' => [$submissionId],
+				'fileStages' => [SUBMISSION_FILE_QUERY],
+			]);
+
+			$filesDir = rtrim(Config::getVar('files', 'files_dir'), '/\\');
+			$targetFile = null;
+			$targetFullPath = null;
+			$targetOrigName = null;
+
+			foreach ($files as $file) {
+				$genreId = (int) $file->getData('genreId');
+
+				// Filter ketat Article Component: HANYA genre_id = 1 (Article Text/Naskah) atau 15 (Revised Manuscript)
+				if ($genreId !== 1 && $genreId !== 15) {
+					continue;
+				}
+
+				// Abaikan jika berkas laporan review MQC
+				$origName = $file->getLocalizedData('name') ?: basename($file->getData('path'));
+				if (
+					$genreId === 14 ||
+					stripos($origName, 'Laporan-review-') === 0 ||
+					stripos($origName, 'Laporan-MQC-') === 0
+				) {
+					continue;
+				}
+
+				// Wajib berekstensi .docx
+				if (strtolower(pathinfo($origName, PATHINFO_EXTENSION)) !== 'docx') {
+					continue;
+				}
+
+				$relPath = $file->getData('path');
+				$fullPath = $filesDir . '/' . ltrim($relPath, '/\\');
+				if (file_exists($fullPath)) {
+					$targetFile = $file;
+					$targetFullPath = $fullPath;
+					$targetOrigName = $origName;
+					break;
+				}
+			}
+
+			if (!$targetFile || !$targetFullPath) {
+				// Tidak ada berkas naskah revisi (.docx) yang memenuhi syarat di catatan ini
+				return;
+			}
+
+			// Ambil metadata naskah & penulis
+			$submission = Services::get('submission')->get($submissionId);
+			$title = $submission ? $submission->getLocalizedTitle() : "Naskah OJS #{$submissionId}";
+			$author = $submission ? $submission->getPrimaryAuthor() : null;
+			$user = $request ? $request->getUser() : null;
+			$userId = $user ? $user->getId() : null;
+			$authorName = $author ? $author->getFullName() : ($user ? $user->getFullName() : 'Penulis Jurnal Permukiman');
+			$authorEmail = $author ? $author->getEmail() : ($user ? $user->getEmail() : '');
+
+			$postFields = [
+				'file' => new \CURLFile($targetFullPath, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', $targetOrigName),
+				'ojs_submission_id' => (string) $submissionId,
+				'ojs_user_id' => $userId ? (string) $userId : '',
+				'author_name' => $authorName ?: 'Penulis Jurnal Permukiman',
+				'author_email' => $authorEmail ?: '',
+				'title' => $title ?: "Naskah OJS #{$submissionId}",
+			];
+
+			$ch = curl_init($mqcUrl);
+			curl_setopt_array($ch, [
+				CURLOPT_POST => true,
+				CURLOPT_POSTFIELDS => $postFields,
+				CURLOPT_HTTPHEADER => [
+					'x-mqc-api-key: ' . $mqcKey,
+				],
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_CONNECTTIMEOUT => 1,
+				CURLOPT_TIMEOUT => 3,
+			]);
+
+			$response = curl_exec($ch);
+			$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			$curlErr = curl_error($ch);
+			curl_close($ch);
+
+			if ($httpCode === 200) {
+				error_log("[MQC Revision Sync Success] Naskah revisi OJS #{$submissionId} ('{$targetOrigName}', genreId: {$targetFile->getData('genreId')}) berhasil disinkronkan ke MQC dari diskusi note #{$note->getId()}.");
+			} else {
+				error_log("[MQC Revision Sync Warning] HTTP {$httpCode} dari MQC: " . ($response ?: $curlErr));
+			}
+		} catch (\Throwable $e) {
+			error_log("[MQC Revision Sync Error] Gagal menyinkronkan revisi OJS ke MQC: " . $e->getMessage());
+		}
 	}
 }
 

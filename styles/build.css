@@ -954,3 +954,38 @@ button.pkpButton--primary:hover,
   border-color: #F43F5E !important;
   color: #BE123C !important;
 }
+
+/* ==========================================================================
+   Fix Selectable Files Grid (Modal "Select Files" pada Diskusi OJS)
+   ========================================================================== */
+
+/* 1. Sembunyikan caret collapse/extras pada grid seleksi berkas modal diskusi */
+#manageQueryNoteFilesGrid .show_extras,
+#manageQueryNoteFilesGrid .hide_extras,
+.pkp_controllers_grid td.first_column:has(input[type="checkbox"]) .show_extras,
+.pkp_controllers_grid td.first_column:has(input[type="checkbox"]) .hide_extras {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* 2. Reset padding kiri agar checkbox berada rapi di tengah kolom 3% */
+#manageQueryNoteFilesGrid .has_extras td.first_column,
+#manageQueryNoteFilesGrid .has_extras td:first-child,
+.pkp_controllers_grid .has_extras td.first_column:has(input[type="checkbox"]) {
+  padding-left: 0.5rem !important;
+  text-align: center !important;
+}
+
+/* 3. Pastikan checkbox berada di layer paling atas dan responsif terhadap klik */
+#manageQueryNoteFilesGrid input[name="selectedFiles[]"],
+.pkp_controllers_grid td.first_column input[type="checkbox"] {
+  position: relative !important;
+  z-index: 10 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  margin: 0 auto !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  width: 16px !important;
+  height: 16px !important;
+}
