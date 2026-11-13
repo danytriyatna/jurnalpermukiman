@@ -571,18 +571,19 @@ a:hover {
 .jp_art_btn_full_issue {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  background: #B4410F !important;
+  gap: 8px;
+  background: #C13D0D !important;
   color: #FFFFFF !important;
   text-decoration: none !important;
   font-weight: 600;
-  font-size: 12.5px;
-  padding: 7px 15px;
-  border-radius: 6px;
-  transition: background 0.15s ease;
+  font-size: 13.5px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  transition: background 0.15s ease, transform 0.15s ease;
 }
 .jp_art_btn_full_issue:hover {
-  background: #8B340E !important;
+  background: #9E310A !important;
+  transform: translateY(-1px);
 }
 .jp_art_btn_outline {
   display: inline-flex;

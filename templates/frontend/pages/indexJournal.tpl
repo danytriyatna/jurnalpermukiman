@@ -67,17 +67,14 @@
 						{if $issueGalleys}
 							{foreach from=$issueGalleys item=galley}
 								<a href="{url page="issue" op="view" path=$issue->getBestIssueId()|to_array:$galley->getBestGalleyId()}" class="jp_art_btn_full_issue">
-									<i class="fa fa-download" aria-hidden="true"></i>
-									<span>Full issue ({$galley->getGalleyLabel()|escape})</span>
+									<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg>
+									<span>Full issue (PDF)</span>
 								</a>
 							{/foreach}
-							<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}" class="jp_art_btn_outline">
-								<span>Issue table of contents</span>
-							</a>
 						{else}
 							<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}" class="jp_art_btn_full_issue">
-								<i class="fa fa-book" aria-hidden="true"></i>
-								<span>View issue &amp; articles</span>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg>
+								<span>Full issue (PDF)</span>
 							</a>
 						{/if}
 					</div>
