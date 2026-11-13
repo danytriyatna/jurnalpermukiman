@@ -339,7 +339,7 @@ a:hover {
 }
 
 /* ==========================================================================
-   2. MICRO-METRICS STRIP (COMPACT HORIZONTAL BAR UNDER HERO)
+   2. STATS SECTION (EXACT CLAUDE ARTIFACT 4-CARD GRID)
    ========================================================================== */
 .jp_art_stat_cards_fullwidth {
   width: 100vw !important;
@@ -348,81 +348,83 @@ a:hover {
   right: 50% !important;
   margin-left: -50vw !important;
   margin-right: -50vw !important;
-  background: #F8FAFC !important;
-  border-bottom: 1px solid #E2E8F0 !important;
-  border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
-  padding: 8px 0 !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+  background: #FFFFFF !important;
+  border-bottom: 1px solid #EDE3DC !important;
+  border-top: none !important;
+  padding: 36px 0 !important;
+  box-shadow: none !important;
 }
 .jp_art_stat_container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 24px;
+  max-width: 1320px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
 }
 .jp_art_stat_grid {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 8px 16px !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 20px !important;
 }
 .jp_art_stat_card {
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  padding: 4px 16px !important;
-  display: inline-flex !important;
+  background: #FFFFFF !important;
+  border: 1px solid #EDE3DC !important;
+  border-radius: 16px !important;
+  padding: 22px !important;
+  display: flex !important;
   align-items: center !important;
-  gap: 10px !important;
-  box-shadow: none !important;
-  flex: 1 1 auto !important;
-  justify-content: center !important;
-  transition: opacity 0.15s ease;
+  gap: 18px !important;
+  box-shadow: 0 4px 14px rgba(120, 60, 30, 0.07) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  justify-content: flex-start !important;
 }
 .jp_art_stat_card:not(:last-child) {
-  border-right: 1px solid #CBD5E1 !important;
+  border-right: 1px solid #EDE3DC !important;
 }
 .jp_art_stat_card:hover {
-  transform: none !important;
-  box-shadow: none !important;
-  opacity: 0.85;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(120, 60, 30, 0.12) !important;
 }
 .jp_stat_icon_box {
   flex: 0 0 auto !important;
-  width: 28px !important;
-  height: 28px !important;
-  border-radius: 6px !important;
-  background: #FDE8E1 !important;
+  width: 68px !important;
+  height: 68px !important;
+  border-radius: 16px !important;
+  background: #FBEDE6 !important;
   color: #B4410F !important;
-  display: inline-flex !important;
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  font-size: 13px !important;
+}
+.jp_stat_icon_box svg {
+  display: block;
 }
 .jp_stat_info {
-  display: inline-flex !important;
-  flex-direction: row !important;
-  align-items: baseline !important;
-  gap: 6px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
   min-width: 0 !important;
 }
 .jp_stat_number {
-  font-size: 16px !important;
-  font-weight: 800 !important;
-  line-height: 1 !important;
-  color: #0F172A !important;
-  letter-spacing: -0.01em;
+  font-size: 34px !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  color: #1C1917 !important;
+  letter-spacing: -0.02em !important;
 }
 .jp_stat_title {
-  font-size: 12.5px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
-  color: #64748B !important;
-  white-space: nowrap !important;
+  color: #57534E !important;
+  white-space: normal !important;
+  line-height: 1.3 !important;
 }
-@media (max-width: 768px) {
-  .jp_art_stat_card {
-    border-right: none !important;
-    justify-content: flex-start !important;
+@media (max-width: 1024px) {
+  .jp_art_stat_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 640px) {
+  .jp_art_stat_grid {
+    grid-template-columns: 1fr !important;
   }
 }
 
