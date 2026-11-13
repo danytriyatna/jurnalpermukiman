@@ -106,14 +106,14 @@
 		</div>
 	</header><!-- .hero_card_fullwidth -->
 
-	{* TOP 4 STATISTIC CARDS (1 ROW 4 COLUMNS FULL WIDTH HORIZONTAL) *}
+	{* TOP 4 STATISTIC CARDS (MATCHING CLAUDE ARTIFACT 100%) *}
 	{if !$requestedPage || $requestedPage === 'index'}
-		<section class="jp_art_stat_cards_fullwidth" aria-label="Journal Statistics Overview">
+		<section class="jp_art_stat_cards_fullwidth" aria-label="Journal statistics">
 			<div class="jp_art_stat_container">
 				<div class="jp_art_stat_grid">
 					<div class="jp_art_stat_card">
 						<div class="jp_stat_icon_box doc">
-							<i class="fa fa-file-text-o" aria-hidden="true"></i>
+							<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path><path d="M8 13h8"></path><path d="M8 17h6"></path></svg>
 						</div>
 						<div class="jp_stat_info">
 							<div class="jp_stat_number">228</div>
@@ -122,7 +122,7 @@
 					</div>
 					<div class="jp_art_stat_card">
 						<div class="jp_stat_icon_box user">
-							<i class="fa fa-users" aria-hidden="true"></i>
+							<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"></circle><path d="M2 21v-1a6 6 0 0 1 10-4.5"></path><path d="M17.5 13.5l3 3L15 22h-3v-3z"></path></svg>
 						</div>
 						<div class="jp_stat_info">
 							<div class="jp_stat_number">387</div>
@@ -131,7 +131,7 @@
 					</div>
 					<div class="jp_art_stat_card">
 						<div class="jp_stat_icon_box issue">
-							<i class="fa fa-book" aria-hidden="true"></i>
+							<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"></path><path d="M3 13l9 5 9-5"></path><path d="M3 17.5l9 5 9-5"></path></svg>
 						</div>
 						<div class="jp_stat_info">
 							<div class="jp_stat_number">37</div>
@@ -140,7 +140,7 @@
 					</div>
 					<div class="jp_art_stat_card">
 						<div class="jp_stat_icon_box download">
-							<i class="fa fa-download" aria-hidden="true"></i>
+							<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M4 21h16"></path></svg>
 						</div>
 						<div class="jp_stat_info">
 							<div class="jp_stat_number">642K+</div>
