@@ -1074,6 +1074,13 @@ a:hover {
   padding: 0 !important;
   border: none !important;
 }
+/* Hide any empty sidebar blocks or blocks where content has no elements */
+.pkp_structure_sidebar .pkp_block:empty,
+.pkp_structure_sidebar .block_custom:empty,
+.pkp_structure_sidebar .pkp_block:not(:has(.content *)):not(:has(.content:not(:empty))) {
+  display: none !important;
+}
+
 #customblock-registration,
 .block_custom#customblock-registration {
   display: none !important;
