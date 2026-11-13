@@ -35,7 +35,7 @@
 				<a href="https://docs.google.com/document/d/1IlqANma92RPqcnfOjiw4OpAjgtwyxBoc/preview" target="_blank" rel="noopener">Article Template</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="copyrightnoticeandlicensing"}">Copyright Notice and Licensing</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="ArticleProcessingCharge"}">Article Processing Charge (APC)</a>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="GenerativeAIPolicy"}">Generative AI Policy</a>
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="AIPolicy"}">Generative AI Policy</a>
 			</div>
 
 			{* Column 2: Editorial Policies *}
@@ -43,7 +43,7 @@
 				<h2 class="jp_art_col_title">EDITORIAL POLICIES</h2>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="publicationEthics"}">Publication Ethics</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="PlagiarismCheck"}">Plagiarism Check</a>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="ArticleRetractionandWithdrawal"}">Article Retraction &amp; Withdrawal</a>
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="ArticleRetractionWithdrawal"}">Article Retraction &amp; Withdrawal</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="ComplaintsandAppealsPolicy"}">Complaints and Appeals Policy</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="PostPublicationDiscussion"}">Post-Publication Discussion</a>
 			</div>
@@ -51,7 +51,7 @@
 			{* Column 3: For Reviewers *}
 			<div class="jp_art_footer_col">
 				<h2 class="jp_art_col_title">FOR REVIEWERS</h2>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="peer-review-process"}">Peer Review Process</a>
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="kebijakanreview"}">Peer Review Process</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="PeerReview"}">Peer Reviewers</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="publicationEthics"}">Publication Ethics</a>
 			</div>
@@ -61,11 +61,11 @@
 				<h2 class="jp_art_col_title">ABOUT JURNAL PERMUKIMAN</h2>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="fokus"}">Aims and Scope</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="editorialTeam"}">Editorial Team</a>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="AbstractingandIndexing"}">Abstracting and Indexing</a>
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="indexing"}">Abstracting and Indexing</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="OpenAccessPolicy"}">Open Access Policy</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="PublicationFrequency"}">Publication Frequency</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="ArchivingPolicy"}">Archiving Policy</a>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="JournalStatistics"}">Journal Statistics</a>
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="stats"}">Journal Statistics</a>
 			</div>
 		</div>
 
