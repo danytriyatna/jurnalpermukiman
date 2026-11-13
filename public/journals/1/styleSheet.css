@@ -604,96 +604,105 @@ a:hover {
   display: none !important;
 }
 
-/* Issue TOC Articles List */
+/* Issue TOC Articles List (Flat Linear List - JCEF UGM Style) */
 .obj_issue_toc .articles {
   list-style: none !important;
   margin: 0 !important;
   padding: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 12px !important;
+  gap: 0 !important;
+  border-top: 1px solid #E2E8F0 !important;
 }
 .obj_issue_toc .articles > li {
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
-  background: none !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  background: transparent !important;
+  transition: background 0.12s ease;
+}
+.obj_issue_toc .articles > li:hover {
+  background: #F8FAFC !important;
 }
 
-/* Article Summary Card (High-Density Academic Editorial) */
+/* Article Summary Item (Borderless Linear Row) */
 .jp_art_article_card {
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0 !important;
-  border-radius: 8px !important;
-  padding: 14px 18px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 10px 4px !important;
+  box-shadow: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+  transition: none !important;
 }
 .jp_art_article_card:hover {
   transform: none !important;
-  border-color: #CBD5E1 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
 }
 .jp_art_article_top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 14px;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: baseline !important;
+  gap: 12px !important;
 }
 .jp_art_article_title {
   margin: 0 !important;
   font-family: 'Lora', Georgia, serif !important;
-  font-size: 16.5px !important;
-  line-height: 1.38 !important;
+  font-size: 15.5px !important;
+  line-height: 1.35 !important;
   font-weight: 700 !important;
 }
 .jp_art_article_title a {
   color: #0F172A !important;
+  text-decoration: none !important;
 }
 .jp_art_article_title a:hover {
   color: #B4410F !important;
   text-decoration: underline !important;
 }
 .jp_art_pages {
-  font-size: 12px;
-  color: #64748B;
-  white-space: nowrap;
-  padding-top: 2px;
-  font-weight: 500;
+  font-size: 11.5px !important;
+  color: #64748B !important;
+  white-space: nowrap !important;
+  padding-top: 1px !important;
+  font-weight: 500 !important;
 }
 .jp_art_authors {
-  font-size: 13.5px;
-  color: #475569;
-  font-style: italic;
+  font-size: 13px !important;
+  color: #475569 !important;
+  font-style: italic !important;
+  margin: 0 !important;
 }
 .jp_art_article_meta_row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 14px;
-  align-items: center;
-  font-size: 12px;
-  color: #64748B;
-  padding-top: 2px;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px 14px !important;
+  align-items: center !important;
+  font-size: 11.5px !important;
+  color: #64748B !important;
+  padding-top: 1px !important;
 }
 .jp_art_galleys {
-  display: inline-flex;
+  display: inline-flex !important;
 }
 .jp_art_pdf_btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  border: 1.2px solid #B4410F !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  border: 1px solid #B4410F !important;
   color: #B4410F !important;
-  background: #FFFFFF !important;
+  background: transparent !important;
   text-decoration: none !important;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 4px;
-  font-size: 11.5px;
-  transition: all 0.15s ease;
+  font-weight: 700 !important;
+  padding: 2px 7px !important;
+  border-radius: 3px !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  transition: all 0.12s ease !important;
 }
 .jp_art_pdf_btn:hover {
   background: #B4410F !important;
