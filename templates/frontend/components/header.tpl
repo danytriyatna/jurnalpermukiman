@@ -97,7 +97,7 @@
 			</div>
 			<div class="jp_art_hero_caption">
 				<span class="jp_caption_pill">
-					<i class="fa fa-map-marker"></i> Balai Sains Bangunan dan Permukiman &middot; Bandung
+					Kantor Direktorat Bina Teknik Bangunan Gedung dan Penyehatan Lingkungan
 				</span>
 			</div>
 		</div>
