@@ -1427,3 +1427,308 @@ a:hover {
   border: 1px solid #E7E5E4 !important;
   color: #374151 !important;
 }
+
+
+/* ==========================================================================
+   ISSUE ARCHIVE GRID (UGM JCEF / MODERN ACADEMIC STANDARD)
+   ========================================================================== */
+.page_issue_archive .issues_archive {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)) !important;
+  gap: 20px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 24px 0 !important;
+}
+
+.page_issue_archive .issues_archive > li {
+  display: flex !important;
+  flex-direction: column !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.page_issue_archive .obj_issue_summary {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E7E5E4 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+  padding: 16px !important;
+  position: relative !important;
+}
+
+.page_issue_archive .obj_issue_summary:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 20px -5px rgba(122, 46, 14, 0.12) !important;
+  border-color: #D6C2B4 !important;
+}
+
+.page_issue_archive .obj_issue_summary .cover {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #F8F6F4 !important;
+  border-radius: 8px !important;
+  padding: 12px !important;
+  margin-bottom: 14px !important;
+  min-height: 200px !important;
+}
+
+.page_issue_archive .obj_issue_summary .cover img {
+  max-height: 180px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12) !important;
+}
+
+/* Fallback cover banner for issues without cover images */
+.page_issue_archive .obj_issue_summary h2 {
+  margin: 0 0 8px 0 !important;
+  padding: 0 !important;
+}
+
+.page_issue_archive .obj_issue_summary .title {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 15.5px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  color: #7A2E0E !important;
+  text-decoration: none !important;
+  display: block !important;
+}
+
+.page_issue_archive .obj_issue_summary .title:hover {
+  color: #B4410F !important;
+  text-decoration: underline !important;
+}
+
+.page_issue_archive .obj_issue_summary .series {
+  font-size: 13px !important;
+  color: #78716C !important;
+  margin-top: auto !important;
+  line-height: 1.4 !important;
+}
+
+/* ==========================================================================
+   ARTICLE DETAILS PAGE (UGM JCEF / SINTA-2 STANDARD)
+   ========================================================================== */
+.obj_article_details {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+}
+
+.obj_article_details .main_entry {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+/* Article Title */
+.obj_article_details .page_title {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 26px !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  margin: 0 0 12px 0 !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+/* Authors List */
+.obj_article_details .item.authors {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 12px 20px !important;
+  margin: 0 !important;
+  padding: 12px 0 !important;
+  border-bottom: 1px solid #F0ECE9 !important;
+}
+
+.obj_article_details .item.authors .name {
+  font-weight: 600 !important;
+  color: #1C1917 !important;
+  font-size: 15px !important;
+}
+
+.obj_article_details .item.authors .affiliation {
+  font-size: 13px !important;
+  color: #78716C !important;
+  display: block !important;
+}
+
+/* Interactive DOI Badge */
+.obj_article_details .item.doi {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: #FDF5F2 !important;
+  border: 1px solid #F5D3C5 !important;
+  border-radius: 999px !important;
+  padding: 6px 14px !important;
+  font-size: 13px !important;
+  gap: 8px !important;
+  width: fit-content !important;
+}
+
+.obj_article_details .item.doi .label {
+  font-weight: 700 !important;
+  color: #7A2E0E !important;
+}
+
+.obj_article_details .item.doi .value a {
+  color: #A63A1E !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.obj_article_details .item.doi .value a:hover {
+  text-decoration: underline !important;
+}
+
+/* Galleys / Download PDF Button */
+.obj_article_details .item.galleys {
+  margin: 12px 0 !important;
+}
+
+.obj_article_details .item.galleys .obj_galley_link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  background: linear-gradient(135deg, #A63A1E 0%, #7A2E0E 100%) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  font-size: 14.5px !important;
+  padding: 12px 24px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(122, 46, 14, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+.obj_article_details .item.galleys .obj_galley_link:hover {
+  background: linear-gradient(135deg, #7A2E0E 0%, #541E09 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(122, 46, 14, 0.35) !important;
+  color: #FFFFFF !important;
+}
+
+.obj_article_details .item.galleys .obj_galley_link:before {
+  content: "⬇" !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+}
+
+/* Abstract Callout */
+.obj_article_details .item.abstract {
+  background: #FAF7F5 !important;
+  border: 1px solid #EDE6E1 !important;
+  border-left: 4px solid #A63A1E !important;
+  border-radius: 0 10px 10px 0 !important;
+  padding: 22px 26px !important;
+  margin: 10px 0 !important;
+}
+
+.obj_article_details .item.abstract .label {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #7A2E0E !important;
+  margin-bottom: 12px !important;
+  display: block !important;
+}
+
+.obj_article_details .item.abstract p {
+  line-height: 1.75 !important;
+  color: #374151 !important;
+  font-size: 14.5px !important;
+  margin: 0 !important;
+}
+
+/* Keywords Capsule Pills */
+.obj_article_details .item.keywords {
+  margin: 10px 0 !important;
+}
+
+.obj_article_details .item.keywords .label {
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  font-size: 14px !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+
+.obj_article_details .item.keywords .value {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+.obj_article_details .item.keywords .value span,
+.obj_article_details .item.keywords .value a {
+  background: #F5E8E0 !important;
+  color: #7A2E0E !important;
+  padding: 5px 12px !important;
+  border-radius: 16px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  border: 1px solid #ECD7CB !important;
+}
+
+/* References Section */
+.obj_article_details .item.references {
+  margin-top: 24px !important;
+  padding-top: 20px !important;
+  border-top: 1px solid #EDE6E1 !important;
+}
+
+.obj_article_details .item.references .label {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  margin-bottom: 16px !important;
+  display: block !important;
+}
+
+.obj_article_details .item.references .value {
+  font-size: 13.5px !important;
+  line-height: 1.65 !important;
+  color: #4B5563 !important;
+}
+
+.obj_article_details .item.references .value a {
+  color: #A63A1E !important;
+  word-break: break-all !important;
+}
+
+/* Citation Section */
+.obj_article_details .item.citation {
+  background: #FFFFFF !important;
+  border: 1px solid #E7E5E4 !important;
+  border-radius: 10px !important;
+  padding: 18px 22px !important;
+  margin: 16px 0 !important;
+}
+
+.obj_article_details .item.citation .label {
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  color: #7A2E0E !important;
+  margin-bottom: 10px !important;
+  display: block !important;
+}
+
+.obj_article_details .item.citation .sub_item.citation_display {
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
+  color: #374151 !important;
+}

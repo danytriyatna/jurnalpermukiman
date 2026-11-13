@@ -124,6 +124,7 @@ class CustomBlockPlugin extends BlockPlugin {
 		$templateMgr->assign('customBlockContent', $content);
 		$templateMgr->assign('showName', $this->getSetting($contextId, 'showName'));
 
+
 		// Validasi: jika tidak ada data/konten yang ditampilkan, jangan tampilkan judul maupun blok
 		if (trim(strip_tags($content, '<img><iframe><svg><object><embed><video><audio>')) === '') {
 			return '';
