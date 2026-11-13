@@ -1593,6 +1593,41 @@ a:hover {
   text-decoration: underline !important;
 }
 
+/* Published and Received Dates Card (SINTA-2 Audit Trail) */
+.obj_article_details .item.published {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  margin: 14px 0 !important;
+  padding: 14px 18px !important;
+  background: #FAF7F5 !important;
+  border: 1px solid #EFEAE6 !important;
+  border-left: 3.5px solid #7A2E0E !important;
+  border-radius: 8px !important;
+}
+
+.obj_article_details .item.published .sub_item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.obj_article_details .item.published .label {
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: #7A2E0E !important;
+  margin: 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.obj_article_details .item.published .value {
+  font-size: 13px !important;
+  color: #374151 !important;
+  font-weight: 600 !important;
+}
+
 /* Galleys / Download PDF Button */
 .obj_article_details .item.galleys {
   margin: 12px 0 !important;

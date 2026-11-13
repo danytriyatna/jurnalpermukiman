@@ -288,8 +288,19 @@
 				</div>
 			{/if}
 
-			{if $publication->getData('datePublished')}
+			{if $article->getData('dateSubmitted') || $publication->getData('datePublished')}
 			<div class="item published">
+				{if $article->getData('dateSubmitted')}
+				<section class="sub_item">
+					<h2 class="label">
+						Received
+					</h2>
+					<div class="value">
+						<span>{$article->getData('dateSubmitted')|date_format:$dateFormatShort}</span>
+					</div>
+				</section>
+				{/if}
+				{if $publication->getData('datePublished')}
 				<section class="sub_item">
 					<h2 class="label">
 						{translate key="submissions.published"}
@@ -304,6 +315,7 @@
 						{/if}
 					</div>
 				</section>
+				{/if}
 				{if count($article->getPublishedPublications()) > 1}
 					<section class="sub_item versions">
 						<h2 class="label">
