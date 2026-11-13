@@ -42,6 +42,27 @@ class AuthorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 		$userRoles = (array) $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 		return new AuthorSubmissionDetailsFilesGridRow($this->getCapabilities(), $this->getStageId(), $userRoles);
 	}
+
+	/**
+	 * @copydoc GridHandler::loadData()
+	 */
+	protected function loadData($request, $filter) {
+		$gridData = parent::loadData($request, $filter);
+		if (is_array($gridData)) {
+			foreach ($gridData as $fileId => $fileData) {
+				$submissionFile = $fileData['submissionFile'] ?? null;
+				if ($submissionFile && is_a($submissionFile, 'SubmissionFile')) {
+					// Sembunyikan berkas laporan review MQC dari tabel Submission Files milik Penulis
+					$fileName = $submissionFile->getData('name');
+					$fileNameStr = is_array($fileName) ? implode(' ', $fileName) : (string) $fileName;
+					if ($submissionFile->getData('genreId') == 14 || stripos($fileNameStr, 'Laporan-review-') !== false) {
+						unset($gridData[$fileId]);
+					}
+				}
+			}
+		}
+		return $gridData;
+	}
 }
 
 class AuthorSubmissionDetailsFilesGridRow extends SubmissionFilesGridRow {

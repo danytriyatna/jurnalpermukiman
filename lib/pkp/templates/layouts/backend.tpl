@@ -883,6 +883,7 @@
   .pkp_modal_panel,
   .ui-dialog,
   .v--modal-box.v--modal {
+    position: relative !important;
     background: #FFFFFF !important;
     border-radius: 16px !important;
     border: 1px solid #E2E8F0 !important;
@@ -898,6 +899,7 @@
   }
 
   .pkp_modal_panel > .header,
+  .modal__header,
   .ui-dialog-titlebar {
     background: linear-gradient(180deg, #FFFFFF 0%, #FDF9F7 100%) !important;
     border-bottom: 1px solid #F4D4C9 !important;
@@ -906,26 +908,49 @@
     font-weight: 800 !important;
     line-height: 1.4 !important;
     min-height: 56px !important;
-    padding: 14px 56px 14px 24px !important;
+    padding: 14px 60px 14px 24px !important;
     display: flex !important;
     align-items: center !important;
     box-sizing: border-box !important;
+    position: relative !important;
+  }
+  .modal__header {
+    padding: 12px 16px 12px 24px !important;
+    justify-content: space-between !important;
+  }
+  .modal__title {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    color: #0F172A !important;
+    line-height: 1.4 !important;
   }
 
-  .pkp_modal_panel > .content {
+  .pkp_modal_panel > .content,
+  .modal__content {
     padding: 22px 24px !important;
     background: #FFFFFF !important;
     box-sizing: border-box !important;
   }
 
+  /* Standarisasi Tombol Close Modal (Legacy .pkpModalCloseButton, Vue .modal__closeButton, jQuery UI) */
   .pkp_modal_panel > .close,
+  a.close.pkpModalCloseButton,
+  .pkp_modal_panel a.pkpModalCloseButton,
+  .modal__closeButton,
   .ui-dialog-titlebar-close {
+    position: absolute !important;
     top: 12px !important;
     right: 16px !important;
     width: 32px !important;
     height: 32px !important;
-    line-height: 30px !important;
-    font-size: 20px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+    font-size: 0 !important;
     color: #64748B !important;
     background: #FFFFFF !important;
     border: 1px solid #E2E8F0 !important;
@@ -933,13 +958,69 @@
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    transition: all 0.15s ease !important;
+    text-decoration: none !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05) !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+    z-index: 20 !important;
+    transition: all 0.16s ease !important;
   }
+  .modal__closeButton {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    margin-left: auto !important;
+  }
+
+  /* Sembunyikan karakter × mentah yang tidak simetris & ganti dengan ikon FontAwesome presisi di tengah */
+  .pkp_modal_panel > .close > span:not(.pkp_screen_reader),
+  a.close.pkpModalCloseButton > span:not(.pkp_screen_reader),
+  .modal__closeButton > span:not(.-screenReader) {
+    display: none !important;
+  }
+  .pkp_modal_panel > .close .pkp_screen_reader,
+  a.close.pkpModalCloseButton .pkp_screen_reader,
+  .modal__closeButton .-screenReader {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+  .pkp_modal_panel > .close::before,
+  a.close.pkpModalCloseButton::before,
+  .modal__closeButton::before,
+  .ui-dialog-titlebar-close::before {
+    font-family: FontAwesome !important;
+    content: "\f00d" !important;
+    font-size: 14px !important;
+    font-weight: normal !important;
+    line-height: 1 !important;
+    color: inherit !important;
+    display: block !important;
+  }
+
   .pkp_modal_panel > .close:hover,
+  a.close.pkpModalCloseButton:hover,
+  .modal__closeButton:hover,
   .ui-dialog-titlebar-close:hover {
-    background: #FDF4F0 !important;
-    border-color: #F4D4C9 !important;
-    color: #C13D0D !important;
+    background: #FFF1F2 !important;
+    border-color: #FDA4AF !important;
+    color: #E11D48 !important;
+    box-shadow: 0 2px 6px rgba(225, 29, 72, 0.14) !important;
+    transform: scale(1.03) !important;
+  }
+  .pkp_modal_panel > .close:focus,
+  a.close.pkpModalCloseButton:focus,
+  .modal__closeButton:focus,
+  .ui-dialog-titlebar-close:focus {
+    outline: none !important;
+    border-color: #C13D0D !important;
+    box-shadow: 0 0 0 3px rgba(193, 61, 13, 0.15) !important;
   }
 
   .pkp_modal_panel > .footer,
@@ -1467,23 +1548,103 @@
     color: #065F46 !important;
   }
 
-  /* Dropdowns (Modern Rounded Menu) */
-  .pkpDropdown__content {
-    border-radius: 10px !important;
+  /* Dropdowns (Modern Rounded Menu & Header User Navigation) */
+  .pkpDropdown__content,
+  .app__header .pkpDropdown__content,
+  .app__userNav .pkpDropdown__content {
+    background: #FFFFFF !important;
+    border-radius: 14px !important;
     border: 1px solid #E2E8F0 !important;
-    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.05) !important;
-    padding: 6px !important;
+    box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.18), 0 6px 12px -4px rgba(15, 23, 42, 0.08) !important;
+    padding: 8px !important;
+    min-width: 250px !important;
+    margin-top: 14px !important;
+    right: 0 !important;
+    left: auto !important;
+    box-sizing: border-box !important;
+    z-index: 10000 !important;
   }
-  .pkpDropdown__action {
-    border-radius: 6px !important;
-    color: #334155 !important;
+  .app__header .pkpDropdown__content nav,
+  .app__header .pkpDropdown__content ul {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .app__header .pkpDropdown__content li {
+    margin: 2px 0 !important;
+    padding: 0 !important;
+  }
+  .app__header .pkpDropdown__section {
+    padding: 6px 0 !important;
+    margin: 0 !important;
+  }
+  .app__header .pkpDropdown__section + .app__header .pkpDropdown__section,
+  .app__header .pkpDropdown__section + .pkpDropdown__section {
+    border-top: 1px solid #F1F5F9 !important;
+    margin-top: 6px !important;
+    padding-top: 8px !important;
+  }
+  .app__header .app__userNav__changeLocale,
+  .app__header .app__userNav__loggedInAs {
+    color: #64748B !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    padding: 6px 14px 6px !important;
+    margin: 0 0 4px 0 !important;
+    display: block !important;
+  }
+  .pkpDropdown__action,
+  .app__header .pkpDropdown__content a,
+  .app__header .app__headerActions .pkpDropdown__content a,
+  .app__header .pkpDropdown__action,
+  .app__header .app__headerActions .pkpDropdown__action {
+    color: #1E293B !important;
+    font-size: 13.5px !important;
     font-weight: 600 !important;
-    transition: all 0.12s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    padding: 9px 14px !important;
+    margin: 2px 0 !important;
+    border-radius: 9px !important;
+    text-decoration: none !important;
+    line-height: 1.4 !important;
+    transition: all 0.15s ease !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
   }
   .pkpDropdown__action:hover,
-  .pkpDropdown__action:focus {
-    background: #FDF4F0 !important;
+  .pkpDropdown__action:focus,
+  .app__header .pkpDropdown__content a:hover,
+  .app__header .app__headerActions .pkpDropdown__content a:hover,
+  .app__header .pkpDropdown__action:hover,
+  .app__header .app__headerActions .pkpDropdown__action:hover {
+    background: #F8FAFC !important;
     color: #C13D0D !important;
+    text-decoration: none !important;
+  }
+  .app__header .pkpDropdown__content .fa,
+  .app__header .pkpDropdown__action .fa {
+    font-size: 13px !important;
+    width: 16px !important;
+    text-align: center !important;
+    color: #64748B !important;
+  }
+  /* Ratakan ikon centang pada bahasa terpilih di sisi kanan (sleek trailing checkmark) */
+  .app__header .pkpDropdown__content .fa-check,
+  .app__header .pkpDropdown__action .fa-check {
+    order: 2 !important;
+    margin-left: auto !important;
+    font-size: 12px !important;
+    color: #C13D0D !important;
+  }
+  .app__header .pkpDropdown__content a[href*="signOut"]:hover,
+  .app__header .pkpDropdown__action[href*="signOut"]:hover {
+    background: #FFF1F2 !important;
+    color: #E11D48 !important;
   }
 
   /* Notifications & Alerts */
@@ -1540,7 +1701,41 @@
 
   /* Pastikan [PU] JURNAL PERMUKIMAN selalu terkunci di kiri atas (termasuk di halaman Administration saat .app__contexts muncul) */
   .app__header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
     gap: 14px !important;
+  }
+  .app__returnHeader {
+    position: sticky !important;
+    top: 80px !important;
+    z-index: 999 !important;
+    background: #0F172A !important;
+    border-bottom: 1px solid #1E293B !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    display: flex !important;
+    align-items: center !important;
+    min-height: 44px !important;
+    height: 44px !important;
+    line-height: 44px !important;
+    padding: 0 1.75rem !important;
+    box-sizing: border-box !important;
+  }
+  .app__returnHeaderLink {
+    color: #E2E8F0 !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    transition: all 0.15s ease !important;
+  }
+  .app__returnHeaderLink:hover,
+  .app__returnHeaderLink:focus {
+    color: #38BDF8 !important;
+    text-decoration: none !important;
+    outline: none !important;
   }
   .app__header .app__contextTitle {
     margin-right: auto !important;
