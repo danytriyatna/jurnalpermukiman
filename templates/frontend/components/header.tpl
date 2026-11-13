@@ -98,9 +98,11 @@
 		</div><!-- .jp_art_hero_body -->
 
 		<div class="jp_art_hero_caption">
-			<span class="jp_caption_pill">
-				Kantor Direktorat Bina Teknik Bangunan Gedung dan Penyehatan Lingkungan
-			</span>
+			<div class="jp_art_hero_caption_inner">
+				<span class="jp_caption_pill">
+					Kantor Direktorat Bina Teknik Bangunan Gedung dan Penyehatan Lingkungan
+				</span>
+			</div>
 		</div>
 	</header><!-- .hero_card_fullwidth -->
 
