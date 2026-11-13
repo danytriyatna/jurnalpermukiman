@@ -95,11 +95,12 @@
 					</a>
 				</div>
 			</div>
-			<div class="jp_art_hero_caption">
-				<span class="jp_caption_pill">
-					Kantor Direktorat Bina Teknik Bangunan Gedung dan Penyehatan Lingkungan
-				</span>
-			</div>
+		</div><!-- .jp_art_hero_body -->
+
+		<div class="jp_art_hero_caption">
+			<span class="jp_caption_pill">
+				Kantor Direktorat Bina Teknik Bangunan Gedung dan Penyehatan Lingkungan
+			</span>
 		</div>
 	</header><!-- .hero_card_fullwidth -->
 
