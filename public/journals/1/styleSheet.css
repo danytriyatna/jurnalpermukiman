@@ -68,9 +68,9 @@ a:hover {
   border-radius: 0 !important;
   overflow: hidden !important;
   color: #FFFFFF !important;
-  background: linear-gradient(180deg, rgba(180,65,15,0.92) 0%, rgba(180,65,15,0.65) 18%, rgba(180,65,15,0.15) 38%),
-              linear-gradient(90deg, #4F1C07 0%, #5E220A 28%, rgba(110,40,11,0.90) 48%, rgba(140,52,14,0.55) 68%, rgba(150,56,15,0.2) 88%, rgba(150,56,15,0) 100%),
-              url('/public/journals/1/header_bg_perfect_text.jpg') right center / cover no-repeat !important;
+  background: linear-gradient(180deg, rgba(180,65,15,0.92) 0%, rgba(180,65,15,0.55) 14%, rgba(180,65,15,0) 32%),
+              linear-gradient(90deg, #4F1C07 0%, #5E220A 30%, rgba(110,40,11,0.88) 45%, rgba(140,52,14,0.45) 65%, rgba(150,56,15,0.12) 85%, rgba(150,56,15,0) 100%),
+              url('header_reference_photo.jpg') right center / cover no-repeat !important;
   box-shadow: 0 10px 24px rgba(79, 28, 7, 0.15) !important;
 }
 
