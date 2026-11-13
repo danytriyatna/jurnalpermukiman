@@ -5,7 +5,7 @@
  * Full-Width Architecture:
  * - Edge-to-Edge Hero Card Header (width: 100%, background full-bleed)
  * - Full-Width 4-Card Quick Statistics Section (border-bottom: 1px solid #EDE3DC)
- * - 1600px Centered Content Containers for Inner Alignment
+ * - 1320px Centered Content Containers for Inner Alignment
  *
  * Primary Palette:
  * - Brand Deep Rust: #7A2E0E / #8B340E
@@ -43,10 +43,10 @@ a:hover {
   color: #7A2E0E;
 }
 
-/* Base Container (1600px wide container) */
+/* Base Container (1320px Golden Ratio container) */
 .pkp_structure_page {
   width: 100% !important;
-  max-width: 1600px !important;
+  max-width: 1320px !important;
   margin: 0 auto !important;
   padding: 36px 24px 0 24px !important;
   background: #FFFFFF !important;
@@ -81,7 +81,7 @@ a:hover {
   backdrop-filter: blur(4px);
 }
 .jp_art_nav_container {
-  max-width: 1600px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 14px 24px;
   display: flex;
@@ -201,7 +201,7 @@ a:hover {
 
 /* Hero Body */
 .jp_art_hero_body {
-  max-width: 1600px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 40px 24px 44px 24px;
   display: flex;
@@ -212,7 +212,7 @@ a:hover {
 }
 .jp_art_hero_lead {
   flex: 1 1 580px;
-  max-width: 880px;
+  max-width: 720px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -338,7 +338,7 @@ a:hover {
   padding: 32px 0 !important;
 }
 .jp_art_stat_container {
-  max-width: 1600px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -1115,7 +1115,7 @@ a:hover {
   margin-top: 48px !important;
 }
 .jp_art_footer_card {
-  max-width: 1600px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 24px;
   background: #7A2E0E;
