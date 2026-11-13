@@ -48,7 +48,7 @@ a:hover {
   width: 100% !important;
   max-width: 1320px !important;
   margin: 0 auto !important;
-  padding: 36px 24px 0 24px !important;
+  padding: 20px 24px 0 24px !important;
   background: #FFFFFF !important;
   box-shadow: none !important;
 }
@@ -328,7 +328,7 @@ a:hover {
 }
 
 /* ==========================================================================
-   2. TOP 4 STATISTIC CARDS (FULL WIDTH STRIP, EXACT CLAUDE ARTIFACT)
+   2. MICRO-METRICS STRIP (COMPACT HORIZONTAL BAR UNDER HERO)
    ========================================================================== */
 .jp_art_stat_cards_fullwidth {
   width: 100vw !important;
@@ -337,9 +337,11 @@ a:hover {
   right: 50% !important;
   margin-left: -50vw !important;
   margin-right: -50vw !important;
-  background: #FFFFFF !important;
-  border-bottom: 1px solid #EDE3DC !important;
-  padding: 32px 0 !important;
+  background: #F8FAFC !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+  padding: 8px 0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
 }
 .jp_art_stat_container {
   max-width: 1320px;
@@ -347,64 +349,70 @@ a:hover {
   padding: 0 24px;
 }
 .jp_art_stat_grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px 16px !important;
 }
-@media (max-width: 992px) {
-  .jp_art_stat_grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 576px) {
-  .jp_art_stat_grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .jp_art_stat_card {
-  background: #FFFFFF;
-  border: 1px solid #EDE3DC;
-  border-radius: 16px;
-  padding: 20px 22px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  box-shadow: 0 4px 14px rgba(120, 60, 30, 0.06);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 4px 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  box-shadow: none !important;
+  flex: 1 1 auto !important;
+  justify-content: center !important;
+  transition: opacity 0.15s ease;
+}
+.jp_art_stat_card:not(:last-child) {
+  border-right: 1px solid #CBD5E1 !important;
 }
 .jp_art_stat_card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(120, 60, 30, 0.1);
+  transform: none !important;
+  box-shadow: none !important;
+  opacity: 0.85;
 }
 .jp_stat_icon_box {
-  flex: 0 0 auto;
-  width: 64px;
-  height: 64px;
-  border-radius: 16px;
-  background: #FBEDE6;
-  color: #B4410F;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
+  flex: 0 0 auto !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 6px !important;
+  background: #FDE8E1 !important;
+  color: #B4410F !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
 }
 .jp_stat_info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: baseline !important;
+  gap: 6px !important;
+  min-width: 0 !important;
 }
 .jp_stat_number {
-  font-size: 32px;
-  font-weight: 800;
-  line-height: 1.1;
-  color: #1C1917;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  color: #0F172A !important;
+  letter-spacing: -0.01em;
 }
 .jp_stat_title {
-  font-size: 14.5px;
-  font-weight: 600;
-  color: #57534E;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: #64748B !important;
+  white-space: nowrap !important;
+}
+@media (max-width: 768px) {
+  .jp_art_stat_card {
+    border-right: none !important;
+    justify-content: flex-start !important;
+  }
 }
 
 /* ==========================================================================
