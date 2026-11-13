@@ -622,14 +622,14 @@ a:hover {
 .obj_issue_toc .section > h2,
 .obj_issue_toc .section > h3 {
   font-family: 'Lora', Georgia, serif !important;
-  font-size: 13.5px !important;
+  font-size: 13px !important;
   font-weight: 800 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
   color: #B4410F !important;
   border-bottom: 2px solid #E2E8F0 !important;
-  padding-bottom: 6px !important;
-  margin: 18px 0 4px 0 !important;
+  padding-bottom: 4px !important;
+  margin: 10px 0 6px 0 !important;
   display: block !important;
 }
 .obj_issue_toc .section:first-child > h2,
@@ -637,14 +637,14 @@ a:hover {
   margin-top: 0 !important;
 }
 
-/* Issue TOC Articles List (Claude Artifact Card Stack - Opsi 2) */
+/* Issue TOC Articles List (Claude Artifact Card Stack - Tight High-Density) */
 .obj_issue_toc .articles {
   list-style: none !important;
   margin: 0 !important;
   padding: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 16px !important;
+  gap: 10px !important;
   border: none !important;
 }
 .obj_issue_toc .articles > li {
@@ -654,33 +654,33 @@ a:hover {
   background: transparent !important;
 }
 
-/* Article Summary Card (Exact Claude Artifact Terracotta Border & 4px Shadow) */
+/* Article Summary Card (Compact Claude Artifact Terracotta Border & 3px Shadow) */
 .jp_art_article_card {
   background: #FFFFFF !important;
   border: 1px solid #E3A88F !important;
-  border-radius: 10px !important;
-  padding: 18px 22px !important;
-  box-shadow: 4px 4px 0 rgba(120, 113, 108, 0.18), 0 6px 14px rgba(0, 0, 0, 0.06) !important;
+  border-radius: 8px !important;
+  padding: 12px 18px !important;
+  box-shadow: 3px 3px 0 rgba(120, 113, 108, 0.16), 0 4px 10px rgba(0, 0, 0, 0.05) !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 8px !important;
+  gap: 5px !important;
   transition: transform 0.15s ease, box-shadow 0.15s ease !important;
 }
 .jp_art_article_card:hover {
   transform: translateY(-1px) !important;
-  box-shadow: 4px 4px 0 rgba(120, 113, 108, 0.25), 0 8px 18px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 3px 3px 0 rgba(120, 113, 108, 0.22), 0 6px 14px rgba(0, 0, 0, 0.07) !important;
 }
 .jp_art_article_top {
   display: flex !important;
   justify-content: space-between !important;
   align-items: flex-start !important;
-  gap: 16px !important;
+  gap: 14px !important;
 }
 .jp_art_article_title {
   margin: 0 !important;
   font-family: 'Lora', Georgia, serif !important;
-  font-size: 18.5px !important;
-  line-height: 1.4 !important;
+  font-size: 17px !important;
+  line-height: 1.35 !important;
   font-weight: 700 !important;
 }
 .jp_art_article_title a {
@@ -691,14 +691,14 @@ a:hover {
   color: #B4410F !important;
 }
 .jp_art_pages {
-  font-size: 13px !important;
+  font-size: 12.5px !important;
   color: #78716C !important;
   white-space: nowrap !important;
-  padding-top: 3px !important;
+  padding-top: 2px !important;
   font-weight: 500 !important;
 }
 .jp_art_authors {
-  font-size: 14.5px !important;
+  font-size: 14px !important;
   color: #44403C !important;
   font-style: normal !important;
   margin: 0 !important;
@@ -706,9 +706,9 @@ a:hover {
 .jp_art_article_meta_row {
   display: flex !important;
   flex-wrap: wrap !important;
-  gap: 8px 18px !important;
+  gap: 6px 14px !important;
   align-items: center !important;
-  font-size: 13px !important;
+  font-size: 12.5px !important;
   color: #6B6460 !important;
   padding-top: 2px !important;
 }
@@ -718,15 +718,15 @@ a:hover {
 .jp_art_pdf_btn {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 6px !important;
-  border: 1.5px solid #B4410F !important;
+  gap: 5px !important;
+  border: 1.2px solid #B4410F !important;
   color: #B4410F !important;
   background: #FFFFFF !important;
   text-decoration: none !important;
   font-weight: 700 !important;
-  padding: 4px 12px !important;
-  border-radius: 6px !important;
-  font-size: 12.5px !important;
+  padding: 3px 10px !important;
+  border-radius: 5px !important;
+  font-size: 12px !important;
   transition: all 0.15s ease !important;
 }
 .jp_art_pdf_btn:hover {
