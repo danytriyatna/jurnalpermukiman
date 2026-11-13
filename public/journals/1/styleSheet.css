@@ -599,9 +599,29 @@ a:hover {
   color: #B4410F !important;
 }
 
-/* Hide Default OJS Duplicate Issue Header/Cover */
-.obj_issue_toc > .heading {
+/* Hide Default OJS Duplicate Issue Header/Cover & Duplicate Full Issue Block */
+.obj_issue_toc > .heading,
+.obj_issue_toc > .galleys {
   display: none !important;
+}
+
+/* Section Headings inside Issue TOC (e.g. PENGANTAR REDAKSI, ARTIKEL) */
+.obj_issue_toc .section > h2,
+.obj_issue_toc .section > h3 {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: #B4410F !important;
+  border-bottom: 2px solid #E2E8F0 !important;
+  padding-bottom: 6px !important;
+  margin: 18px 0 4px 0 !important;
+  display: block !important;
+}
+.obj_issue_toc .section:first-child > h2,
+.obj_issue_toc .section:first-child > h3 {
+  margin-top: 0 !important;
 }
 
 /* Issue TOC Articles List (Flat Linear List - JCEF UGM Style) */
