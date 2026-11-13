@@ -22,7 +22,7 @@
 <body class="pkp_page_{$requestedPage|escape|default:"index"} pkp_op_{$requestedOp|escape|default:"index"}{if $showingLogo} has_site_logo{/if}" dir="{$currentLocaleLangDir|escape|default:"ltr"}">
 
 	{* FULL-WIDTH HERO HEADER SECTION (EDGE-TO-EDGE) *}
-	<header class="pkp_structure_head hero_card_fullwidth" id="headerNavigationContainer" role="banner">
+	<header class="pkp_structure_head hero_card_fullwidth{if $requestedPage && $requestedPage !== 'index'} jp_subpage_header{/if}" id="headerNavigationContainer" role="banner">
 		{* Skip to content nav links *}
 		{include file="frontend/components/skipLinks.tpl"}
 
@@ -69,41 +69,43 @@
 			</div>
 		</nav>
 
-		{* Hero Banner Headline Content (Container 1280px) *}
-		<div class="jp_art_hero_body">
-			<div class="jp_art_hero_lead">
-				<div class="jp_art_hero_badges">
-					<span class="jp_hero_badge oa">
-						<span class="jp_badge_gold_dot"></span> Open Access Journal
-					</span>
-					<span class="jp_hero_badge">Double-blind Peer Review</span>
-					<a href="https://sinta.kemdikbud.go.id/journals/profile/2822" target="_blank" rel="noopener" class="jp_hero_badge sinta">
-						<i class="fa fa-certificate text-gold" style="color: #F5B335;"></i> SINTA Accredited
-					</a>
+		{if !$requestedPage || $requestedPage === 'index'}
+			{* Hero Banner Headline Content (Container 1280px) *}
+			<div class="jp_art_hero_body">
+				<div class="jp_art_hero_lead">
+					<div class="jp_art_hero_badges">
+						<span class="jp_hero_badge oa">
+							<span class="jp_badge_gold_dot"></span> Open Access Journal
+						</span>
+						<span class="jp_hero_badge">Double-blind Peer Review</span>
+						<a href="https://sinta.kemdikbud.go.id/journals/profile/2822" target="_blank" rel="noopener" class="jp_hero_badge sinta">
+							<i class="fa fa-certificate text-gold" style="color: #F5B335;"></i> SINTA Accredited
+						</a>
+					</div>
+					<h1 class="jp_art_hero_title">Jurnal Permukiman</h1>
+					<p class="jp_art_hero_desc">
+						A peer-reviewed, open access scholarly journal that publishes original research, reviews, and conceptual papers in the field of human settlements, covering urban and rural areas, the buildings within them, and the facilities and infrastructure that support community life and livelihoods. Published by the Directorate of Building and Environmental Sanitation Engineering Development, Directorate General of Human Settlements, Ministry of Public Works, Indonesia.
+					</p>
+					<div class="jp_art_hero_actions">
+						<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}" class="jp_hero_btn_primary">
+							<i class="fa fa-upload" aria-hidden="true"></i>
+							<span>Submit Manuscript</span>
+						</a>
+						<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}#authorGuidelines" class="jp_hero_btn_secondary">
+							<span>Author Guidelines</span>
+						</a>
+					</div>
 				</div>
-				<h1 class="jp_art_hero_title">Jurnal Permukiman</h1>
-				<p class="jp_art_hero_desc">
-					A peer-reviewed, open access scholarly journal that publishes original research, reviews, and conceptual papers in the field of human settlements, covering urban and rural areas, the buildings within them, and the facilities and infrastructure that support community life and livelihoods. Published by the Directorate of Building and Environmental Sanitation Engineering Development, Directorate General of Human Settlements, Ministry of Public Works, Indonesia.
-				</p>
-				<div class="jp_art_hero_actions">
-					<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}" class="jp_hero_btn_primary">
-						<i class="fa fa-upload" aria-hidden="true"></i>
-						<span>Submit Manuscript</span>
-					</a>
-					<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}#authorGuidelines" class="jp_hero_btn_secondary">
-						<span>Author Guidelines</span>
-					</a>
-				</div>
-			</div>
-		</div><!-- .jp_art_hero_body -->
+			</div><!-- .jp_art_hero_body -->
 
-		<div class="jp_art_hero_caption">
-			<div class="jp_art_hero_caption_inner">
-				<span class="jp_caption_pill">
-					Kantor Direktorat Bina Teknik Bangunan Gedung dan Penyehatan Lingkungan
-				</span>
+			<div class="jp_art_hero_caption">
+				<div class="jp_art_hero_caption_inner">
+					<span class="jp_caption_pill">
+						Kantor Direktorat Bina Teknik Bangunan Gedung dan Penyehatan Lingkungan
+					</span>
+				</div>
 			</div>
-		</div>
+		{/if}
 	</header><!-- .hero_card_fullwidth -->
 
 	{* TOP 4 STATISTIC CARDS (MATCHING CLAUDE ARTIFACT 100%) *}

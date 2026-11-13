@@ -1282,3 +1282,148 @@ a:hover {
 .jp-widget-floating-container {
   z-index: 9999;
 }
+
+/* ==========================================================================
+   INTERNAL / SUB-PAGE MODERN CARD STYLING (MATCHING CLAUDE REDESIGN)
+   ========================================================================== */
+.hero_card_fullwidth.jp_subpage_header {
+  min-height: auto !important;
+  padding-bottom: 0 !important;
+  background: linear-gradient(135deg, #7A2E0E 0%, #4F1C07 100%) !important;
+  border-bottom: 3px solid #F5B335 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.hero_card_fullwidth.jp_subpage_header:after {
+  display: none !important;
+}
+
+.hero_card_fullwidth.jp_subpage_header .jp_art_navbar {
+  border-bottom: none !important;
+}
+
+/* White Card Container for All Sub-Pages (Static Pages, About, Submissions, Editorial Team, etc.) */
+.pkp_structure_main > .page:not(.page_index_journal),
+.pkp_structure_main > .page_about,
+.pkp_structure_main > .page_submissions,
+.pkp_structure_main > .page_editorial_team,
+.pkp_structure_main > .page_issue_archive,
+.pkp_structure_main > .page_search {
+  background: #FFFFFF !important;
+  border: 1px solid #E7E5E4 !important;
+  border-radius: 12px !important;
+  padding: 32px 38px !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+  margin-top: 16px !important;
+  margin-bottom: 36px !important;
+  color: #292524 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  line-height: 1.7 !important;
+  box-sizing: border-box !important;
+}
+
+/* Page Headings */
+.pkp_structure_main > .page:not(.page_index_journal) > h1,
+.pkp_structure_main > .page:not(.page_index_journal) > h2:first-of-type,
+.pkp_structure_main > .page:not(.page_index_journal) > .page_title {
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  letter-spacing: -0.01em !important;
+  margin: 0 0 20px 0 !important;
+  padding-bottom: 12px !important;
+  border-bottom: 2px solid #F5E8E0 !important;
+}
+
+.pkp_structure_main > .page:not(.page_index_journal) h2 {
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  color: #7A2E0E !important;
+  margin: 28px 0 14px 0 !important;
+}
+
+.pkp_structure_main > .page:not(.page_index_journal) h3 {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #1C1917 !important;
+  margin: 20px 0 10px 0 !important;
+}
+
+/* Lists styling */
+.pkp_structure_main > .page:not(.page_index_journal) ol,
+.pkp_structure_main > .page:not(.page_index_journal) ul {
+  padding-left: 24px !important;
+  margin: 14px 0 20px 0 !important;
+}
+
+.pkp_structure_main > .page:not(.page_index_journal) li {
+  margin-bottom: 8px !important;
+  line-height: 1.65 !important;
+  color: #374151 !important;
+}
+
+/* Notification & Alert boxes (e.g. Submissions login prompt) */
+.pkp_structure_main > .page:not(.page_index_journal) .cmp_notification {
+  background: #FDF8F6 !important;
+  border: 1px solid #F0D5C9 !important;
+  border-left: 4px solid #A63A1E !important;
+  border-radius: 8px !important;
+  padding: 14px 18px !important;
+  margin-bottom: 24px !important;
+  color: #7A2E0E !important;
+  font-size: 14px !important;
+}
+
+.pkp_structure_main > .page:not(.page_index_journal) .cmp_notification a {
+  color: #A63A1E !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+}
+
+/* Breadcrumbs inside subpage */
+.cmp_breadcrumbs {
+  margin: 0 0 16px 0 !important;
+  font-size: 13px !important;
+  color: #78716C !important;
+}
+
+.cmp_breadcrumbs a {
+  color: #7A2E0E !important;
+  text-decoration: none !important;
+}
+
+.cmp_breadcrumbs a:hover {
+  text-decoration: underline !important;
+}
+
+.cmp_breadcrumbs .separator {
+  margin: 0 8px !important;
+  color: #A8A29E !important;
+}
+
+.cmp_breadcrumbs .current {
+  color: #1C1917 !important;
+  font-weight: 600 !important;
+}
+
+/* Tables inside sub-pages */
+.pkp_structure_main > .page:not(.page_index_journal) table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 20px 0 !important;
+}
+
+.pkp_structure_main > .page:not(.page_index_journal) th {
+  background: #FBF7F4 !important;
+  color: #7A2E0E !important;
+  font-weight: 600 !important;
+  padding: 10px 14px !important;
+  border: 1px solid #E7E5E4 !important;
+  text-align: left !important;
+}
+
+.pkp_structure_main > .page:not(.page_index_journal) td {
+  padding: 10px 14px !important;
+  border: 1px solid #E7E5E4 !important;
+  color: #374151 !important;
+}
