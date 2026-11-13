@@ -763,19 +763,32 @@ a:hover {
 }
 
 /* ==========================================================================
-   EDITORIAL WORKFLOW SECTION & SPEED METRICS
+   EDITORIAL WORKFLOW SECTION & SPEED METRICS (FULL WIDTH ROW)
    ========================================================================== */
 .jp_art_workflow_section {
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
   background: #FAF5F1 !important;
-  border: 1px solid #EDE3DC !important;
-  border-radius: 16px !important;
-  margin: 36px 0 !important;
-  padding: 40px 32px !important;
+  border-top: 1px solid #EDE3DC !important;
+  border-bottom: 1px solid #EDE3DC !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-radius: 0 !important;
+  margin-top: 48px !important;
+  margin-bottom: 0 !important;
+  padding: 56px 0 !important;
 }
 .jp_art_workflow_inner {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
+  max-width: 1320px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 28px !important;
 }
 .jp_art_workflow_title {
   margin: 0;
@@ -786,9 +799,9 @@ a:hover {
 }
 
 .jp_art_workflow_grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 16px !important;
 }
 .jp_art_step_card {
   background: #FFFFFF;
@@ -996,7 +1009,9 @@ a:hover {
    ANNOUNCEMENTS SECTION
    ========================================================================== */
 .cmp_announcements {
+  margin-top: 48px !important;
   margin-bottom: 40px !important;
+  width: 100% !important;
 }
 .jp_art_announcements_list {
   display: flex;
