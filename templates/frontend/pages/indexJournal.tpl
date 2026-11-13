@@ -71,15 +71,15 @@
 									<span>Full issue ({$galley->getGalleyLabel()|escape})</span>
 								</a>
 							{/foreach}
+							<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}" class="jp_art_btn_outline">
+								<span>Issue table of contents</span>
+							</a>
 						{else}
 							<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}" class="jp_art_btn_full_issue">
 								<i class="fa fa-book" aria-hidden="true"></i>
-								<span>Issue table of contents</span>
+								<span>View issue &amp; articles</span>
 							</a>
 						{/if}
-						<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}" class="jp_art_btn_outline">
-							<span>Issue table of contents</span>
-						</a>
 					</div>
 				</div>
 			</div>

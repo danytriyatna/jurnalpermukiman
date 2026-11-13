@@ -416,15 +416,15 @@ a:hover {
 }
 
 /* ==========================================================================
-   3. MAIN TWO-COLUMN SCAFFOLDING (1280PX CENTERED)
+   3. MAIN TWO-COLUMN SCAFFOLDING (1320PX CENTERED)
    ========================================================================== */
 .pkp_structure_content.has_sidebar {
   display: flex !important;
   flex-direction: row !important;
   justify-content: space-between !important;
   align-items: flex-start !important;
-  gap: 40px !important;
-  padding: 0 0 48px 0 !important;
+  gap: 28px !important;
+  padding: 0 0 36px 0 !important;
   width: 100% !important;
 }
 .pkp_structure_content.has_sidebar .pkp_structure_main {
@@ -435,15 +435,15 @@ a:hover {
   padding: 0 !important;
 }
 .pkp_structure_content.has_sidebar .pkp_structure_sidebar {
-  flex: 0 0 320px !important;
-  width: 320px !important;
-  min-width: 320px !important;
-  max-width: 320px !important;
+  flex: 0 0 300px !important;
+  width: 300px !important;
+  min-width: 300px !important;
+  max-width: 300px !important;
   float: none !important;
   padding: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 26px !important;
+  gap: 20px !important;
 }
 .pkp_structure_main:before,
 .pkp_structure_main:after {
@@ -459,11 +459,11 @@ a:hover {
   align-items: flex-end;
   gap: 12px;
   border-bottom: 2px solid #1C1917;
-  padding-bottom: 12px;
-  margin-bottom: 24px;
+  padding-bottom: 8px;
+  margin-bottom: 18px;
 }
 .jp_art_section_tag {
-  font-size: 13px;
+  font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: #B4410F;
@@ -472,12 +472,12 @@ a:hover {
 .jp_art_section_title {
   margin: 0;
   font-family: 'Lora', Georgia, serif !important;
-  font-size: 30px !important;
+  font-size: 24px !important;
   font-weight: 700 !important;
   color: #1C1917 !important;
 }
 .jp_art_view_all_link {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
   color: #B4410F;
 }
@@ -486,49 +486,49 @@ a:hover {
    CURRENT ISSUE SECTION (HERO & ARTICLE CARDS)
    ========================================================================== */
 .current_issue {
-  margin-bottom: 44px !important;
+  margin-bottom: 32px !important;
 }
 .jp_art_issue_hero {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 20px;
   align-items: flex-start;
-  margin-bottom: 28px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #EDE3DC;
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #E2E8F0;
 }
 .jp_art_issue_cover_wrap {
-  flex: 0 0 170px;
+  flex: 0 0 130px;
 }
 .jp_art_issue_cover_img {
-  width: 170px;
-  height: 240px;
+  width: 130px;
+  height: 184px;
   object-fit: cover;
   border-radius: 6px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
   display: block;
 }
 .jp_art_issue_cover_placeholder {
-  width: 170px;
-  height: 240px;
+  width: 130px;
+  height: 184px;
   border-radius: 6px;
   background: #B4410F;
   color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 16px;
+  padding: 12px;
   box-sizing: border-box;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 .jp_cover_placeholder_title {
   font-family: 'Lora', Georgia, serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.15;
 }
 .jp_cover_placeholder_sub {
-  font-size: 11px;
+  font-size: 10px;
   color: #FDE7DA;
 }
 
@@ -537,35 +537,35 @@ a:hover {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 .jp_art_issue_meta_line {
-  font-size: 14.5px;
-  color: #57534E;
+  font-size: 13px;
+  color: #64748B;
   font-weight: 500;
 }
 .jp_art_issue_desc {
-  font-size: 15.5px;
-  line-height: 1.6;
-  color: #44403C;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #475569;
 }
 .jp_art_issue_actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   padding-top: 4px;
 }
 .jp_art_btn_full_issue {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   background: #B4410F !important;
   color: #FFFFFF !important;
   text-decoration: none !important;
   font-weight: 600;
-  font-size: 14px;
-  padding: 10px 18px;
-  border-radius: 8px;
+  font-size: 12.5px;
+  padding: 7px 15px;
+  border-radius: 6px;
   transition: background 0.15s ease;
 }
 .jp_art_btn_full_issue:hover {
@@ -575,17 +575,22 @@ a:hover {
   display: inline-flex;
   align-items: center;
   background: #FFFFFF !important;
-  border: 1px solid #EDE3DC !important;
-  color: #1C1917 !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #334155 !important;
   text-decoration: none !important;
   font-weight: 600;
-  font-size: 14px;
-  padding: 10px 18px;
-  border-radius: 8px;
+  font-size: 12.5px;
+  padding: 7px 15px;
+  border-radius: 6px;
 }
 .jp_art_btn_outline:hover {
   border-color: #B4410F !important;
   color: #B4410F !important;
+}
+
+/* Hide Default OJS Duplicate Issue Header/Cover */
+.obj_issue_toc > .heading {
+  display: none !important;
 }
 
 /* Issue TOC Articles List */
@@ -595,7 +600,7 @@ a:hover {
   padding: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 18px !important;
+  gap: 12px !important;
 }
 .obj_issue_toc .articles > li {
   margin: 0 !important;
@@ -604,60 +609,63 @@ a:hover {
   background: none !important;
 }
 
-/* Article Summary Card */
+/* Article Summary Card (High-Density Academic Editorial) */
 .jp_art_article_card {
   background: #FFFFFF;
-  border: 1px solid #E3A88F !important;
-  border-radius: 10px !important;
-  padding: 20px 22px !important;
-  box-shadow: 4px 4px 0 rgba(120, 113, 108, 0.14), 0 4px 12px rgba(0,0,0,0.04) !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 8px !important;
+  padding: 14px 18px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  gap: 6px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .jp_art_article_card:hover {
-  transform: translateY(-1px);
-  box-shadow: 4px 4px 0 rgba(120, 113, 108, 0.2), 0 8px 18px rgba(0,0,0,0.08) !important;
+  transform: none !important;
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
 }
 .jp_art_article_top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
+  gap: 14px;
 }
 .jp_art_article_title {
   margin: 0 !important;
   font-family: 'Lora', Georgia, serif !important;
-  font-size: 18.5px !important;
-  line-height: 1.4 !important;
+  font-size: 16.5px !important;
+  line-height: 1.38 !important;
   font-weight: 700 !important;
 }
 .jp_art_article_title a {
-  color: #1C1917 !important;
+  color: #0F172A !important;
 }
 .jp_art_article_title a:hover {
   color: #B4410F !important;
+  text-decoration: underline !important;
 }
 .jp_art_pages {
-  font-size: 13px;
-  color: #78716C;
+  font-size: 12px;
+  color: #64748B;
   white-space: nowrap;
-  padding-top: 3px;
+  padding-top: 2px;
   font-weight: 500;
 }
 .jp_art_authors {
-  font-size: 14.5px;
-  color: #44403C;
+  font-size: 13.5px;
+  color: #475569;
+  font-style: italic;
 }
 .jp_art_article_meta_row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 18px;
+  gap: 6px 14px;
   align-items: center;
-  font-size: 13px;
-  color: #6B6460;
-  padding-top: 4px;
+  font-size: 12px;
+  color: #64748B;
+  padding-top: 2px;
 }
 .jp_art_galleys {
   display: inline-flex;
@@ -665,15 +673,15 @@ a:hover {
 .jp_art_pdf_btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  border: 1.5px solid #B4410F !important;
+  gap: 5px;
+  border: 1.2px solid #B4410F !important;
   color: #B4410F !important;
   background: #FFFFFF !important;
   text-decoration: none !important;
   font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 12.5px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11.5px;
   transition: all 0.15s ease;
 }
 .jp_art_pdf_btn:hover {
