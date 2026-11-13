@@ -5,7 +5,10 @@
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @brief Display the index page for a journal with SINTA 2 badge & clean cards.
+ * @brief Display the index page for Jurnal Permukiman matching Claude Artifact Design:
+ *        1. Current Issue Section (Left Column)
+ *        2. Editorial Workflow & Speed Metrics (Left Column)
+ *        3. Announcements Section (Left Column)
  *}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$currentJournal->getLocalizedName()}
 
@@ -13,97 +16,267 @@
 
 	{call_hook name="Templates::Index::journal"}
 
-	{if !$activeTheme->getOption('useHomepageImageAsHeader') && $homepageImage}
-		<div class="homepage_image">
-			<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}"{if $homepageImage.altText} alt="{$homepageImage.altText|escape}"{/if}>
-		</div>
-	{/if}
-
-	{* Journal Description *}
-	{if $activeTheme->getOption('showDescriptionInJournalIndex')}
-		<section class="homepage_about">
-			<a id="homepageAbout"></a>
-			<div class="section_title_header">
-				<h2>{translate key="about.aboutContext"}</h2>
-				<span class="badge_sinta2">
-					<i class="fa fa-certificate" style="color: #C13D0D; font-size: 11px;"></i> Jurnal Terakreditasi SINTA 2
-				</span>
+	{* =========================================================================
+	   1. CURRENT ISSUE (MAIN CONTENT SECTION)
+	   ========================================================================= *}
+	{if $issue}
+		<section class="current_issue" aria-labelledby="currentIssueHeading">
+			<div class="jp_art_section_header">
+				<div>
+					<div class="jp_art_section_tag">CURRENT ISSUE</div>
+					<h2 id="currentIssueHeading" class="jp_art_section_title">
+						{$issue->getIssueIdentification()|strip_unsafe_html}
+					</h2>
+				</div>
+				<a href="{url page="issue" op="archive" router=$smarty.const.ROUTE_PAGE}" class="jp_art_view_all_link">
+					View all issues &rarr;
+				</a>
 			</div>
-			{$currentContext->getLocalizedData('description')}
+
+			{* Issue Summary Banner (Cover + Description + Actions) *}
+			<div class="jp_art_issue_hero">
+				<div class="jp_art_issue_cover_wrap">
+					{assign var=issueCover value=$issue->getLocalizedCoverImageUrl()}
+					{if $issueCover}
+						<img src="{$issueCover|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape|default:'Issue Cover'}" class="jp_art_issue_cover_img">
+					{else}
+						<div class="jp_art_issue_cover_placeholder">
+							<div class="jp_cover_placeholder_title">JURNAL<br>PERMUKIMAN</div>
+							<div class="jp_cover_placeholder_sub">Sampul issue<br>(aset resmi)</div>
+						</div>
+					{/if}
+				</div>
+
+				<div class="jp_art_issue_details">
+					<div class="jp_art_issue_meta_line">
+						{if $issue->getDatePublished()}
+							<span>Published {$issue->getDatePublished()|date_format:$dateFormatShort}</span>
+						{/if}
+						{if $issueGalleys}
+							&middot; <span>{$issueGalleys|@count} galley files</span>
+						{/if}
+					</div>
+					<div class="jp_art_issue_desc">
+						{if $issue->hasDescription()}
+							{$issue->getLocalizedDescription()|strip_unsafe_html}
+						{else}
+							This issue presents empirical studies on public rental housing, livable settlements, green building technology, infrastructure development, and sanitation engineering.
+						{/if}
+					</div>
+					<div class="jp_art_issue_actions">
+						{if $issueGalleys}
+							{foreach from=$issueGalleys item=galley}
+								<a href="{url page="issue" op="view" path=$issue->getBestIssueId()|to_array:$galley->getBestGalleyId()}" class="jp_art_btn_full_issue">
+									<i class="fa fa-download" aria-hidden="true"></i>
+									<span>Full issue ({$galley->getGalleyLabel()|escape})</span>
+								</a>
+							{/foreach}
+						{else}
+							<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}" class="jp_art_btn_full_issue">
+								<i class="fa fa-book" aria-hidden="true"></i>
+								<span>Issue table of contents</span>
+							</a>
+						{/if}
+						<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}" class="jp_art_btn_outline">
+							<span>Issue table of contents</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			{* Include issue table of contents (articles list) *}
+			{include file="frontend/objects/issue_toc.tpl"}
 		</section>
 	{/if}
 
-	{* Announcements *}
+	{* =========================================================================
+	   2. EDITORIAL WORKFLOW & JOURNAL PERFORMANCE STATISTICS
+	   ========================================================================= *}
+	<section class="jp_art_workflow_section" aria-labelledby="editorialWorkflowHeading">
+		<div class="jp_art_workflow_inner">
+			<div>
+				<div class="jp_art_section_tag">EDITORIAL WORKFLOW</div>
+				<h2 id="editorialWorkflowHeading" class="jp_art_workflow_title">From submission to publication</h2>
+			</div>
+
+			{* 4 Step Process Cards *}
+			<div class="jp_art_workflow_grid">
+				<div class="jp_art_step_card">
+					<div class="jp_step_badge">1</div>
+					<h3 class="jp_step_title">Submission</h3>
+					<p class="jp_step_desc">Authors submit the manuscript online using the official journal template.</p>
+				</div>
+				<div class="jp_art_step_card">
+					<div class="jp_step_badge">2</div>
+					<h3 class="jp_step_title">Editorial Screening</h3>
+					<p class="jp_step_desc">Editors check scope, author guidelines, and initial Turnitin similarity check.</p>
+				</div>
+				<div class="jp_art_step_card">
+					<div class="jp_step_badge">3</div>
+					<h3 class="jp_step_title">Peer Review</h3>
+					<p class="jp_step_desc">Manuscripts are evaluated through a rigorous double-blind peer review process.</p>
+				</div>
+				<div class="jp_art_step_card">
+					<div class="jp_step_badge">4</div>
+					<h3 class="jp_step_title">Publication</h3>
+					<p class="jp_step_desc">Accepted articles are copyedited, assigned a Crossref DOI, and published Open Access.</p>
+				</div>
+			</div>
+
+			{* Performance Insights Row (5 Matriks dari OJS & Claude Artifact) *}
+			<div class="jp_art_perf_box">
+				<div class="jp_art_perf_head">
+					<h3 class="jp_art_perf_title">Journal Statistics</h3>
+					<button type="button" class="jp_art_insights_btn" id="jpOpenInsightsBtn">
+						View all insights &rarr;
+					</button>
+				</div>
+				<div class="jp_art_perf_grid">
+					<div class="jp_art_perf_item">
+						<div class="jp_art_perf_val">43 days</div>
+						<div class="jp_art_perf_lbl">Time to first decision</div>
+					</div>
+					<div class="jp_art_perf_item">
+						<div class="jp_art_perf_val">57 days</div>
+						<div class="jp_art_perf_lbl">Submission to acceptance</div>
+					</div>
+					<div class="jp_art_perf_item">
+						<div class="jp_art_perf_val">15 days</div>
+						<div class="jp_art_perf_lbl">Acceptance to publication</div>
+					</div>
+					<div class="jp_art_perf_item">
+						<div class="jp_art_perf_val">79%</div>
+						<div class="jp_art_perf_lbl">Acceptance rate (OJS)</div>
+					</div>
+					<div class="jp_art_perf_item">
+						<div class="jp_art_perf_val">2 issues</div>
+						<div class="jp_art_perf_lbl">Publication frequency / year</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{* =========================================================================
+	   INSIGHTS MODAL OVERLAY
+	   ========================================================================= *}
+	<div id="jpInsightsModal" class="jp_insights_modal" role="dialog" aria-modal="true" aria-labelledby="jpInsightsModalTitle" hidden>
+		<div class="jp_insights_backdrop" id="jpInsightsBackdrop"></div>
+		<div class="jp_insights_dialog">
+			<div class="jp_insights_dialog_head">
+				<div>
+					<h3 id="jpInsightsModalTitle">Jurnal Permukiman &mdash; Editorial &amp; Impact Insights</h3>
+					<p>Transparansi metrik editorial dan performa penerbitan berbasis database OJS resmi.</p>
+				</div>
+				<button type="button" class="jp_insights_close" id="jpCloseInsightsBtn" aria-label="Close insights">&times;</button>
+			</div>
+			<div class="jp_insights_dialog_body">
+				<div class="jp_insights_kpis">
+					<div class="jp_kpi_box">
+						<span class="jp_kpi_num">371</span>
+						<span class="jp_kpi_title">Total Submissions</span>
+					</div>
+					<div class="jp_kpi_box">
+						<span class="jp_kpi_num">228</span>
+						<span class="jp_kpi_title">Published Articles</span>
+					</div>
+					<div class="jp_kpi_box">
+						<span class="jp_kpi_num">389,159</span>
+						<span class="jp_kpi_title">Abstract Views</span>
+					</div>
+					<div class="jp_kpi_box">
+						<span class="jp_kpi_num">642,779</span>
+						<span class="jp_kpi_title">PDF Downloads</span>
+					</div>
+				</div>
+				<table class="jp_insights_table">
+					<tbody>
+						<tr>
+							<td>Average Time to First Decision</td>
+							<td><strong>43 days</strong> (6 weeks)</td>
+						</tr>
+						<tr>
+							<td>Average Submission to Acceptance</td>
+							<td><strong>57 days</strong> (8 weeks)</td>
+						</tr>
+						<tr>
+							<td>Average Acceptance to Online Publication</td>
+							<td><strong>15 days</strong> (2 weeks)</td>
+						</tr>
+						<tr>
+							<td>Finalized Acceptance Rate</td>
+							<td><strong>79%</strong> (228 accepted / 59 declined)</td>
+						</tr>
+						<tr>
+							<td>Peer Review Method</td>
+							<td><strong>Double-Blind Peer Review</strong> (2 independent reviewers)</td>
+						</tr>
+						<tr>
+							<td>Publication Frequency &amp; Language</td>
+							<td><strong>May &amp; November</strong> &middot; English-Only (since Jan 2026)</td>
+						</tr>
+						<tr>
+							<td>License &amp; APC</td>
+							<td><strong>CC BY-NC-ND 4.0</strong> &middot; Free of Charge (Rp 0)</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script>
+	(function () {
+		var openBtn = document.getElementById('jpOpenInsightsBtn');
+		var closeBtn = document.getElementById('jpCloseInsightsBtn');
+		var backdrop = document.getElementById('jpInsightsBackdrop');
+		var modal = document.getElementById('jpInsightsModal');
+		if (!openBtn || !modal) return;
+		function openModal() { modal.hidden = false; document.body.style.overflow = 'hidden'; }
+		function closeModal() { modal.hidden = true; document.body.style.overflow = ''; }
+		openBtn.addEventListener('click', openModal);
+		if (closeBtn) closeBtn.addEventListener('click', closeModal);
+		if (backdrop) backdrop.addEventListener('click', closeModal);
+		document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+	})();
+	</script>
+
+	{* =========================================================================
+	   3. ANNOUNCEMENTS SECTION
+	   ========================================================================= *}
 	{if $numAnnouncementsHomepage && $announcements|@count}
-		<section class="cmp_announcements highlight_first">
-			<a id="homepageAnnouncements"></a>
-			<h2>
-				{translate key="announcement.announcements"}
-			</h2>
-			<div class="announcements_list">
-			{foreach name=announcements from=$announcements item=announcement}
-				{if $smarty.foreach.announcements.iteration > $numAnnouncementsHomepage}
-					{break}
-				{/if}
-				{if $smarty.foreach.announcements.iteration == 1}
-					<article class="obj_announcement_summary highlight_card">
-						<div class="announcement_meta_row">
-							<h3>
+		<section class="cmp_announcements" aria-labelledby="announcementsHeading">
+			<div class="jp_art_section_header">
+				<h2 id="announcementsHeading" class="jp_art_section_title">Announcements</h2>
+				<a href="{url page="announcement" router=$smarty.const.ROUTE_PAGE}" class="jp_art_view_all_link">
+					All announcements &rarr;
+				</a>
+			</div>
+			<div class="jp_art_announcements_list">
+				{foreach name=announcements from=$announcements item=announcement}
+					{if $smarty.foreach.announcements.iteration > $numAnnouncementsHomepage}{break}{/if}
+					<article class="jp_art_announcement_item">
+						<div class="jp_art_announcement_date">
+							{$announcement->getDatePosted()|date_format:"%d %B %Y"}
+						</div>
+						<div class="jp_art_announcement_body">
+							<h3 class="jp_art_announcement_title">
 								<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
-									<i class="fa fa-bullhorn" style="color: #C13D0D; margin-right: 6px;"></i>
 									{$announcement->getLocalizedTitle()|escape}
 								</a>
 							</h3>
-							<span class="date_badge">{$announcement->getDatePosted()|date_format:$dateFormatShort}</span>
-						</div>
-						<div class="description">
-							{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
-						</div>
-					</article>
-				{else}
-					<article class="obj_announcement_summary standard_card">
-						<div class="standard_card_left">
-							<i class="fa fa-file-text-o" style="color: #94A3B8; font-size: 15px; margin-right: 12px;"></i>
-							<div class="standard_card_text">
-								<h4>
-									<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
-										{$announcement->getLocalizedTitle()|escape}
-									</a>
-								</h4>
-								<span class="date_posted">Dipublikasikan: {$announcement->getDatePosted()|date_format:$dateFormatShort}</span>
+							<div class="jp_art_announcement_desc">
+								{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
 							</div>
 						</div>
-						<i class="fa fa-angle-right chevron_right" style="color: #94A3B8; font-size: 14px;"></i>
+						<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}" class="jp_art_read_more">
+							Read more &rarr;
+						</a>
 					</article>
-				{/if}
-			{/foreach}
+				{/foreach}
 			</div>
 		</section>
 	{/if}
 
-	{* Latest issue *}
-	{if $issue}
-		<section class="current_issue">
-			<a id="homepageIssue"></a>
-			<h2>
-				{translate key="journal.currentIssue"}
-			</h2>
-			<div class="current_issue_title">
-				{$issue->getIssueIdentification()|strip_unsafe_html}
-			</div>
-			{include file="frontend/objects/issue_toc.tpl" heading="h3"}
-			<a href="{url router=$smarty.const.ROUTE_PAGE page="issue" op="archive"}" class="read_more">
-				{translate key="journal.viewAllIssues"}
-			</a>
-		</section>
-	{/if}
-
-	{* Additional Homepage Content *}
-	{if $additionalHomeContent}
-		<div class="additional_content">
-			{$additionalHomeContent}
-		</div>
-	{/if}
-</div><!-- .page -->
+</div><!-- .page_index_journal -->
 
 {include file="frontend/components/footer.tpl"}

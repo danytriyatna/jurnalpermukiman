@@ -1,655 +1,1191 @@
 /**
- * Jurnal Permukiman - Official Ecosystem Redesign CSS
- * Exact match with Mockup_Redesign_Ecosystem_JP.html
+ * Jurnal Permukiman - Master Stylesheet
+ * 100% Pixel-Aligned with Claude Artifact Design (SMDFR2MtGqFpzMQuEqysc4)
+ *
+ * Full-Width Architecture:
+ * - Edge-to-Edge Hero Card Header (width: 100%, background full-bleed)
+ * - Full-Width 4-Card Quick Statistics Section (border-bottom: 1px solid #EDE3DC)
+ * - 1600px Centered Content Containers for Inner Alignment
+ *
+ * Primary Palette:
+ * - Brand Deep Rust: #7A2E0E / #8B340E
+ * - Accent Terracotta: #B4410F / #C13D0D
+ * - KemenPU Gold: #F5B335 / #F2B124
+ * - Cream Warm Background: #FAF5F1
+ * - Warm Sand Border: #EDE3DC / #E7DDD5
+ * - Text Charcoal: #1C1917 / Text Muted: #57534E
  */
 
-/* RESET & BODY BACKGROUND RADIAL MERAH BATA */
-body, html {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-  background-color: #C13D0D !important;
-  background-image: radial-gradient(circle at 50% 0%, #C84313 0%, #9C2E07 100%) !important;
-  background-attachment: fixed !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  color: #1E293B !important;
+/* ==========================================================================
+   RESET & GLOBAL TYPOGRAPHY
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-/* WADAH UTAMA KARTU PUTIH FLOATING 1520PX */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #FFFFFF !important;
+  color: #1C1917 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #B4410F;
+  text-decoration: none;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+a:hover {
+  color: #7A2E0E;
+}
+
+/* Base Container (1600px wide container) */
 .pkp_structure_page {
-  max-width: 1520px !important;
-  width: 94% !important;
-  margin: 16px auto !important;
+  width: 100% !important;
+  max-width: 1600px !important;
+  margin: 0 auto !important;
+  padding: 36px 24px 0 24px !important;
   background: #FFFFFF !important;
-  border-radius: 16px !important;
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.25) !important;
-  padding: 24px !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important;
+  box-shadow: none !important;
 }
 
-/* MATIKAN CLEARFIX THEME LAMA */
-.pkp_structure_page:before, .pkp_structure_page:after,
-.pkp_head_wrapper:before, .pkp_head_wrapper:after,
-.pkp_site_name_wrapper:before, .pkp_site_name_wrapper:after,
-.pkp_navigation_primary_wrapper:before, .pkp_navigation_primary_wrapper:after,
-.pkp_navigation_primary_row:before, .pkp_navigation_primary_row:after,
-.pkp_structure_content:before, .pkp_structure_content:after,
-.pkp_structure_main:before, .pkp_structure_main:after {
-  display: none !important;
-  content: none !important;
-}
-
-/* HEADER CARD */
-.pkp_structure_head {
-  width: 100% !important;
-  max-width: 100% !important;
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  margin: 0 0 24px 0 !important;
-}
-.pkp_head_wrapper {
-  width: 100% !important;
-  max-width: 100% !important;
-  background: #FFFFFF !important;
-  border-radius: 16px !important;
-  border: 1px solid rgba(226, 232, 240, 0.8) !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
-  overflow: hidden !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* BAR UTILITAS ATAS */
-.pkp_top_utility_bar {
-  background: rgba(248, 250, 252, 0.95) !important;
-  padding: 9px 24px !important;
-  border-bottom: 1px solid #F1F5F9 !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  font-size: 13px !important;
-  color: #475569 !important;
-}
-.pkp_top_utility_left {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  font-weight: 500 !important;
-  color: #334155 !important;
-}
-.pkp_top_utility_right {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-}
-.pkp_top_utility_right a {
-  color: #475569 !important;
-  text-decoration: none !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  transition: color 0.15s ease !important;
-}
-.pkp_top_utility_right a:hover {
-  color: #C13D0D !important;
-}
-.pkp_top_utility_right .utility_divider {
-  color: #CBD5E1 !important;
-}
-
-/* BANNER WALL TO WALL (ANTI-CLIPPING & PRESERVASI ASLI 100%) */
-.pkp_site_name_wrapper, .pkp_site_name, .bata_banner_wall {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  min-height: auto !important;
-  max-height: none !important;
-  line-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: #FFFFFF !important;
-  position: static !important;
-  overflow: visible !important;
-  display: block !important;
-  float: none !important;
-}
-.pkp_site_name a.is_img, .bata_banner_wall a {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  max-height: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 0 !important;
-  position: static !important;
-  float: none !important;
-}
-.pkp_site_name a.is_img img, .bata_banner_wall img {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  max-height: none !important;
-  min-height: auto !important;
-  display: block !important;
-  border: none !important;
-  position: static !important;
-  object-fit: contain !important;
-}
-
-/* BILAH NAVIGASI MERAH BATA DENGAN HIGHLIGHT HOME */
-.pkp_site_nav_menu {
-  background: linear-gradient(135deg, #C13D0D 0%, #A5330A 100%) !important;
-  color: #FFFFFF !important;
-  padding: 6px 24px !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
-}
-.bata_nav_left {
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
-}
-.bata_nav_left a {
-  color: rgba(255, 255, 255, 0.9) !important;
-  text-decoration: none !important;
-  padding: 6px 14px !important;
-  border-radius: 8px !important;
-  transition: all 0.15s ease !important;
-  font-weight: 700 !important;
-}
-.bata_nav_left a:hover {
-  background: rgba(0, 0, 0, 0.2) !important;
-  color: #FFFFFF !important;
-}
-.bata_nav_left a.nav_home_capsule {
-  background: rgba(0, 0, 0, 0.25) !important;
-  color: #FFFFFF !important;
-  font-weight: 800 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2) !important;
-}
-
-.bata_nav_search {
+/* ==========================================================================
+   1. FULL-WIDTH HERO HEADER SECTION (EDGE-TO-EDGE)
+   ========================================================================== */
+.hero_card_fullwidth {
+  width: 100vw !important;
   position: relative !important;
-  width: 230px !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  color: #FFFFFF !important;
+  background: linear-gradient(180deg, rgba(180,65,15,0.92) 0%, rgba(180,65,15,0.65) 18%, rgba(180,65,15,0.15) 38%),
+              linear-gradient(90deg, #4F1C07 0%, #5E220A 28%, rgba(110,40,11,0.90) 48%, rgba(140,52,14,0.55) 68%, rgba(150,56,15,0.2) 88%, rgba(150,56,15,0) 100%),
+              url('/public/journals/1/header_bg_perfect_text.jpg') right center / cover no-repeat !important;
+  box-shadow: 0 10px 24px rgba(79, 28, 7, 0.15) !important;
 }
-.bata_nav_search input {
+
+/* Navbar Top */
+.jp_art_navbar {
   width: 100% !important;
-  box-sizing: border-box !important;
-  background: rgba(255, 255, 255, 0.2) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(4px);
+}
+.jp_art_nav_container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.jp_art_brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none !important;
+  color: #FFFFFF !important;
+}
+.jp_art_logo_pill {
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 5px 10px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.jp_art_logo_img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+.jp_art_brand_text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.jp_art_brand_title {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+}
+.jp_art_brand_sub {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #FBE3D7;
+}
+
+.jp_art_nav_links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 22px;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.jp_art_nav_links a {
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  padding: 6px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  opacity: 0.92;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+.jp_art_nav_links a:hover {
+  opacity: 1;
+}
+.jp_art_nav_links a.is_active {
+  border-bottom: 2px solid #F5B335;
+  opacity: 1;
+}
+.jp_user_chip {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+}
+.jp_nav_register_pill {
+  background: #F5B335 !important;
+  color: #1C1917 !important;
+  padding: 5px 14px !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+}
+.jp_nav_register_pill:hover {
+  background: #F2B124 !important;
+  color: #1C1917 !important;
+}
+.jp_nav_search_btn {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+/* Ecosystem Capsule Buttons */
+.jp_ecosystem_capsules {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+}
+.jp_capsule_btn {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 3px 9px !important;
+  border-radius: 999px !important;
+  text-decoration: none !important;
+}
+.jp_capsule_btn.mqc {
+  background: #0F172A !important;
   color: #FFFFFF !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  border-radius: 8px !important;
-  padding: 6px 12px 6px 32px !important;
-  font-size: 12px !important;
-  outline: none !important;
-  transition: all 0.15s ease !important;
 }
-.bata_nav_search input::placeholder {
-  color: rgba(255, 255, 255, 0.8) !important;
-}
-.bata_nav_search input:focus {
-  background: #FFFFFF !important;
-  color: #1E293B !important;
-}
-.bata_nav_search input:focus::placeholder {
-  color: #94A3B8 !important;
-}
-.bata_nav_search .search_icon {
-  position: absolute !important;
-  left: 10px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  color: rgba(255, 255, 255, 0.8) !important;
-  font-size: 12px !important;
-  pointer-events: none !important;
-}
-.bata_nav_search input:focus + .search_icon {
-  color: #C13D0D !important;
+.jp_capsule_btn.jp {
+  background: #B4410F !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
-/* LAYOUT 2 KOLOM KONTEN KIRI & SIDEBAR KANAN */
-.pkp_structure_content {
+/* Hero Body */
+.jp_art_hero_body {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 40px 24px 44px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  position: relative;
+}
+.jp_art_hero_lead {
+  flex: 1 1 580px;
+  max-width: 880px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.jp_art_hero_badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.jp_hero_badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 5px 12px;
+  border-radius: 999px;
+  color: #FFFFFF;
+}
+.jp_badge_gold_dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #F5B335;
+}
+.jp_art_hero_title {
+  margin: 0;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 40px !important;
+  font-weight: 700 !important;
+  line-height: 1.15;
+  color: #FFFFFF !important;
+}
+.jp_art_hero_desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #F3E3DA;
+}
+.jp_art_hero_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 6px;
+}
+.jp_hero_btn_primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #F5B335 !important;
+  color: #1C1917 !important;
+  text-decoration: none !important;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 11px 24px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(245, 179, 53, 0.35);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.jp_hero_btn_primary:hover {
+  background: #F2B124 !important;
+  transform: translateY(-1px);
+}
+.jp_hero_btn_secondary {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  transition: background 0.15s ease;
+}
+.jp_hero_btn_secondary:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+.jp_art_hero_caption {
+  flex: 1 1 300px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.jp_caption_pill {
+  font-size: 12px;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.38);
+  padding: 6px 14px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
+/* ==========================================================================
+   2. TOP 4 STATISTIC CARDS (FULL WIDTH STRIP, EXACT CLAUDE ARTIFACT)
+   ========================================================================== */
+.jp_art_stat_cards_fullwidth {
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  background: #FFFFFF !important;
+  border-bottom: 1px solid #EDE3DC !important;
+  padding: 32px 0 !important;
+}
+.jp_art_stat_container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.jp_art_stat_grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+@media (max-width: 992px) {
+  .jp_art_stat_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 576px) {
+  .jp_art_stat_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.jp_art_stat_card {
+  background: #FFFFFF;
+  border: 1px solid #EDE3DC;
+  border-radius: 16px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 4px 14px rgba(120, 60, 30, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.jp_art_stat_card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(120, 60, 30, 0.1);
+}
+.jp_stat_icon_box {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: #FBEDE6;
+  color: #B4410F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+.jp_stat_info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.jp_stat_number {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #1C1917;
+}
+.jp_stat_title {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #57534E;
+}
+
+/* ==========================================================================
+   3. MAIN TWO-COLUMN SCAFFOLDING (1280PX CENTERED)
+   ========================================================================== */
+.pkp_structure_content.has_sidebar {
   display: flex !important;
   flex-direction: row !important;
   justify-content: space-between !important;
   align-items: flex-start !important;
-  gap: 28px !important;
+  gap: 40px !important;
+  padding: 0 0 48px 0 !important;
   width: 100% !important;
-  max-width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  float: none !important;
 }
-.pkp_structure_main {
-  flex: 1 1 65% !important;
-  width: 65% !important;
+.pkp_structure_content.has_sidebar .pkp_structure_main {
+  flex: 1 1 0% !important;
   min-width: 0 !important;
   float: none !important;
-  margin: 0 !important;
+  width: auto !important;
   padding: 0 !important;
-  position: relative !important;
-  z-index: 5 !important;
 }
-.pkp_structure_sidebar,
-.pkp_sidebar {
-  flex: 0 0 30% !important;
-  width: 30% !important;
-  max-width: 380px !important;
-  min-width: 300px !important;
+.pkp_structure_content.has_sidebar .pkp_structure_sidebar {
+  flex: 0 0 320px !important;
+  width: 320px !important;
+  min-width: 320px !important;
+  max-width: 320px !important;
   float: none !important;
-  margin: 0 !important;
   padding: 0 !important;
-  position: relative !important;
-  z-index: 20 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 26px !important;
 }
-
-/* KARTU PUTIH INDIVIDUAL SEGAR & RESET MUTLAK DARI LEAK OJS THEME LAMA */
-.fresh-card,
-.homepage_about,
-.cmp_announcements,
-.current_issue,
-.pkp_block,
-.pkp_structure_main > .page,
-.pkp_page_index .homepage_about,
-.pkp_page_index .cmp_announcements,
-.pkp_page_index .current_issue,
-.pkp_page_index .additional_content {
-  background: #FFFFFF !important;
-  border: 1px solid #E2E8F0 !important;
-  border-radius: 14px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(193, 61, 13, 0.03) !important;
-  padding: 24px 28px !important;
-  margin: 0 0 24px 0 !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  float: none !important;
-  position: relative !important;
-  left: 0 !important;
-  right: 0 !important;
-}
-.pkp_block {
-  padding: 16px !important;
-  margin-bottom: 20px !important;
-  border-radius: 12px !important;
-}
-
-/* MATIKAN SEMUA FLOAT & NEGATIVE MARGIN BAWAAN PADA ANNOUNCEMENTS */
-.cmp_announcements:before, .cmp_announcements:after,
-.cmp_announcements > .obj_announcement_summary:before,
-.cmp_announcements > .obj_announcement_summary:after,
-.cmp_announcements .more:before, .cmp_announcements .more:after {
+.pkp_structure_main:before,
+.pkp_structure_main:after {
   display: none !important;
   content: none !important;
 }
-.cmp_announcements > .obj_announcement_summary,
-.cmp_announcements .more {
-  float: none !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
+
+/* Section Header Typography */
+.jp_art_section_header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  border-bottom: 2px solid #1C1917;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+.jp_art_section_tag {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #B4410F;
+  text-transform: uppercase;
+}
+.jp_art_section_title {
+  margin: 0;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 30px !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+}
+.jp_art_view_all_link {
+  font-size: 14px;
+  font-weight: 600;
+  color: #B4410F;
 }
 
-/* JUDUL SEKSI DENGAN AKSI MERAH BATA */
-.section_title_header, .cmp_announcements h2, .current_issue h2 {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  border-bottom: 2px solid rgba(193, 61, 13, 0.2) !important;
-  padding-bottom: 12px !important;
-  margin: 0 0 16px 0 !important;
+/* ==========================================================================
+   CURRENT ISSUE SECTION (HERO & ARTICLE CARDS)
+   ========================================================================== */
+.current_issue {
+  margin-bottom: 44px !important;
 }
-.section_title_header h2, .cmp_announcements h2, .current_issue h2 {
-  font-size: 18px !important;
-  font-weight: 800 !important;
-  color: #0F172A !important;
-  letter-spacing: -0.01em !important;
-  margin: 0 !important;
-  display: inline-flex !important;
-  align-items: center !important;
+.jp_art_issue_hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #EDE3DC;
 }
-.section_title_header h2::before, .cmp_announcements h2::before, .current_issue h2::before {
-  content: '' !important;
-  display: inline-block !important;
-  width: 7px !important;
-  height: 20px !important;
-  background: #C13D0D !important;
-  border-radius: 9999px !important;
-  margin-right: 10px !important;
+.jp_art_issue_cover_wrap {
+  flex: 0 0 170px;
+}
+.jp_art_issue_cover_img {
+  width: 170px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  display: block;
+}
+.jp_art_issue_cover_placeholder {
+  width: 170px;
+  height: 240px;
+  border-radius: 6px;
+  background: #B4410F;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  box-sizing: border-box;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+.jp_cover_placeholder_title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+.jp_cover_placeholder_sub {
+  font-size: 11px;
+  color: #FDE7DA;
 }
 
-/* BADGE SINTA 2 */
-.badge_sinta2 {
-  font-size: 11.5px !important;
-  font-weight: 700 !important;
-  color: #C13D0D !important;
-  background: #FDF4F0 !important;
-  border: 1px solid #F4D4C9 !important;
-  padding: 3.5px 12px !important;
-  border-radius: 9999px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
+.jp_art_issue_details {
+  flex: 1 1 300px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-
-/* TABEL IDENTITAS JURNAL */
-.homepage_about table {
-  width: 100% !important;
-  border-collapse: separate !important;
-  border-spacing: 0 !important;
-  border: 1px solid rgba(226, 232, 240, 0.8) !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  margin-top: 16px !important;
-  background: rgba(248, 250, 252, 0.5) !important;
+.jp_art_issue_meta_line {
+  font-size: 14.5px;
+  color: #57534E;
+  font-weight: 500;
 }
-.homepage_about table tr {
-  border-bottom: 1px solid rgba(226, 232, 240, 0.7) !important;
+.jp_art_issue_desc {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: #44403C;
 }
-.homepage_about table tr:last-child {
-  border-bottom: none !important;
+.jp_art_issue_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 4px;
 }
-.homepage_about table td {
-  padding: 10px 16px !important;
-  font-size: 14px !important;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.7) !important;
-}
-.homepage_about table tr:last-child td {
-  border-bottom: none !important;
-}
-.homepage_about table td:first-child {
-  background: rgba(241, 245, 249, 0.7) !important;
-  font-weight: 700 !important;
-  color: #334155 !important;
-  width: 35% !important;
-}
-.homepage_about table td:last-child {
-  background: transparent !important;
-  color: #1E293B !important;
-}
-.homepage_about table td p {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-.homepage_about table a {
-  color: #C13D0D !important;
-  font-family: monospace !important;
-  font-weight: 700 !important;
+.jp_art_btn_full_issue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #B4410F !important;
+  color: #FFFFFF !important;
   text-decoration: none !important;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  transition: background 0.15s ease;
 }
-
-/* ANNOUNCEMENTS: HIGHLIGHT CARD & LIST ROW */
-.announcements_list {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px !important;
+.jp_art_btn_full_issue:hover {
+  background: #8B340E !important;
 }
-.highlight_card {
-  background: #FDF4F0 !important;
-  border: 1px solid #F4D4C9 !important;
-  border-radius: 12px !important;
-  padding: 18px 20px !important;
-}
-.highlight_card .announcement_meta_row {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  margin-bottom: 8px !important;
-}
-.highlight_card h3 {
-  margin: 0 !important;
-  font-size: 15px !important;
-  font-weight: 800 !important;
-  line-height: 1.4 !important;
-}
-.highlight_card h3 a {
-  color: #C13D0D !important;
-  text-decoration: none !important;
-}
-.highlight_card .date_badge {
-  font-size: 12px !important;
-  font-family: monospace !important;
-  font-weight: 600 !important;
-  color: #64748B !important;
-}
-.highlight_card .description {
-  font-size: 13.5px !important;
-  color: #334155 !important;
-  line-height: 1.6 !important;
-  margin: 0 !important;
-}
-.standard_card {
+.jp_art_btn_outline {
+  display: inline-flex;
+  align-items: center;
   background: #FFFFFF !important;
-  border: 1px solid rgba(226, 232, 240, 0.8) !important;
-  border-radius: 12px !important;
-  padding: 12px 18px !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  transition: all 0.15s ease !important;
-}
-.standard_card:hover {
-  background: #F8FAFC !important;
-  border-color: #CBD5E1 !important;
-}
-.standard_card_left {
-  display: flex !important;
-  align-items: center !important;
-}
-.standard_card_text h4 {
-  margin: 0 !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  line-height: 1.3 !important;
-}
-.standard_card_text h4 a {
-  color: #1E293B !important;
+  border: 1px solid #EDE3DC !important;
+  color: #1C1917 !important;
   text-decoration: none !important;
-  transition: color 0.15s ease !important;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: 8px;
 }
-.standard_card_text h4 a:hover {
-  color: #C13D0D !important;
-}
-.standard_card_text .date_posted {
-  font-size: 12px !important;
-  color: #94A3B8 !important;
-  margin-top: 2px !important;
-  display: block !important;
+.jp_art_btn_outline:hover {
+  border-color: #B4410F !important;
+  color: #B4410F !important;
 }
 
-/* TABEL IDENTITAS JURNAL: EMAIL & ISSN WARNA BATA */
-.homepage_about table a, .homepage_about table tr:last-child td:last-child {
-  color: #C13D0D !important;
-  font-weight: 600 !important;
-}
-
-/* SIDEBAR: BLOCK TITLE */
-.pkp_block .title {
-  font-size: 12px !important;
-  font-weight: 800 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
-  color: #1E293B !important;
-  border-bottom: 2px solid rgba(193, 61, 13, 0.3) !important;
-  padding-bottom: 8px !important;
-  margin: 0 0 12px 0 !important;
-}
-
-/* MAKE A SUBMISSION */
-.block_make_submission .content a,
-.block_make_submission .content a.block_make_submission_link {
+/* Issue TOC Articles List */
+.obj_issue_toc .articles {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 3px !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  padding: 14px 16px !important;
-  background: linear-gradient(135deg, #C13D0D 0%, #A0320A 100%) !important;
+  gap: 18px !important;
+}
+.obj_issue_toc .articles > li {
+  margin: 0 !important;
+  padding: 0 !important;
   border: none !important;
-  border-radius: 12px !important;
-  color: #FFFFFF !important;
+  background: none !important;
+}
+
+/* Article Summary Card */
+.jp_art_article_card {
+  background: #FFFFFF;
+  border: 1px solid #E3A88F !important;
+  border-radius: 10px !important;
+  padding: 20px 22px !important;
+  box-shadow: 4px 4px 0 rgba(120, 113, 108, 0.14), 0 4px 12px rgba(0,0,0,0.04) !important;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.jp_art_article_card:hover {
+  transform: translateY(-1px);
+  box-shadow: 4px 4px 0 rgba(120, 113, 108, 0.2), 0 8px 18px rgba(0,0,0,0.08) !important;
+}
+.jp_art_article_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.jp_art_article_title {
+  margin: 0 !important;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 18.5px !important;
+  line-height: 1.4 !important;
+  font-weight: 700 !important;
+}
+.jp_art_article_title a {
+  color: #1C1917 !important;
+}
+.jp_art_article_title a:hover {
+  color: #B4410F !important;
+}
+.jp_art_pages {
+  font-size: 13px;
+  color: #78716C;
+  white-space: nowrap;
+  padding-top: 3px;
+  font-weight: 500;
+}
+.jp_art_authors {
+  font-size: 14.5px;
+  color: #44403C;
+}
+.jp_art_article_meta_row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  align-items: center;
+  font-size: 13px;
+  color: #6B6460;
+  padding-top: 4px;
+}
+.jp_art_galleys {
+  display: inline-flex;
+}
+.jp_art_pdf_btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid #B4410F !important;
+  color: #B4410F !important;
+  background: #FFFFFF !important;
   text-decoration: none !important;
-  box-shadow: 0 4px 12px rgba(193, 61, 13, 0.25) !important;
-  text-align: center !important;
-  line-height: 1.35 !important;
-  transition: all 0.18s ease !important;
-  cursor: pointer !important;
-  pointer-events: auto !important;
-  position: relative !important;
-  z-index: 25 !important;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  transition: all 0.15s ease;
 }
-.block_make_submission .content a:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 16px rgba(193, 61, 13, 0.35) !important;
+.jp_art_pdf_btn:hover {
+  background: #B4410F !important;
   color: #FFFFFF !important;
 }
-.block_make_submission .content a::before,
-.block_make_submission .content a::after {
+.jp_art_metric_stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.jp_art_doi_pill {
+  color: #6B6460 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.jp_art_doi_pill:hover {
+  color: #B4410F !important;
+  text-decoration: underline;
+}
+.jp_doi_dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #F5A623;
+  color: #FFFFFF;
+  font-size: 9.5px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   EDITORIAL WORKFLOW SECTION & SPEED METRICS
+   ========================================================================== */
+.jp_art_workflow_section {
+  background: #FAF5F1 !important;
+  border: 1px solid #EDE3DC !important;
+  border-radius: 16px !important;
+  margin: 36px 0 !important;
+  padding: 40px 32px !important;
+}
+.jp_art_workflow_inner {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.jp_art_workflow_title {
+  margin: 0;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 28px !important;
+  font-weight: 700;
+  color: #1C1917;
+}
+
+.jp_art_workflow_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.jp_art_step_card {
+  background: #FFFFFF;
+  border: 1px solid #EDE3DC;
+  border-radius: 12px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.jp_step_badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: #7A2E0E;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+.jp_step_title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1C1917;
+}
+.jp_step_desc {
+  margin: 0;
+  font-size: 14px;
+  color: #57534E;
+  line-height: 1.5;
+}
+
+/* Performance Box (Journal Statistics inside Workflow) */
+.jp_art_perf_box {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 10px;
+}
+.jp_art_perf_head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.jp_art_perf_title {
+  margin: 0;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1C1917;
+}
+.jp_art_insights_btn {
+  background: #B4410F !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.jp_art_insights_btn:hover {
+  background: #7A2E0E !important;
+}
+
+.jp_art_perf_grid {
+  background: #FFFFFF;
+  border: 1px solid #E7DDD5;
+  border-radius: 12px;
+  padding: 22px 26px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 20px 24px;
+}
+.jp_art_perf_item {
+  min-width: 0;
+  border-left: 4px solid #7A2E0E;
+  padding-left: 14px;
+}
+.jp_art_perf_val {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #1C1917;
+}
+.jp_art_perf_lbl {
+  font-size: 13.5px;
+  color: #57534E;
+}
+
+/* ==========================================================================
+   INSIGHTS MODAL OVERLAY
+   ========================================================================== */
+.jp_insights_modal[hidden] {
   display: none !important;
-  content: none !important;
 }
-.block_make_submission .content a span,
-.block_make_submission .content a i {
-  display: inline !important;
+.jp_insights_modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
-.block_make_submission .content a span.ms_title_row,
-.block_make_submission .ms_title_row {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-  font-size: 14px !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.05em !important;
-  text-transform: uppercase !important;
-  color: #FFFFFF !important;
-  line-height: 1.3 !important;
+.jp_insights_backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 15, 10, 0.65);
 }
-.block_make_submission .content a span.ms_subtitle,
-.block_make_submission .ms_subtitle {
-  display: block !important;
-  font-size: 11px !important;
-  font-weight: 400 !important;
-  color: rgba(255, 255, 255, 0.85) !important;
-  line-height: 1.3 !important;
+.jp_insights_dialog {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  border: 1px solid #EDE3DC;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 720px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+}
+.jp_insights_dialog_head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 24px;
+  background: #7A2E0E;
+  color: #FFFFFF;
+}
+.jp_insights_dialog_head h3 {
+  margin: 0 0 4px 0;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 20px;
+  color: #FFFFFF;
+}
+.jp_insights_dialog_head p {
+  margin: 0;
+  font-size: 13px;
+  color: #FDE7DA;
+}
+.jp_insights_close {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 6px;
+}
+.jp_insights_dialog_body {
+  padding: 24px;
+}
+.jp_insights_kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) {
+  .jp_insights_kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.jp_kpi_box {
+  background: #FAF5F1;
+  border: 1px solid #EDE3DC;
+  border-top: 3px solid #B4410F;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.jp_kpi_num {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  color: #1C1917;
+}
+.jp_kpi_title {
+  display: block;
+  font-size: 11.5px;
+  color: #57534E;
+}
+.jp_insights_table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.jp_insights_table td {
+  border: 1px solid #EDE3DC;
+  padding: 10px 14px;
+  text-align: left;
+}
+.jp_insights_table tr:nth-child(even) td {
+  background: #FAF5F1;
 }
 
-/* REGISTRATION BLOCK */
-.registration_cta_btn {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  padding: 10px 14px !important;
-  background: #1E293B !important;
-  border-radius: 8px !important;
-  color: #FFFFFF !important;
-  font-size: 12.5px !important;
-  font-weight: 700 !important;
-  text-decoration: none !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
-  transition: all 0.15s ease !important;
+/* ==========================================================================
+   ANNOUNCEMENTS SECTION
+   ========================================================================== */
+.cmp_announcements {
+  margin-bottom: 40px !important;
 }
-.registration_cta_btn:hover {
-  background: #0F172A !important;
-  color: #FFFFFF !important;
+.jp_art_announcements_list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.jp_art_announcement_item {
+  border: 1px solid #EDE3DC;
+  border-radius: 12px;
+  padding: 22px 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  align-items: center;
+  transition: border-color 0.15s ease;
+}
+.jp_art_announcement_item:hover {
+  border-color: #B4410F;
+}
+.jp_art_announcement_date {
+  flex: 0 0 auto;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #B4410F;
+}
+.jp_art_announcement_body {
+  flex: 1 1 440px;
+  min-width: 0;
+}
+.jp_art_announcement_title {
+  margin: 0 0 4px 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+.jp_art_announcement_title a {
+  color: #1C1917 !important;
+}
+.jp_art_announcement_title a:hover {
+  color: #B4410F !important;
+}
+.jp_art_announcement_desc {
+  font-size: 14px;
+  color: #57534E;
+}
+.jp_art_read_more {
+  font-size: 14px;
+  font-weight: 600;
+  color: #B4410F;
+  white-space: nowrap;
 }
 
-/* JOURNAL POLICY (18 MENU) */
-#customblock-journal-police .title {
+/* ==========================================================================
+   SIDEBAR (CLAUDE ARTIFACT PILL & POLICY MENU)
+   ========================================================================== */
+.pkp_structure_sidebar .pkp_block {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+.pkp_structure_sidebar .pkp_block .title {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1C1917;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #EDE3DC;
+}
+
+/* Register Pill Button */
+.jp_art_register_pill_btn {
   display: flex !important;
+  align-items: center !important;
   justify-content: space-between !important;
-  align-items: center !important;
+  gap: 14px !important;
+  background: #C13D0D !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  border-radius: 999px !important;
+  padding: 8px 10px 8px 24px !important;
+  box-shadow: 0 4px 14px rgba(193, 61, 13, 0.28) !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
 }
-#customblock-journal-police .title::after {
-  content: '18 Menu Resmi' !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  color: #C13D0D !important;
-  background: #FDF4F0 !important;
-  border: 1px solid #F4D4C9 !important;
-  padding: 2px 8px !important;
-  border-radius: 9999px !important;
-  text-transform: none !important;
-  letter-spacing: normal !important;
+.jp_art_register_pill_btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 8px 20px rgba(193, 61, 13, 0.38) !important;
+}
+.jp_art_reg_label {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #FFFFFF;
+}
+.jp_art_reg_icon_box {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 38px;
+  border-radius: 12px;
+  background: #F2B124;
+  color: #1C1917;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.jp_art_sub_secondary_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #FAF5F1;
+  border: 1.5px solid #EDE3DC;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #7A2E0E;
+  text-decoration: none;
+}
+.jp_art_sub_secondary_btn:hover {
+  background: #F5EAE1;
+  border-color: #C13D0D;
 }
 
+/* Journal Policy 18 Links */
 .policy_menu_stack {
   display: flex !important;
   flex-direction: column !important;
-  gap: 3.5px !important;
+  gap: 6px !important;
 }
 .policy-bata-btn {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  padding: 8.5px 12px !important;
+  padding: 7px 12px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #EDE3DC !important;
   border-radius: 6px !important;
   font-size: 13.5px !important;
-  font-weight: 600 !important;
-  color: #FFFFFF !important;
-  background: #C13D0D !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08) !important;
-  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  color: #44403C !important;
   text-decoration: none !important;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
 }
 .policy-bata-btn:hover {
-  background: #A0320A !important;
-  transform: translateX(4px) !important;
-  box-shadow: 0 4px 10px rgba(193, 61, 13, 0.35) !important;
-  color: #FFFFFF !important;
+  background: #FAF5F1 !important;
+  border-color: #B4410F !important;
+  color: #B4410F !important;
 }
 .policy-bata-btn.home-btn {
-  background: #778899 !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  background: #7A2E0E !important;
+  border-color: #7A2E0E !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
 }
 .policy-bata-btn.home-btn:hover {
-  background: #5A6978 !important;
-  box-shadow: 0 4px 10px rgba(119, 136, 153, 0.4) !important;
+  background: #B4410F !important;
+  border-color: #B4410F !important;
 }
 .policy-bata-btn .btn_label {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-}
-.policy-bata-btn .btn_label i {
-  width: 16px !important;
-  text-align: center !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 .policy-bata-btn .chevron_icon {
-  font-size: 12px !important;
-  opacity: 0.75 !important;
+  font-size: 12px;
+  opacity: 0.6;
 }
 
-/* FOOTER */
-.pkp_structure_footer_wrapper {
-  background: transparent !important;
-  border-top: 1px solid #E2E8F0 !important;
-  padding: 24px 0 8px !important;
-  margin-top: 32px !important;
-  font-size: 12.5px !important;
-  color: #64748B !important;
+/* ==========================================================================
+   FOOTER (GOLD TOP BORDER + DEEP RUST 4-COLUMN CONTAINER)
+   ========================================================================== */
+.jp_art_footer_root {
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  background: #FFFFFF !important;
+  border-top: 5px solid #F5B335 !important;
+  padding: 48px 0 32px 0 !important;
+  margin-top: 48px !important;
 }
-.pkp_structure_footer_wrapper a {
-  color: #C13D0D !important;
+.jp_art_footer_card {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+  background: #7A2E0E;
+  border-radius: 14px;
+  overflow: hidden;
+  color: #FFFFFF;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+.jp_art_footer_columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 900px) {
+  .jp_art_footer_columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .jp_art_footer_columns {
+    grid-template-columns: 1fr;
+  }
+}
+.jp_art_footer_col {
+  padding: 34px 28px;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 14px;
+}
+.jp_art_footer_col:last-child {
+  border-right: none;
+}
+.jp_art_col_title {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #F5B335 !important;
+  text-transform: uppercase;
+}
+.jp_art_footer_col a {
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  opacity: 0.9;
+  transition: opacity 0.15s ease;
+}
+.jp_art_footer_col a:hover {
+  opacity: 1;
+  text-decoration: underline !important;
+}
+
+/* Footer Bottom Bar */
+.jp_art_footer_bottom {
+  background: rgba(0, 0, 0, 0.24);
+  padding: 18px 28px;
+  font-size: 13px;
+  color: #EAD9CF;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 28px;
+}
+.jp_art_bottom_text {
+  flex: 1 1 540px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  line-height: 1.5;
+}
+.jp_art_bottom_text a {
+  color: #FFFFFF !important;
+  text-decoration: underline;
+}
+.jp_art_cc_badge img {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+/* Floating mascot positioning */
+#jp-mascot-btn,
+.jp-widget-floating-container {
+  z-index: 9999;
 }
