@@ -1080,14 +1080,14 @@ a:hover {
 }
 .pkp_structure_sidebar .pkp_block .title {
   display: block;
-  font-size: 13px !important;
-  font-weight: 800 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
-  color: #0F172A !important;
-  padding-bottom: 6px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  color: #1C1917 !important;
+  padding-bottom: 0 !important;
   margin-bottom: 10px !important;
-  border-bottom: 2px solid #0F172A !important;
+  border-bottom: none !important;
 }
 
 /* Register Pill Button */
@@ -1151,56 +1151,24 @@ a:hover {
   color: #B4410F !important;
 }
 
-/* Journal Policy 18 Links (High-Density Minimalist Stack) */
-.policy_menu_stack {
+/* Journal Policy (Matching Claude Artifact 100%: Clean Minimalist Text Links) */
+.jp_art_policy_list {
   display: flex !important;
   flex-direction: column !important;
-  gap: 1px !important;
-  background: #FFFFFF !important;
-  border: 1px solid #E2E8F0 !important;
-  border-radius: 8px !important;
-  padding: 4px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+  gap: 7px !important;
 }
-.policy-bata-btn {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 5px 8px !important;
-  background: transparent !important;
-  border: none !important;
-  border-radius: 4px !important;
-  font-size: 12px !important;
-  color: #334155 !important;
+.jp_art_policy_list a {
+  color: #7A2E0E !important;
   text-decoration: none !important;
-  transition: background 0.12s ease, color 0.12s ease !important;
+  line-height: 1.45 !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  display: block !important;
+  transition: color 0.15s ease !important;
 }
-.policy-bata-btn:hover {
-  background: #F8FAFC !important;
-  color: #B4410F !important;
-}
-.policy-bata-btn.home-btn {
-  background: #B4410F !important;
-  color: #FFFFFF !important;
-  font-weight: 700 !important;
-}
-.policy-bata-btn.home-btn:hover {
-  background: #8B340E !important;
-}
-.policy-bata-btn .btn_label {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-.policy-bata-btn .btn_label i {
-  width: 14px !important;
-  text-align: center !important;
-  font-size: 11px !important;
-  opacity: 0.8 !important;
-}
-.policy-bata-btn .chevron_icon {
-  font-size: 10px !important;
-  opacity: 0.5 !important;
+.jp_art_policy_list a:hover {
+  color: #C13D0D !important;
+  text-decoration: underline !important;
 }
 
 /* ==========================================================================
