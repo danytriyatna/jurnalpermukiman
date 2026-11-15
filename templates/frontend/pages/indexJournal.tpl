@@ -245,34 +245,36 @@
 	   ========================================================================= *}
 	{if $numAnnouncementsHomepage && $announcements|@count}
 		<section class="cmp_announcements" aria-labelledby="announcementsHeading">
-			<div class="jp_art_section_header">
-				<h2 id="announcementsHeading" class="jp_art_section_title">Announcements</h2>
-				<a href="{url page="announcement" router=$smarty.const.ROUTE_PAGE}" class="jp_art_view_all_link">
-					All announcements &rarr;
-				</a>
-			</div>
-			<div class="jp_art_announcements_list">
-				{foreach name=announcements from=$announcements item=announcement}
-					{if $smarty.foreach.announcements.iteration > $numAnnouncementsHomepage}{break}{/if}
-					<article class="jp_art_announcement_item">
-						<div class="jp_art_announcement_date">
-							{$announcement->getDatePosted()|date_format:"%d %B %Y"}
-						</div>
-						<div class="jp_art_announcement_body">
-							<h3 class="jp_art_announcement_title">
-								<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
-									{$announcement->getLocalizedTitle()|escape}
-								</a>
-							</h3>
-							<div class="jp_art_announcement_desc">
-								{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
+			<div class="jp_art_announcements_inner">
+				<div class="jp_art_section_header">
+					<h2 id="announcementsHeading" class="jp_art_section_title">Announcements</h2>
+					<a href="{url page="announcement" router=$smarty.const.ROUTE_PAGE}" class="jp_art_view_all_link">
+						All announcements &rarr;
+					</a>
+				</div>
+				<div class="jp_art_announcements_list">
+					{foreach name=announcements from=$announcements item=announcement}
+						{if $smarty.foreach.announcements.iteration > $numAnnouncementsHomepage}{break}{/if}
+						<article class="jp_art_announcement_item">
+							<div class="jp_art_announcement_date">
+								{$announcement->getDatePosted()|date_format:"%d %B %Y"}
 							</div>
-						</div>
-						<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}" class="jp_art_read_more">
-							Read more &rarr;
-						</a>
-					</article>
-				{/foreach}
+							<div class="jp_art_announcement_body">
+								<h3 class="jp_art_announcement_title">
+									<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
+										{$announcement->getLocalizedTitle()|escape}
+									</a>
+								</h3>
+								<div class="jp_art_announcement_desc">
+									{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
+								</div>
+							</div>
+							<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}" class="jp_art_read_more">
+								Read more &rarr;
+							</a>
+						</article>
+					{/foreach}
+				</div>
 			</div>
 		</section>
 	{/if}
