@@ -59,12 +59,6 @@
 					<a href="{url page="search" router=$smarty.const.ROUTE_PAGE}" aria-label="Search" class="jp_nav_search_btn">
 						<i class="fa fa-search" aria-hidden="true"></i>
 					</a>
-
-					{* Quick Access Ecosystem Buttons: MQC & JP *}
-					<div class="jp_ecosystem_capsules">
-						<a href="http://{$smarty.server.SERVER_NAME|default:'localhost'}:3000" target="_blank" rel="noopener noreferrer" class="jp_capsule_btn mqc" title="Akses MQC Assistant">MQC &nearr;</a>
-						<a href="http://{$smarty.server.SERVER_NAME|default:'localhost'}:3001" target="_blank" rel="noopener noreferrer" class="jp_capsule_btn jp" title="Akses JP-Insight">JP &nearr;</a>
-					</div>
 				</div>
 			</div>
 		</nav>
