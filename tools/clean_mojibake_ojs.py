@@ -5,9 +5,9 @@ Author: Maya Kirana Valarie & Dany Triyatna
 Date: 2026-11-15
 Description:
   Scans and repairs corrupted UTF-8 byte sequences (Mojibake) in OJS 3.3+ databases
-  caused by legacy latin1/swedish_ci imports and PHP 8.x character conversions.
-  Ensures safe handling of serialized settings, creates deterministic transactional
-  updates, and exports a standalone clean_ojs_data.sql for reproducible deployments.
+  caused by legacy latin1/swedish_ci imports, CP-1252 single-byte artifacts,
+  and PHP 8.x character conversions. Ensures safe handling of serialized settings,
+  creates deterministic transactional updates, and exports a standalone clean_ojs_data.sql.
 """
 
 import sys
@@ -63,11 +63,26 @@ MOJIBAKE_MAP = [
     ('Â½', '½'),
     ('Â¾', '¾'),
 
+    # Raw CP-1252 byte artifacts
+    ('\x96', '-'),
+    ('\x97', '-'),
+    ('\x91', "'"),
+    ('\x92', "'"),
+    ('\x93', '"'),
+    ('\x94', '"'),
+    ('\x85', '...'),
+    ('\x95', '•'),
+
     # Stray non-breaking spaces
     ('Â ', ' '),
     ('\xc2\xa0', ' '),
     ('\xa0', ' '),
     ('&nbsp;', ' '),
+
+    # Literal escaped newline artifacts in affiliations
+    ('\n\\n', ', '),
+    ('\\n', ', '),
+    ('\\, ', ''),
 ]
 
 def clean_text(text):
@@ -78,6 +93,9 @@ def clean_text(text):
         res = res.replace(bad, good)
     # Clean any remaining isolated Â
     res = res.replace('Â', '')
+    # Normalize multiple commas/spaces
+    while ', ,' in res:
+        res = res.replace(', ,', ',')
     return res
 
 def sql_escape(s):
@@ -127,7 +145,6 @@ class OJSDBFixer:
     def clean_table(self, table_name, pk_cols, target_cols, extra_where=""):
         print(f"[*] Auditing table `{table_name}`...")
         cols_to_select = pk_cols + target_cols
-        # Use CONCAT_WS with custom delimiters to avoid newline splitting errors
         concat_fields = ", ".join([f"COALESCE(`{c}`, '')" for c in cols_to_select])
         query_expr = f"CONCAT(CONCAT_WS('|||COL|||', {concat_fields}), '|||ROW|||')"
         where_clause = f" WHERE {extra_where}" if extra_where else ""
@@ -189,41 +206,23 @@ class OJSDBFixer:
         print(f"=== Starting OJS Mojibake Normalization on Database `{self.db_name}` ===")
         total_repaired = 0
 
-        # Table configurations
         configs = [
-            # 1. Citations
             ('citations', ['citation_id'], ['raw_citation'], ""),
-            # 2. Publication Settings
             ('publication_settings', ['publication_id', 'locale', 'setting_name'], ['setting_value'], ""),
-            # 3. Author Settings
             ('author_settings', ['author_id', 'locale', 'setting_name'], ['setting_value'], ""),
-            # 4. Journal Settings
             ('journal_settings', ['journal_id', 'locale', 'setting_name'], ['setting_value'], "setting_type != 'object'"),
-            # 5. User Settings
             ('user_settings', ['user_id', 'locale', 'setting_name', 'assoc_type', 'assoc_id'], ['setting_value'], "setting_type != 'object'"),
-            # 6. Notes
             ('notes', ['note_id'], ['contents'], ""),
-            # 7. Metadata Description Settings
             ('metadata_description_settings', ['metadata_description_id', 'locale', 'setting_name'], ['setting_value'], "setting_type != 'object'"),
-            # 8. Citation Settings
             ('citation_settings', ['citation_id', 'locale', 'setting_name'], ['setting_value'], "setting_type != 'object'"),
-            # 9. Controlled Vocab Entry Settings
             ('controlled_vocab_entry_settings', ['controlled_vocab_entry_id', 'locale', 'setting_name'], ['setting_value'], "setting_type != 'object'"),
-            # 10. Navigation Menu Item Settings
             ('navigation_menu_item_settings', ['navigation_menu_item_id', 'locale', 'setting_name'], ['setting_value'], "setting_type != 'object'"),
-            # 11. Event Log Settings
             ('event_log_settings', ['log_id', 'setting_name'], ['setting_value'], "setting_type != 'object'"),
-            # 12. Review Form Responses
             ('review_form_responses', ['review_form_element_id', 'review_id'], ['response_value'], ""),
-            # 13. RT Searches
             ('rt_searches', ['search_id'], ['title', 'description'], ""),
-            # 14. Genre Settings
             ('genre_settings', ['genre_id', 'locale', 'setting_name'], ['setting_value'], "setting_type != 'object'"),
-            # 15. Email Templates Default Data
             ('email_templates_default_data', ['email_key', 'locale'], ['subject', 'body'], ""),
-            # 16. Email Log
             ('email_log', ['log_id'], ['subject', 'body'], ""),
-            # 17. Submission Search Keyword List
             ('submission_search_keyword_list', ['keyword_id'], ['keyword_text'], ""),
         ]
 
@@ -233,7 +232,6 @@ class OJSDBFixer:
 
         print(f"\n[+] Total rows repaired in this run: {total_repaired}")
 
-        # Export SQL artifact for future migrations
         sql_export_path = os.path.join(self.temp_dir, 'clean_ojs_data.sql')
         with open(sql_export_path, 'w', encoding='utf-8') as f:
             f.write(f"-- OJS Mojibake Cleanup Script for Production Migration\n")
@@ -274,7 +272,7 @@ class OJSDBFixer:
         
         all_passed = True
         for tbl, col in tables:
-            q = f"SELECT count(*) FROM `{tbl}` WHERE CAST(`{col}` AS BINARY) LIKE '%â€%' OR CAST(`{col}` AS BINARY) LIKE '%Ã%';"
+            q = f"SELECT count(*) FROM `{tbl}` WHERE CAST(`{col}` AS BINARY) LIKE '%â€%' OR CAST(`{col}` AS BINARY) LIKE '%Ã%' OR CAST(`{col}` AS BINARY) LIKE '%Â%';"
             try:
                 cnt = int(self.run_query(q).strip())
                 if cnt == 0:
