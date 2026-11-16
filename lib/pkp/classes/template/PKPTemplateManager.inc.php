@@ -122,6 +122,11 @@ class PKPTemplateManager extends Smarty {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_COMMON);
 		$currentContext = $request->getContext();
 
+		$jpInsightWidgetEndpoint = getenv('JP_INSIGHT_WIDGET_ENDPOINT')
+			?: ($_ENV['JP_INSIGHT_WIDGET_ENDPOINT'] ?? '')
+			?: Config::getVar('jp_insight', 'widget_endpoint')
+			?: 'http://localhost:3001/api/widget/chat';
+
 		$this->assign([
 			'defaultCharset' => Config::getVar('i18n', 'client_charset'),
 			'baseUrl' => $request->getBaseUrl(),
@@ -129,6 +134,7 @@ class PKPTemplateManager extends Smarty {
 			'currentLocale' => $locale,
 			'currentLocaleLangDir' => AppLocale::getLocaleDirection($locale),
 			'applicationName' => __($application->getNameKey()),
+			'jpInsightWidgetEndpoint' => $jpInsightWidgetEndpoint,
 		]);
 
 		// Assign date and time format

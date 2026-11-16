@@ -1,0 +1,80 @@
+name: Build & Deploy OJS Jurnal Permukiman
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-ojs-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: PHP Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+
+      - name: Lint modified PHP files
+        run: |
+          php -l docker/configure-ojs.php
+          php -l lib/pkp/classes/template/PKPTemplateManager.inc.php
+          php -l classes/submission/form/SubmissionSubmitStep2Form.inc.php
+          php -l classes/submission/form/SubmissionSubmitStep4Form.inc.php
+          php -l lib/pkp/controllers/grid/queries/form/QueryNoteForm.inc.php
+          php -l lib/pkp/controllers/grid/files/submission/AuthorSubmissionDetailsFilesGridHandler.inc.php
+
+  build-and-deploy:
+    name: Build Image & Deploy to VPS
+    needs: check
+    runs-on: ubuntu-latest
+    env:
+      GHCR_USER: ${{ secrets.GHCR_USERNAME || 'uzishdq' }}
+      IMAGE_NAME: ${{ format('ghcr.io/{0}/jp-ojs', secrets.GHCR_USERNAME || 'uzishdq') }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ env.GHCR_USER }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=sha,prefix=sha-
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Pull, Restart OJS & Clear Template Cache on VPS
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER || 'ubuntu' }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes "$VPS_USER@$VPS_HOST" \
+            "cd /opt/jurnal-permukiman/deploy && docker compose pull jp-ojs && docker compose up -d --no-build jp-ojs && sleep 3 && docker exec jp-ojs sh -c 'rm -rf /var/www/html/cache/*.php /var/www/html/cache/_db/*' && docker image prune -f"

@@ -1,0 +1,14 @@
+.git
+.gitignore
+config.inc.php
+config.inc.php.bak
+config.production.inc.php
+cache/*
+!cache/.gitkeep
+backup_*.sql
+ojs33_terakhirya.sql
+*.sql
+*.bak*
+scratch
+tests
+.DS_Store
