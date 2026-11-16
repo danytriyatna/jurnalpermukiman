@@ -113,9 +113,23 @@ class CustomBlockPlugin extends BlockPlugin {
 		$title = $customBlockTitle[$currentLocale] ? $customBlockTitle[$currentLocale] : $customBlockTitle[$contextPrimaryLocale];
 		$content = $customBlockContent[$currentLocale] ? $customBlockContent[$currentLocale] : $customBlockContent[$contextPrimaryLocale];
 
+		// Dynamic URL normalization: replace hardcoded production URLs with current context URL
+		if ($content && $context) {
+			$journalUrl = $request->url($context->getPath());
+			$content = str_replace('https://jurnalpermukiman.pu.go.id/index.php/JP', $journalUrl, $content);
+			$content = str_replace('http://jurnalpermukiman.pu.go.id/index.php/JP', $journalUrl, $content);
+		}
+
 		$templateMgr->assign('customBlockTitle', $title);
 		$templateMgr->assign('customBlockContent', $content);
 		$templateMgr->assign('showName', $this->getSetting($contextId, 'showName'));
+
+
+		// Validasi: jika tidak ada data/konten yang ditampilkan, jangan tampilkan judul maupun blok
+		if (trim(strip_tags($content, '<img><iframe><svg><object><embed><video><audio>')) === '') {
+			return '';
+		}
+
 		return parent::getContents($templateMgr, $request);
 
 	}

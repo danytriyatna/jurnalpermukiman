@@ -1,0 +1,1783 @@
+/**
+ * Jurnal Permukiman - Master Stylesheet
+ * 100% Pixel-Aligned with Claude Artifact Design (SMDFR2MtGqFpzMQuEqysc4)
+ *
+ * Full-Width Architecture:
+ * - Edge-to-Edge Hero Card Header (width: 100%, background full-bleed)
+ * - Full-Width 4-Card Quick Statistics Section (border-bottom: 1px solid #EDE3DC)
+ * - 1320px Centered Content Containers for Inner Alignment
+ *
+ * Primary Palette:
+ * - Brand Deep Rust: #7A2E0E / #8B340E
+ * - Accent Terracotta: #B4410F / #C13D0D
+ * - KemenPU Gold: #F5B335 / #F2B124
+ * - Cream Warm Background: #FAF5F1
+ * - Warm Sand Border: #EDE3DC / #E7DDD5
+ * - Text Charcoal: #1C1917 / Text Muted: #57534E
+ */
+
+/* ==========================================================================
+   RESET & GLOBAL TYPOGRAPHY
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #FFFFFF !important;
+  color: #1C1917 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden !important;
+}
+
+a {
+  color: #B4410F;
+  text-decoration: none;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+a:hover {
+  color: #7A2E0E;
+}
+
+/* Base Container (1320px Golden Ratio container) */
+.pkp_structure_page {
+  width: 100% !important;
+  max-width: 1320px !important;
+  margin: 0 auto !important;
+  padding: 20px 24px 0 24px !important;
+  background: #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================================================
+   1. FULL-WIDTH HERO HEADER SECTION (EDGE-TO-EDGE)
+   ========================================================================== */
+.hero_card_fullwidth {
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  color: #FFFFFF !important;
+  background: linear-gradient(180deg, rgba(180,65,15,0.92) 0%, rgba(180,65,15,0.55) 14%, rgba(180,65,15,0) 32%),
+              linear-gradient(90deg, #4F1C07 0%, #5E220A 30%, rgba(110,40,11,0.88) 45%, rgba(140,52,14,0.45) 65%, rgba(150,56,15,0.12) 85%, rgba(150,56,15,0) 100%),
+              url('header_reference_photo.jpg') right center / cover no-repeat !important;
+  box-shadow: 0 10px 24px rgba(79, 28, 7, 0.15) !important;
+}
+
+/* Navbar Top */
+.jp_art_navbar {
+  width: 100% !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(4px);
+}
+.jp_art_nav_container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.jp_art_brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none !important;
+  color: #FFFFFF !important;
+}
+.jp_art_logo_pill {
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 4px 8px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.jp_art_logo_img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+.jp_art_brand_text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.jp_art_brand_title {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+}
+.jp_art_brand_sub {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #FBE3D7;
+}
+
+.jp_art_nav_links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.jp_art_nav_links a {
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  padding: 4px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  opacity: 0.92;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+.jp_art_nav_links a:hover {
+  opacity: 1;
+}
+.jp_art_nav_links a.is_active {
+  border-bottom: 2px solid #F5B335;
+  opacity: 1;
+}
+.jp_user_chip {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  padding: 3px 9px !important;
+  border-radius: 999px !important;
+}
+.jp_nav_register_pill {
+  background: #F5B335 !important;
+  color: #1C1917 !important;
+  padding: 4px 12px !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+}
+.jp_nav_register_pill:hover {
+  background: #F2B124 !important;
+  color: #1C1917 !important;
+}
+.jp_nav_search_btn {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Ecosystem Capsule Buttons */
+.jp_ecosystem_capsules {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+}
+.jp_capsule_btn {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 3px 9px !important;
+  border-radius: 999px !important;
+  text-decoration: none !important;
+}
+.jp_capsule_btn.mqc {
+  background: #0F172A !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+.jp_capsule_btn.jp {
+  background: #B4410F !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Hero Body */
+.jp_art_hero_body {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 18px 24px 20px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  position: relative;
+}
+.jp_art_hero_lead {
+  flex: 1 1 580px;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.jp_art_hero_badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.jp_hero_badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: #FFFFFF;
+}
+.jp_badge_gold_dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #F5B335;
+}
+.jp_art_hero_title {
+  margin: 0;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  line-height: 1.18;
+  color: #FFFFFF !important;
+  letter-spacing: -0.01em;
+}
+.jp_art_hero_desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.48;
+  color: #F3E3DA;
+  max-width: 740px;
+  opacity: 0.94;
+}
+.jp_art_hero_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 4px;
+}
+.jp_hero_btn_primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #F5B335 !important;
+  color: #1C1917 !important;
+  text-decoration: none !important;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 7px 18px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(245, 179, 53, 0.35);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.jp_hero_btn_primary:hover {
+  background: #F2B124 !important;
+  transform: translateY(-1px);
+}
+.jp_hero_btn_secondary {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  transition: background 0.15s ease;
+}
+.jp_hero_btn_secondary:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+.jp_art_hero_caption {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 14px !important;
+  width: 100% !important;
+  z-index: 10 !important;
+  pointer-events: none;
+}
+.jp_art_hero_caption_inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+.jp_caption_pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 4px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.01em;
+}
+@media (max-width: 992px) {
+  .jp_art_hero_caption {
+    position: static !important;
+    padding: 0 24px 16px 24px !important;
+  }
+  .jp_art_hero_caption_inner {
+    padding: 0;
+  }
+}
+
+/* ==========================================================================
+   2. STATS SECTION (EXACT CLAUDE ARTIFACT 4-CARD GRID)
+   ========================================================================== */
+.jp_art_stat_cards_fullwidth {
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  background: #FFFFFF !important;
+  border-bottom: 1px solid #EDE3DC !important;
+  border-top: none !important;
+  padding: 36px 0 !important;
+  box-shadow: none !important;
+}
+.jp_art_stat_container {
+  max-width: 1320px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+}
+.jp_art_stat_grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+}
+.jp_art_stat_card {
+  background: #FFFFFF !important;
+  border: 1px solid #EDE3DC !important;
+  border-radius: 16px !important;
+  padding: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 18px !important;
+  box-shadow: 0 4px 14px rgba(120, 60, 30, 0.07) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  justify-content: flex-start !important;
+}
+.jp_art_stat_card:not(:last-child) {
+  border-right: 1px solid #EDE3DC !important;
+}
+.jp_art_stat_card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(120, 60, 30, 0.12) !important;
+}
+.jp_stat_icon_box {
+  flex: 0 0 auto !important;
+  width: 68px !important;
+  height: 68px !important;
+  border-radius: 16px !important;
+  background: #FBEDE6 !important;
+  color: #B4410F !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.jp_stat_icon_box svg {
+  display: block;
+}
+.jp_stat_info {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  min-width: 0 !important;
+}
+.jp_stat_number {
+  font-size: 34px !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  color: #1C1917 !important;
+  letter-spacing: -0.02em !important;
+}
+.jp_stat_title {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #57534E !important;
+  white-space: normal !important;
+  line-height: 1.3 !important;
+}
+@media (max-width: 1024px) {
+  .jp_art_stat_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 640px) {
+  .jp_art_stat_grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ==========================================================================
+   3. MAIN TWO-COLUMN SCAFFOLDING (1320PX CENTERED)
+   ========================================================================== */
+.pkp_structure_content.has_sidebar {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 28px !important;
+  padding: 0 0 36px 0 !important;
+  width: 100% !important;
+}
+.pkp_structure_content.has_sidebar .pkp_structure_main {
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  float: none !important;
+  width: auto !important;
+  padding: 0 !important;
+}
+.pkp_structure_content.has_sidebar .pkp_structure_sidebar {
+  flex: 0 0 300px !important;
+  width: 300px !important;
+  min-width: 300px !important;
+  max-width: 300px !important;
+  float: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+.pkp_structure_main:before,
+.pkp_structure_main:after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Section Header Typography */
+.jp_art_section_header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  border-bottom: 2px solid #1C1917;
+  padding-bottom: 8px;
+  margin-bottom: 18px;
+}
+.jp_art_section_tag {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #B4410F;
+  text-transform: uppercase;
+}
+.jp_art_section_title {
+  margin: 0;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+}
+.jp_art_view_all_link {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #B4410F;
+}
+
+/* ==========================================================================
+   CURRENT ISSUE SECTION (HERO & ARTICLE CARDS)
+   ========================================================================== */
+.current_issue {
+  margin-bottom: 32px !important;
+}
+.jp_art_issue_hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #E2E8F0;
+}
+.jp_art_issue_cover_wrap {
+  flex: 0 0 130px;
+}
+.jp_art_issue_cover_img {
+  width: 130px;
+  height: 184px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  display: block;
+}
+.jp_art_issue_cover_placeholder {
+  width: 130px;
+  height: 184px;
+  border-radius: 6px;
+  background: #B4410F;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+.jp_cover_placeholder_title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+.jp_cover_placeholder_sub {
+  font-size: 10px;
+  color: #FDE7DA;
+}
+
+.jp_art_issue_details {
+  flex: 1 1 300px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.jp_art_issue_meta_line {
+  font-size: 13px;
+  color: #64748B;
+  font-weight: 500;
+}
+.jp_art_issue_desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #475569;
+}
+.jp_art_issue_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 4px;
+}
+.jp_art_btn_full_issue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #C13D0D !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 13.5px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.jp_art_btn_full_issue:hover {
+  background: #9E310A !important;
+  transform: translateY(-1px);
+}
+.jp_art_btn_outline {
+  display: inline-flex;
+  align-items: center;
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #334155 !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 12.5px;
+  padding: 7px 15px;
+  border-radius: 6px;
+}
+.jp_art_btn_outline:hover {
+  border-color: #B4410F !important;
+  color: #B4410F !important;
+}
+
+/* Hide Default OJS Duplicate Issue Header/Cover & Duplicate Full Issue Block */
+.obj_issue_toc > .heading,
+.obj_issue_toc > .galleys {
+  display: none !important;
+}
+
+/* Reset unwanted Base OJS margins on issue TOC sections (Remove ghost whitespace) */
+.obj_issue_toc .sections {
+  margin-top: 0 !important;
+}
+.obj_issue_toc .section {
+  margin: 0 !important;
+  padding: 0 !important;
+  position: static !important;
+}
+.obj_issue_toc .section:before {
+  display: none !important;
+}
+
+/* Section Headings inside Issue TOC (e.g. PENGANTAR REDAKSI, ARTIKEL) */
+.obj_issue_toc .section > h2,
+.obj_issue_toc .section > h3 {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: #B4410F !important;
+  border-bottom: 2px solid #E2E8F0 !important;
+  padding-bottom: 4px !important;
+  margin: 10px 0 6px 0 !important;
+  display: block !important;
+}
+.obj_issue_toc .section:first-child > h2,
+.obj_issue_toc .section:first-child > h3 {
+  margin-top: 0 !important;
+}
+
+/* Issue TOC Articles List (Claude Artifact Card Stack - Tight High-Density) */
+.obj_issue_toc .articles {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  border: none !important;
+}
+.obj_issue_toc .articles > li {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Article Summary Card (Compact Claude Artifact Terracotta Border & 3px Shadow) */
+.jp_art_article_card {
+  background: #FFFFFF !important;
+  border: 1px solid #E3A88F !important;
+  border-radius: 8px !important;
+  padding: 12px 18px !important;
+  box-shadow: 3px 3px 0 rgba(120, 113, 108, 0.16), 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+.jp_art_article_card:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 3px 3px 0 rgba(120, 113, 108, 0.22), 0 6px 14px rgba(0, 0, 0, 0.07) !important;
+}
+.jp_art_article_top {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 14px !important;
+}
+.jp_art_article_title {
+  margin: 0 !important;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 17px !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+}
+.jp_art_article_title a {
+  color: #1C1917 !important;
+  text-decoration: none !important;
+}
+.jp_art_article_title a:hover {
+  color: #B4410F !important;
+}
+.jp_art_pages {
+  font-size: 12.5px !important;
+  color: #78716C !important;
+  white-space: nowrap !important;
+  padding-top: 2px !important;
+  font-weight: 500 !important;
+}
+.jp_art_authors {
+  font-size: 14px !important;
+  color: #44403C !important;
+  font-style: normal !important;
+  margin: 0 !important;
+}
+.jp_art_article_meta_row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px 14px !important;
+  align-items: center !important;
+  font-size: 12.5px !important;
+  color: #6B6460 !important;
+  padding-top: 2px !important;
+}
+.jp_art_galleys {
+  display: inline-flex !important;
+}
+.jp_art_pdf_btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  border: 1.2px solid #B4410F !important;
+  color: #B4410F !important;
+  background: #FFFFFF !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  padding: 3px 10px !important;
+  border-radius: 5px !important;
+  font-size: 12px !important;
+  transition: all 0.15s ease !important;
+}
+.jp_art_pdf_btn:hover {
+  background: #B4410F !important;
+  color: #FFFFFF !important;
+}
+.jp_art_metric_stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.jp_art_doi_pill {
+  color: #6B6460 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.jp_art_doi_pill:hover {
+  color: #B4410F !important;
+  text-decoration: underline;
+}
+.jp_doi_dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #F5A623;
+  color: #FFFFFF;
+  font-size: 9.5px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   EDITORIAL WORKFLOW SECTION & SPEED METRICS (FULL WIDTH ROW - TIGHTENED DENSITY)
+   ========================================================================== */
+.jp_art_workflow_section {
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  background: #FAF5F1 !important;
+  border-top: 1px solid #EDE3DC !important;
+  border-bottom: 1px solid #EDE3DC !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-radius: 0 !important;
+  margin-top: 24px !important;
+  margin-bottom: 0 !important;
+  padding: 26px 0 !important;
+}
+.jp_art_workflow_inner {
+  max-width: 1320px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+.jp_art_workflow_title {
+  margin: 0;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 24px !important;
+  font-weight: 700;
+  color: #1C1917;
+}
+
+.jp_art_workflow_grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+.jp_art_step_card {
+  background: #FFFFFF;
+  border: 1px solid #EDE3DC;
+  border-radius: 10px;
+  padding: 14px 18px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 8px !important;
+}
+.jp_step_badge {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 999px;
+  background: #7A2E0E;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px !important;
+}
+.jp_step_title {
+  margin: 0;
+  font-size: 16px !important;
+  font-weight: 700;
+  color: #1C1917;
+}
+.jp_step_desc {
+  margin: 0;
+  font-size: 13px !important;
+  color: #57534E;
+  line-height: 1.4 !important;
+}
+
+/* Performance Box (Journal Statistics inside Workflow) */
+.jp_art_perf_box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px !important;
+  padding-top: 4px !important;
+}
+.jp_art_perf_head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px !important;
+}
+.jp_art_perf_title {
+  margin: 0;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 19px !important;
+  font-weight: 700;
+  color: #1C1917;
+}
+.jp_art_insights_btn {
+  background: #B4410F !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  font-weight: 600;
+  font-size: 13px !important;
+  padding: 7px 15px !important;
+  border-radius: 6px !important;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.jp_art_insights_btn:hover {
+  background: #7A2E0E !important;
+}
+
+.jp_art_perf_grid {
+  background: #FFFFFF;
+  border: 1px solid #E7DDD5;
+  border-radius: 10px;
+  padding: 12px 18px !important;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px 18px !important;
+}
+.jp_art_perf_item {
+  min-width: 0;
+  border-left: 3.5px solid #7A2E0E;
+  padding-left: 12px !important;
+}
+.jp_art_perf_val {
+  font-size: 21px !important;
+  font-weight: 800;
+  line-height: 1.15 !important;
+  color: #1C1917;
+}
+.jp_art_perf_lbl {
+  font-size: 12.5px !important;
+  color: #57534E;
+}
+
+/* ==========================================================================
+   INSIGHTS MODAL OVERLAY
+   ========================================================================== */
+.jp_insights_modal[hidden] {
+  display: none !important;
+}
+.jp_insights_modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.jp_insights_backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 15, 10, 0.65);
+}
+.jp_insights_dialog {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  border: 1px solid #EDE3DC;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 720px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+}
+.jp_insights_dialog_head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 24px;
+  background: #7A2E0E;
+  color: #FFFFFF;
+}
+.jp_insights_dialog_head h3 {
+  margin: 0 0 4px 0;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 20px;
+  color: #FFFFFF;
+}
+.jp_insights_dialog_head p {
+  margin: 0;
+  font-size: 13px;
+  color: #FDE7DA;
+}
+.jp_insights_close {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 6px;
+}
+.jp_insights_dialog_body {
+  padding: 24px;
+}
+.jp_insights_kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) {
+  .jp_insights_kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.jp_kpi_box {
+  background: #FAF5F1;
+  border: 1px solid #EDE3DC;
+  border-top: 3px solid #B4410F;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.jp_kpi_num {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  color: #1C1917;
+}
+.jp_kpi_title {
+  display: block;
+  font-size: 11.5px;
+  color: #57534E;
+}
+.jp_insights_table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.jp_insights_table td {
+  border: 1px solid #EDE3DC;
+  padding: 10px 14px;
+  text-align: left;
+}
+.jp_insights_table tr:nth-child(even) td {
+  background: #FAF5F1;
+}
+
+/* ==========================================================================
+   ANNOUNCEMENTS SECTION (TIGHTENED DENSITY & UNIFIED ALIGNMENT)
+   ========================================================================== */
+.cmp_announcements {
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  margin-top: 24px !important;
+  margin-bottom: 24px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+.jp_art_announcements_inner {
+  max-width: 1320px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+  box-sizing: border-box !important;
+}
+.jp_art_announcements_list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px !important;
+}
+.jp_art_announcement_item {
+  border: 1px solid #EDE3DC;
+  border-radius: 10px;
+  padding: 12px 18px !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px !important;
+  align-items: center;
+  transition: border-color 0.15s ease;
+}
+.jp_art_announcement_item:hover {
+  border-color: #B4410F;
+}
+.jp_art_announcement_date {
+  flex: 0 0 auto;
+  font-size: 13px !important;
+  font-weight: 700;
+  color: #B4410F;
+}
+.jp_art_announcement_body {
+  flex: 1 1 440px;
+  min-width: 0;
+}
+.jp_art_announcement_title {
+  margin: 0 0 2px 0 !important;
+  font-size: 15.5px !important;
+  font-weight: 700;
+}
+.jp_art_announcement_title a {
+  color: #1C1917 !important;
+}
+.jp_art_announcement_title a:hover {
+  color: #B4410F !important;
+}
+.jp_art_announcement_desc {
+  font-size: 13px !important;
+  color: #57534E;
+}
+.jp_art_read_more {
+  font-size: 13px !important;
+  font-weight: 600;
+  color: #B4410F;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   SIDEBAR (CLAUDE ARTIFACT PILL & POLICY MENU)
+   ========================================================================== */
+.pkp_structure_sidebar .pkp_block {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+/* Hide any empty sidebar blocks or blocks where content has no elements */
+.pkp_structure_sidebar .pkp_block:empty,
+.pkp_structure_sidebar .block_custom:empty,
+.pkp_structure_sidebar .pkp_block:not(:has(.content *)):not(:has(.content:not(:empty))) {
+  display: none !important;
+}
+
+#customblock-registration,
+.block_custom#customblock-registration {
+  display: none !important;
+}
+.pkp_structure_sidebar .pkp_block .title {
+  display: block;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  color: #1C1917 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 10px !important;
+  border-bottom: none !important;
+}
+
+/* Register Pill Button */
+.jp_art_register_pill_btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  background: #C13D0D !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  border-radius: 8px !important;
+  padding: 8px 14px !important;
+  box-shadow: 0 2px 8px rgba(193, 61, 13, 0.22) !important;
+  transition: transform 0.15s ease, background 0.15s ease !important;
+}
+.jp_art_register_pill_btn:hover {
+  background: #A0320A !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 14px rgba(193, 61, 13, 0.3) !important;
+}
+.jp_art_reg_label {
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  color: #FFFFFF !important;
+}
+.jp_art_reg_icon_box {
+  flex: 0 0 auto !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 6px !important;
+  background: #F2B124 !important;
+  color: #1C1917 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.jp_art_reg_icon_box svg {
+  width: 15px !important;
+  height: 15px !important;
+}
+.jp_art_sub_secondary_btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 6px !important;
+  padding: 7px 12px !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: #475569 !important;
+  text-decoration: none !important;
+  transition: all 0.15s ease !important;
+}
+.jp_art_sub_secondary_btn:hover {
+  background: #F1F5F9 !important;
+  border-color: #CBD5E1 !important;
+  color: #B4410F !important;
+}
+
+/* Journal Policy (Matching Claude Artifact 100%: Clean Minimalist Text Links) */
+.jp_art_policy_list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 7px !important;
+}
+.jp_art_policy_list a {
+  color: #7A2E0E !important;
+  text-decoration: none !important;
+  line-height: 1.45 !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  display: block !important;
+  transition: color 0.15s ease !important;
+}
+.jp_art_policy_list a:hover {
+  color: #C13D0D !important;
+  text-decoration: underline !important;
+}
+
+/* ==========================================================================
+   FOOTER (GOLD TOP BORDER + DEEP RUST 4-COLUMN CONTAINER)
+   ========================================================================== */
+.jp_art_footer_root {
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  background: #FFFFFF !important;
+  border-top: 5px solid #F5B335 !important;
+  padding: 28px 0 20px 0 !important;
+  margin-top: 28px !important;
+}
+.jp_art_footer_card {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+  background: #7A2E0E;
+  border-radius: 14px;
+  overflow: hidden;
+  color: #FFFFFF;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+.jp_art_footer_columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 900px) {
+  .jp_art_footer_columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .jp_art_footer_columns {
+    grid-template-columns: 1fr;
+  }
+}
+.jp_art_footer_col {
+  padding: 24px 22px !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 10px !important;
+  font-size: 13.5px !important;
+}
+.jp_art_footer_col:last-child {
+  border-right: none;
+}
+.jp_art_col_title {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #F5B335 !important;
+  text-transform: uppercase;
+}
+.jp_art_footer_col a {
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  opacity: 0.9;
+  transition: opacity 0.15s ease;
+}
+.jp_art_footer_col a:hover {
+  opacity: 1;
+  text-decoration: underline !important;
+}
+
+/* Footer Bottom Bar */
+.jp_art_footer_bottom {
+  background: rgba(0, 0, 0, 0.24);
+  padding: 18px 28px;
+  font-size: 13px;
+  color: #EAD9CF;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 28px;
+}
+.jp_art_bottom_text {
+  flex: 1 1 540px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  line-height: 1.5;
+}
+.jp_art_bottom_text a {
+  color: #FFFFFF !important;
+  text-decoration: underline;
+}
+.jp_art_cc_badge img {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+/* Floating mascot positioning */
+#jp-mascot-btn,
+.jp-widget-floating-container {
+  z-index: 9999;
+}
+
+/* ==========================================================================
+   INTERNAL / SUB-PAGE MODERN CARD STYLING (MATCHING CLAUDE REDESIGN)
+   ========================================================================== */
+.hero_card_fullwidth.jp_subpage_header {
+  min-height: auto !important;
+  padding-bottom: 0 !important;
+  background: linear-gradient(135deg, #7A2E0E 0%, #4F1C07 100%) !important;
+  border-bottom: 3px solid #F5B335 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.hero_card_fullwidth.jp_subpage_header:after {
+  display: none !important;
+}
+
+.hero_card_fullwidth.jp_subpage_header .jp_art_navbar {
+  border-bottom: none !important;
+}
+
+/* White Card Container for All Sub-Pages (Static Pages, About, Submissions, Editorial Team, etc.) */
+.pkp_structure_main > .page:not(.page_index_journal),
+.pkp_structure_main > .page_about,
+.pkp_structure_main > .page_submissions,
+.pkp_structure_main > .page_editorial_team,
+.pkp_structure_main > .page_issue_archive,
+.pkp_structure_main > .page_search {
+  background: #FFFFFF !important;
+  border: 1px solid #E7E5E4 !important;
+  border-radius: 12px !important;
+  padding: 32px 38px !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+  margin-top: 16px !important;
+  margin-bottom: 36px !important;
+  color: #292524 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  line-height: 1.7 !important;
+  box-sizing: border-box !important;
+}
+
+/* Page Headings */
+.pkp_structure_main > .page:not(.page_index_journal) > h1,
+.pkp_structure_main > .page:not(.page_index_journal) > h2:first-of-type,
+.pkp_structure_main > .page:not(.page_index_journal) > .page_title {
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  letter-spacing: -0.01em !important;
+  margin: 0 0 20px 0 !important;
+  padding-bottom: 12px !important;
+  border-bottom: 2px solid #F5E8E0 !important;
+}
+
+.pkp_structure_main > .page:not(.page_index_journal) h2 {
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  color: #7A2E0E !important;
+  margin: 28px 0 14px 0 !important;
+}
+
+.pkp_structure_main > .page:not(.page_index_journal) h3 {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #1C1917 !important;
+  margin: 20px 0 10px 0 !important;
+}
+
+/* Lists styling */
+.pkp_structure_main > .page:not(.page_index_journal) ol,
+.pkp_structure_main > .page:not(.page_index_journal) ul {
+  padding-left: 24px !important;
+  margin: 14px 0 20px 0 !important;
+}
+
+.pkp_structure_main > .page:not(.page_index_journal) li {
+  margin-bottom: 8px !important;
+  line-height: 1.65 !important;
+  color: #374151 !important;
+}
+
+/* Notification & Alert boxes (e.g. Submissions login prompt) */
+.pkp_structure_main > .page:not(.page_index_journal) .cmp_notification {
+  background: #FDF8F6 !important;
+  border: 1px solid #F0D5C9 !important;
+  border-left: 4px solid #A63A1E !important;
+  border-radius: 8px !important;
+  padding: 14px 18px !important;
+  margin-bottom: 24px !important;
+  color: #7A2E0E !important;
+  font-size: 14px !important;
+}
+
+.pkp_structure_main > .page:not(.page_index_journal) .cmp_notification a {
+  color: #A63A1E !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+}
+
+/* Breadcrumbs inside subpage */
+.cmp_breadcrumbs {
+  margin: 0 0 16px 0 !important;
+  font-size: 13px !important;
+  color: #78716C !important;
+}
+
+.cmp_breadcrumbs a {
+  color: #7A2E0E !important;
+  text-decoration: none !important;
+}
+
+.cmp_breadcrumbs a:hover {
+  text-decoration: underline !important;
+}
+
+.cmp_breadcrumbs .separator {
+  margin: 0 8px !important;
+  color: #A8A29E !important;
+}
+
+.cmp_breadcrumbs .current {
+  color: #1C1917 !important;
+  font-weight: 600 !important;
+}
+
+/* Tables inside sub-pages */
+.pkp_structure_main > .page:not(.page_index_journal) table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 20px 0 !important;
+}
+
+.pkp_structure_main > .page:not(.page_index_journal) th {
+  background: #FBF7F4 !important;
+  color: #7A2E0E !important;
+  font-weight: 600 !important;
+  padding: 10px 14px !important;
+  border: 1px solid #E7E5E4 !important;
+  text-align: left !important;
+}
+
+.pkp_structure_main > .page:not(.page_index_journal) td {
+  padding: 10px 14px !important;
+  border: 1px solid #E7E5E4 !important;
+  color: #374151 !important;
+}
+
+
+/* ==========================================================================
+   ISSUE ARCHIVE GRID (UGM JCEF / MODERN ACADEMIC STANDARD)
+   ========================================================================== */
+.page_issue_archive .issues_archive {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)) !important;
+  gap: 20px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 24px 0 !important;
+}
+
+.page_issue_archive .issues_archive > li {
+  display: flex !important;
+  flex-direction: column !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.page_issue_archive .obj_issue_summary {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E7E5E4 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+  padding: 16px !important;
+  position: relative !important;
+}
+
+.page_issue_archive .obj_issue_summary:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 20px -5px rgba(122, 46, 14, 0.12) !important;
+  border-color: #D6C2B4 !important;
+}
+
+.page_issue_archive .obj_issue_summary .cover {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #F8F6F4 !important;
+  border-radius: 8px !important;
+  padding: 12px !important;
+  margin-bottom: 14px !important;
+  min-height: 200px !important;
+}
+
+.page_issue_archive .obj_issue_summary .cover img {
+  max-height: 180px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12) !important;
+}
+
+/* Fallback cover banner for issues without cover images */
+.page_issue_archive .obj_issue_summary h2 {
+  margin: 0 0 8px 0 !important;
+  padding: 0 !important;
+}
+
+.page_issue_archive .obj_issue_summary .title {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 15.5px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  color: #7A2E0E !important;
+  text-decoration: none !important;
+  display: block !important;
+}
+
+.page_issue_archive .obj_issue_summary .title:hover {
+  color: #B4410F !important;
+  text-decoration: underline !important;
+}
+
+.page_issue_archive .obj_issue_summary .series {
+  font-size: 13px !important;
+  color: #78716C !important;
+  margin-top: auto !important;
+  line-height: 1.4 !important;
+}
+
+/* ==========================================================================
+   ARTICLE DETAILS PAGE (UGM JCEF / SINTA-2 STANDARD)
+   ========================================================================== */
+.obj_article_details {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+}
+
+.obj_article_details .main_entry {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+/* Article Title */
+.obj_article_details .page_title {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 26px !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  margin: 0 0 12px 0 !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+/* Authors List */
+.obj_article_details .item.authors {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 12px 20px !important;
+  margin: 0 !important;
+  padding: 12px 0 !important;
+  border-bottom: 1px solid #F0ECE9 !important;
+}
+
+.obj_article_details .item.authors .name {
+  font-weight: 600 !important;
+  color: #1C1917 !important;
+  font-size: 15px !important;
+}
+
+.obj_article_details .item.authors .affiliation {
+  font-size: 13px !important;
+  color: #78716C !important;
+  display: block !important;
+}
+
+/* Interactive DOI Badge */
+.obj_article_details .item.doi {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: #FDF5F2 !important;
+  border: 1px solid #F5D3C5 !important;
+  border-radius: 999px !important;
+  padding: 6px 14px !important;
+  font-size: 13px !important;
+  gap: 8px !important;
+  width: fit-content !important;
+}
+
+.obj_article_details .item.doi .label {
+  font-weight: 700 !important;
+  color: #7A2E0E !important;
+}
+
+.obj_article_details .item.doi .value a {
+  color: #A63A1E !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.obj_article_details .item.doi .value a:hover {
+  text-decoration: underline !important;
+}
+
+/* Published and Received Dates Card (SINTA-2 Audit Trail) */
+.obj_article_details .item.published {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  margin: 14px 0 !important;
+  padding: 14px 18px !important;
+  background: #FAF7F5 !important;
+  border: 1px solid #EFEAE6 !important;
+  border-left: 3.5px solid #7A2E0E !important;
+  border-radius: 8px !important;
+}
+
+.obj_article_details .item.published .sub_item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.obj_article_details .item.published .label {
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: #7A2E0E !important;
+  margin: 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.obj_article_details .item.published .value {
+  font-size: 13px !important;
+  color: #374151 !important;
+  font-weight: 600 !important;
+}
+
+/* Galleys / Download PDF Button */
+.obj_article_details .item.galleys {
+  margin: 12px 0 !important;
+}
+
+.obj_article_details .item.galleys .obj_galley_link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  background: linear-gradient(135deg, #A63A1E 0%, #7A2E0E 100%) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  font-size: 14.5px !important;
+  padding: 12px 24px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(122, 46, 14, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+.obj_article_details .item.galleys .obj_galley_link:hover {
+  background: linear-gradient(135deg, #7A2E0E 0%, #541E09 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(122, 46, 14, 0.35) !important;
+  color: #FFFFFF !important;
+}
+
+.obj_article_details .item.galleys .obj_galley_link:before {
+  content: "⬇" !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+}
+
+/* Abstract Callout */
+.obj_article_details .item.abstract {
+  background: #FAF7F5 !important;
+  border: 1px solid #EDE6E1 !important;
+  border-left: 4px solid #A63A1E !important;
+  border-radius: 0 10px 10px 0 !important;
+  padding: 22px 26px !important;
+  margin: 10px 0 !important;
+}
+
+.obj_article_details .item.abstract .label {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #7A2E0E !important;
+  margin-bottom: 12px !important;
+  display: block !important;
+}
+
+.obj_article_details .item.abstract p {
+  line-height: 1.75 !important;
+  color: #374151 !important;
+  font-size: 14.5px !important;
+  margin: 0 !important;
+}
+
+/* Keywords Capsule Pills */
+.obj_article_details .item.keywords {
+  margin: 10px 0 !important;
+}
+
+.obj_article_details .item.keywords .label {
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  font-size: 14px !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+
+.obj_article_details .item.keywords .value {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+.obj_article_details .item.keywords .value span,
+.obj_article_details .item.keywords .value a {
+  background: #F5E8E0 !important;
+  color: #7A2E0E !important;
+  padding: 5px 12px !important;
+  border-radius: 16px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  border: 1px solid #ECD7CB !important;
+}
+
+/* References Section */
+.obj_article_details .item.references {
+  margin-top: 24px !important;
+  padding-top: 20px !important;
+  border-top: 1px solid #EDE6E1 !important;
+}
+
+.obj_article_details .item.references .label {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  margin-bottom: 16px !important;
+  display: block !important;
+}
+
+.obj_article_details .item.references .value {
+  font-size: 13.5px !important;
+  line-height: 1.65 !important;
+  color: #4B5563 !important;
+}
+
+.obj_article_details .item.references .value a {
+  color: #A63A1E !important;
+  word-break: break-all !important;
+}
+
+/* Citation Section */
+.obj_article_details .item.citation {
+  background: #FFFFFF !important;
+  border: 1px solid #E7E5E4 !important;
+  border-radius: 10px !important;
+  padding: 18px 22px !important;
+  margin: 16px 0 !important;
+}
+
+.obj_article_details .item.citation .label {
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  color: #7A2E0E !important;
+  margin-bottom: 10px !important;
+  display: block !important;
+}
+
+.obj_article_details .item.citation .sub_item.citation_display {
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
+  color: #374151 !important;
+}

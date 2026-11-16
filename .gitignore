@@ -3,3 +3,9 @@ config.inc.php.bak
 cache/
 
 ojs33_terakhirya.sql
+
+# Local backups & scratch
+backup_*.sql
+*.bak*
+scratch/
+

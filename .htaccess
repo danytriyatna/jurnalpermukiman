@@ -1,0 +1,32 @@
+# ==============================================================================
+# Jurnal Permukiman - BSSN & SPBE Security Hardening Configuration
+# Baseline: BSSN Panduan Pengamanan Web & SINTA-2 Enterprise Standards
+# ==============================================================================
+
+# 1. Disable Directory Listing
+Options -Indexes
+
+# 2. Block direct access to configuration and sensitive files
+<Files "config.inc.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<FilesMatch "\.(sql|bak|old|orig|backup|log|ini|env|sh|md|git|yml|yaml|dist)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# 3. Security Headers (BSSN / SPBE Compliance)
+<IfModule mod_headers.c>
+    # Prevent MIME sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    # Clickjacking protection
+    Header always set X-Frame-Options "SAMEORIGIN"
+    # Legacy XSS filter protection
+    Header always set X-XSS-Protection "1; mode=block"
+    # Referrer policy for privacy & security
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    # Restrict unnecessary browser features
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>

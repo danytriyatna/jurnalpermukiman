@@ -57,7 +57,7 @@
     display: flex !important;
     flex-direction: row !important;
     align-items: stretch !important;
-    min-height: calc(100vh - 80px) !important;
+    min-height: calc(100vh - 72px) !important;
     height: auto !important;
     width: 100% !important;
     box-sizing: border-box !important;
@@ -77,7 +77,7 @@
     flex: 0 0 248px !important;
     width: 248px !important;
     min-width: 248px !important;
-    min-height: calc(100vh - 80px) !important;
+    min-height: calc(100vh - 72px) !important;
     height: auto !important;
     align-self: stretch !important;
     padding: 1.15rem 0.9rem 1.75rem !important;
@@ -260,7 +260,7 @@
     padding: 1.75rem 2.25rem !important;
     flex: 1 1 0% !important;
     min-width: 0 !important;
-    min-height: calc(100vh - 80px) !important;
+    min-height: calc(100vh - 72px) !important;
     height: auto !important;
     box-sizing: border-box !important;
   }
@@ -1699,16 +1699,22 @@
     background: #C13D0D;
   }
 
-  /* Pastikan [PU] JURNAL PERMUKIMAN selalu terkunci di kiri atas (termasuk di halaman Administration saat .app__contexts muncul) */
+  /* Header Backend Selaras 100% dengan Sub-Page Frontend (Terracotta Gradient + Gold Border) */
   .app__header {
+    height: 72px !important;
+    flex: 0 0 72px !important;
     position: sticky !important;
     top: 0 !important;
     z-index: 1000 !important;
+    background: linear-gradient(135deg, #7A2E0E 0%, #4F1C07 100%) !important;
+    background-image: linear-gradient(135deg, #7A2E0E 0%, #4F1C07 100%) !important;
+    border-bottom: 2px solid #F5B335 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22) !important;
     gap: 14px !important;
   }
   .app__returnHeader {
     position: sticky !important;
-    top: 80px !important;
+    top: 72px !important;
     z-index: 999 !important;
     background: #0F172A !important;
     border-bottom: 1px solid #1E293B !important;
@@ -1740,28 +1746,52 @@
   .app__header .app__contextTitle {
     margin-right: auto !important;
     flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
   }
 
-  /* Badge Logo PU di sebelah kiri nama JURNAL PERMUKIMAN (selaras dengan MQC) */
-  .app__brandIconBox {
+  /* KemenPU Pill Badge di Kiri Atas (Sama Persis dengan Frontend) */
+  .app__brandPillLogo {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 38px !important;
     height: 38px !important;
-    border-radius: 9px !important;
+    border-radius: 9999px !important;
     background: #FFFFFF !important;
-    padding: 4px !important;
+    padding: 4px 12px !important;
     margin-right: 12px !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
     flex-shrink: 0 !important;
   }
-  .app__brandIconBox img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
+  .app__brandPillLogo img {
+    height: 26px !important;
+    width: auto !important;
     display: block !important;
-    border-radius: 3px !important;
+  }
+
+  /* Tipografi Judul Jurnal di Kiri Atas */
+  .app__brandLogo {
+    display: flex !important;
+    flex-direction: column !important;
+    line-height: 1.1 !important;
+  }
+  .app__brandTitle {
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 19px !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.5px !important;
+    color: #FFFFFF !important;
+    text-transform: uppercase !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6) !important;
+  }
+  .app__brandSub {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+    margin-top: 2px !important;
   }
 
   /* ==========================================================================
@@ -2527,22 +2557,22 @@
 			{/if}
 			{if $currentContext}
 				<a class="app__contextTitle" href="{url page="index"}">
-					<span class="app__brandIconBox">
-						<img src="{$baseUrl}/public/journals/1/logo-pu-badge.png" alt="Logo PU" />
+					<span class="app__brandPillLogo">
+						<img src="{$baseUrl}/public/journals/1/kemenpu_pill_clean.png" alt="Kementerian Pekerjaan Umum" />
 					</span>
 					<div class="app__brandLogo">
-						<span class="app__brandLine1">JURNAL</span>
-						<span class="app__brandLine2">PERMUKIMAN</span>
+						<span class="app__brandTitle">JURNAL PERMUKIMAN</span>
+						<span class="app__brandSub">e-ISSN 2339-2975 &middot; Ministry of Public Works</span>
 					</div>
 				</a>
 			{elseif $siteTitle}
 				<a class="app__contextTitle" href="{$baseUrl}">
-					<span class="app__brandIconBox">
-						<img src="{$baseUrl}/public/journals/1/logo-pu-badge.png" alt="Logo PU" />
+					<span class="app__brandPillLogo">
+						<img src="{$baseUrl}/public/journals/1/kemenpu_pill_clean.png" alt="Kementerian Pekerjaan Umum" />
 					</span>
 					<div class="app__brandLogo">
-						<span class="app__brandLine1">JURNAL</span>
-						<span class="app__brandLine2">PERMUKIMAN</span>
+						<span class="app__brandTitle">JURNAL PERMUKIMAN</span>
+						<span class="app__brandSub">e-ISSN 2339-2975 &middot; Ministry of Public Works</span>
 					</div>
 				</a>
 			{else}
@@ -2552,9 +2582,6 @@
 			{/if}
 			{if $currentUser}
 				<div class="app__headerRight">
-					<div class="app__headerBadgePU">
-						<img src="{$baseUrl}/public/journals/1/kemenpu_pill_clean.png" alt="Kementerian PU" />
-					</div>
 					<div class="app__headerActions" v-cloak>
 					{call_hook name="Template::Layout::Backend::HeaderActions"}
 					<div class="app__headerAction app__tasks">
@@ -2749,6 +2776,6 @@
 		</div>
 	</div>
 
-	<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261111_navy" data-endpoint="http://localhost:3001/api/widget/chat"></script>
+	<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261115_v2_gold_ring" data-endpoint="http://localhost:3001/api/widget/chat"></script>
 </body>
 </html>
