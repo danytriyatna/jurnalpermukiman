@@ -142,15 +142,11 @@
 				{if $pubId}
 					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
 					<section class="item doi">
-						<h2 class="label">
-							{capture assign=translatedDOI}{translate key="plugins.pubIds.doi.readerDisplayName"}{/capture}
-							{translate key="semicolon" label=$translatedDOI}
-						</h2>
-						<span class="value">
-							<a href="{$doiUrl}">
-								{$doiUrl}
-							</a>
-						</span>
+						<a href="{$doiUrl}" class="jp_doi_btn" target="_blank" rel="noopener" title="Buka tautan resmi DOI">
+							<span class="jp_doi_badge">DOI</span>
+							<span class="jp_doi_val">{$pubId|escape}</span>
+							<i class="fa fa-external-link" aria-hidden="true"></i>
+						</a>
 					</section>
 				{/if}
 			{/foreach}

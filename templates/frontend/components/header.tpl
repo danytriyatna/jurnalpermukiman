@@ -63,7 +63,6 @@
 						<a href="{url page="login" op="signOut" router=$smarty.const.ROUTE_PAGE}" title="Logout"><i class="fa fa-sign-out"></i></a>
 					{else}
 						<a href="{url page="login" router=$smarty.const.ROUTE_PAGE}">Login</a>
-						<a href="{url page="user" op="register" router=$smarty.const.ROUTE_PAGE}" class="jp_nav_register_pill">Register</a>
 					{/if}
 					<a href="{url page="search" router=$smarty.const.ROUTE_PAGE}" aria-label="Search" class="jp_nav_search_btn">
 						<i class="fa fa-search" aria-hidden="true"></i>

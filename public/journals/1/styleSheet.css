@@ -1885,51 +1885,82 @@ a:hover {
   display: block !important;
 }
 
-/* Interactive DOI Badge */
+/* Interactive DOI Button */
 .obj_article_details .item.doi {
+  display: block !important;
+  margin: 6px 0 16px 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.jp_doi_btn {
   display: inline-flex !important;
   align-items: center !important;
+  gap: 10px !important;
   background: #FAF7F5 !important;
   border: 1px solid #E6DCD5 !important;
-  border-radius: 6px !important;
-  padding: 6px 14px !important;
+  border-radius: 8px !important;
+  padding: 5px 14px 5px 6px !important;
+  text-decoration: none !important;
+  color: #292524 !important;
   font-size: 13px !important;
   line-height: 1.2 !important;
-  gap: 8px !important;
-  width: fit-content !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03) !important;
-  margin: 4px 0 12px 0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
 }
 
-.obj_article_details .item.doi .label {
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 1.2 !important;
-  font-weight: 700 !important;
-  color: #7A2E0E !important;
-  text-transform: uppercase !important;
-  font-size: 12px !important;
-  letter-spacing: 0.5px !important;
-}
-
-.obj_article_details .item.doi .value {
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 1.2 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-}
-
-.obj_article_details .item.doi .value a {
-  color: #A63A1E !important;
-  font-weight: 600 !important;
+.jp_doi_btn:hover {
+  background: #FFFFFF !important;
+  border-color: #C13D0D !important;
+  box-shadow: 0 4px 12px rgba(193, 61, 13, 0.15) !important;
+  transform: translateY(-1.5px) !important;
+  color: #C13D0D !important;
   text-decoration: none !important;
-  word-break: break-all !important;
 }
 
-.obj_article_details .item.doi .value a:hover {
-  color: #7A2E0E !important;
-  text-decoration: underline !important;
+.jp_doi_btn .jp_doi_badge {
+  background: #7A2E0E !important;
+  color: #FFFFFF !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.6px !important;
+  padding: 4px 8px !important;
+  border-radius: 5px !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.jp_doi_btn:hover .jp_doi_badge {
+  background: #C13D0D !important;
+}
+
+.jp_doi_btn .jp_doi_val {
+  font-family: inherit !important;
+  font-weight: 600 !important;
+  color: #292524 !important;
+  letter-spacing: -0.01em !important;
+  transition: color 0.2s ease !important;
+}
+
+.jp_doi_btn:hover .jp_doi_val {
+  color: #C13D0D !important;
+}
+
+.jp_doi_btn .fa-external-link {
+  font-size: 11px !important;
+  color: #78716C !important;
+  opacity: 0.7 !important;
+  transition: all 0.2s ease !important;
+}
+
+.jp_doi_btn:hover .fa-external-link {
+  color: #C13D0D !important;
+  opacity: 1 !important;
+  transform: translate(1px, -1px) !important;
 }
 
 /* Published and Received Dates Card (SINTA-2 Audit Trail) */
