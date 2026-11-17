@@ -153,6 +153,74 @@ a:hover {
   border-bottom: 2px solid #F5B335;
   opacity: 1;
 }
+
+/* Navigation Dropdown Menu for About */
+.jp_nav_dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.jp_nav_dropdown_toggle {
+  cursor: pointer;
+}
+.jp_nav_dropdown_menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 190px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 6px 0;
+  margin-top: 6px;
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+/* Invisible hover bridge to prevent menu closing when cursor travels across gap */
+.jp_nav_dropdown_menu::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+}
+/* Subtle top arrow pointer */
+.jp_nav_dropdown_menu::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 18px;
+  width: 10px;
+  height: 10px;
+  background: #FFFFFF;
+  transform: rotate(45deg);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+}
+.jp_nav_dropdown:hover .jp_nav_dropdown_menu,
+.jp_nav_dropdown:focus-within .jp_nav_dropdown_menu {
+  display: flex;
+}
+.jp_nav_dropdown_menu a {
+  display: block !important;
+  color: #1C1917 !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  padding: 8px 16px !important;
+  text-decoration: none !important;
+  opacity: 0.88 !important;
+  border-bottom: none !important;
+  transition: background-color 0.15s ease, color 0.15s ease, opacity 0.15s ease !important;
+  white-space: nowrap !important;
+}
+.jp_nav_dropdown_menu a:hover {
+  background-color: #F8F9FA !important;
+  color: #C13D0D !important;
+  opacity: 1 !important;
+}
 .jp_user_chip {
   background: rgba(255, 255, 255, 0.15) !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
