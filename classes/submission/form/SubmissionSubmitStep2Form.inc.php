@@ -10,7 +10,7 @@
  * @class SubmissionSubmitStep2Form
  * @ingroup submission_form
  *
- * @brief Form for Step 2 of author manuscript submission.
+ * @brief Form for Step 2 of author submission: upload submission files.
  */
 
 import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep2Form');
@@ -18,10 +18,10 @@ import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep2Form');
 class SubmissionSubmitStep2Form extends PKPSubmissionSubmitStep2Form {
 	/**
 	 * Constructor.
+	 * @param $context Context
+	 * @param $submission Submission
 	 */
 	function __construct($context, $submission) {
 		parent::__construct($context, $submission);
 	}
 }
-
-

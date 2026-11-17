@@ -106,65 +106,136 @@ class SubmissionSubmitStep4Form extends PKPSubmissionSubmitStep4Form {
 		import('lib.pkp.classes.log.SubmissionLog');
 		SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_SUBMISSION_SUBMIT, 'submission.event.submissionSubmitted');
 
-		// =========================================================================
-		// MQC ECOSYSTEM SYNC DISPATCHER (Tahap 5 Integrasi Tri-Sistem OJS -> MQC)
-		// Saat penulis menyelesaikan submission, kirimkan metadata & berkas ke MQC
-		// =========================================================================
+		// Sinkronisasi otomatis ke MQC Assistant saat naskah selesai diserahkan (Tahap Konfirmasi)
+		$this->_syncManuscriptToMQC($submission);
+
+		return $this->submissionId;
+	}
+
+	/**
+	 * Transmisikan berkas naskah utama (.docx) dan metadata lengkap ke MQC Assistant
+	 * secara non-blocking / safe-fail agar tidak mengganggu alur submission OJS.
+	 *
+	 * @param Submission $submission
+	 */
+	protected function _syncManuscriptToMQC($submission) {
 		try {
+			if (!$submission) {
+				return;
+			}
+
 			$submissionId = $submission->getId();
-			$title = $submission->getLocalizedTitle();
-			$authorName = $user ? $user->getFullName() : 'Penulis Jurnal Permukiman';
+			$publication = $submission->getCurrentPublication();
+			$title = $publication ? $publication->getLocalizedTitle() : $submission->getLocalizedTitle();
 
-			// Ambil berkas naskah utama (.docx)
-			$files = Services::get('submissionFile')->getMany([
-				'submissionIds' => [$submissionId],
-				'fileStages' => [SUBMISSION_FILE_SUBMISSION]
-			]);
-
-			$filePath = '';
-			$originalFileName = 'manuscript.docx';
-			$fileBase64 = '';
-
-			foreach ($files as $file) {
-				$relPath = $file->getData('path');
-				$fullPath = Config::getVar('files', 'files_dir') . '/' . $relPath;
-				if (file_exists($fullPath)) {
-					$filePath = $fullPath;
-					$originalFileName = $file->getLocalizedData('name') ?: basename($fullPath);
-					$fileBase64 = base64_encode(file_get_contents($fullPath));
-					break;
+			// Cari nama dan email penulis (utamakan primary author, fallback ke session user)
+			$authorName = '';
+			$authorEmail = '';
+			$primaryAuthor = $submission->getPrimaryAuthor();
+			if (!$primaryAuthor) {
+				$authors = $submission->getAuthors();
+				if (!empty($authors)) {
+					$primaryAuthor = $authors[0];
 				}
 			}
 
-			// Payload integrasi ke MQC Assistant
-			$mqcPayload = [
-				'ojs_submission_id' => $submissionId,
+			if ($primaryAuthor) {
+				$authorName = $primaryAuthor->getFullName();
+				$authorEmail = $primaryAuthor->getEmail();
+			} else {
+				$request = Application::get()->getRequest();
+				$user = $request ? $request->getUser() : null;
+				if ($user) {
+					$authorName = $user->getFullName();
+					$authorEmail = $user->getEmail();
+				}
+			}
+
+			$request = Application::get()->getRequest();
+			$user = $request ? $request->getUser() : null;
+			$userId = $user ? $user->getId() : null;
+
+			// Cari berkas naskah utama (.docx) di SUBMISSION_FILE_SUBMISSION
+			$filesService = Services::get('submissionFile');
+			$files = $filesService->getMany([
+				'submissionIds' => [$submissionId],
+				'fileStages' => [SUBMISSION_FILE_SUBMISSION],
+			]);
+
+			$filePath = null;
+			$fileName = 'manuscript.docx';
+			$filesDir = rtrim(Config::getVar('files', 'files_dir'), '/\\');
+
+			foreach ($files as $file) {
+				$genreId = (int) $file->getData('genreId');
+				$relPath = $file->getData('path');
+				$fullPath = $filesDir . '/' . ltrim($relPath, '/\\');
+				if (file_exists($fullPath)) {
+					$origName = $file->getLocalizedData('name') ?: basename($fullPath);
+					// Jangan pernah mengirim balik berkas laporan hasil pemeriksaan MQC (genreId 14 / prefix Laporan-review-)
+					if (
+						$genreId === 14 ||
+						stripos($origName, 'Laporan-review-') === 0 ||
+						stripos($origName, 'Laporan-MQC-') === 0
+					) {
+						continue;
+					}
+					if (strtolower(pathinfo($origName, PATHINFO_EXTENSION)) === 'docx') {
+						$filePath = $fullPath;
+						$fileName = $origName;
+						break;
+					}
+					if (!$filePath) {
+						$filePath = $fullPath;
+						$fileName = $origName;
+					}
+				}
+			}
+
+			if (!$filePath || !file_exists($filePath)) {
+				error_log("[MQC Sync Warning] Berkas naskah untuk submission #{$submissionId} tidak ditemukan di files_dir.");
+				return;
+			}
+
+			$mqcUrl = Config::getVar('mqc', 'api_url') ?: 'http://localhost:3000/api/check-submission';
+			$mqcKey = trim((string) Config::getVar('mqc', 'api_key'));
+			if ($mqcKey === '') {
+				error_log("[MQC Sync Warning] Konfigurasi [mqc] api_key kosong di config.inc.php.");
+				return;
+			}
+
+			$postFields = [
+				'file' => new \CURLFile($filePath, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', $fileName),
+				'ojs_submission_id' => (string) $submissionId,
+				'ojs_user_id' => $userId ? (string) $userId : '',
+				'author_name' => $authorName ?: 'Penulis Jurnal Permukiman',
+				'author_email' => $authorEmail ?: '',
 				'title' => $title ?: "Naskah OJS #{$submissionId}",
-				'author_name' => $authorName,
-				'original_file_name' => $originalFileName,
-				'file_path' => $filePath,
-				'file_content_base64' => $fileBase64
 			];
 
-			// Kirim ke endpoint MQC secara non-blocking / timeout cepat
-			$mqcUrl = 'http://localhost:3000/api/ojs/sync-submission';
 			$ch = curl_init($mqcUrl);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POST, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($mqcPayload));
-			curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+			curl_setopt_array($ch, [
+				CURLOPT_POST => true,
+				CURLOPT_POSTFIELDS => $postFields,
+				CURLOPT_HTTPHEADER => [
+					'x-mqc-api-key: ' . $mqcKey,
+				],
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_CONNECTTIMEOUT => 1,
+				CURLOPT_TIMEOUT => 2,
+			]);
+
 			$response = curl_exec($ch);
 			$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			$curlErr = curl_error($ch);
 			curl_close($ch);
 
 			if ($httpCode === 200) {
-				error_log("[MQC Sync Success] Naskah OJS #{$submissionId} berhasil disinkronkan ke MQC Assistant.");
+				error_log("[MQC Sync Success] Naskah OJS #{$submissionId} ('{$title}') berhasil disinkronkan ke MQC.");
 			} else {
-				error_log("[MQC Sync Warning] MQC merespons kode HTTP {$httpCode}: {$response}");
+				error_log("[MQC Sync Warning] HTTP {$httpCode} dari MQC: " . ($response ?: $curlErr));
 			}
-		} catch (Exception $e) {
+		} catch (\Throwable $e) {
 			error_log("[MQC Sync Error] Gagal menyinkronkan naskah OJS ke MQC: " . $e->getMessage());
 		}
 

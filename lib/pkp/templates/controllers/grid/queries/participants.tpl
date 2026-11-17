@@ -9,5 +9,5 @@
  *
  *}
 {foreach from=$participants item=user}
-	<li>{$user->getFullName()|escape} ({$user->getUsername()|escape})</li>
+	<li>{$user->getFullName()|escape}</li>
 {/foreach}

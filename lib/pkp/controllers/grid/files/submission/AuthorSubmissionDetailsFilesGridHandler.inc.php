@@ -15,6 +15,7 @@
 
 // Import the grid layout.
 import('lib.pkp.controllers.grid.files.fileList.FileListGridHandler');
+import('lib.pkp.controllers.grid.files.SubmissionFilesGridRow');
 
 class AuthorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	/**
@@ -32,6 +33,68 @@ class AuthorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 
 		// Grid title.
 		$this->setTitle('submission.submit.submissionFiles');
+	}
+
+	/**
+	 * @copydoc GridHandler::getRowInstance()
+	 */
+	protected function getRowInstance() {
+		$userRoles = (array) $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+		return new AuthorSubmissionDetailsFilesGridRow($this->getCapabilities(), $this->getStageId(), $userRoles);
+	}
+
+	/**
+	 * @copydoc GridHandler::loadData()
+	 */
+	protected function loadData($request, $filter) {
+		$gridData = parent::loadData($request, $filter);
+		if (is_array($gridData)) {
+			foreach ($gridData as $fileId => $fileData) {
+				$submissionFile = $fileData['submissionFile'] ?? null;
+				if ($submissionFile && is_a($submissionFile, 'SubmissionFile')) {
+					// Sembunyikan berkas laporan review MQC dari tabel Submission Files milik Penulis
+					$fileName = $submissionFile->getData('name');
+					$fileNameStr = is_array($fileName) ? implode(' ', $fileName) : (string) $fileName;
+					if ($submissionFile->getData('genreId') == 14 || stripos($fileNameStr, 'Laporan-review-') !== false) {
+						unset($gridData[$fileId]);
+					}
+				}
+			}
+		}
+		return $gridData;
+	}
+}
+
+class AuthorSubmissionDetailsFilesGridRow extends SubmissionFilesGridRow {
+	/** @var array */
+	var $_userRoles;
+
+	function __construct($capabilities = null, $stageId = null, $userRoles = array()) {
+		$this->_userRoles = $userRoles;
+		parent::__construct($capabilities, $stageId);
+	}
+
+	/**
+	 * @copydoc GridRow::initialize()
+	 */
+	function initialize($request, $template = 'controllers/grid/gridRow.tpl') {
+		parent::initialize($request, $template);
+
+		// Author is only authorized to modify files that were uploaded by themselves.
+		// If the file was uploaded by another user (e.g. mqc_service / editorial team),
+		// remove the 'editFile' link action so author does not see a non-functional Edit button.
+		$submissionFileData =& $this->getData();
+		if (isset($submissionFileData['submissionFile'])) {
+			$submissionFile =& $submissionFileData['submissionFile'];
+			$user = $request->getUser();
+			if ($user && is_a($submissionFile, 'SubmissionFile')) {
+				$isManagerOrEditor = in_array(ROLE_ID_MANAGER, $this->_userRoles) || in_array(ROLE_ID_SUB_EDITOR, $this->_userRoles);
+				// If not editor/manager and user is not the uploader, remove the 'editFile' action
+				if (!$isManagerOrEditor && $submissionFile->getUploaderUserId() != $user->getId()) {
+					unset($this->_actions[GRID_ACTION_POSITION_DEFAULT]['editFile']);
+				}
+			}
+		}
 	}
 }
 
