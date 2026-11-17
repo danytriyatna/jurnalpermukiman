@@ -86,11 +86,8 @@
 		</section>
 	{/if}
 
-</div><!-- .page_index_journal -->
-
-{capture assign="homepageSections"}
 	{* =========================================================================
-	   2. EDITORIAL WORKFLOW & JOURNAL PERFORMANCE STATISTICS (FULL WIDTH ROW)
+	   2. EDITORIAL WORKFLOW & JOURNAL PERFORMANCE STATISTICS (IN-COLUMN)
 	   ========================================================================= *}
 	<section class="jp_art_workflow_section" aria-labelledby="editorialWorkflowHeading">
 		<div class="jp_art_workflow_inner">
@@ -241,7 +238,7 @@
 	</script>
 
 	{* =========================================================================
-	   3. ANNOUNCEMENTS SECTION
+	   3. ANNOUNCEMENTS SECTION (IN-COLUMN)
 	   ========================================================================= *}
 	{if $numAnnouncementsHomepage && $announcements|@count}
 		<section class="cmp_announcements" aria-labelledby="announcementsHeading">
@@ -278,6 +275,7 @@
 			</div>
 		</section>
 	{/if}
-{/capture}
+
+</div><!-- .page_index_journal -->
 
 {include file="frontend/components/footer.tpl"}
