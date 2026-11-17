@@ -43,7 +43,16 @@
 
 				<div class="jp_art_nav_links">
 					<a href="{$homeUrl}" class="{if !$requestedPage || $requestedPage === 'index'}is_active{/if}">Home</a>
-					<a href="{url page="about" router=$smarty.const.ROUTE_PAGE}">About <i class="fa fa-caret-down" aria-hidden="true" style="font-size:11px;"></i></a>
+					<div class="jp_nav_dropdown">
+						<button type="button" class="jp_nav_dropdown_toggle{if $requestedPage === 'about'} is_active{/if}" aria-haspopup="true" aria-expanded="false">
+							About <i class="fa fa-caret-down" aria-hidden="true" style="font-size:11px;"></i>
+						</button>
+						<div class="jp_nav_dropdown_menu">
+							<a href="{url page="about" router=$smarty.const.ROUTE_PAGE}">About the Journal</a>
+							<a href="{url page="about" op="editorialTeam" router=$smarty.const.ROUTE_PAGE}">Editorial Team</a>
+							<a href="{url page="about" op="contact" router=$smarty.const.ROUTE_PAGE}">Contact</a>
+						</div>
+					</div>
 					<a href="{url page="issue" op="current" router=$smarty.const.ROUTE_PAGE}">Current</a>
 					<a href="{url page="issue" op="archive" router=$smarty.const.ROUTE_PAGE}">Archives</a>
 					<a href="{url page="announcement" router=$smarty.const.ROUTE_PAGE}">Announcements</a>
@@ -54,7 +63,6 @@
 						<a href="{url page="login" op="signOut" router=$smarty.const.ROUTE_PAGE}" title="Logout"><i class="fa fa-sign-out"></i></a>
 					{else}
 						<a href="{url page="login" router=$smarty.const.ROUTE_PAGE}">Login</a>
-						<a href="{url page="user" op="register" router=$smarty.const.ROUTE_PAGE}" class="jp_nav_register_pill">Register</a>
 					{/if}
 					<a href="{url page="search" router=$smarty.const.ROUTE_PAGE}" aria-label="Search" class="jp_nav_search_btn">
 						<i class="fa fa-search" aria-hidden="true"></i>

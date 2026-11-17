@@ -77,6 +77,8 @@ a:hover {
 
 /* Navbar Top */
 .jp_art_navbar {
+  position: relative !important;
+  z-index: 100 !important;
   width: 100% !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(4px);
@@ -152,6 +154,96 @@ a:hover {
 .jp_art_nav_links a.is_active {
   border-bottom: 2px solid #F5B335;
   opacity: 1;
+}
+
+/* Navigation Dropdown Menu for About */
+.jp_nav_dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.jp_nav_dropdown_toggle {
+  background: none !important;
+  border: none !important;
+  color: #FFFFFF !important;
+  font-family: inherit !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  padding: 4px 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  opacity: 0.92 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: opacity 0.15s ease, border-color 0.15s ease !important;
+  text-decoration: none !important;
+}
+.jp_nav_dropdown_toggle:hover {
+  opacity: 1 !important;
+}
+.jp_nav_dropdown_toggle.is_active {
+  border-bottom: 2px solid #F5B335 !important;
+  opacity: 1 !important;
+}
+.jp_nav_dropdown_menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 190px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 6px 0;
+  margin-top: 6px;
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+/* Invisible hover bridge to prevent menu closing when cursor travels across gap */
+.jp_nav_dropdown_menu::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+}
+/* Subtle top arrow pointer */
+.jp_nav_dropdown_menu::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 18px;
+  width: 10px;
+  height: 10px;
+  background: #FFFFFF;
+  transform: rotate(45deg);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+}
+.jp_nav_dropdown:hover .jp_nav_dropdown_menu,
+.jp_nav_dropdown:focus-within .jp_nav_dropdown_menu {
+  display: flex;
+}
+.jp_nav_dropdown_menu a {
+  display: block !important;
+  color: #1C1917 !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  padding: 8px 16px !important;
+  text-decoration: none !important;
+  opacity: 0.88 !important;
+  border-bottom: none !important;
+  transition: background-color 0.15s ease, color 0.15s ease, opacity 0.15s ease !important;
+  white-space: nowrap !important;
+}
+.jp_nav_dropdown_menu a:hover {
+  background-color: #F8F9FA !important;
+  color: #C13D0D !important;
+  opacity: 1 !important;
 }
 .jp_user_chip {
   background: rgba(255, 255, 255, 0.15) !important;
@@ -430,8 +522,24 @@ a:hover {
 }
 
 /* ==========================================================================
-   3. MAIN TWO-COLUMN SCAFFOLDING (1320PX CENTERED)
+   3. MAIN CONTENT SCAFFOLDING (1320PX CENTERED & PIXEL ALIGNED WITH NAVBAR)
    ========================================================================== */
+.pkp_structure_content {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 0 36px 0 !important;
+  box-sizing: border-box !important;
+}
+
+.pkp_structure_content:before,
+.pkp_structure_content:after,
+.pkp_structure_main:before,
+.pkp_structure_main:after {
+  display: none !important;
+  content: none !important;
+}
+
 .pkp_structure_content.has_sidebar {
   display: flex !important;
   flex-direction: row !important;
@@ -447,6 +555,7 @@ a:hover {
   float: none !important;
   width: auto !important;
   padding: 0 !important;
+  margin: 0 !important;
 }
 .pkp_structure_content.has_sidebar .pkp_structure_sidebar {
   flex: 0 0 300px !important;
@@ -455,14 +564,20 @@ a:hover {
   max-width: 300px !important;
   float: none !important;
   padding: 0 !important;
+  margin: 0 !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 20px !important;
 }
-.pkp_structure_main:before,
-.pkp_structure_main:after {
-  display: none !important;
-  content: none !important;
+
+/* Full-width fallback when no sidebar is present */
+.pkp_structure_content:not(.has_sidebar) .pkp_structure_main,
+.pkp_structure_main:first-child:last-child {
+  float: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Section Header Typography */
@@ -767,37 +882,42 @@ a:hover {
 }
 
 /* ==========================================================================
-   EDITORIAL WORKFLOW SECTION & SPEED METRICS (FULL WIDTH ROW - TIGHTENED DENSITY)
+   EDITORIAL WORKFLOW SECTION & SPEED METRICS (IN-COLUMN LAYOUT)
    ========================================================================== */
 .jp_art_workflow_section {
-  width: 100vw !important;
-  position: relative !important;
-  left: 50% !important;
-  right: 50% !important;
-  margin-left: -50vw !important;
-  margin-right: -50vw !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   background: #FAF5F1 !important;
-  border-top: 1px solid #EDE3DC !important;
-  border-bottom: 1px solid #EDE3DC !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-radius: 0 !important;
-  margin-top: 24px !important;
-  margin-bottom: 0 !important;
-  padding: 26px 0 !important;
+  border: 1px solid #EDE3DC !important;
+  border-radius: 10px !important;
+  margin-top: 16px !important;
+  margin-bottom: 16px !important;
+  padding: 14px 16px !important;
+  box-sizing: border-box !important;
 }
 .jp_art_workflow_inner {
-  max-width: 1320px !important;
-  margin: 0 auto !important;
-  padding: 0 24px !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 16px !important;
+  gap: 10px !important;
+  box-sizing: border-box !important;
+}
+.jp_art_workflow_header {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 .jp_art_workflow_title {
-  margin: 0;
+  margin: 2px 0 0 0 !important;
   font-family: 'Lora', Georgia, serif !important;
-  font-size: 24px !important;
+  font-size: 18px !important;
+  line-height: 1.25 !important;
   font-weight: 700;
   color: #1C1917;
 }
@@ -805,20 +925,30 @@ a:hover {
 .jp_art_workflow_grid {
   display: grid !important;
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  gap: 12px !important;
+  gap: 8px !important;
+}
+@media (max-width: 860px) {
+  .jp_art_workflow_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 480px) {
+  .jp_art_workflow_grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 .jp_art_step_card {
   background: #FFFFFF;
   border: 1px solid #EDE3DC;
-  border-radius: 10px;
-  padding: 14px 18px !important;
+  border-radius: 6px;
+  padding: 9px 11px !important;
   display: flex;
   flex-direction: column;
-  gap: 8px !important;
+  gap: 4px !important;
 }
 .jp_step_badge {
-  width: 32px !important;
-  height: 32px !important;
+  width: 22px !important;
+  height: 22px !important;
   border-radius: 999px;
   background: #7A2E0E;
   color: #FFFFFF;
@@ -826,39 +956,41 @@ a:hover {
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 14px !important;
+  font-size: 11px !important;
 }
 .jp_step_title {
-  margin: 0;
-  font-size: 16px !important;
+  margin: 0 !important;
+  font-size: 13px !important;
+  line-height: 1.2 !important;
   font-weight: 700;
   color: #1C1917;
 }
 .jp_step_desc {
-  margin: 0;
-  font-size: 13px !important;
+  margin: 0 !important;
+  font-size: 11px !important;
   color: #57534E;
-  line-height: 1.4 !important;
+  line-height: 1.3 !important;
 }
 
 /* Performance Box (Journal Statistics inside Workflow) */
 .jp_art_perf_box {
   display: flex;
   flex-direction: column;
-  gap: 10px !important;
-  padding-top: 4px !important;
+  gap: 8px !important;
+  padding-top: 2px !important;
 }
 .jp_art_perf_head {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 8px !important;
+  gap: 6px !important;
 }
 .jp_art_perf_title {
-  margin: 0;
+  margin: 0 !important;
   font-family: 'Lora', Georgia, serif;
-  font-size: 19px !important;
+  font-size: 15.5px !important;
+  line-height: 1.2 !important;
   font-weight: 700;
   color: #1C1917;
 }
@@ -867,9 +999,9 @@ a:hover {
   color: #FFFFFF !important;
   border: none !important;
   font-weight: 600;
-  font-size: 13px !important;
-  padding: 7px 15px !important;
-  border-radius: 6px !important;
+  font-size: 11.5px !important;
+  padding: 4px 10px !important;
+  border-radius: 5px !important;
   cursor: pointer;
   transition: background 0.15s ease;
 }
@@ -880,26 +1012,37 @@ a:hover {
 .jp_art_perf_grid {
   background: #FFFFFF;
   border: 1px solid #E7DDD5;
-  border-radius: 10px;
-  padding: 12px 18px !important;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 12px 18px !important;
+  border-radius: 6px;
+  padding: 8px 10px !important;
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 6px 10px !important;
+}
+@media (max-width: 860px) {
+  .jp_art_perf_grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 480px) {
+  .jp_art_perf_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
 }
 .jp_art_perf_item {
   min-width: 0;
-  border-left: 3.5px solid #7A2E0E;
-  padding-left: 12px !important;
+  border-left: 2.5px solid #7A2E0E !important;
+  padding-left: 7px !important;
 }
 .jp_art_perf_val {
-  font-size: 21px !important;
+  font-size: 15.5px !important;
   font-weight: 800;
   line-height: 1.15 !important;
   color: #1C1917;
 }
 .jp_art_perf_lbl {
-  font-size: 12.5px !important;
+  font-size: 10px !important;
   color: #57534E;
+  line-height: 1.2 !important;
 }
 
 /* ==========================================================================
@@ -1010,74 +1153,146 @@ a:hover {
 }
 
 /* ==========================================================================
-   ANNOUNCEMENTS SECTION (TIGHTENED DENSITY & UNIFIED ALIGNMENT)
+   ANNOUNCEMENTS SECTION (IN-COLUMN LAYOUT)
    ========================================================================== */
 .cmp_announcements {
-  width: 100vw !important;
-  position: relative !important;
-  left: 50% !important;
-  right: 50% !important;
-  margin-left: -50vw !important;
-  margin-right: -50vw !important;
-  margin-top: 24px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 20px !important;
   margin-bottom: 24px !important;
+  padding: 0 !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  box-sizing: border-box !important;
+}
+.cmp_announcements .jp_art_announcements_inner {
+  max-width: 100% !important;
+  margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
 }
-.jp_art_announcements_inner {
-  max-width: 1320px !important;
-  margin: 0 auto !important;
-  padding: 0 24px !important;
-  box-sizing: border-box !important;
+.cmp_announcements .jp_art_section_header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  border-bottom: 2px solid #1C1917 !important;
+  padding-bottom: 6px !important;
+  margin-bottom: 14px !important;
 }
+.cmp_announcements .jp_art_section_title,
+.cmp_announcements h2.jp_art_section_title {
+  clip: auto !important;
+  position: static !important;
+  height: auto !important;
+  width: auto !important;
+  overflow: visible !important;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  margin: 0 !important;
+  display: block !important;
+}
+.cmp_announcements .jp_art_view_all_link {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #B4410F !important;
+  text-decoration: none !important;
+}
+.cmp_announcements .jp_art_view_all_link:hover {
+  color: #7A2E0E !important;
+  text-decoration: underline !important;
+}
+
 .jp_art_announcements_list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
 }
 .jp_art_announcement_item {
-  border: 1px solid #EDE3DC;
-  border-radius: 10px;
-  padding: 12px 18px !important;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 20px !important;
-  align-items: center;
-  transition: border-color 0.15s ease;
+  background: #FFFFFF !important;
+  border: 1px solid #EDE3DC !important;
+  border-radius: 8px !important;
+  padding: 14px 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  align-items: flex-start !important;
+  box-shadow: 2px 2px 0 rgba(120, 113, 108, 0.1), 0 2px 6px rgba(0, 0, 0, 0.03) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease !important;
 }
 .jp_art_announcement_item:hover {
-  border-color: #B4410F;
+  border-color: #B4410F !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 2px 2px 0 rgba(180, 65, 15, 0.18), 0 4px 12px rgba(0, 0, 0, 0.06) !important;
 }
 .jp_art_announcement_date {
-  flex: 0 0 auto;
-  font-size: 13px !important;
-  font-weight: 700;
-  color: #B4410F;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #B4410F !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1 !important;
+  margin-bottom: 2px !important;
 }
 .jp_art_announcement_body {
-  flex: 1 1 440px;
-  min-width: 0;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
 }
 .jp_art_announcement_title {
-  margin: 0 0 2px 0 !important;
-  font-size: 15.5px !important;
-  font-weight: 700;
+  margin: 0 !important;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
 }
 .jp_art_announcement_title a {
   color: #1C1917 !important;
+  text-decoration: none !important;
 }
 .jp_art_announcement_title a:hover {
   color: #B4410F !important;
 }
 .jp_art_announcement_desc {
-  font-size: 13px !important;
-  color: #57534E;
+  font-size: 12.5px !important;
+  color: #44403C !important;
+  line-height: 1.5 !important;
+}
+.jp_art_announcement_desc p {
+  margin: 0 0 6px 0 !important;
+}
+.jp_art_announcement_desc p:last-child {
+  margin-bottom: 0 !important;
+}
+.jp_art_announcement_desc ol,
+.jp_art_announcement_desc ul {
+  margin: 4px 0 6px 20px !important;
+  padding: 0 !important;
+}
+.jp_art_announcement_desc li {
+  margin-bottom: 3px !important;
+  line-height: 1.45 !important;
 }
 .jp_art_read_more {
-  font-size: 13px !important;
-  font-weight: 600;
-  color: #B4410F;
-  white-space: nowrap;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #B4410F !important;
+  text-decoration: none !important;
+  padding-top: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+.jp_art_read_more:hover {
+  color: #7A2E0E !important;
+  text-decoration: underline !important;
 }
 
 /* ==========================================================================
@@ -1152,24 +1367,7 @@ a:hover {
   height: 15px !important;
 }
 .jp_art_sub_secondary_btn {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 7px !important;
-  background: #F8FAFC !important;
-  border: 1px solid #E2E8F0 !important;
-  border-radius: 6px !important;
-  padding: 7px 12px !important;
-  font-size: 12.5px !important;
-  font-weight: 600 !important;
-  color: #475569 !important;
-  text-decoration: none !important;
-  transition: all 0.15s ease !important;
-}
-.jp_art_sub_secondary_btn:hover {
-  background: #F1F5F9 !important;
-  border-color: #CBD5E1 !important;
-  color: #B4410F !important;
+  display: none !important;
 }
 
 /* Journal Policy (Matching Claude Artifact 100%: Clean Minimalist Text Links) */
@@ -1301,6 +1499,9 @@ a:hover {
    INTERNAL / SUB-PAGE MODERN CARD STYLING (MATCHING CLAUDE REDESIGN)
    ========================================================================== */
 .hero_card_fullwidth.jp_subpage_header {
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 50 !important;
   min-height: auto !important;
   padding-bottom: 0 !important;
   background: linear-gradient(135deg, #7A2E0E 0%, #4F1C07 100%) !important;
@@ -1330,6 +1531,9 @@ a:hover {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
   margin-top: 16px !important;
   margin-bottom: 36px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
   color: #292524 !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   line-height: 1.7 !important;
@@ -1444,12 +1648,12 @@ a:hover {
 
 
 /* ==========================================================================
-   ISSUE ARCHIVE GRID (UGM JCEF / MODERN ACADEMIC STANDARD)
+   ISSUE ARCHIVE GRID (MATCHING KEMENPU OFFICIAL CATALOG STYLE)
    ========================================================================== */
 .page_issue_archive .issues_archive {
   display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)) !important;
-  gap: 20px !important;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)) !important;
+  gap: 22px !important;
   list-style: none !important;
   padding: 0 !important;
   margin: 24px 0 !important;
@@ -1471,40 +1675,48 @@ a:hover {
   border-radius: 12px !important;
   overflow: hidden !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
-  padding: 16px !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
+  padding: 0 !important;
   position: relative !important;
 }
 
 .page_issue_archive .obj_issue_summary:hover {
   transform: translateY(-4px) !important;
-  box-shadow: 0 10px 20px -5px rgba(122, 46, 14, 0.12) !important;
+  box-shadow: 0 12px 24px -6px rgba(122, 46, 14, 0.16) !important;
   border-color: #D6C2B4 !important;
 }
 
 .page_issue_archive .obj_issue_summary .cover {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: #F8F6F4 !important;
-  border-radius: 8px !important;
-  padding: 12px !important;
-  margin-bottom: 14px !important;
-  min-height: 200px !important;
+  display: block !important;
+  width: 100% !important;
+  background: #F5EFEB !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  overflow: hidden !important;
+  border-bottom: 1px solid #EDE6E1 !important;
+  aspect-ratio: 3 / 4.2 !important;
 }
 
 .page_issue_archive .obj_issue_summary .cover img {
-  max-height: 180px !important;
-  width: auto !important;
-  object-fit: contain !important;
-  border-radius: 4px !important;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12) !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: block !important;
+  transition: transform 0.3s ease !important;
+}
+
+.page_issue_archive .obj_issue_summary:hover .cover img {
+  transform: scale(1.03) !important;
 }
 
 /* Fallback cover banner for issues without cover images */
 .page_issue_archive .obj_issue_summary h2 {
-  margin: 0 0 8px 0 !important;
-  padding: 0 !important;
+  margin: 0 !important;
+  padding: 14px 16px 6px 16px !important;
 }
 
 .page_issue_archive .obj_issue_summary .title {
@@ -1523,10 +1735,69 @@ a:hover {
 }
 
 .page_issue_archive .obj_issue_summary .series {
-  font-size: 13px !important;
+  font-size: 12.5px !important;
   color: #78716C !important;
-  margin-top: auto !important;
+  margin-top: 4px !important;
   line-height: 1.4 !important;
+}
+
+.page_issue_archive .obj_issue_summary .description {
+  padding: 0 16px 14px 16px !important;
+  font-size: 12px !important;
+  color: #78716C !important;
+}
+
+/* Placeholder Cover for Issues without Image */
+.page_issue_archive .obj_issue_summary .cover_placeholder {
+  background: linear-gradient(135deg, #7A2E0E 0%, #4F1C07 100%) !important;
+  color: #FFFFFF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  aspect-ratio: 3 / 4.2 !important;
+  border-bottom: 3px solid #F5B335 !important;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.3) !important;
+}
+.page_issue_archive .obj_issue_summary .cover_placeholder .jp_cover_placeholder_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 18px;
+  gap: 8px;
+}
+.page_issue_archive .obj_issue_summary .cover_placeholder .jp_cover_placeholder_kemenpu {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.75);
+  text-transform: uppercase;
+}
+.page_issue_archive .obj_issue_summary .cover_placeholder .jp_cover_placeholder_title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #FFFFFF;
+  margin: 6px 0;
+}
+.page_issue_archive .obj_issue_summary .cover_placeholder .jp_cover_placeholder_divider {
+  width: 48px;
+  height: 2px;
+  background: #F5B335;
+  margin: 6px auto;
+}
+.page_issue_archive .obj_issue_summary .cover_placeholder .jp_cover_placeholder_series {
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.35;
+}
+.page_issue_archive .obj_issue_summary .cover_placeholder .jp_cover_placeholder_issn {
+  font-size: 11px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 4px;
 }
 
 /* ==========================================================================
@@ -1538,10 +1809,45 @@ a:hover {
   gap: 24px !important;
 }
 
+.obj_article_details .row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 32px !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
 .obj_article_details .main_entry {
+  flex: 1 1 0% !important;
+  width: auto !important;
+  min-width: 0 !important;
+  float: none !important;
+  border-right: none !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 20px !important;
+}
+
+.obj_article_details .entry_details {
+  flex: 0 0 290px !important;
+  width: 290px !important;
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-left: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+@media (max-width: 991px) {
+  .obj_article_details .row {
+    flex-direction: column !important;
+  }
+  .obj_article_details .entry_details {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+  }
 }
 
 /* Article Title */
@@ -1579,32 +1885,82 @@ a:hover {
   display: block !important;
 }
 
-/* Interactive DOI Badge */
+/* Interactive DOI Button */
 .obj_article_details .item.doi {
+  display: block !important;
+  margin: 6px 0 16px 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.jp_doi_btn {
   display: inline-flex !important;
   align-items: center !important;
-  background: #FDF5F2 !important;
-  border: 1px solid #F5D3C5 !important;
-  border-radius: 999px !important;
-  padding: 6px 14px !important;
+  gap: 10px !important;
+  background: #FAF7F5 !important;
+  border: 1px solid #E6DCD5 !important;
+  border-radius: 8px !important;
+  padding: 5px 14px 5px 6px !important;
+  text-decoration: none !important;
+  color: #292524 !important;
   font-size: 13px !important;
-  gap: 8px !important;
-  width: fit-content !important;
+  line-height: 1.2 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
 }
 
-.obj_article_details .item.doi .label {
-  font-weight: 700 !important;
-  color: #7A2E0E !important;
-}
-
-.obj_article_details .item.doi .value a {
-  color: #A63A1E !important;
-  font-weight: 600 !important;
+.jp_doi_btn:hover {
+  background: #FFFFFF !important;
+  border-color: #C13D0D !important;
+  box-shadow: 0 4px 12px rgba(193, 61, 13, 0.15) !important;
+  transform: translateY(-1.5px) !important;
+  color: #C13D0D !important;
   text-decoration: none !important;
 }
 
-.obj_article_details .item.doi .value a:hover {
-  text-decoration: underline !important;
+.jp_doi_btn .jp_doi_badge {
+  background: #7A2E0E !important;
+  color: #FFFFFF !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.6px !important;
+  padding: 4px 8px !important;
+  border-radius: 5px !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.jp_doi_btn:hover .jp_doi_badge {
+  background: #C13D0D !important;
+}
+
+.jp_doi_btn .jp_doi_val {
+  font-family: inherit !important;
+  font-weight: 600 !important;
+  color: #292524 !important;
+  letter-spacing: -0.01em !important;
+  transition: color 0.2s ease !important;
+}
+
+.jp_doi_btn:hover .jp_doi_val {
+  color: #C13D0D !important;
+}
+
+.jp_doi_btn .fa-external-link {
+  font-size: 11px !important;
+  color: #78716C !important;
+  opacity: 0.7 !important;
+  transition: all 0.2s ease !important;
+}
+
+.jp_doi_btn:hover .fa-external-link {
+  color: #C13D0D !important;
+  opacity: 1 !important;
+  transform: translate(1px, -1px) !important;
 }
 
 /* Published and Received Dates Card (SINTA-2 Audit Trail) */
@@ -1642,24 +1998,43 @@ a:hover {
   font-weight: 600 !important;
 }
 
-/* Galleys / Download PDF Button */
+/* Galleys / Download PDF Button (Full Width, Prominent) */
 .obj_article_details .item.galleys {
-  margin: 12px 0 !important;
+  margin: 14px 0 !important;
+  width: 100% !important;
+}
+
+.obj_article_details .item.galleys ul.value {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.obj_article_details .item.galleys ul.value li {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .obj_article_details .item.galleys .obj_galley_link {
-  display: inline-flex !important;
+  display: flex !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
   align-items: center !important;
+  justify-content: center !important;
   gap: 10px !important;
   background: linear-gradient(135deg, #A63A1E 0%, #7A2E0E 100%) !important;
   color: #FFFFFF !important;
   font-weight: 700 !important;
   font-size: 14.5px !important;
-  padding: 12px 24px !important;
+  padding: 13px 20px !important;
   border-radius: 8px !important;
   text-decoration: none !important;
   box-shadow: 0 4px 12px rgba(122, 46, 14, 0.25) !important;
   transition: all 0.2s ease !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
 }
 
 .obj_article_details .item.galleys .obj_galley_link:hover {
