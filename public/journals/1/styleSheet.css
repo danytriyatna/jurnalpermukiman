@@ -1048,65 +1048,136 @@ a:hover {
   right: auto !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
-  margin-top: 24px !important;
+  margin-top: 20px !important;
   margin-bottom: 24px !important;
   padding: 0 !important;
+  border-top: none !important;
+  border-bottom: none !important;
   box-sizing: border-box !important;
 }
-.jp_art_announcements_inner {
+.cmp_announcements .jp_art_announcements_inner {
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
 }
+.cmp_announcements .jp_art_section_header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  border-bottom: 2px solid #1C1917 !important;
+  padding-bottom: 6px !important;
+  margin-bottom: 14px !important;
+}
+.cmp_announcements .jp_art_section_title,
+.cmp_announcements h2.jp_art_section_title {
+  clip: auto !important;
+  position: static !important;
+  height: auto !important;
+  width: auto !important;
+  overflow: visible !important;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  margin: 0 !important;
+  display: block !important;
+}
+.cmp_announcements .jp_art_view_all_link {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #B4410F !important;
+  text-decoration: none !important;
+}
+.cmp_announcements .jp_art_view_all_link:hover {
+  color: #7A2E0E !important;
+  text-decoration: underline !important;
+}
+
 .jp_art_announcements_list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
 }
 .jp_art_announcement_item {
-  border: 1px solid #EDE3DC;
-  border-radius: 10px;
-  padding: 12px 18px !important;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 20px !important;
-  align-items: center;
-  transition: border-color 0.15s ease;
+  background: #FFFFFF !important;
+  border: 1px solid #EDE3DC !important;
+  border-radius: 8px !important;
+  padding: 14px 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  align-items: flex-start !important;
+  box-shadow: 2px 2px 0 rgba(120, 113, 108, 0.1), 0 2px 6px rgba(0, 0, 0, 0.03) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease !important;
 }
 .jp_art_announcement_item:hover {
-  border-color: #B4410F;
+  border-color: #B4410F !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 2px 2px 0 rgba(180, 65, 15, 0.18), 0 4px 12px rgba(0, 0, 0, 0.06) !important;
 }
 .jp_art_announcement_date {
-  flex: 0 0 auto;
-  font-size: 13px !important;
-  font-weight: 700;
-  color: #B4410F;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #B4410F !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1 !important;
+  margin-bottom: 2px !important;
 }
 .jp_art_announcement_body {
-  flex: 1 1 440px;
-  min-width: 0;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
 }
 .jp_art_announcement_title {
-  margin: 0 0 2px 0 !important;
-  font-size: 15.5px !important;
-  font-weight: 700;
+  margin: 0 !important;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
 }
 .jp_art_announcement_title a {
   color: #1C1917 !important;
+  text-decoration: none !important;
 }
 .jp_art_announcement_title a:hover {
   color: #B4410F !important;
 }
 .jp_art_announcement_desc {
-  font-size: 13px !important;
-  color: #57534E;
+  font-size: 12.5px !important;
+  color: #44403C !important;
+  line-height: 1.5 !important;
+}
+.jp_art_announcement_desc p {
+  margin: 0 0 6px 0 !important;
+}
+.jp_art_announcement_desc p:last-child {
+  margin-bottom: 0 !important;
+}
+.jp_art_announcement_desc ol,
+.jp_art_announcement_desc ul {
+  margin: 4px 0 6px 20px !important;
+  padding: 0 !important;
+}
+.jp_art_announcement_desc li {
+  margin-bottom: 3px !important;
+  line-height: 1.45 !important;
 }
 .jp_art_read_more {
-  font-size: 13px !important;
-  font-weight: 600;
-  color: #B4410F;
-  white-space: nowrap;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #B4410F !important;
+  text-decoration: none !important;
+  padding-top: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+.jp_art_read_more:hover {
+  color: #7A2E0E !important;
+  text-decoration: underline !important;
 }
 
 /* ==========================================================================
