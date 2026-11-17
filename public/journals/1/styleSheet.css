@@ -1390,6 +1390,64 @@ a:hover {
   text-decoration: underline !important;
 }
 
+/* Fallback & Legacy Database Override for #customblock-journal-police / #customblock-menu */
+#customblock-journal-police .content p[style],
+#customblock-menu .content p[style] {
+  background: transparent !important;
+  border: none !important;
+  padding: 3px 0 !important;
+  margin: 0 !important;
+  line-height: 1.45 !important;
+  font-size: 15px !important;
+  text-align: left !important;
+}
+
+/* Hide legacy redundant Home link with fa-home if present */
+#customblock-journal-police .content p:has(.fa-home),
+#customblock-menu .content p:has(.fa-home),
+#customblock-journal-police .content a[href="#"],
+#customblock-menu .content a[href="#"] {
+  display: none !important;
+}
+
+/* Strip legacy icons to match clean minimalist list */
+#customblock-journal-police .content em.fa,
+#customblock-menu .content em.fa {
+  display: none !important;
+}
+
+/* Force links and nested spans to adopt the minimalist theme styling */
+#customblock-journal-police .content p[style] a,
+#customblock-journal-police .content p[style] span,
+#customblock-menu .content p[style] a,
+#customblock-menu .content p[style] span {
+  color: #7A2E0E !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+  display: inline-block !important;
+  line-height: 1.45 !important;
+}
+
+#customblock-journal-police .content p[style] a:hover,
+#customblock-journal-police .content p[style] a:hover span,
+#customblock-menu .content p[style] a:hover,
+#customblock-menu .content p[style] a:hover span {
+  color: #C13D0D !important;
+  text-decoration: underline !important;
+}
+
+#customblock-journal-police h2.title,
+#customblock-menu h2.title {
+  color: #292524 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 12px !important;
+}
+
 /* ==========================================================================
    FOOTER (GOLD TOP BORDER + DEEP RUST 4-COLUMN CONTAINER)
    ========================================================================== */
