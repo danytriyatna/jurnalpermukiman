@@ -1476,6 +1476,9 @@ a:hover {
    INTERNAL / SUB-PAGE MODERN CARD STYLING (MATCHING CLAUDE REDESIGN)
    ========================================================================== */
 .hero_card_fullwidth.jp_subpage_header {
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 50 !important;
   min-height: auto !important;
   padding-bottom: 0 !important;
   background: linear-gradient(135deg, #7A2E0E 0%, #4F1C07 100%) !important;
