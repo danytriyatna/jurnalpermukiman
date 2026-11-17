@@ -44,9 +44,9 @@
 				<div class="jp_art_nav_links">
 					<a href="{$homeUrl}" class="{if !$requestedPage || $requestedPage === 'index'}is_active{/if}">Home</a>
 					<div class="jp_nav_dropdown">
-						<a href="{url page="about" router=$smarty.const.ROUTE_PAGE}" class="jp_nav_dropdown_toggle{if $requestedPage === 'about'} is_active{/if}">
+						<button type="button" class="jp_nav_dropdown_toggle{if $requestedPage === 'about'} is_active{/if}" aria-haspopup="true" aria-expanded="false">
 							About <i class="fa fa-caret-down" aria-hidden="true" style="font-size:11px;"></i>
-						</a>
+						</button>
 						<div class="jp_nav_dropdown_menu">
 							<a href="{url page="about" router=$smarty.const.ROUTE_PAGE}">About the Journal</a>
 							<a href="{url page="about" op="editorialTeam" router=$smarty.const.ROUTE_PAGE}">Editorial Team</a>
