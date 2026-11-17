@@ -1622,12 +1622,12 @@ a:hover {
 
 
 /* ==========================================================================
-   ISSUE ARCHIVE GRID (UGM JCEF / MODERN ACADEMIC STANDARD)
+   ISSUE ARCHIVE GRID (MATCHING KEMENPU OFFICIAL CATALOG STYLE)
    ========================================================================== */
 .page_issue_archive .issues_archive {
   display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)) !important;
-  gap: 20px !important;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)) !important;
+  gap: 22px !important;
   list-style: none !important;
   padding: 0 !important;
   margin: 24px 0 !important;
@@ -1649,40 +1649,48 @@ a:hover {
   border-radius: 12px !important;
   overflow: hidden !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
-  padding: 16px !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
+  padding: 0 !important;
   position: relative !important;
 }
 
 .page_issue_archive .obj_issue_summary:hover {
   transform: translateY(-4px) !important;
-  box-shadow: 0 10px 20px -5px rgba(122, 46, 14, 0.12) !important;
+  box-shadow: 0 12px 24px -6px rgba(122, 46, 14, 0.16) !important;
   border-color: #D6C2B4 !important;
 }
 
 .page_issue_archive .obj_issue_summary .cover {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: #F8F6F4 !important;
-  border-radius: 8px !important;
-  padding: 12px !important;
-  margin-bottom: 14px !important;
-  min-height: 200px !important;
+  display: block !important;
+  width: 100% !important;
+  background: #F5EFEB !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  overflow: hidden !important;
+  border-bottom: 1px solid #EDE6E1 !important;
+  aspect-ratio: 3 / 4.2 !important;
 }
 
 .page_issue_archive .obj_issue_summary .cover img {
-  max-height: 180px !important;
-  width: auto !important;
-  object-fit: contain !important;
-  border-radius: 4px !important;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12) !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: block !important;
+  transition: transform 0.3s ease !important;
+}
+
+.page_issue_archive .obj_issue_summary:hover .cover img {
+  transform: scale(1.03) !important;
 }
 
 /* Fallback cover banner for issues without cover images */
 .page_issue_archive .obj_issue_summary h2 {
-  margin: 0 0 8px 0 !important;
-  padding: 0 !important;
+  margin: 0 !important;
+  padding: 14px 16px 6px 16px !important;
 }
 
 .page_issue_archive .obj_issue_summary .title {
@@ -1701,10 +1709,16 @@ a:hover {
 }
 
 .page_issue_archive .obj_issue_summary .series {
-  font-size: 13px !important;
+  font-size: 12.5px !important;
   color: #78716C !important;
-  margin-top: auto !important;
+  margin-top: 4px !important;
   line-height: 1.4 !important;
+}
+
+.page_issue_archive .obj_issue_summary .description {
+  padding: 0 16px 14px 16px !important;
+  font-size: 12px !important;
+  color: #78716C !important;
 }
 
 /* ==========================================================================
@@ -1761,27 +1775,34 @@ a:hover {
 .obj_article_details .item.doi {
   display: inline-flex !important;
   align-items: center !important;
-  background: #FDF5F2 !important;
-  border: 1px solid #F5D3C5 !important;
-  border-radius: 999px !important;
-  padding: 6px 14px !important;
+  background: #FAF7F5 !important;
+  border: 1px solid #E6DCD5 !important;
+  border-radius: 6px !important;
+  padding: 8px 16px !important;
   font-size: 13px !important;
   gap: 8px !important;
   width: fit-content !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03) !important;
+  margin: 6px 0 14px 0 !important;
 }
 
 .obj_article_details .item.doi .label {
   font-weight: 700 !important;
   color: #7A2E0E !important;
+  text-transform: uppercase !important;
+  font-size: 12px !important;
+  letter-spacing: 0.5px !important;
 }
 
 .obj_article_details .item.doi .value a {
   color: #A63A1E !important;
   font-weight: 600 !important;
   text-decoration: none !important;
+  word-break: break-all !important;
 }
 
 .obj_article_details .item.doi .value a:hover {
+  color: #7A2E0E !important;
   text-decoration: underline !important;
 }
 
@@ -1820,24 +1841,43 @@ a:hover {
   font-weight: 600 !important;
 }
 
-/* Galleys / Download PDF Button */
+/* Galleys / Download PDF Button (Full Width, Prominent) */
 .obj_article_details .item.galleys {
-  margin: 12px 0 !important;
+  margin: 14px 0 !important;
+  width: 100% !important;
+}
+
+.obj_article_details .item.galleys ul.value {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.obj_article_details .item.galleys ul.value li {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .obj_article_details .item.galleys .obj_galley_link {
-  display: inline-flex !important;
+  display: flex !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
   align-items: center !important;
+  justify-content: center !important;
   gap: 10px !important;
   background: linear-gradient(135deg, #A63A1E 0%, #7A2E0E 100%) !important;
   color: #FFFFFF !important;
   font-weight: 700 !important;
   font-size: 14.5px !important;
-  padding: 12px 24px !important;
+  padding: 13px 20px !important;
   border-radius: 8px !important;
   text-decoration: none !important;
   box-shadow: 0 4px 12px rgba(122, 46, 14, 0.25) !important;
   transition: all 0.2s ease !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
 }
 
 .obj_article_details .item.galleys .obj_galley_link:hover {
