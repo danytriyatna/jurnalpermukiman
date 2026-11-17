@@ -1252,24 +1252,7 @@ a:hover {
   height: 15px !important;
 }
 .jp_art_sub_secondary_btn {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 7px !important;
-  background: #F8FAFC !important;
-  border: 1px solid #E2E8F0 !important;
-  border-radius: 6px !important;
-  padding: 7px 12px !important;
-  font-size: 12.5px !important;
-  font-weight: 600 !important;
-  color: #475569 !important;
-  text-decoration: none !important;
-  transition: all 0.15s ease !important;
-}
-.jp_art_sub_secondary_btn:hover {
-  background: #F1F5F9 !important;
-  border-color: #CBD5E1 !important;
-  color: #B4410F !important;
+  display: none !important;
 }
 
 /* Journal Policy (Matching Claude Artifact 100%: Clean Minimalist Text Links) */
