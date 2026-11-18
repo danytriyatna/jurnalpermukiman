@@ -2776,6 +2776,6 @@
 		</div>
 	</div>
 
-	<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261115_v2_gold_ring" data-endpoint="{$jpInsightWidgetEndpoint|default:'http://localhost:3001/api/widget/chat'|escape}"></script>
+	<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261118_session" data-endpoint="{$jpInsightWidgetEndpoint|default:'http://localhost:3001/api/widget/chat'|escape}"></script>
 </body>
 </html>
