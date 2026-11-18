@@ -29,6 +29,7 @@ jobs:
           php -l classes/submission/form/SubmissionSubmitStep4Form.inc.php
           php -l lib/pkp/controllers/grid/queries/form/QueryNoteForm.inc.php
           php -l lib/pkp/controllers/grid/files/submission/AuthorSubmissionDetailsFilesGridHandler.inc.php
+          php -l lib/pkp/pages/user/RegistrationHandler.inc.php
 
   build-and-deploy:
     name: Build Image & Deploy to VPS

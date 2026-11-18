@@ -38,9 +38,9 @@
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="AIPolicy"}">Generative AI Policy</a>
 			</div>
 
-			{* Column 2: Editorial Policies *}
+			{* Column 2: For Editor *}
 			<div class="jp_art_footer_col">
-				<h2 class="jp_art_col_title">EDITORIAL POLICIES</h2>
+				<h2 class="jp_art_col_title">For Editor</h2>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="publicationEthics"}">Publication Ethics</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="PlagiarismCheck"}">Plagiarism Check</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="ArticleRetractionWithdrawal"}">Article Retraction &amp; Withdrawal</a>

@@ -181,13 +181,8 @@ class RegistrationHandler extends UserHandler {
 		if ($disableUserReg) {
 			$this->setupTemplate($request);
 			$templateMgr = TemplateManager::getManager($request);
-			$templateMgr->assign(array(
-				'pageTitle' => 'user.register',
-				'errorMsg' => 'user.register.registrationDisabled',
-				'backLink' => $request->url(null, 'login'),
-				'backLinkLabel' => 'user.login',
-			));
-			$templateMgr->display('frontend/pages/error.tpl');
+			$templateMgr->assign('pageTitle', 'user.register');
+			$templateMgr->display('frontend/pages/userRegisterDisabled.tpl');
 			exit;
 		}
 	}

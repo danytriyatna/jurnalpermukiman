@@ -47,6 +47,16 @@
 				{/capture}
 				<img src="{$issueCover|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape|default:$defaultAltText}">
 			</a>
+		{else}
+			<a class="cover cover_placeholder" href="{url op="view" page="issue" path=$issue->getBestIssueId()}">
+				<div class="jp_cover_placeholder_inner">
+					<span class="jp_cover_placeholder_kemenpu">KEMENTERIAN PEKERJAAN UMUM</span>
+					<span class="jp_cover_placeholder_title">JURNAL PERMUKIMAN</span>
+					<div class="jp_cover_placeholder_divider"></div>
+					<span class="jp_cover_placeholder_series">{$issue->getIssueIdentification()|escape}</span>
+					<span class="jp_cover_placeholder_issn">e-ISSN 2339-2975</span>
+				</div>
+			</a>
 		{/if}
 
 		{* Description *}

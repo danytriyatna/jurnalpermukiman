@@ -718,10 +718,145 @@ a:hover {
   color: #B4410F !important;
 }
 
-/* Hide Default OJS Duplicate Issue Header/Cover & Duplicate Full Issue Block */
-.obj_issue_toc > .heading,
-.obj_issue_toc > .galleys {
+/* Hide Default OJS Duplicate Issue Header/Cover & Duplicate Full Issue Block on Home only */
+.page_index_journal .obj_issue_toc > .heading,
+.page_index_journal .obj_issue_toc > .galleys {
   display: none !important;
+}
+
+/* Issue Detail Page (.page_issue): Restore & style cover, metadata, and full-issue galleys */
+.page_issue .obj_issue_toc > .heading {
+  display: block !important;
+  margin: 0 0 24px 0 !important;
+  padding: 0 0 20px 0 !important;
+  border-bottom: 1px solid #EDE6E1 !important;
+  overflow: hidden !important;
+}
+.page_issue .obj_issue_toc > .heading .cover {
+  float: left !important;
+  width: 220px !important;
+  max-width: 100% !important;
+  margin: 0 24px 16px 0 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+  display: block !important;
+  text-decoration: none !important;
+}
+.page_issue .obj_issue_toc > .heading .cover img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  display: block !important;
+}
+.page_issue .obj_issue_toc > .heading .cover_placeholder {
+  aspect-ratio: 3 / 4.2 !important;
+  background: linear-gradient(135deg, #7A2E0E 0%, #4F1C07 100%) !important;
+  color: #FFFFFF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-bottom: 3px solid #F5B335 !important;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.3), 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+}
+.page_issue .obj_issue_toc > .heading .cover_placeholder .jp_cover_placeholder_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 16px;
+  gap: 8px;
+}
+.page_issue .obj_issue_toc > .heading .cover_placeholder .jp_cover_placeholder_kemenpu {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.78);
+  text-transform: uppercase;
+}
+.page_issue .obj_issue_toc > .heading .cover_placeholder .jp_cover_placeholder_title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #FFFFFF;
+  margin: 4px 0;
+}
+.page_issue .obj_issue_toc > .heading .cover_placeholder .jp_cover_placeholder_divider {
+  width: 44px;
+  height: 2px;
+  background: #F5B335;
+  margin: 4px auto;
+}
+.page_issue .obj_issue_toc > .heading .cover_placeholder .jp_cover_placeholder_series {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.35;
+}
+.page_issue .obj_issue_toc > .heading .cover_placeholder .jp_cover_placeholder_issn {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.68);
+  margin-top: 2px;
+}
+@media (max-width: 640px) {
+  .page_issue .obj_issue_toc > .heading .cover {
+    float: none !important;
+    width: 220px !important;
+    margin: 0 0 16px 0 !important;
+  }
+}
+.page_issue .obj_issue_toc > .heading .description,
+.page_issue .obj_issue_toc > .heading .pub_id,
+.page_issue .obj_issue_toc > .heading .published {
+  margin: 0 0 10px 0 !important;
+  font-size: 14px !important;
+  color: #374151 !important;
+}
+.page_issue .obj_issue_toc > .heading .description > *:first-child {
+  margin-top: 0 !important;
+}
+.page_issue .obj_issue_toc > .galleys {
+  display: block !important;
+  margin: 0 0 22px 0 !important;
+  padding: 0 0 18px 0 !important;
+  border-bottom: 1px solid #EDE6E1 !important;
+}
+.page_issue .obj_issue_toc > .galleys h2,
+.page_issue .obj_issue_toc > .galleys h3 {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #7A2E0E !important;
+  margin: 0 0 10px 0 !important;
+}
+.page_issue .obj_issue_toc > .galleys .galleys_links {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+}
+.page_issue .obj_issue_toc > .galleys .obj_galley_link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: #C13D0D !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  font-size: 13.5px !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+}
+.page_issue .obj_issue_toc > .galleys .obj_galley_link:hover {
+  background: #9E310A !important;
+}
+.page_register p a {
+  color: #B4410F !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
 }
 
 /* Reset unwanted Base OJS margins on issue TOC sections (Remove ghost whitespace) */
