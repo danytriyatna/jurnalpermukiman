@@ -2264,6 +2264,7 @@ a:hover {
   border-radius: 0 10px 10px 0 !important;
   padding: 22px 26px !important;
   margin: 10px 0 !important;
+  text-align: justify !important;
 }
 
 .obj_article_details .item.abstract .label {
@@ -2273,6 +2274,7 @@ a:hover {
   color: #7A2E0E !important;
   margin-bottom: 12px !important;
   display: block !important;
+  text-align: left !important;
 }
 
 .obj_article_details .item.abstract p {
@@ -2280,6 +2282,7 @@ a:hover {
   color: #374151 !important;
   font-size: 14.5px !important;
   margin: 0 !important;
+  text-align: justify !important;
 }
 
 /* Keywords Capsule Pills */
@@ -2329,10 +2332,13 @@ a:hover {
   display: block !important;
 }
 
-.obj_article_details .item.references .value {
+.obj_article_details .item.references .value,
+.obj_article_details .item.references .value p,
+.obj_article_details .item.references .value li {
   font-size: 13.5px !important;
   line-height: 1.65 !important;
   color: #4B5563 !important;
+  text-align: justify !important;
 }
 
 .obj_article_details .item.references .value a {
