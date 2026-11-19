@@ -238,6 +238,7 @@ class PKPTemplateManager extends Smarty {
 				if ($currentContext) {
 					$customHeaders = $currentContext->getLocalizedData('customHeaders');
 					if (!empty($customHeaders)) {
+						$customHeaders = str_replace(["\xE2\x80\x9D", "\xE2\x80\x9C", "\xE2\x80\x98", "\xE2\x80\x99", '”', '“', '’', '‘'], ['"', '"', "'", "'"], $customHeaders);
 						$this->addHeader('customHeaders', $customHeaders);
 					}
 				}

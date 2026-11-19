@@ -12,13 +12,17 @@ Options -Indexes
     Deny from all
 </Files>
 
-<FilesMatch "\.(sql|bak|old|orig|backup|log|ini|env|sh|md|git|yml|yaml|dist)$">
+<FilesMatch "\.(sql|bak|old|orig|backup|log|ini|env|sh|md|git|yml|yaml|dist|zip|tar|gz|rar|7z)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
 # 3. Security Headers (BSSN / SPBE Compliance)
 <IfModule mod_headers.c>
+    # Remove PHP version leakage
+    Header always unset X-Powered-By
+    Header unset X-Powered-By
+
     # Prevent MIME sniffing
     Header always set X-Content-Type-Options "nosniff"
     # Clickjacking protection
@@ -29,4 +33,6 @@ Options -Indexes
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     # Restrict unnecessary browser features
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    # Content Security Policy (BSSN & OWASP Top 10 Compliance)
+    Header always set Content-Security-Policy "default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://jurnalpermukiman.pu.go.id; connect-src 'self'; frame-src 'self' blob: data:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none';"
 </IfModule>
