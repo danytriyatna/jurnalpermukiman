@@ -120,7 +120,7 @@
 				</div>
 			</div>
 
-			{* Performance Insights Row (5 Matriks dari OJS & Claude Artifact) *}
+			{* Performance Insights Row (4 Matriks dari OJS & Claude Artifact) *}
 			<div class="jp_art_perf_box">
 				<div class="jp_art_perf_head">
 					<h3 class="jp_art_perf_title">Journal Statistics</h3>
@@ -130,24 +130,20 @@
 				</div>
 				<div class="jp_art_perf_grid">
 					<div class="jp_art_perf_item">
-						<div class="jp_art_perf_val">43 days</div>
+						<div class="jp_art_perf_val">2 - 3 weeks</div>
 						<div class="jp_art_perf_lbl">Time to first decision</div>
 					</div>
 					<div class="jp_art_perf_item">
-						<div class="jp_art_perf_val">57 days</div>
+						<div class="jp_art_perf_val">4 - 6 weeks</div>
 						<div class="jp_art_perf_lbl">Submission to acceptance</div>
 					</div>
 					<div class="jp_art_perf_item">
-						<div class="jp_art_perf_val">15 days</div>
+						<div class="jp_art_perf_val">4 - 5 weeks</div>
 						<div class="jp_art_perf_lbl">Acceptance to publication</div>
 					</div>
 					<div class="jp_art_perf_item">
-						<div class="jp_art_perf_val">79%</div>
+						<div class="jp_art_perf_val">{$jpInsights.acceptanceRate|default:0|escape}%</div>
 						<div class="jp_art_perf_lbl">Acceptance rate (OJS)</div>
-					</div>
-					<div class="jp_art_perf_item">
-						<div class="jp_art_perf_val">2 issues</div>
-						<div class="jp_art_perf_lbl">Publication frequency / year</div>
 					</div>
 				</div>
 			</div>
@@ -170,19 +166,19 @@
 			<div class="jp_insights_dialog_body">
 				<div class="jp_insights_kpis">
 					<div class="jp_kpi_box">
-						<span class="jp_kpi_num">371</span>
+						<span class="jp_kpi_num">{$jpInsights.totalSubmissionsFormatted|default:'0'|escape}</span>
 						<span class="jp_kpi_title">Total Submissions</span>
 					</div>
 					<div class="jp_kpi_box">
-						<span class="jp_kpi_num">228</span>
+						<span class="jp_kpi_num">{$jpInsights.publishedArticlesFormatted|default:'0'|escape}</span>
 						<span class="jp_kpi_title">Published Articles</span>
 					</div>
 					<div class="jp_kpi_box">
-						<span class="jp_kpi_num">389,159</span>
+						<span class="jp_kpi_num">{$jpInsights.abstractViewsFormatted|default:'0'|escape}</span>
 						<span class="jp_kpi_title">Abstract Views</span>
 					</div>
 					<div class="jp_kpi_box">
-						<span class="jp_kpi_num">642,779</span>
+						<span class="jp_kpi_num">{$jpInsights.pdfDownloadsFormatted|default:'0'|escape}</span>
 						<span class="jp_kpi_title">PDF Downloads</span>
 					</div>
 				</div>
@@ -190,19 +186,19 @@
 					<tbody>
 						<tr>
 							<td>Average Time to First Decision</td>
-							<td><strong>43 days</strong> (6 weeks)</td>
+							<td><strong>2 - 3 weeks</strong></td>
 						</tr>
 						<tr>
 							<td>Average Submission to Acceptance</td>
-							<td><strong>57 days</strong> (8 weeks)</td>
+							<td><strong>4 - 6 weeks</strong></td>
 						</tr>
 						<tr>
 							<td>Average Acceptance to Online Publication</td>
-							<td><strong>15 days</strong> (2 weeks)</td>
+							<td><strong>4 - 5 weeks</strong></td>
 						</tr>
 						<tr>
 							<td>Finalized Acceptance Rate</td>
-							<td><strong>79%</strong> (228 accepted / 59 declined)</td>
+							<td><strong>{$jpInsights.acceptanceRate|default:0|escape}%</strong> ({$jpInsights.acceptedCountFormatted|default:'0'|escape} accepted / {$jpInsights.declinedCountFormatted|default:'0'|escape} declined)</td>
 						</tr>
 						<tr>
 							<td>Peer Review Method</td>

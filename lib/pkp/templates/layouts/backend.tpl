@@ -1038,6 +1038,104 @@
     margin: 1.25rem -24px -22px -24px !important;
   }
 
+  /* Tombol Help & Toolbar Grid di dalam Modal (.pkp_help_modal vs .pkpModalCloseButton) */
+  .pkp_modal_panel:has(.pkp_help_modal) > .header {
+    padding-right: 160px !important;
+  }
+  .pkp_modal_panel > .content > .pkp_help_link.pkp_help_modal,
+  .pkp_modal_panel .pkp_help_modal {
+    position: absolute !important;
+    top: 12px !important;
+    right: 60px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    padding: 0 12px !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    line-height: 1 !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    background: #FFFFFF !important;
+    color: #64748B !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05) !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+    z-index: 20 !important;
+    transition: all 0.16s ease !important;
+  }
+  .pkp_modal_panel > .content > .pkp_help_link.pkp_help_modal .pkpIcon--inline,
+  .pkp_modal_panel .pkp_help_modal .pkpIcon--inline {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  .pkp_modal_panel > .content > .pkp_help_link.pkp_help_modal:hover,
+  .pkp_modal_panel .pkp_help_modal:hover {
+    background: #FDF4F0 !important;
+    color: #C13D0D !important;
+    border-color: #F4D4C9 !important;
+    box-shadow: 0 2px 6px rgba(193, 61, 13, 0.12) !important;
+  }
+  .pkp_modal_panel > .content > .pkp_help_link.pkp_help_modal:focus,
+  .pkp_modal_panel .pkp_help_modal:focus {
+    outline: none !important;
+    color: #C13D0D !important;
+    border-color: #C13D0D !important;
+    box-shadow: 0 0 0 3px rgba(193, 61, 13, 0.15) !important;
+  }
+  body[dir="rtl"] .pkp_modal_panel:has(.pkp_help_modal) > .header {
+    padding-right: 24px !important;
+    padding-left: 160px !important;
+  }
+  body[dir="rtl"] .pkp_modal_panel > .content > .pkp_help_link.pkp_help_modal,
+  body[dir="rtl"] .pkp_modal_panel .pkp_help_modal {
+    right: auto !important;
+    left: 60px !important;
+  }
+
+  /* Toolbar aksi grid di dalam modal (mis. Submission Library / Publisher Library) */
+  .pkp_modal_panel .pkp_controllers_grid > .header {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    padding: 12px 18px !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FAF8F6 100%) !important;
+    border-bottom: 1px solid #EDE7E0 !important;
+  }
+  .pkp_modal_panel .pkp_controllers_grid.pkp_grid_no_title > .header {
+    justify-content: flex-end !important;
+  }
+  .pkp_modal_panel .pkp_controllers_grid > .header h4 {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .pkp_modal_panel .pkp_controllers_grid > .header .actions {
+    display: inline-flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+    float: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+  .pkp_modal_panel .pkp_controllers_grid > .header .actions li {
+    display: inline-flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .pkp_modal_panel .pkp_controllers_grid > .header .actions a {
+    margin-left: 0 !important;
+  }
+
   /* =====================================================================
      MODAL DISKUSI / QUERY (#readQueryContainer.pkp_controllers_query & #queryNotesGrid)
      ===================================================================== */
@@ -2776,6 +2874,6 @@
 		</div>
 	</div>
 
-	<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261118_session" data-endpoint="{$jpInsightWidgetEndpoint|default:'http://localhost:3001/api/widget/chat'|escape}"></script>
+	<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261118_callout2" data-endpoint="{$jpInsightWidgetEndpoint|default:'http://localhost:3001/api/widget/chat'|escape}"></script>
 </body>
 </html>

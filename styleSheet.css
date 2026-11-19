@@ -1035,12 +1035,12 @@ a:hover {
   border-radius: 6px;
   padding: 8px 10px !important;
   display: grid !important;
-  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   gap: 6px 10px !important;
 }
 @media (max-width: 860px) {
   .jp_art_perf_grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 @media (max-width: 480px) {
@@ -1579,6 +1579,19 @@ a:hover {
   font-weight: 600 !important;
   color: #1C1917 !important;
   margin: 20px 0 10px 0 !important;
+}
+
+.pkp_structure_main > .page.page_editorial_team:not(.page_index_journal) > h2:first-of-type,
+.pkp_structure_main > .page.page_editorial_team h2,
+.pkp_structure_main > .page.page_editorial_team h3 {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1.43rem !important;
+  color: #1C1917 !important;
+  letter-spacing: normal !important;
+  margin: 20px 0 10px 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
 }
 
 /* Lists styling */
