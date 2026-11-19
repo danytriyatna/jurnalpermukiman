@@ -1411,6 +1411,202 @@ a:hover {
 }
 
 /* ==========================================================================
+   SIDEBAR IMAGE BLOCKS: 2-COLUMN BADGE CARD GRID
+   (#customblock-menu / TEMPLATE, #customblock-akreditasi / ABSTRACTING AND INDEXING,
+    #customblock-dukungan-alat / TOOLS, #customblock-data-kunjungan / VISITING COUNTER)
+   Direct child combinator (>) isolates TEMPLATE and leaves nested #customblock-menu
+   inside #customblock-journal-police (JOURNAL POLICY) completely untouched.
+   ========================================================================== */
+
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom h2.title.pkp_screen_reader {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: normal !important;
+}
+
+.pkp_structure_sidebar > #customblock-menu.block_custom h2.title,
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom h2.title,
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom h2.title,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom h2.title {
+  display: block !important;
+  color: #292524 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  margin-top: 0 !important;
+  margin-bottom: 12px !important;
+}
+
+.pkp_structure_sidebar > #customblock-menu.block_custom .content,
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content,
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+  align-items: stretch !important;
+}
+
+.pkp_structure_sidebar > #customblock-menu.block_custom .content > p:not(:has(img, a)),
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p:not(:has(img, a)),
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p:not(:has(img, a)) {
+  display: none !important;
+}
+
+.pkp_structure_sidebar > #customblock-menu.block_custom .content > p,
+.pkp_structure_sidebar > #customblock-menu.block_custom .content p[style],
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p,
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content p[style],
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p,
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: stretch !important;
+  min-width: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  line-height: 1.2 !important;
+}
+
+.pkp_structure_sidebar > #customblock-menu.block_custom .content > p > a,
+.pkp_structure_sidebar > #customblock-menu.block_custom .content p[style] a,
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p > a,
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content p[style] a,
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a,
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a {
+  width: 100% !important;
+}
+
+/* VISITING COUNTER (#customblock-data-kunjungan): StatCounter + 2-column Stat/Manual + Flag Counter */
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Zero out inline &nbsp; width in DB HTML so stat.png and manual.png split 50/50 cleanly */
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) {
+  display: flex !important;
+  align-items: stretch !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+}
+
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a + a {
+  margin-left: 8px !important;
+}
+
+.pkp_structure_sidebar > #customblock-menu.block_custom .content > p > a,
+.pkp_structure_sidebar > #customblock-menu.block_custom .content p[style] a,
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p > a,
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content p[style] a,
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a,
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 58px !important;
+  padding: 6px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E7E5E4 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 2px rgba(28, 25, 23, 0.04) !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+  color: #57534E !important;
+  text-decoration: none !important;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.pkp_structure_sidebar > #customblock-menu.block_custom .content > p > a:hover,
+.pkp_structure_sidebar > #customblock-menu.block_custom .content p[style] a:hover,
+.pkp_structure_sidebar > #customblock-menu.block_custom .content > p > a:focus-visible,
+.pkp_structure_sidebar > #customblock-menu.block_custom .content p[style] a:focus-visible,
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p > a:hover,
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content p[style] a:hover,
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p > a:focus-visible,
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content p[style] a:focus-visible,
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a:hover,
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a:hover,
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a:focus-visible,
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a:focus-visible,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a:hover,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a:focus-visible {
+  border-color: #C13D0D !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 8px rgba(193, 61, 13, 0.12) !important;
+  text-decoration: none !important;
+}
+
+.pkp_structure_sidebar > #customblock-menu.block_custom .content img,
+.pkp_structure_sidebar > #customblock-akreditasi.block_custom .content img,
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content img,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: 64px !important;
+  object-fit: contain !important;
+  border-radius: 4px !important;
+  margin: 0 !important;
+}
+
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="flagcounter"]) > a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  padding: 8px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E7E5E4 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 2px rgba(28, 25, 23, 0.04) !important;
+  box-sizing: border-box !important;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="flagcounter"]) > a:hover,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="flagcounter"]) > a:focus-visible {
+  border-color: #C13D0D !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 8px rgba(193, 61, 13, 0.12) !important;
+}
+
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="flagcounter"]) img {
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[title="web statistics"]) img {
+  display: inline-block !important;
+  width: auto !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* ==========================================================================
    FOOTER (GOLD TOP BORDER + DEEP RUST 4-COLUMN CONTAINER)
    ========================================================================== */
 .jp_art_footer_root {
