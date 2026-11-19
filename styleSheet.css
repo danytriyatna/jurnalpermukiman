@@ -1961,6 +1961,46 @@ a:hover {
   line-height: 1.4 !important;
 }
 
+.page_issue_archive .obj_issue_summary .description {
+  padding: 0 16px 14px 16px !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  color: #78716C !important;
+}
+
+.page_issue_archive .obj_issue_summary .description [hidden] {
+  display: none !important;
+}
+
+.page_issue_archive .obj_issue_summary .description p {
+  margin: 0 0 6px 0 !important;
+  line-height: 1.5 !important;
+}
+
+.page_issue_archive .obj_issue_summary .description p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.page_issue_archive .obj_issue_summary .jp_archive_read_all {
+  display: inline-block !important;
+  margin-top: 6px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  font-family: inherit !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #B4410F !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+.page_issue_archive .obj_issue_summary .jp_archive_read_all:hover,
+.page_issue_archive .obj_issue_summary .jp_archive_read_all:focus-visible {
+  color: #7A2E0E !important;
+  text-decoration: underline !important;
+}
+
 /* ==========================================================================
    ARTICLE DETAILS PAGE (UGM JCEF / SINTA-2 STANDARD)
    ========================================================================== */

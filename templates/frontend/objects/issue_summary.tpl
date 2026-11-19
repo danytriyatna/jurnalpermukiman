@@ -48,7 +48,22 @@
 		{/if}
 	</h2>
 
+	{assign var=issueDescRaw value=$issue->getLocalizedDescription()|strip_unsafe_html}
+	{assign var=issueDescPlain value=$issueDescRaw|strip_tags|replace:"&nbsp;":" "|replace:"&amp;":"&"|replace:"&quot;":'"'|replace:"&#39;":"'"|replace:"&apos;":"'"|replace:"&lt;":"<"|replace:"&gt;":">"|regex_replace:"/[\r\n\t\s]+/":" "|trim}
+	{assign var=issueDescShort value=$issueDescPlain|truncate:140:"...":false}
 	<div class="description">
-		{$issue->getLocalizedDescription()|strip_unsafe_html}
+		{if $issueDescPlain neq ""}
+			{if $issueDescShort neq $issueDescPlain}
+				<div class="jp_archive_desc_short">
+					<p>{$issueDescShort|escape}</p>
+				</div>
+				<div class="jp_archive_desc_full" hidden>
+					{$issueDescRaw}
+				</div>
+				<button type="button" class="jp_archive_read_all" aria-expanded="false">Read all</button>
+			{else}
+				{$issueDescRaw}
+			{/if}
+		{/if}
 	</div>
 </div><!-- .obj_issue_summary -->

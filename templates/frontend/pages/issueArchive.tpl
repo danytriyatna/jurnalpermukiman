@@ -60,6 +60,26 @@
 			showingEnd=$showingEnd
 			total=$total
 		}
+		<script>
+		(function () {
+			var list = document.querySelector('.page_issue_archive .issues_archive');
+			if (!list) return;
+			list.addEventListener('click', function (e) {
+				var btn = e.target.closest('.jp_archive_read_all');
+				if (!btn) return;
+				var desc = btn.closest('.description');
+				if (!desc) return;
+				var shortEl = desc.querySelector('.jp_archive_desc_short');
+				var fullEl = desc.querySelector('.jp_archive_desc_full');
+				if (!shortEl || !fullEl) return;
+				var expanded = btn.getAttribute('aria-expanded') === 'true';
+				shortEl.hidden = !expanded;
+				fullEl.hidden = expanded;
+				btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+				btn.textContent = expanded ? 'Read all' : 'Show less';
+			});
+		})();
+		</script>
 	{/if}
 </div>
 

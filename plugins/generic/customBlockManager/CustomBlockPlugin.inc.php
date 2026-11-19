@@ -113,11 +113,30 @@ class CustomBlockPlugin extends BlockPlugin {
 		$title = $customBlockTitle[$currentLocale] ? $customBlockTitle[$currentLocale] : $customBlockTitle[$contextPrimaryLocale];
 		$content = $customBlockContent[$currentLocale] ? $customBlockContent[$currentLocale] : $customBlockContent[$contextPrimaryLocale];
 
-		// Dynamic URL normalization: replace hardcoded production URLs with current context URL
-		if ($content && $context) {
-			$journalUrl = $request->url($context->getPath());
-			$content = str_replace('https://jurnalpermukiman.pu.go.id/index.php/JP', $journalUrl, $content);
-			$content = str_replace('http://jurnalpermukiman.pu.go.id/index.php/JP', $journalUrl, $content);
+		// Dynamic URL normalization: replace hardcoded production URLs with current context URL and local /public path
+		if ($content) {
+			if ($context) {
+				$journalUrl = $request->url($context->getPath());
+				$content = str_ireplace(
+					array(
+						'https://jurnalpermukiman.pu.go.id/index.php/JP',
+						'http://jurnalpermukiman.pu.go.id/index.php/JP',
+					),
+					$journalUrl,
+					$content
+				);
+			}
+			$basePath = $request ? rtrim($request->getBasePath(), '/') : '';
+			$publicUrl = $basePath . '/public/';
+			$content = str_ireplace(
+				array(
+					'https://jurnalpermukiman.pu.go.id/public/',
+					'http://jurnalpermukiman.pu.go.id/public/',
+					'//jurnalpermukiman.pu.go.id/public/',
+				),
+				$publicUrl,
+				$content
+			);
 		}
 
 		$templateMgr->assign('customBlockTitle', $title);
