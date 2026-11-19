@@ -677,6 +677,11 @@ a:hover {
   font-size: 13.5px;
   line-height: 1.5;
   color: #475569;
+  text-align: justify !important;
+}
+.jp_art_issue_desc p,
+.jp_art_issue_desc p[style] {
+  text-align: justify !important;
 }
 .jp_art_issue_actions {
   display: flex;
