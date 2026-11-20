@@ -528,7 +528,7 @@ a:hover {
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
-  padding: 0 0 36px 0 !important;
+  padding: 0 0 12px 0 !important;
   box-sizing: border-box !important;
 }
 
@@ -546,7 +546,7 @@ a:hover {
   justify-content: space-between !important;
   align-items: flex-start !important;
   gap: 28px !important;
-  padding: 0 0 36px 0 !important;
+  padding: 0 0 12px 0 !important;
   width: 100% !important;
 }
 .pkp_structure_content.has_sidebar .pkp_structure_main {
@@ -1037,9 +1037,9 @@ a:hover {
   border-left: none !important;
   border-right: none !important;
   border-radius: 0 !important;
-  margin-top: 24px !important;
+  margin-top: 10px !important;
   margin-bottom: 0 !important;
-  padding: 26px 0 !important;
+  padding: 24px 0 !important;
   box-sizing: border-box !important;
 }
 .jp_art_workflow_inner {
@@ -1714,10 +1714,20 @@ a:hover {
 }
 
 /* Hide StatCounter 1x1 tracking pixel so it never renders as an empty/broken card */
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:first-child,
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(img[alt*="Statistik Jurnal"]),
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[title="web statistics"]),
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="statcounter.com"]:has(img[src*="c.statcounter"])) {
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[title*="statistics"]),
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="statcounter.com"]:not(:has(+ a))) {
   display: none !important;
+}
+
+/* Ensure the two badges (Statistik Kunjungan & Panduan OJS) distribute 50-50 in 2 clean columns */
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) {
+  grid-column: 1 / -1 !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+  width: 100% !important;
 }
 
 /* Flag Counter: hide completely so it never creates an empty, broken border box */
@@ -1725,13 +1735,6 @@ a:hover {
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[href*="flagcounter"],
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="flagcounter"] {
   display: none !important;
-}
-
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[title="web statistics"]) img {
-  display: inline-block !important;
-  width: auto !important;
-  max-width: 100% !important;
-  height: auto !important;
 }
 
 /* ==========================================================================
