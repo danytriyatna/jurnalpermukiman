@@ -1,0 +1,7 @@
+-- Script Pembaruan Copyright Notice di OJS (Jurnal Permukiman)
+-- Standar Open Access (DOAJ / Scopus): Menghilangkan kata 'Transfer' dan 'Form'
+-- Mempertahankan poin 1 sampai 4 utuh 100%.
+
+UPDATE `journal_settings` 
+SET `setting_value` = '<p><strong>Copyright and License Agreement</strong></p><p>The authors submitting a manuscript to Jurnal Permukiman agree to the following terms:</p><ol><li>The authors warrant that the submitted article is original and has not been published or submitted to another journal or conference proceedings for review and publication, in whole or in part.</li><li>The authors retain copyright to the article and grant Jurnal Permukiman the right of first publication. The work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)</a>.</li><li>All authors listed in this article, along with their substantial and intellectual contributions to the work, shall take public responsibility for the content of the article.</li><li>Authors are required to download, sign, and upload the Copyright and License Agreement as a supplementary file during submission.</li></ol><p><a href="https://puprtes.sharepoint.com/:w:/s/DPSIP2024/IQBySc0Bs9cKRpHikqPbEU5VASWf7LPiRrhzlrhUKmUMuFk?e=mkriCK" target="_blank" rel="noopener">Download Copyright and License Agreement</a></p>' 
+WHERE `journal_id` = '1' AND `setting_name` = 'copyrightNotice';
