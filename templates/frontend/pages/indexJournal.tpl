@@ -233,8 +233,11 @@
 	})();
 	</script>
 
+</div><!-- .page_index_journal -->
+
+{capture assign="homepageSections"}
 	{* =========================================================================
-	   3. ANNOUNCEMENTS SECTION (IN-COLUMN)
+	   3. ANNOUNCEMENTS SECTION (FULL WIDTH ROW - MATCHING FOOTER WIDTH)
 	   ========================================================================= *}
 	{if $numAnnouncementsHomepage && $announcements|@count}
 		<section class="cmp_announcements" aria-labelledby="announcementsHeading">
@@ -271,7 +274,6 @@
 			</div>
 		</section>
 	{/if}
-
-</div><!-- .page_index_journal -->
+{/capture}
 
 {include file="frontend/components/footer.tpl"}
