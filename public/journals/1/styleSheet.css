@@ -1651,7 +1651,7 @@ a:hover {
 .pkp_structure_sidebar > #customblock-menu.block_custom .content p[style] a,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p > a,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content p[style] a,
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) a,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a {
   width: 100% !important;
@@ -1677,7 +1677,7 @@ a:hover {
 .pkp_structure_sidebar > #customblock-menu.block_custom .content p[style] a:hover,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p > a:hover,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content p[style] a:hover,
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a:hover,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) a:hover,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a:hover,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a:hover {
   border-color: #C13D0D !important;
@@ -1688,7 +1688,7 @@ a:hover {
 
 .pkp_structure_sidebar > #customblock-menu.block_custom .content img,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content img,
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) img,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content img {
   display: block !important;
   width: 100% !important;
@@ -1735,8 +1735,11 @@ a:hover {
   font-size: 12px !important;
 }
 
-/* Flag Counter: render centered below the 2 badges cleanly */
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="flagcounter"]) {
+/* Flag Counter: render centered below the 2 badges cleanly & immune to adblockers */
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:last-child,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p.jp-counter-row,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="flagcounter"]),
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(img[src*="counter"]) {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -1745,7 +1748,10 @@ a:hover {
   padding: 0 !important;
 }
 
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[href*="flagcounter"] {
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:last-child a,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a.jp-counter-badge,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[href*="flagcounter"],
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a:has(img[src*="counter"]) {
   display: inline-block !important;
   width: auto !important;
   min-height: auto !important;
@@ -1755,7 +1761,10 @@ a:hover {
   box-shadow: none !important;
 }
 
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="flagcounter"] {
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:last-child img,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img.jp-counter-img,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="flagcounter"],
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="counter"] {
   display: block !important;
   width: auto !important;
   max-width: 100% !important;
