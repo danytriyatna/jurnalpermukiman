@@ -202,9 +202,11 @@ class PKPTemplateManager extends Smarty {
 				if ($contextStyleSheet) {
 					import('classes.file.PublicFileManager');
 					$publicFileManager = new PublicFileManager();
+					$cssFilePath = Core::getBaseDir() . '/' . $publicFileManager->getContextFilesPath($currentContext->getId()) . '/' . $contextStyleSheet['uploadName'];
+					$vParam = file_exists($cssFilePath) ? filemtime($cssFilePath) : time();
 					$this->addStyleSheet(
 						'contextStylesheet',
-						$request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($currentContext->getId()) . '/' . $contextStyleSheet['uploadName'] . '?d=' . urlencode($contextStyleSheet['dateUploaded']),
+						$request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($currentContext->getId()) . '/' . $contextStyleSheet['uploadName'] . '?v=' . $vParam,
 						['priority' => STYLE_SEQUENCE_LATE, 'contexts' => ['frontend', 'backend']]
 					);
 				}
