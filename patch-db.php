@@ -63,12 +63,12 @@ try {
     $del = $pdo->prepare("DELETE FROM static_page_settings WHERE static_page_id = ?");
     $del->execute([$spId]);
 
-    // Masukkan title dan content satu per satu secara eksplisit
-    $ins = $pdo->prepare("INSERT INTO static_page_settings (static_page_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, ?, ?, ?)");
-    $ins->execute([$spId, 'en_US', 'title', 'Peer Review Process', 'string']);
-    $ins->execute([$spId, 'id_ID', 'title', 'Peer Review Process', 'string']);
-    $ins->execute([$spId, 'en_US', 'content', $content, null]);
-    $ins->execute([$spId, 'id_ID', 'content', $content, null]);
+    // Masukkan title dan content satu per satu dengan setting_type = 'string'
+    $ins = $pdo->prepare("INSERT INTO static_page_settings (static_page_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, ?, ?, 'string')");
+    $ins->execute([$spId, 'en_US', 'title', 'Peer Review Process']);
+    $ins->execute([$spId, 'id_ID', 'title', 'Peer Review Process']);
+    $ins->execute([$spId, 'en_US', 'content', $content]);
+    $ins->execute([$spId, 'id_ID', 'content', $content]);
 
     $results['inserted_settings_for_spId'] = $spId;
 
