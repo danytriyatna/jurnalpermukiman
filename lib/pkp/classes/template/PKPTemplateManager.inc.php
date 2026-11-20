@@ -227,13 +227,8 @@ class PKPTemplateManager extends Smarty {
 					$this->addHeader('searchDescription', '<meta name="description" content="' . $currentContext->getLocalizedData('searchDescription') . '" />');
 				}
 
-				$this->addHeader(
-					'generator',
-					'<meta name="generator" content="' . __($application->getNameKey()) . ' ' . $application->getCurrentVersion()->getVersionString(false) . '" />',
-					[
-						'contexts' => ['frontend', 'backend'],
-					]
-				);
+				// Security Hardening: Suppress meta generator to prevent version leakage (OWASP WSTG-INFO-02 / VA-M04)
+				// $this->addHeader('generator', '<meta name="generator" content="' . __($application->getNameKey()) . ' ' . $application->getCurrentVersion()->getVersionString(false) . '" />', ['contexts' => ['frontend', 'backend']]);
 
 				if ($currentContext) {
 					$customHeaders = $currentContext->getLocalizedData('customHeaders');
