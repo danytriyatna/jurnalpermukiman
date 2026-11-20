@@ -10,13 +10,19 @@ if ($token !== 'jp_fix_2026_valarie') {
     exit;
 }
 
-$dbHost = 'jp-mariadb';
-$dbName = 'ojs';
-$dbUser = 'ojs';
-$dbPass = 'ojs_password';
+$configFile = __DIR__ . '/config.inc.php';
+if (!file_exists($configFile)) {
+    http_response_code(500);
+    echo json_encode(['error' => 'config.inc.php not found']);
+    exit;
+}
+
+$config = parse_ini_file($configFile, true);
+$dbConf = $config['database'];
 
 try {
-    $pdo = new PDO("mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4", $dbUser, $dbPass, [
+    $dsn = "mysql:host={$dbConf['host']};port=" . ($dbConf['port'] ?? '3306') . ";dbname={$dbConf['name']};charset=utf8mb4";
+    $pdo = new PDO($dsn, $dbConf['username'], $dbConf['password'], [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     ]);
