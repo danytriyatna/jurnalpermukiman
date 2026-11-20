@@ -137,6 +137,21 @@ class CustomBlockPlugin extends BlockPlugin {
 				$publicUrl,
 				$content
 			);
+
+			// Automatically rewrite external flagcounter to local proxy to prevent adblocker blocks
+			if (stripos($content, 'flagcounter') !== false) {
+				$counterUrl = $basePath . '/visitor-counter.php';
+				$content = preg_replace(
+					'/https?:\/\/[a-z0-9\.]*flagcounter\.com\/count[0-9]*\/[^\s"\'<>]+/i',
+					$counterUrl,
+					$content
+				);
+				$content = preg_replace(
+					'/https?:\/\/[a-z0-9\.]*flagcounter\.com\/today\/[^\s"\'<>]+/i',
+					'https://statcounter.com/p12885777/?guest=1',
+					$content
+				);
+			}
 		}
 
 		$templateMgr->assign('customBlockTitle', $title);
