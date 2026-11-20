@@ -1651,13 +1651,14 @@ a:hover {
 .pkp_structure_sidebar > #customblock-menu.block_custom .content p[style] a,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p > a,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content p[style] a,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a {
   width: 100% !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  min-height: 60px !important;
+  min-height: 56px !important;
   padding: 4px 6px !important;
   background: #FFFFFF !important;
   border: 1px solid #E7E5E4 !important;
@@ -1676,6 +1677,7 @@ a:hover {
 .pkp_structure_sidebar > #customblock-menu.block_custom .content p[style] a:hover,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p > a:hover,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content p[style] a:hover,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a:hover,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a:hover,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a:hover {
   border-color: #C13D0D !important;
@@ -1686,19 +1688,20 @@ a:hover {
 
 .pkp_structure_sidebar > #customblock-menu.block_custom .content img,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content img,
-.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content img {
+.pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content img,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) img {
   display: block !important;
   width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
-  max-height: 52px !important;
+  max-height: 48px !important;
   object-fit: contain !important;
   border-radius: 4px !important;
   margin: 0 !important;
 }
 
 /* ==========================================================================
-   VISITING COUNTER (Rock-Solid Full-Width Stacked Layout Matching Reference)
+   VISITING COUNTER (Uniform 2-Column Grid + Centered Flag Counter)
    ========================================================================== */
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content {
   display: block !important;
@@ -1713,46 +1716,23 @@ a:hover {
   display: none !important;
 }
 
-/* Display both banners (Statistik Kunjungan + Panduan OJS) stacked vertically full-width matching user reference */
+/* Both banners (Statistik Kunjungan + Panduan OJS) in uniform 2-column row matching TEMPLATE and TOOLS */
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) {
   display: flex !important;
-  flex-direction: column !important;
-  gap: 10px !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  gap: 8px !important;
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
+  font-size: 0 !important;
 }
 
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  padding: 6px 8px !important;
-  background: #FFFFFF !important;
-  border: 1px solid #E7E5E4 !important;
-  border-radius: 8px !important;
-  box-shadow: 0 1px 3px rgba(28, 25, 23, 0.05) !important;
-  box-sizing: border-box !important;
-  text-decoration: none !important;
-  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
-}
-
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a:hover {
-  border-color: #C13D0D !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 10px rgba(193, 61, 13, 0.12) !important;
-}
-
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) img {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  max-height: none !important;
-  object-fit: contain !important;
-  border-radius: 4px !important;
-  margin: 0 auto !important;
+  flex: 1 1 0% !important;
+  width: 50% !important;
+  min-width: 0 !important;
+  font-size: 12px !important;
 }
 
 /* Flag Counter: render centered below the 2 banners cleanly & immune to adblockers */
@@ -1764,7 +1744,7 @@ a:hover {
   justify-content: center !important;
   align-items: center !important;
   width: 100% !important;
-  margin: 12px 0 0 0 !important;
+  margin: 10px 0 0 0 !important;
   padding: 0 !important;
 }
 
@@ -1775,11 +1755,10 @@ a:hover {
   display: inline-block !important;
   width: auto !important;
   min-height: auto !important;
-  padding: 4px !important;
-  background: #FFFFFF !important;
-  border: 1px solid #E7E5E4 !important;
-  border-radius: 6px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:last-child img,
@@ -1791,7 +1770,7 @@ a:hover {
   max-width: 100% !important;
   height: auto !important;
   max-height: none !important;
-  border: none !important;
+  border: 1px solid #E7E5E4 !important;
   border-radius: 4px !important;
   margin: 0 auto !important;
 }
