@@ -23,10 +23,6 @@
 	{/if}
 </div><!-- pkp_structure_content -->
 
-{if $homepageSections}
-	{$homepageSections}
-{/if}
-
 <footer class="jp_art_footer_root" role="contentinfo">
 	<a id="pkp_content_footer"></a>
 
