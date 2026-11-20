@@ -1709,13 +1709,10 @@ a:hover {
   padding: 0 !important;
 }
 
-/* Hide statcounter tracker, flagcounter, and broken image containers */
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:not(:has(a + a)),
+/* Hide statcounter invisible tracking pixel so it never renders as empty/broken */
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:first-child,
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="flagcounter"]),
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[href*="flagcounter"],
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="flagcounter"],
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[title*="statistics"] {
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[title*="statistics"],
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="statcounter.com/12885777"] {
   display: none !important;
 }
 
@@ -1736,6 +1733,35 @@ a:hover {
   width: 50% !important;
   min-width: 0 !important;
   font-size: 12px !important;
+}
+
+/* Flag Counter: render centered below the 2 badges cleanly */
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="flagcounter"]) {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 10px 0 0 0 !important;
+  padding: 0 !important;
+}
+
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[href*="flagcounter"] {
+  display: inline-block !important;
+  width: auto !important;
+  min-height: auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="flagcounter"] {
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+  border: 1px solid #E7E5E4 !important;
+  border-radius: 4px !important;
+  margin: 0 auto !important;
 }
 
 /* ==========================================================================

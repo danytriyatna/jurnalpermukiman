@@ -45,5 +45,5 @@ Options -Indexes
     # Restrict unnecessary browser features
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
     # Content Security Policy (BSSN & OWASP Top 10 Compliance)
-    Header always set Content-Security-Policy "default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://jurnalpermukiman.pu.go.id https://s01.flagcounter.com https://c.statcounter.com; connect-src 'self'; frame-src 'self' blob: data:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none';"
+    Header always set Content-Security-Policy "default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://jurnalpermukiman.pu.go.id https://*.flagcounter.com http://*.flagcounter.com https://s01.flagcounter.com https://c.statcounter.com; connect-src 'self'; frame-src 'self' blob: data:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none';"
 </IfModule>
