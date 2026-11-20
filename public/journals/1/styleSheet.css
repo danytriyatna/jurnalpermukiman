@@ -544,9 +544,9 @@ a:hover {
   display: flex !important;
   flex-direction: row !important;
   justify-content: space-between !important;
-  align-items: stretch !important;
+  align-items: flex-start !important;
   gap: 28px !important;
-  padding: 0 0 10px 0 !important;
+  padding: 0 0 16px 0 !important;
   width: 100% !important;
 }
 .pkp_structure_content.has_sidebar .pkp_structure_main {
@@ -556,8 +556,6 @@ a:hover {
   width: auto !important;
   padding: 0 !important;
   margin: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
 }
 .pkp_structure_content.has_sidebar .pkp_structure_sidebar {
   flex: 0 0 300px !important;
@@ -569,7 +567,7 @@ a:hover {
   margin: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-between !important;
+  gap: 16px !important;
 }
 
 /* Full-width fallback when no sidebar is present */
@@ -905,7 +903,7 @@ a:hover {
   padding: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 12px !important;
+  gap: 9px !important;
   border: none !important;
 }
 .obj_issue_toc .articles > li {
@@ -920,11 +918,11 @@ a:hover {
   background: #FFFFFF !important;
   border: 1px solid #E3A88F !important;
   border-radius: 8px !important;
-  padding: 12px 18px !important;
+  padding: 11px 16px !important;
   box-shadow: 3px 3px 0 rgba(120, 113, 108, 0.16), 0 4px 10px rgba(0, 0, 0, 0.05) !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 5px !important;
+  gap: 4px !important;
   transition: transform 0.15s ease, box-shadow 0.15s ease !important;
 }
 .jp_art_article_card:hover {
@@ -1039,7 +1037,7 @@ a:hover {
   border-left: none !important;
   border-right: none !important;
   border-radius: 0 !important;
-  margin-top: 10px !important;
+  margin-top: 16px !important;
   margin-bottom: 0 !important;
   padding: 24px 0 !important;
   box-sizing: border-box !important;
@@ -1622,22 +1620,20 @@ a:hover {
   letter-spacing: 0.5px !important;
   text-transform: uppercase !important;
   margin-top: 0 !important;
-  margin-bottom: 8px !important;
+  margin-bottom: 7px !important;
 }
 
 .pkp_structure_sidebar > #customblock-menu.block_custom .content,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content,
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 9px !important;
+  gap: 8px !important;
   align-items: stretch !important;
 }
 
 .pkp_structure_sidebar > #customblock-menu.block_custom .content > p:not(:has(img, a)),
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p:not(:has(img, a)),
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:not(:has(img, a)),
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p:not(:has(img, a)) {
   display: none !important;
 }
@@ -1646,8 +1642,6 @@ a:hover {
 .pkp_structure_sidebar > #customblock-menu.block_custom .content p[style],
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content p[style],
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p,
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content p[style],
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] {
   margin: 0 !important;
@@ -1664,15 +1658,14 @@ a:hover {
 .pkp_structure_sidebar > #customblock-menu.block_custom .content p[style] a,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p > a,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content p[style] a,
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p > a,
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content p[style] a,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a {
   width: 100% !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  min-height: 56px !important;
+  min-height: 54px !important;
   padding: 6px 8px !important;
   background: #FFFFFF !important;
   border: 1px solid #E7E5E4 !important;
@@ -1691,8 +1684,7 @@ a:hover {
 .pkp_structure_sidebar > #customblock-menu.block_custom .content p[style] a:hover,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content > p > a:hover,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content p[style] a:hover,
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p > a:hover,
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content p[style] a:hover,
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a:hover,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a:hover,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a:hover {
   border-color: #C13D0D !important;
@@ -1709,34 +1701,48 @@ a:hover {
   width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
-  max-height: 44px !important;
+  max-height: 42px !important;
   object-fit: contain !important;
   border-radius: 4px !important;
   margin: 0 !important;
 }
 
-/* Hide StatCounter 1x1 tracking pixel so it never renders as an empty/broken card */
+/* ==========================================================================
+   VISITING COUNTER (Rock-Solid 2-Column Flex with zero broken items)
+   ========================================================================== */
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Hide statcounter tracker, flagcounter, and broken image containers */
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:not(:has(a + a)),
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:first-child,
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(img[alt*="Statistik Jurnal"]),
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[title*="statistics"]),
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="statcounter.com"]:not(:has(+ a))) {
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="flagcounter"]),
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[href*="flagcounter"],
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="flagcounter"],
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[title*="statistics"] {
   display: none !important;
 }
 
-/* Ensure the two badges (Statistik Kunjungan & Panduan OJS) distribute 50-50 in 2 clean columns */
+/* Display both badges (Statistik Kunjungan + Panduan OJS) in a clean 2-column flex row */
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) {
-  grid-column: 1 / -1 !important;
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
   gap: 8px !important;
   width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
 }
 
-/* Flag Counter: hide completely so it never creates an empty, broken border box */
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(img[src*="flag"], a[href*="flag"]),
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[href*="flagcounter"],
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="flagcounter"] {
-  display: none !important;
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a {
+  flex: 1 1 0% !important;
+  width: 50% !important;
+  min-width: 0 !important;
+  font-size: 12px !important;
 }
 
 /* ==========================================================================
