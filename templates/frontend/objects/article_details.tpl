@@ -142,7 +142,7 @@
 				{if $pubId}
 					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
 					<section class="item doi">
-						<a href="{$doiUrl}" class="jp_doi_btn" target="_blank" rel="noopener" title="Buka tautan resmi DOI">
+						<a href="{$doiUrl}" class="jp_doi_btn" target="_blank" rel="noopener" title="Open official DOI link">
 							<span class="jp_doi_badge">DOI</span>
 							<span class="jp_doi_val">{$pubId|escape}</span>
 							<i class="fa fa-external-link" aria-hidden="true"></i>
