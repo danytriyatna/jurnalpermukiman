@@ -1022,30 +1022,25 @@ a:hover {
 }
 
 /* ==========================================================================
-   EDITORIAL WORKFLOW SECTION & SPEED METRICS (FULL WIDTH ROW - MATCHING FOOTER)
+   EDITORIAL WORKFLOW SECTION & SPEED METRICS (CARD CONTAINER - ALIGNED WITH CONTENT)
    ========================================================================== */
 .jp_art_workflow_section {
-  width: 100vw !important;
-  position: relative !important;
-  left: 50% !important;
-  right: 50% !important;
-  margin-left: -50vw !important;
-  margin-right: -50vw !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  position: static !important;
   background: #FAF5F1 !important;
-  border-top: 1px solid #EDE3DC !important;
-  border-bottom: 1px solid #EDE3DC !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-radius: 0 !important;
+  border: 1px solid #EDE3DC !important;
+  border-radius: 12px !important;
   margin-top: 16px !important;
   margin-bottom: 0 !important;
-  padding: 24px 0 !important;
+  padding: 24px 22px !important;
   box-sizing: border-box !important;
 }
 .jp_art_workflow_inner {
-  max-width: 1320px !important;
-  margin: 0 auto !important;
-  padding: 0 24px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 16px !important;
@@ -1295,15 +1290,12 @@ a:hover {
 }
 
 /* ==========================================================================
-   ANNOUNCEMENTS SECTION (FULL WIDTH ROW - MATCHING FOOTER)
+   ANNOUNCEMENTS SECTION (CONTAINER ROW - ALIGNED WITH CONTENT)
    ========================================================================== */
 .cmp_announcements {
-  width: 100vw !important;
-  position: relative !important;
-  left: 50% !important;
-  right: 50% !important;
-  margin-left: -50vw !important;
-  margin-right: -50vw !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  position: static !important;
   margin-top: 24px !important;
   margin-bottom: 24px !important;
   padding: 0 !important;
@@ -1312,9 +1304,10 @@ a:hover {
   box-sizing: border-box !important;
 }
 .cmp_announcements .jp_art_announcements_inner {
-  max-width: 1320px !important;
-  margin: 0 auto !important;
-  padding: 0 24px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
   box-sizing: border-box !important;
 }
 .cmp_announcements .jp_art_section_header {
