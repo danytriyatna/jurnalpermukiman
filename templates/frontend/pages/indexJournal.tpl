@@ -42,7 +42,7 @@
 					{else}
 						<div class="jp_art_issue_cover_placeholder">
 							<div class="jp_cover_placeholder_title">JURNAL<br>PERMUKIMAN</div>
-							<div class="jp_cover_placeholder_sub">Sampul issue<br>(aset resmi)</div>
+							<div class="jp_cover_placeholder_sub">Issue Cover<br>(official asset)</div>
 						</div>
 					{/if}
 				</div>
@@ -162,7 +162,7 @@
 			<div class="jp_insights_dialog_head">
 				<div>
 					<h3 id="jpInsightsModalTitle">Jurnal Permukiman &mdash; Editorial &amp; Impact Insights</h3>
-					<p>Transparansi metrik editorial dan performa penerbitan berbasis database OJS resmi.</p>
+					<p>Transparent editorial metrics and publishing performance based on official OJS records.</p>
 				</div>
 				<button type="button" class="jp_insights_close" id="jpCloseInsightsBtn" aria-label="Close insights">&times;</button>
 			</div>
