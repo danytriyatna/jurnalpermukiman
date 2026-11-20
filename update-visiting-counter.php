@@ -1,7 +1,6 @@
 <?php
 /**
- * Universal Database Patch for Visiting Counter
- * Replaces external flagcounter URLs with local /visitor-counter.php across all tables
+ * Direct Patch for Visiting Counter without collation conflicts
  */
 
 $isCli = (php_sapi_name() === 'cli');
@@ -29,31 +28,59 @@ try {
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     ]);
 
-    // Search all text columns across all tables for flagcounter
-    $colStmt = $pdo->query("SELECT TABLE_NAME, COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND DATA_TYPE IN ('text', 'mediumtext', 'longtext', 'varchar')");
-    $columns = $colStmt->fetchAll();
-
-    $updated = [];
     $flagUrl = 'https://s01.flagcounter.com/count2/Pf4A/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/';
+    $updated = [];
 
-    foreach ($columns as $c) {
-        $tbl = $c['TABLE_NAME'];
-        $col = $c['COLUMN_NAME'];
+    // 1. Target plugin_settings for custom blocks
+    $stmt = $pdo->query("SELECT plugin_name, context_id, setting_name, setting_value FROM plugin_settings WHERE setting_name = 'blockContent'");
+    $rows = $stmt->fetchAll();
 
-        // Check if table has flagcounter
-        $check = $pdo->query("SELECT COUNT(*) FROM `{$tbl}` WHERE `{$col}` LIKE '%flagcounter%'")->fetchColumn();
-        if ($check > 0) {
-            $uSql = "UPDATE `{$tbl}` SET `{$col}` = REPLACE(`{$col}`, '{$flagUrl}', '/visitor-counter.php') WHERE `{$col}` LIKE '%flagcounter%'";
-            $affected = $pdo->exec($uSql);
+    foreach ($rows as $row) {
+        $val = $row['setting_value'];
+        if (strpos($val, 'flagcounter') !== false) {
+            $newVal = str_replace($flagUrl, '/visitor-counter.php', $val);
+            // also replace any flagcounter today link to statcounter
+            $newVal = str_replace('https://s01.flagcounter.com/today/Pf4A/', 'https://statcounter.com/p12885777/?guest=1', $newVal);
+
+            $u = $pdo->prepare("UPDATE plugin_settings SET setting_value = :val WHERE plugin_name = :p AND context_id = :c AND setting_name = :s");
+            $u->execute([
+                ':val' => $newVal,
+                ':p' => $row['plugin_name'],
+                ':c' => $row['context_id'],
+                ':s' => $row['setting_name'],
+            ]);
             $updated[] = [
-                'table' => $tbl,
-                'column' => $col,
-                'affected_rows' => $affected
+                'type' => 'plugin_settings',
+                'plugin' => $row['plugin_name'],
+                'context' => $row['context_id']
             ];
         }
     }
 
-    // Clear template cache
+    // 2. Target navigation_menu_item_settings
+    $stmt2 = $pdo->query("SELECT navigation_menu_item_id, setting_name, setting_value FROM navigation_menu_item_settings WHERE setting_name = 'content'");
+    $rows2 = $stmt2->fetchAll();
+
+    foreach ($rows2 as $row) {
+        $val = $row['setting_value'];
+        if (strpos($val, 'flagcounter') !== false) {
+            $newVal = str_replace($flagUrl, '/visitor-counter.php', $val);
+            $newVal = str_replace('https://s01.flagcounter.com/today/Pf4A/', 'https://statcounter.com/p12885777/?guest=1', $newVal);
+
+            $u2 = $pdo->prepare("UPDATE navigation_menu_item_settings SET setting_value = :val WHERE navigation_menu_item_id = :id AND setting_name = :s");
+            $u2->execute([
+                ':val' => $newVal,
+                ':id' => $row['navigation_menu_item_id'],
+                ':s' => $row['setting_name'],
+            ]);
+            $updated[] = [
+                'type' => 'navigation_menu_item_settings',
+                'id' => $row['navigation_menu_item_id']
+            ];
+        }
+    }
+
+    // 3. Clear template cache
     $cacheDirs = [
         __DIR__ . '/cache/t_compile',
         __DIR__ . '/cache/t_cache',
@@ -75,7 +102,7 @@ try {
     header('Content-Type: application/json');
     echo json_encode([
         'status' => 'success',
-        'updated_tables' => $updated,
+        'updated_records' => $updated,
         'cache_cleared' => $cleared
     ], JSON_PRETTY_PRINT);
 } catch (Exception $e) {
