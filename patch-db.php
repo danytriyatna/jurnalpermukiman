@@ -1,12 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Script migrasi otomatis untuk memperbaiki database & cache OJS di VPS.
- * Mengganti path gambar absolut domain lama menjadi path relatif /public/
- * dan menghapus kata Transfer dari copyright notice.
- */
-
 header('Content-Type: application/json; charset=utf-8');
 
 $token = $_GET['token'] ?? '';
@@ -19,12 +13,6 @@ if ($token !== $expectedToken) {
 }
 
 $configFile = __DIR__ . '/config.inc.php';
-if (!file_exists($configFile)) {
-    http_response_code(500);
-    echo json_encode(['error' => 'config.inc.php not found']);
-    exit;
-}
-
 $config = parse_ini_file($configFile, true);
 $dbHost = $config['database']['host'] ?? 'localhost';
 $dbPort = $config['database']['port'] ?? '3306';
@@ -40,44 +28,46 @@ try {
 
     $results = [];
 
-    // 1. Fix domain absolut di static_page_settings
-    $stmt1 = $pdo->prepare("UPDATE static_page_settings SET setting_value = REPLACE(setting_value, '//jurnalpermukiman.pu.go.id/public/', '/public/') WHERE setting_name = 'content'");
-    $stmt1->execute();
-    $results['static_pages_updated'] = $stmt1->rowCount();
+    // Find all static pages with path 'peer-review-process'
+    $stmt = $pdo->query("SELECT static_page_id, path FROM static_pages WHERE path = 'peer-review-process'");
+    $pages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $results['found_pages'] = $pages;
 
-    // 2. Fix kata Transfer di copyrightNotice
-    $stmt2 = $pdo->prepare("UPDATE journal_settings SET setting_value = REPLACE(setting_value, 'Download Copyright Transfer Agreement Form', 'Download Copyright and License Agreement') WHERE setting_name = 'copyrightNotice'");
-    $stmt2->execute();
-    $results['copyright_transfer_replaced'] = $stmt2->rowCount();
-
-    // 3. Pastikan peer-review-process static page terdaftar
-    $chkStmt = $pdo->query("SELECT static_page_id FROM static_pages WHERE path = 'peer-review-process' AND context_id = 1 LIMIT 1");
-    $existing = $chkStmt->fetch(PDO::FETCH_ASSOC);
-    if (!$existing) {
-        $insStmt = $pdo->prepare("INSERT INTO static_pages (path, context_id) VALUES ('peer-review-process', 1)");
-        $insStmt->execute();
-        $newId = (int)$pdo->lastInsertId();
-        $results['peer_review_page_inserted'] = $newId;
-    } else {
-        $results['peer_review_page_exists'] = (int)$existing['static_page_id'];
-    }
-
-    // 4. Bersihkan cache template
-    $cacheDirs = [
-        __DIR__ . '/cache',
-        __DIR__ . '/cache/t_compile',
-        __DIR__ . '/cache/t_cache'
+    // Direct string replacement on all static_page_settings content
+    $replaces = [
+        "UPDATE static_page_settings SET setting_value = REPLACE(setting_value, '//jurnalpermukiman.pu.go.id/public/', '/public/')",
+        "UPDATE static_page_settings SET setting_value = REPLACE(setting_value, 'https://jurnalpermukiman.pu.go.id/public/', '/public/')",
+        "UPDATE static_page_settings SET setting_value = REPLACE(setting_value, 'http://jurnalpermukiman.pu.go.id/public/', '/public/')",
+        "UPDATE static_page_settings SET setting_value = REPLACE(setting_value, 'jurnalpermukiman.pu.go.id/public/', '/public/')"
     ];
+
+    $totalUpdated = 0;
+    foreach ($replaces as $sql) {
+        $uStmt = $pdo->prepare($sql);
+        $uStmt->execute();
+        $totalUpdated += $uStmt->rowCount();
+    }
+    $results['static_page_settings_rows_affected'] = $totalUpdated;
+
+    // Check what the setting_value actually contains right now
+    $chk = $pdo->query("SELECT static_page_id, locale, setting_name, SUBSTRING(setting_value, -300) as snippet FROM static_page_settings WHERE setting_name = 'content' AND static_page_id IN (SELECT static_page_id FROM static_pages WHERE path = 'peer-review-process')");
+    $results['current_snippets'] = $chk->fetchAll(PDO::FETCH_ASSOC);
+
+    // Also update journal_settings for copyrightNotice
+    $uCopy = $pdo->prepare("UPDATE journal_settings SET setting_value = REPLACE(setting_value, 'Download Copyright Transfer Agreement Form', 'Download Copyright and License Agreement') WHERE setting_name = 'copyrightNotice'");
+    $uCopy->execute();
+    $results['copyright_transfer_updated'] = $uCopy->rowCount();
+
+    // Clear all template cache files
+    $files = glob('/var/www/html/cache/*.php') ?: [];
+    $files = array_merge($files, glob('/var/www/html/cache/t_compile/*.php') ?: []);
+    $files = array_merge($files, glob('/var/www/html/cache/t_cache/*.php') ?: []);
+    $files = array_merge($files, glob('/var/www/html/cache/_db/*') ?: []);
     $cleared = 0;
-    foreach ($cacheDirs as $dir) {
-        if (is_dir($dir)) {
-            $files = glob($dir . '/*.php') ?: [];
-            foreach ($files as $file) {
-                if (is_file($file)) {
-                    @unlink($file);
-                    $cleared++;
-                }
-            }
+    foreach ($files as $f) {
+        if (is_file($f)) {
+            @unlink($f);
+            $cleared++;
         }
     }
     $results['cache_files_cleared'] = $cleared;
