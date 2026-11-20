@@ -122,10 +122,10 @@ class PKPTemplateManager extends Smarty {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_COMMON);
 		$currentContext = $request->getContext();
 
-		$jpInsightWidgetEndpoint = getenv('JP_INSIGHT_WIDGET_ENDPOINT')
-			?: ($_ENV['JP_INSIGHT_WIDGET_ENDPOINT'] ?? '')
-			?: Config::getVar('jp_insight', 'widget_endpoint')
-			?: 'http://localhost:3001/api/widget/chat';
+		$basePath = rtrim((string) parse_url((string) $request->getBaseUrl(), PHP_URL_PATH), '/');
+		$jpInsightWidgetEndpoint = getenv('OJS_BROWSER_WIDGET_ENDPOINT')
+			?: ($_ENV['OJS_BROWSER_WIDGET_ENDPOINT'] ?? '')
+			?: ($basePath . '/widget-chat.php');
 
 		$this->assign([
 			'defaultCharset' => Config::getVar('i18n', 'client_charset'),

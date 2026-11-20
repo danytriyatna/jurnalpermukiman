@@ -23,6 +23,7 @@ jobs:
 
       - name: Lint modified PHP files
         run: |
+          php -l widget-chat.php
           php -l docker/configure-ojs.php
           php -l lib/pkp/classes/template/PKPTemplateManager.inc.php
           php -l classes/submission/form/SubmissionSubmitStep2Form.inc.php

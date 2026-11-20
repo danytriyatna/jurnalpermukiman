@@ -2874,6 +2874,6 @@
 		</div>
 	</div>
 
-	<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261118_callout2" data-endpoint="{$jpInsightWidgetEndpoint|default:'http://localhost:3001/api/widget/chat'|escape}"></script>
+	<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261118_callout2" data-endpoint="{if $jpInsightWidgetEndpoint}{$jpInsightWidgetEndpoint|escape}{else}{$baseUrl|escape}/widget-chat.php{/if}"></script>
 </body>
 </html>
