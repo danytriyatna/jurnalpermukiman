@@ -79,4 +79,4 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
           ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes "$VPS_USER@$VPS_HOST" \
-            "cd /opt/jurnal-permukiman/deploy && docker compose pull jp-ojs && docker compose up -d --no-build jp-ojs && sleep 3 && docker exec jp-ojs sh -c 'rm -rf /var/www/html/cache/*.php /var/www/html/cache/_db/*' && docker image prune -f"
+            "cd /opt/jurnal-permukiman/deploy && docker compose pull jp-ojs && docker compose up -d --no-build jp-ojs && sleep 3 && docker exec jp-ojs sh -c 'rm -rf /var/www/html/cache/t_compile/* /var/www/html/cache/*.php /var/www/html/cache/_db/*' && docker image prune -f"
