@@ -70,7 +70,8 @@ try {
         (?, 'en_US', 'content', ?, NULL),
         (?, 'id_ID', 'content', ?, NULL)
     ");
-    $insSettings->execute([$spId, $spId, $content, $content]);
+    // 6 tokens: ? (spId), ? (spId), ? (spId), ? (content), ? (spId), ? (content)
+    $insSettings->execute([$spId, $spId, $spId, $content, $spId, $content]);
     $results['inserted_settings_for_spId'] = $spId;
 
     // 3. Update juga copyrightNotice (buang kata Transfer)
