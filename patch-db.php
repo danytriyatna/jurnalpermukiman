@@ -63,15 +63,13 @@ try {
     $del = $pdo->prepare("DELETE FROM static_page_settings WHERE static_page_id = ?");
     $del->execute([$spId]);
 
-    // Masukkan title dan content untuk en_US dan id_ID
-    $insSettings = $pdo->prepare("INSERT INTO static_page_settings (static_page_id, locale, setting_name, setting_value, setting_type) VALUES 
-        (?, 'en_US', 'title', 'Peer Review Process', 'string'),
-        (?, 'id_ID', 'title', 'Peer Review Process', 'string'),
-        (?, 'en_US', 'content', ?, NULL),
-        (?, 'id_ID', 'content', ?, NULL)
-    ");
-    // 6 tokens: ? (spId), ? (spId), ? (spId), ? (content), ? (spId), ? (content)
-    $insSettings->execute([$spId, $spId, $spId, $content, $spId, $content]);
+    // Masukkan title dan content satu per satu secara eksplisit
+    $ins = $pdo->prepare("INSERT INTO static_page_settings (static_page_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, ?, ?, ?)");
+    $ins->execute([$spId, 'en_US', 'title', 'Peer Review Process', 'string']);
+    $ins->execute([$spId, 'id_ID', 'title', 'Peer Review Process', 'string']);
+    $ins->execute([$spId, 'en_US', 'content', $content, null]);
+    $ins->execute([$spId, 'id_ID', 'content', $content, null]);
+
     $results['inserted_settings_for_spId'] = $spId;
 
     // 3. Update juga copyrightNotice (buang kata Transfer)
