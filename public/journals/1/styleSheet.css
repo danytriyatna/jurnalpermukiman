@@ -1845,7 +1845,7 @@ a:hover {
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="flagcounter"],
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="counter"] {
   display: block !important;
-  width: auto !important;
+  width: 226px !important;
   max-width: 100% !important;
   height: auto !important;
   max-height: none !important;
