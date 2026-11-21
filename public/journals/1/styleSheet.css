@@ -1359,14 +1359,14 @@ a:hover {
 }
 
 /* ==========================================================================
-   ANNOUNCEMENTS SECTION (CONTAINER ROW - ALIGNED WITH CONTENT)
+   ANNOUNCEMENTS SECTION (IN-COLUMN - MATCHING LEFT CONTENT COLUMN WIDTH)
    ========================================================================== */
 .cmp_announcements {
   width: 100% !important;
   max-width: 100% !important;
   position: static !important;
   margin-top: 24px !important;
-  margin-bottom: 24px !important;
+  margin-bottom: 0 !important;
   padding: 0 !important;
   border-top: none !important;
   border-bottom: none !important;
@@ -1374,9 +1374,9 @@ a:hover {
 }
 .cmp_announcements .jp_art_announcements_inner {
   width: 100% !important;
-  max-width: 1320px !important;
-  margin: 0 auto !important;
-  padding: 0 24px !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
   box-sizing: border-box !important;
 }
 .cmp_announcements .jp_art_section_header {
