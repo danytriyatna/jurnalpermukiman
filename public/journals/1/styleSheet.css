@@ -567,7 +567,7 @@ a:hover {
   margin: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 24px !important;
+  gap: 20px !important;
 }
 
 /* Full-width fallback when no sidebar is present */
@@ -1682,7 +1682,7 @@ a:hover {
   letter-spacing: 0.5px !important;
   text-transform: uppercase !important;
   margin-top: 0 !important;
-  margin-bottom: 12px !important;
+  margin-bottom: 10px !important;
 }
 
 .pkp_structure_sidebar > #customblock-menu.block_custom .content,
@@ -1690,7 +1690,7 @@ a:hover {
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content {
   display: flex !important;
   flex-direction: column !important;
-  gap: 18px !important;
+  gap: 12px !important;
 }
 
 .pkp_structure_sidebar > #customblock-menu.block_custom .content > p:not(:has(img, a)),
@@ -1707,13 +1707,12 @@ a:hover {
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] {
   margin: 0 !important;
   padding: 0 !important;
-  display: flex !important;
-  align-items: stretch !important;
+  display: block !important;
   min-width: 0 !important;
   width: 100% !important;
   background: transparent !important;
   border: none !important;
-  line-height: 1.2 !important;
+  line-height: 0 !important;
 }
 
 .pkp_structure_sidebar > #customblock-menu.block_custom .content > p > a,
@@ -1724,23 +1723,15 @@ a:hover {
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a {
   width: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 94px !important;
-  min-height: 94px !important;
-  max-height: 94px !important;
-  padding: 12px 20px !important;
+  display: block !important;
+  padding: 0 !important;
   background: #FFFFFF !important;
   border: 1px solid #E7E5E4 !important;
   border-radius: 8px !important;
   box-shadow: 0 1px 3px rgba(28, 25, 23, 0.04) !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
-  font-size: 12px !important;
-  line-height: 1.2 !important;
-  color: #57534E !important;
-  text-decoration: none !important;
+  line-height: 0 !important;
   transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
 }
 
@@ -1752,8 +1743,8 @@ a:hover {
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a:hover,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a:hover {
   border-color: #C13D0D !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 10px rgba(193, 61, 13, 0.12) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(193, 61, 13, 0.15) !important;
   text-decoration: none !important;
 }
 
@@ -1762,13 +1753,13 @@ a:hover {
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content img,
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) img {
   display: block !important;
-  width: auto !important;
-  max-width: 80% !important;
+  width: 100% !important;
+  max-width: 100% !important;
   height: auto !important;
-  max-height: 64px !important;
-  object-fit: contain !important;
-  border-radius: 4px !important;
-  margin: 0 auto !important;
+  max-height: none !important;
+  border: none !important;
+  border-radius: 7px !important;
+  margin: 0 !important;
 }
 
 /* ==========================================================================
@@ -1791,7 +1782,7 @@ a:hover {
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) {
   display: flex !important;
   flex-direction: column !important;
-  gap: 18px !important;
+  gap: 12px !important;
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -1810,7 +1801,7 @@ a:hover {
   justify-content: center !important;
   align-items: center !important;
   width: 100% !important;
-  margin: 20px 0 0 0 !important;
+  margin: 14px 0 0 0 !important;
   padding: 0 !important;
 }
 
