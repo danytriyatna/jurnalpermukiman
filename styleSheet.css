@@ -1784,8 +1784,6 @@ a:hover {
 }
 
 /* Hide statcounter invisible tracking pixel so it never renders as empty/broken */
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:first-child,
-#customblock-data-kunjungan .content > p:first-child,
 #customblock-data-kunjungan .content p:has(a[title*="statistics"]),
 #customblock-data-kunjungan .content p:has(img[src*="statcounter.com/12885777"]),
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[title*="statistics"],
