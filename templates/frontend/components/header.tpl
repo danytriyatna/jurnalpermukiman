@@ -33,7 +33,7 @@
 			<div class="jp_art_nav_container">
 				<a href="{$homeUrl}" class="jp_art_brand">
 					<span class="jp_art_logo_pill">
-						<img src="{$baseUrl}/public/journals/1/kemenpu_pill_clean.png" alt="Kementerian Pekerjaan Umum" class="jp_art_logo_img" onerror="this.onerror=null;this.src='{$baseUrl}/public/journals/1/logo-pu-badge.png';">
+						<img src="{$baseUrl}/public/journals/1/kemenpu_pill_clean.png" alt="Ministry of Public Works" class="jp_art_logo_img" onerror="this.onerror=null;this.src='{$baseUrl}/public/journals/1/logo-pu-badge.png';">
 					</span>
 					<span class="jp_art_brand_text">
 						<span class="jp_art_brand_title">JURNAL PERMUKIMAN</span>
@@ -103,7 +103,7 @@
 			<div class="jp_art_hero_caption">
 				<div class="jp_art_hero_caption_inner">
 					<span class="jp_caption_pill">
-						Kantor Direktorat Bina Teknik Bangunan Gedung dan Penyehatan Lingkungan
+						Office of the Directorate of Building and Environmental Sanitation Engineering Development
 					</span>
 				</div>
 			</div>

@@ -124,7 +124,7 @@
 		{if $section.articles}
 			{if $section.title}
 				<{$heading}>
-					{$section.title|escape}
+					{if $section.title|lower == 'artikel'}Articles{else}{$section.title|escape}{/if}
 				</{$heading}>
 			{/if}
 			<ul class="cmp_article_list articles">
