@@ -567,7 +567,7 @@ a:hover {
   margin: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 20px !important;
+  gap: 22px !important;
 }
 
 /* Full-width fallback when no sidebar is present */
@@ -1690,7 +1690,7 @@ a:hover {
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content {
   display: flex !important;
   flex-direction: column !important;
-  gap: 14px !important;
+  gap: 16px !important;
 }
 
 .pkp_structure_sidebar > #customblock-menu.block_custom .content > p:not(:has(img, a)),
@@ -1727,10 +1727,10 @@ a:hover {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  height: 68px !important;
-  min-height: 68px !important;
-  max-height: 68px !important;
-  padding: 8px 16px !important;
+  height: 78px !important;
+  min-height: 78px !important;
+  max-height: 78px !important;
+  padding: 10px 16px !important;
   background: #FFFFFF !important;
   border: 1px solid #E7E5E4 !important;
   border-radius: 8px !important;
@@ -1765,7 +1765,7 @@ a:hover {
   width: auto !important;
   max-width: 85% !important;
   height: auto !important;
-  max-height: 48px !important;
+  max-height: 54px !important;
   object-fit: contain !important;
   border-radius: 4px !important;
   margin: 0 auto !important;
@@ -1791,7 +1791,7 @@ a:hover {
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) {
   display: flex !important;
   flex-direction: column !important;
-  gap: 14px !important;
+  gap: 16px !important;
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -1810,7 +1810,7 @@ a:hover {
   justify-content: center !important;
   align-items: center !important;
   width: 100% !important;
-  margin: 16px 0 0 0 !important;
+  margin: 18px 0 0 0 !important;
   padding: 0 !important;
 }
 
