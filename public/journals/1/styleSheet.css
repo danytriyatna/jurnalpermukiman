@@ -647,7 +647,7 @@ a:hover {
 
 .homepage_about table {
   width: 100% !important;
-  max-width: 650px !important;
+  max-width: 100% !important;
   border-collapse: collapse !important;
   margin: 14px 0 !important;
   background: transparent !important;
