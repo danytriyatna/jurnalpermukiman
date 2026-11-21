@@ -17,6 +17,47 @@
 	{call_hook name="Templates::Index::journal"}
 
 	{* =========================================================================
+	   ABOUT THE JOURNAL (HERO OVERVIEW & METADATA TABLE)
+	   ========================================================================= *}
+	{assign var=aboutDesc value=$currentContext->getLocalizedData('description')}
+	{if !$aboutDesc}
+		{assign var=aboutDesc value=$journalDescription}
+	{/if}
+	<section class="homepage_about" aria-labelledby="homepageAboutHeading">
+		<a id="homepageAbout"></a>
+		<h2 id="homepageAboutHeading">{translate key="about.aboutContext"}</h2>
+		{if $aboutDesc}
+			{$aboutDesc}
+		{else}
+			<p><strong>Jurnal Permukiman</strong> is a peer-reviewed, open access scholarly journal that publishes original research, reviews, and conceptual papers in the field of human settlements, covering urban and rural areas, the buildings within them, and the facilities and infrastructure that support community life and livelihoods. Jurnal Permukiman is published by the <strong>Directorate of Building and Environmental Sanitation Engineering Development, Directorate General of Human Settlements, Ministry of Public Works, Indonesia</strong>.</p>
+			<table>
+				<tbody>
+					<tr>
+						<td>Journal Name</td>
+						<td>: Jurnal Permukiman</td>
+					</tr>
+					<tr>
+						<td>Publication Frequency</td>
+						<td>: May and November</td>
+					</tr>
+					<tr>
+						<td>Publisher</td>
+						<td>: Directorate of Building and Environmental Sanitation Engineering Development</td>
+					</tr>
+					<tr>
+						<td>Electronic ISSN</td>
+						<td>: <a href="https://portal.issn.org/resource/ISSN/2339-2975" target="_blank" rel="noopener">2339-2975</a></td>
+					</tr>
+					<tr>
+						<td>Email Contact</td>
+						<td>: <a href="mailto:jurnalpermukiman@pu.go.id">jurnalpermukiman@pu.go.id</a></td>
+					</tr>
+				</tbody>
+			</table>
+		{/if}
+	</section>
+
+	{* =========================================================================
 	   1. CURRENT ISSUE (MAIN CONTENT SECTION)
 	   ========================================================================= *}
 	{if $issue}

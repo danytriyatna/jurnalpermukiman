@@ -612,6 +612,75 @@ a:hover {
 }
 
 /* ==========================================================================
+   HOMEPAGE ABOUT THE JOURNAL SECTION (MATCHING SCREENSHOT REFERENCE)
+   ========================================================================== */
+.homepage_about {
+  background: #FFFFFF !important;
+  border: 1px solid #E7E5E4 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  padding: 24px 28px !important;
+  margin-top: 0 !important;
+  margin-bottom: 28px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.homepage_about h2 {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  margin: 0 0 16px 0 !important;
+  padding-bottom: 10px !important;
+  border-bottom: 2px solid #F5E8E0 !important;
+}
+
+.homepage_about p {
+  color: #374151 !important;
+  font-size: 14.5px !important;
+  line-height: 1.7 !important;
+  margin-bottom: 16px !important;
+  text-align: justify !important;
+}
+
+.homepage_about table {
+  width: 100% !important;
+  max-width: 650px !important;
+  border-collapse: collapse !important;
+  margin: 14px 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.homepage_about table tr {
+  border: none !important;
+  background: transparent !important;
+}
+
+.homepage_about table td {
+  padding: 6px 10px !important;
+  font-size: 14px !important;
+  color: #374151 !important;
+  vertical-align: top !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.homepage_about table td:first-child {
+  font-weight: 600 !important;
+  color: #1C1917 !important;
+  width: 190px !important;
+  white-space: nowrap !important;
+}
+
+.homepage_about table a {
+  color: #C13D0D !important;
+  text-decoration: underline !important;
+}
+
+/* ==========================================================================
    CURRENT ISSUE SECTION (HERO & ARTICLE CARDS)
    ========================================================================== */
 .current_issue {
