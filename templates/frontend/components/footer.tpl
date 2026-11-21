@@ -80,7 +80,7 @@
 				<div>e-ISSN <strong style="color:#FFFFFF;">2339-2975</strong> (online) &nbsp;|&nbsp; Jalan Panyawungan, Cileunyi Wetan, Cileunyi, Bandung, West Java 40622 &nbsp;|&nbsp; <a href="mailto:jurnalpermukiman@pu.go.id">jurnalpermukiman@pu.go.id</a></div>
 			</div>
 			<a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener" class="jp_art_cc_badge">
-				<img src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" alt="Creative Commons License CC BY-NC-ND 4.0">
+				<img src="{$baseUrl}/public/journals/1/cc-by-nc-nd-88x31.png" alt="Creative Commons License CC BY-NC-ND 4.0" width="88" height="31">
 			</a>
 		</div>
 	</div>
