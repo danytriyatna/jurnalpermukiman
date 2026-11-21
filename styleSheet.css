@@ -1367,6 +1367,8 @@ a:hover {
   position: static !important;
   margin-top: 24px !important;
   margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   padding: 0 !important;
   border-top: none !important;
   border-bottom: none !important;
@@ -1416,8 +1418,15 @@ a:hover {
   display: flex !important;
   flex-direction: column !important;
   gap: 12px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
 }
 .jp_art_announcement_item {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
   background: #FFFFFF !important;
   border: 1px solid #EDE3DC !important;
   border-radius: 10px !important;
@@ -1765,27 +1774,41 @@ a:hover {
 /* ==========================================================================
    VISITING COUNTER (Full-Width 1-Column Stack + Centered Flag Counter)
    ========================================================================== */
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content {
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content,
+#customblock-data-kunjungan .content {
   display: block !important;
   margin: 0 !important;
   padding: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
 }
 
 /* Hide statcounter invisible tracking pixel so it never renders as empty/broken */
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:first-child,
+#customblock-data-kunjungan .content > p:first-child,
+#customblock-data-kunjungan .content p:has(a[title*="statistics"]),
+#customblock-data-kunjungan .content p:has(img[src*="statcounter.com/12885777"]),
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[title*="statistics"],
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="statcounter.com/12885777"] {
   display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
 }
 
 /* Both banners (Statistik Kunjungan + Panduan OJS) in 1-column full-width stack */
-.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) {
+.pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a),
+#customblock-data-kunjungan .content > p:has(a + a) {
   display: flex !important;
   flex-direction: column !important;
   gap: 12px !important;
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
 }
 
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a {

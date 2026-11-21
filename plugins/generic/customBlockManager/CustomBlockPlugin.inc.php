@@ -152,6 +152,12 @@ class CustomBlockPlugin extends BlockPlugin {
 					$content
 				);
 			}
+
+			// Clean up data-kunjungan: strip invisible tracking pixel paragraph and leading &nbsp;
+			if (stripos($content, 'c.statcounter.com/12885777') !== false || stripos($content, 'stat.png') !== false) {
+				$content = preg_replace('/<p>\s*<a[^>]*title=["\']web statistics["\'][^>]*>.*?<\/a>\s*<\/p>/is', '', $content);
+				$content = preg_replace('/<p>\s*&nbsp;/i', '<p>', $content);
+			}
 		}
 
 		$templateMgr->assign('customBlockTitle', $title);
