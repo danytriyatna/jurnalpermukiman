@@ -972,7 +972,7 @@ a:hover {
   padding: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 9px !important;
+  gap: 12px !important;
   border: none !important;
 }
 .obj_issue_toc .articles > li {
@@ -987,11 +987,11 @@ a:hover {
   background: #FFFFFF !important;
   border: 1px solid #E3A88F !important;
   border-radius: 8px !important;
-  padding: 11px 16px !important;
+  padding: 15px 18px !important;
   box-shadow: 3px 3px 0 rgba(120, 113, 108, 0.16), 0 4px 10px rgba(0, 0, 0, 0.05) !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 4px !important;
+  gap: 6px !important;
   transition: transform 0.15s ease, box-shadow 0.15s ease !important;
 }
 .jp_art_article_card:hover {
@@ -1007,8 +1007,8 @@ a:hover {
 .jp_art_article_title {
   margin: 0 !important;
   font-family: 'Lora', Georgia, serif !important;
-  font-size: 17px !important;
-  line-height: 1.35 !important;
+  font-size: 18px !important;
+  line-height: 1.4 !important;
   font-weight: 700 !important;
 }
 .jp_art_article_title a {
@@ -1036,7 +1036,7 @@ a:hover {
   flex-wrap: wrap !important;
   gap: 6px 14px !important;
   align-items: center !important;
-  font-size: 12.5px !important;
+  font-size: 13px !important;
   color: #6B6460 !important;
   padding-top: 2px !important;
 }
@@ -1421,10 +1421,10 @@ a:hover {
   background: #FFFFFF !important;
   border: 1px solid #EDE3DC !important;
   border-radius: 10px !important;
-  padding: 16px 20px !important;
+  padding: 18px 22px !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 8px !important;
+  gap: 10px !important;
   align-items: flex-start !important;
   box-shadow: 2px 2px 0 rgba(120, 113, 108, 0.1), 0 2px 6px rgba(0, 0, 0, 0.03) !important;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease !important;
@@ -1435,7 +1435,7 @@ a:hover {
   box-shadow: 2px 2px 0 rgba(180, 65, 15, 0.18), 0 4px 12px rgba(0, 0, 0, 0.06) !important;
 }
 .jp_art_announcement_date {
-  font-size: 11px !important;
+  font-size: 12px !important;
   font-weight: 700 !important;
   color: #B4410F !important;
   text-transform: uppercase !important;
@@ -1447,14 +1447,14 @@ a:hover {
   width: 100% !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 6px !important;
+  gap: 8px !important;
 }
 .jp_art_announcement_title {
   margin: 0 !important;
   font-family: 'Lora', Georgia, serif !important;
-  font-size: 16px !important;
+  font-size: 18px !important;
   font-weight: 700 !important;
-  line-height: 1.35 !important;
+  line-height: 1.4 !important;
 }
 .jp_art_announcement_title a {
   color: #1C1917 !important;
@@ -1464,9 +1464,9 @@ a:hover {
   color: #B4410F !important;
 }
 .jp_art_announcement_desc {
-  font-size: 12.5px !important;
+  font-size: 14px !important;
   color: #44403C !important;
-  line-height: 1.5 !important;
+  line-height: 1.6 !important;
 }
 .jp_art_announcement_desc p {
   margin: 0 0 6px 0 !important;
@@ -1484,7 +1484,7 @@ a:hover {
   line-height: 1.45 !important;
 }
 .jp_art_read_more {
-  font-size: 12px !important;
+  font-size: 13px !important;
   font-weight: 600 !important;
   color: #B4410F !important;
   text-decoration: none !important;
