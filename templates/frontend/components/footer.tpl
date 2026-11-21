@@ -55,7 +55,7 @@
 			{* Column 3: For Reviewers *}
 			<div class="jp_art_footer_col">
 				<h2 class="jp_art_col_title">FOR REVIEWERS</h2>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="kebijakanreview"}">Peer Review Process</a>
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="peer-review-process"}">Peer Review Process</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="PeerReview"}">Peer Reviewers</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="publicationEthics"}">Publication Ethics</a>
 			</div>
