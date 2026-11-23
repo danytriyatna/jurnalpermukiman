@@ -86,8 +86,11 @@
 		</section>
 	{/if}
 
+</div><!-- .page_index_journal -->
+
+{capture assign="homepageSections"}
 	{* =========================================================================
-	   2. EDITORIAL WORKFLOW & JOURNAL PERFORMANCE STATISTICS (IN-COLUMN)
+	   2. EDITORIAL WORKFLOW & JOURNAL PERFORMANCE STATISTICS (FULL WIDTH ROW)
 	   ========================================================================= *}
 	<section class="jp_art_workflow_section" aria-labelledby="editorialWorkflowHeading">
 		<div class="jp_art_workflow_inner">
@@ -275,7 +278,6 @@
 			</div>
 		</section>
 	{/if}
-
-</div><!-- .page_index_journal -->
+{/capture}
 
 {include file="frontend/components/footer.tpl"}
