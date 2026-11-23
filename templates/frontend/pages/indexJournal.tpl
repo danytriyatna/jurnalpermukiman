@@ -17,51 +17,10 @@
 	{call_hook name="Templates::Index::journal"}
 
 	{* =========================================================================
-	   ABOUT THE JOURNAL (HERO OVERVIEW & METADATA TABLE)
-	   ========================================================================= *}
-	{assign var=aboutDesc value=$currentContext->getLocalizedData('description')}
-	{if !$aboutDesc}
-		{assign var=aboutDesc value=$journalDescription}
-	{/if}
-	<section class="homepage_about" aria-labelledby="homepageAboutHeading">
-		<a id="homepageAbout"></a>
-		<h2 id="homepageAboutHeading">{translate key="about.aboutContext"}</h2>
-		{if $aboutDesc}
-			{$aboutDesc}
-		{else}
-			<p><strong>Jurnal Permukiman</strong> is a peer-reviewed, open access scholarly journal that publishes original research, reviews, and conceptual papers in the field of human settlements, covering urban and rural areas, the buildings within them, and the facilities and infrastructure that support community life and livelihoods. Jurnal Permukiman is published by the <strong>Directorate of Building and Environmental Sanitation Engineering Development, Directorate General of Human Settlements, Ministry of Public Works, Indonesia</strong>.</p>
-			<table>
-				<tbody>
-					<tr>
-						<td>Journal Name</td>
-						<td>: Jurnal Permukiman</td>
-					</tr>
-					<tr>
-						<td>Publication Frequency</td>
-						<td>: May and November</td>
-					</tr>
-					<tr>
-						<td>Publisher</td>
-						<td>: Directorate of Building and Environmental Sanitation Engineering Development</td>
-					</tr>
-					<tr>
-						<td>Electronic ISSN</td>
-						<td>: <a href="https://portal.issn.org/resource/ISSN/2339-2975" target="_blank" rel="noopener">2339-2975</a></td>
-					</tr>
-					<tr>
-						<td>Email Contact</td>
-						<td>: <a href="mailto:jurnalpermukiman@pu.go.id">jurnalpermukiman@pu.go.id</a></td>
-					</tr>
-				</tbody>
-			</table>
-		{/if}
-	</section>
-
-	{* =========================================================================
 	   1. CURRENT ISSUE (MAIN CONTENT SECTION)
 	   ========================================================================= *}
 	{if $issue}
-		<section class="current_issue" aria-labelledby="currentIssueHeading">
+		<section id="homepageIssue" class="current_issue" aria-labelledby="currentIssueHeading">
 			<div class="jp_art_section_header">
 				<div>
 					<div class="jp_art_section_tag">CURRENT ISSUE</div>
@@ -122,8 +81,8 @@
 				</div>
 			</div>
 
-			{* Include issue table of contents (articles list) *}
-			{include file="frontend/objects/issue_toc.tpl"}
+			{* Include issue table of contents (articles list only; hero above already displays cover & full-issue PDF) *}
+			{include file="frontend/objects/issue_toc.tpl" hideIssueHeader=true hideIssueGalleys=true}
 		</section>
 	{/if}
 
@@ -261,13 +220,17 @@
 	<script>
 	(function () {
 		var openBtn = document.getElementById('jpOpenInsightsBtn');
+		var extraTriggers = document.querySelectorAll('[data-jp-open-insights]');
 		var closeBtn = document.getElementById('jpCloseInsightsBtn');
 		var backdrop = document.getElementById('jpInsightsBackdrop');
 		var modal = document.getElementById('jpInsightsModal');
-		if (!openBtn || !modal) return;
-		function openModal() { modal.hidden = false; document.body.style.overflow = 'hidden'; }
+		if ((!openBtn && !extraTriggers.length) || !modal) return;
+		function openModal(e) { if (e) e.preventDefault(); modal.hidden = false; document.body.style.overflow = 'hidden'; }
 		function closeModal() { modal.hidden = true; document.body.style.overflow = ''; }
-		openBtn.addEventListener('click', openModal);
+		if (openBtn) openBtn.addEventListener('click', openModal);
+		for (var i = 0; i < extraTriggers.length; i++) {
+			extraTriggers[i].addEventListener('click', openModal);
+		}
 		if (closeBtn) closeBtn.addEventListener('click', closeModal);
 		if (backdrop) backdrop.addEventListener('click', closeModal);
 		document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
@@ -278,7 +241,7 @@
 	   3. ANNOUNCEMENTS SECTION (IN-COLUMN - MATCHING LEFT COLUMN WIDTH)
 	   ========================================================================= *}
 	{if $numAnnouncementsHomepage && $announcements|@count}
-		<section class="cmp_announcements" aria-labelledby="announcementsHeading">
+		<section id="homepageAnnouncements" class="cmp_announcements" aria-labelledby="announcementsHeading">
 			<div class="jp_art_announcements_inner">
 				<div class="jp_art_section_header">
 					<h2 id="announcementsHeading" class="jp_art_section_title">Announcements</h2>

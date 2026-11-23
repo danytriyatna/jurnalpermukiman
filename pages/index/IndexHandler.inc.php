@@ -106,7 +106,13 @@ class IndexHandler extends PKPIndexHandler {
 		}
 
 		$stats = $cache->get('stats');
-		if (!is_array($stats)) {
+		if (
+			!is_array($stats)
+			|| !isset($stats['publishedIssuesFormatted'])
+			|| !isset($stats['registeredAuthorsFormatted'])
+			|| !isset($stats['pdfDownloadsCompact'])
+		) {
+			$cache->flush();
 			$stats = $this->_queryJournalInsights($journalId);
 		}
 		$templateMgr->assign('jpInsights', $stats);
@@ -195,15 +201,42 @@ class IndexHandler extends PKPIndexHandler {
 		$abstractViews = $metricRow ? (int) $metricRow->abstract_views : 0;
 		$pdfDownloads = $metricRow ? (int) $metricRow->pdf_downloads : 0;
 
+		$issueRes = $metricsDao->retrieve(
+			'SELECT COUNT(*) AS published_issues FROM issues WHERE published = 1 AND journal_id = ?',
+			array($journalId)
+		);
+		$issueRow = $issueRes->current();
+		$publishedIssues = $issueRow ? (int) $issueRow->published_issues : 0;
+
+		$authorRes = $metricsDao->retrieve(
+			'SELECT COUNT(DISTINCT u.user_id) AS registered_authors
+			FROM users u
+			INNER JOIN user_user_groups uug ON u.user_id = uug.user_id
+			INNER JOIN user_groups ug ON uug.user_group_id = ug.user_group_id
+			WHERE ug.context_id = ? AND ug.role_id = ?',
+			array($journalId, ROLE_ID_AUTHOR)
+		);
+		$authorRow = $authorRes->current();
+		$registeredAuthors = $authorRow ? (int) $authorRow->registered_authors : 0;
+
+		$pdfDownloadsCompact = $pdfDownloads >= 1000
+			? number_format((int) floor($pdfDownloads / 1000), 0, '.', ',') . 'K+'
+			: number_format($pdfDownloads, 0, '.', ',');
+
 		return array(
 			'totalSubmissions' => $totalSubmissions,
 			'totalSubmissionsFormatted' => number_format($totalSubmissions, 0, '.', ','),
 			'publishedArticles' => $publishedArticles,
 			'publishedArticlesFormatted' => number_format($publishedArticles, 0, '.', ','),
+			'publishedIssues' => $publishedIssues,
+			'publishedIssuesFormatted' => number_format($publishedIssues, 0, '.', ','),
+			'registeredAuthors' => $registeredAuthors,
+			'registeredAuthorsFormatted' => number_format($registeredAuthors, 0, '.', ','),
 			'abstractViews' => $abstractViews,
 			'abstractViewsFormatted' => number_format($abstractViews, 0, '.', ','),
 			'pdfDownloads' => $pdfDownloads,
 			'pdfDownloadsFormatted' => number_format($pdfDownloads, 0, '.', ','),
+			'pdfDownloadsCompact' => $pdfDownloadsCompact,
 			'acceptedCount' => $acceptedCount,
 			'acceptedCountFormatted' => number_format($acceptedCount, 0, '.', ','),
 			'declinedCount' => $declinedCount,

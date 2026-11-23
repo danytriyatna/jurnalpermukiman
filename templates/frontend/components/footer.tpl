@@ -44,7 +44,7 @@
 
 			{* Column 2: For Editor *}
 			<div class="jp_art_footer_col">
-				<h2 class="jp_art_col_title">For Editor</h2>
+				<h2 class="jp_art_col_title">FOR EDITOR</h2>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="publicationEthics"}">Publication Ethics</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="PlagiarismCheck"}">Plagiarism Check</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="ArticleRetractionWithdrawal"}">Article Retraction &amp; Withdrawal</a>
@@ -69,18 +69,24 @@
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="OpenAccessPolicy"}">Open Access Policy</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="PublicationFrequency"}">Publication Frequency</a>
 				<a href="{url router=$smarty.const.ROUTE_PAGE page="ArchivingPolicy"}">Archiving Policy</a>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="stats"}">Journal Statistics</a>
+				{if $isUserLoggedIn}
+					<a href="{url router=$smarty.const.ROUTE_PAGE page="stats"}">Journal Statistics</a>
+				{elseif !$requestedPage || $requestedPage === 'index'}
+					<a href="#editorialWorkflowHeading" data-jp-open-insights="1">Journal Statistics</a>
+				{else}
+					<a href="{url router=$smarty.const.ROUTE_PAGE page="index"}#editorialWorkflowHeading">Journal Statistics</a>
+				{/if}
 			</div>
 		</div>
 
 		{* Bottom Bar: License & Contact *}
 		<div class="jp_art_footer_bottom">
 			<div class="jp_art_bottom_text">
-				<div>The content of this website is licensed under a <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</div>
-				<div>e-ISSN <strong style="color:#FFFFFF;">2339-2975</strong> (online) &nbsp;|&nbsp; Jalan Panyawungan, Cileunyi Wetan, Cileunyi, Bandung, West Java 40622 &nbsp;|&nbsp; <a href="mailto:jurnalpermukiman@pu.go.id">jurnalpermukiman@pu.go.id</a></div>
+				<div>The content of this website is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</div>
+				<div>p-ISSN <strong style="color:#FFFFFF;">1907-4352</strong> (print) &nbsp;|&nbsp; e-ISSN <strong style="color:#FFFFFF;">2339-2975</strong> (online) &nbsp;|&nbsp; Jalan Panyawungan, Cileunyi Wetan, Cileunyi, Bandung, West Java 40622 &nbsp;|&nbsp; <a href="mailto:jurnalpermukiman@pu.go.id">jurnalpermukiman@pu.go.id</a></div>
 			</div>
-			<a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener" class="jp_art_cc_badge">
-				<img src="{$baseUrl}/public/journals/1/cc-by-nc-nd-88x31.png" alt="Creative Commons License CC BY-NC-ND 4.0" width="88" height="31">
+			<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener" class="jp_art_cc_badge">
+				<img src="{$baseUrl}/public/journals/1/cc-by-nc-nd-88x31.png" alt="Creative Commons License CC BY-NC-ND 4.0" width="88" height="31" loading="lazy">
 			</a>
 		</div>
 	</div>
