@@ -1705,7 +1705,7 @@ a.jp_hero_badge:hover {
 }
 
 /* ==========================================================================
-   SIDEBAR IMAGE BLOCKS: 1-COLUMN COMPACT BADGE CARD STACK (PERKECIL GAMBAR)
+   SIDEBAR IMAGE BLOCKS: 2-COLUMN BADGE CARD GRID (FLAG COUNTER STANDALONE COMPACT)
    (#customblock-menu / TEMPLATE, #customblock-akreditasi / ABSTRACTING AND INDEXING,
     #customblock-dukungan-alat / TOOLS, #customblock-data-kunjungan / VISITING COUNTER)
    Direct child combinator (>) isolates TEMPLATE and leaves #customblock-journal-police
@@ -1741,9 +1741,10 @@ a.jp_hero_badge:hover {
 .pkp_structure_sidebar > #customblock-menu.block_custom .content,
 .pkp_structure_sidebar > #customblock-akreditasi.block_custom .content,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content {
-  display: flex !important;
-  flex-direction: column !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 8px !important;
+  align-items: stretch !important;
 }
 
 .pkp_structure_sidebar > #customblock-menu.block_custom .content > p:not(:has(img, a)),
@@ -1761,13 +1762,12 @@ a.jp_hero_badge:hover {
   margin: 0 !important;
   padding: 0 !important;
   display: flex !important;
-  justify-content: flex-start !important;
-  align-items: center !important;
+  align-items: stretch !important;
   min-width: 0 !important;
   width: 100% !important;
   background: transparent !important;
   border: none !important;
-  line-height: 0 !important;
+  line-height: 1.2 !important;
 }
 
 .pkp_structure_sidebar > #customblock-menu.block_custom .content > p > a,
@@ -1777,14 +1777,14 @@ a.jp_hero_badge:hover {
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content > p > a,
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content p[style] a {
-  width: auto !important;
+  width: 100% !important;
   max-width: 100% !important;
-  height: auto !important;
-  min-height: 0 !important;
-  display: inline-flex !important;
+  height: 100% !important;
+  min-height: 54px !important;
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 4px !important;
+  padding: 6px 8px !important;
   background: #FFFFFF !important;
   border: 1px solid #E7E5E4 !important;
   border-radius: 8px !important;
@@ -1813,18 +1813,18 @@ a.jp_hero_badge:hover {
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content img,
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) img {
   display: block !important;
-  width: auto !important;
+  width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
-  max-height: 54px !important;
+  max-height: 48px !important;
   object-fit: contain !important;
   border: none !important;
   border-radius: 4px !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
 }
 
 /* ==========================================================================
-   VISITING COUNTER (1-Column Compact Stack + Centered Flag Counter Card)
+   VISITING COUNTER (2-Column Banners + Centered Compact Flag Counter Card)
    ========================================================================== */
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content,
 #customblock-data-kunjungan .content {
@@ -1848,12 +1848,12 @@ a.jp_hero_badge:hover {
   line-height: 0 !important;
 }
 
-/* Both banners (Statistik Kunjungan + Panduan OJS) in compact left-aligned 1-column stack */
+/* Both banners (Statistik Kunjungan + Panduan OJS) in 2-column flex row matching grid */
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a),
 #customblock-data-kunjungan .content > p:has(a + a) {
   display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
   gap: 8px !important;
   width: 100% !important;
   margin: 0 !important;
@@ -1863,17 +1863,18 @@ a.jp_hero_badge:hover {
 }
 
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a + a) > a {
-  width: auto !important;
-  max-width: 100% !important;
+  flex: 1 1 0% !important;
+  width: 50% !important;
+  min-width: 0 !important;
 }
 
-/* Flag Counter: left-aligned card below the 2 banners */
+/* Flag Counter: centered compact card below the 2 banners (smaller than the other logos) */
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:last-child,
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p.jp-counter-row,
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(a[href*="flagcounter"]),
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:has(img[src*="counter"]) {
   display: flex !important;
-  justify-content: flex-start !important;
+  justify-content: center !important;
   align-items: center !important;
   width: 100% !important;
   margin: 0 !important;
@@ -1884,7 +1885,9 @@ a.jp_hero_badge:hover {
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a.jp-counter-badge,
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a[href*="flagcounter"],
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content a:has(img[src*="counter"]) {
-  display: inline-block !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   width: auto !important;
   height: auto !important;
   min-height: auto !important;
@@ -1893,6 +1896,7 @@ a.jp_hero_badge:hover {
   border: 1px solid #E7E5E4 !important;
   border-radius: 6px !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
 }
 
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content > p:last-child a:hover,
@@ -1907,7 +1911,7 @@ a.jp_hero_badge:hover {
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="flagcounter"],
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="counter"] {
   display: block !important;
-  width: 210px !important;
+  width: 110px !important;
   max-width: 100% !important;
   height: auto !important;
   max-height: none !important;
