@@ -24,4 +24,5 @@
 
 	{load_header context="frontend"}
 	{load_stylesheet context="frontend"}
+	<link rel="stylesheet" href="{$baseUrl}/public/journals/1/styleSheet.css?v={$smarty.now}" type="text/css" />
 </head>

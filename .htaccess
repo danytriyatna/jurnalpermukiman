@@ -47,8 +47,10 @@ Options -Indexes
     # Content Security Policy (BSSN & OWASP Top 10 Compliance, dengan whitelist GA4 resmi)
     Header always set Content-Security-Policy "default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://jurnalpermukiman.pu.go.id https://flagcdn.com https://i.creativecommons.org https://*.flagcounter.com http://*.flagcounter.com https://s01.flagcounter.com https://c.statcounter.com https://*.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; frame-src 'self' blob: data:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none';"
 
-    # Cache CSS & JS (?v=...) selama 1 jam dengan revalidasi untuk efisiensi reload
+    # Strict zero-client-cache for CSS & JS to ensure instant asset updates without manual cache clearing
     <FilesMatch "\.(css|js)$">
-        Header always set Cache-Control "public, max-age=3600, must-revalidate"
+        Header always set Cache-Control "no-cache, no-store, must-revalidate"
+        Header always set Pragma "no-cache"
+        Header always set Expires "0"
     </FilesMatch>
 </IfModule>
