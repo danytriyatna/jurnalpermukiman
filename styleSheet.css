@@ -575,7 +575,7 @@ a.jp_hero_badge:hover {
   margin: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 20px !important;
+  gap: 14px !important;
 }
 @media (max-width: 992px) {
   .pkp_structure_content.has_sidebar {
@@ -1735,7 +1735,7 @@ a.jp_hero_badge:hover {
   letter-spacing: 0.5px !important;
   text-transform: uppercase !important;
   margin-top: 0 !important;
-  margin-bottom: 10px !important;
+  margin-bottom: 6px !important;
 }
 
 .pkp_structure_sidebar > #customblock-menu.block_custom .content,
@@ -1743,7 +1743,7 @@ a.jp_hero_badge:hover {
 .pkp_structure_sidebar > #customblock-dukungan-alat.block_custom .content {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 8px !important;
+  gap: 5px !important;
   align-items: stretch !important;
 }
 
@@ -1780,11 +1780,11 @@ a.jp_hero_badge:hover {
   width: 100% !important;
   max-width: 100% !important;
   height: 100% !important;
-  min-height: 54px !important;
+  min-height: 58px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 6px 8px !important;
+  padding: 3px 5px !important;
   background: #FFFFFF !important;
   border: 1px solid #E7E5E4 !important;
   border-radius: 8px !important;
@@ -1816,7 +1816,7 @@ a.jp_hero_badge:hover {
   width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
-  max-height: 48px !important;
+  max-height: 56px !important;
   object-fit: contain !important;
   border: none !important;
   border-radius: 4px !important;
@@ -1830,7 +1830,7 @@ a.jp_hero_badge:hover {
 #customblock-data-kunjungan .content {
   display: flex !important;
   flex-direction: column !important;
-  gap: 8px !important;
+  gap: 6px !important;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -1854,7 +1854,7 @@ a.jp_hero_badge:hover {
   display: flex !important;
   flex-direction: row !important;
   align-items: stretch !important;
-  gap: 8px !important;
+  gap: 5px !important;
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -1911,7 +1911,7 @@ a.jp_hero_badge:hover {
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="flagcounter"],
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="counter"] {
   display: block !important;
-  width: 110px !important;
+  width: 115px !important;
   max-width: 100% !important;
   height: auto !important;
   max-height: none !important;
