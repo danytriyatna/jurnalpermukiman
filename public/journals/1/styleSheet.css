@@ -554,7 +554,7 @@ a.jp_hero_badge:hover {
   justify-content: space-between !important;
   align-items: flex-start !important;
   gap: 28px !important;
-  padding: 0 0 16px 0 !important;
+  padding: 0 0 8px 0 !important;
   width: 100% !important;
 }
 .pkp_structure_content.has_sidebar .pkp_structure_main {
@@ -575,7 +575,7 @@ a.jp_hero_badge:hover {
   margin: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 14px !important;
+  gap: 22px !important;
 }
 @media (max-width: 992px) {
   .pkp_structure_content.has_sidebar {
@@ -728,7 +728,7 @@ a.jp_hero_badge:hover {
    CURRENT ISSUE SECTION (HERO & ARTICLE CARDS)
    ========================================================================== */
 .current_issue {
-  margin-bottom: 32px !important;
+  margin-bottom: 12px !important;
 }
 .jp_art_issue_hero {
   display: flex;
@@ -1144,7 +1144,7 @@ a.jp_hero_badge:hover {
   background: #FAF5F1 !important;
   border: 1px solid #EDE3DC !important;
   border-radius: 12px !important;
-  margin-top: 16px !important;
+  margin-top: 10px !important;
   margin-bottom: 0 !important;
   padding: 24px 22px !important;
   box-sizing: border-box !important;
@@ -1735,7 +1735,7 @@ a.jp_hero_badge:hover {
   letter-spacing: 0.5px !important;
   text-transform: uppercase !important;
   margin-top: 0 !important;
-  margin-bottom: 6px !important;
+  margin-bottom: 8px !important;
 }
 
 .pkp_structure_sidebar > #customblock-menu.block_custom .content,
@@ -1889,11 +1889,11 @@ a.jp_hero_badge:hover {
   width: auto !important;
   height: auto !important;
   min-height: auto !important;
-  padding: 4px !important;
-  background: #FFFFFF !important;
+  padding: 6px 10px !important;
+  background: #FAF7F5 !important;
   border: 1px solid #E7E5E4 !important;
-  border-radius: 6px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
   transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
 }
 
@@ -1909,7 +1909,7 @@ a.jp_hero_badge:hover {
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="flagcounter"],
 .pkp_structure_sidebar > #customblock-data-kunjungan.block_custom .content img[src*="counter"] {
   display: block !important;
-  width: 115px !important;
+  width: 175px !important;
   max-width: 100% !important;
   height: auto !important;
   max-height: none !important;
