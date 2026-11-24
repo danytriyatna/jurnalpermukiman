@@ -1694,6 +1694,29 @@ a.jp_hero_badge:hover {
   text-decoration: underline !important;
 }
 
+/* Active state indicator for current JOURNAL POLICY page (Option A) */
+#customblock-journal-police .content p.jp-policy-active,
+#customblock-journal-police .content p[style].jp-policy-active,
+#customblock-journal-police .content li.jp-policy-active {
+  background: #FDF3EE !important;
+  border-left: 3px solid #C13D0D !important;
+  border-radius: 0 4px 4px 0 !important;
+  padding: 5px 8px 5px 10px !important;
+  margin: 2px 0 !important;
+}
+
+#customblock-journal-police .content p.jp-policy-active a[aria-current="page"],
+#customblock-journal-police .content p.jp-policy-active a[aria-current="page"] span,
+#customblock-journal-police .content p[style].jp-policy-active a[aria-current="page"],
+#customblock-journal-police .content p[style].jp-policy-active a[aria-current="page"] span,
+#customblock-journal-police .content li.jp-policy-active a[aria-current="page"],
+#customblock-journal-police .content li.jp-policy-active a[aria-current="page"] span,
+#customblock-journal-police .content a[aria-current="page"],
+#customblock-journal-police .content a[aria-current="page"] span {
+  color: #C13D0D !important;
+  font-weight: 700 !important;
+}
+
 #customblock-journal-police h2.title,
 #customblock-menu h2.title {
   color: #292524 !important;

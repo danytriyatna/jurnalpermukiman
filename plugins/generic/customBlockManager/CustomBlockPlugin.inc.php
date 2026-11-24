@@ -158,6 +158,11 @@ class CustomBlockPlugin extends BlockPlugin {
 				$content = preg_replace('/<p>\s*<a[^>]*title=["\']web statistics["\'][^>]*>.*?<\/a>\s*<\/p>/is', '', $content);
 				$content = preg_replace('/<p>\s*&nbsp;/i', '<p>', $content);
 			}
+
+			// Mark active item exclusively in JOURNAL POLICY sidebar without altering other blocks
+			if ($divCustomBlockId === 'customblock-journal-police') {
+				$content = $this->_markActivePolicyLinks($content, $request);
+			}
 		}
 
 		$templateMgr->assign('customBlockTitle', $title);
@@ -172,6 +177,98 @@ class CustomBlockPlugin extends BlockPlugin {
 
 		return parent::getContents($templateMgr, $request);
 
+	}
+
+	/**
+	 * Add active row class and aria-current="page" to matching links in JOURNAL POLICY.
+	 *
+	 * @param string $content
+	 * @param PKPRequest|null $request
+	 * @return string
+	 */
+	function _markActivePolicyLinks($content, $request) {
+		if (!$content || !$request) {
+			return $content;
+		}
+
+		$currentParts = @parse_url($request->getRequestUrl());
+		if (empty($currentParts['path'])) {
+			return $content;
+		}
+		$currentPath = strtolower(rtrim($currentParts['path'], '/'));
+		$currentHost = isset($currentParts['host']) ? strtolower($currentParts['host']) : '';
+
+		// Process per paragraph/list-item block so raw TinyMCE HTML & UTF-8 stay intact
+		return preg_replace_callback(
+			'/<(p|li)(\b[^>]*)>(.*?)<\/\1>/is',
+			function ($rowMatch) use ($currentPath, $currentHost) {
+				$tagName = $rowMatch[1];
+				$tagAttrs = $rowMatch[2];
+				$rowBody = $rowMatch[3];
+				$isRowActive = false;
+
+				$rowBody = preg_replace_callback(
+					'/<a\b([^>]*)href=(["\'])([^"\']*)\2([^>]*)>/is',
+					function ($linkMatch) use ($currentPath, $currentHost, &$isRowActive) {
+						$href = html_entity_decode(trim($linkMatch[3]), ENT_QUOTES, 'UTF-8');
+						if ($href === '' || $href[0] === '#') {
+							return $linkMatch[0];
+						}
+
+						$hrefParts = @parse_url($href);
+						if (empty($hrefParts['path'])) {
+							return $linkMatch[0];
+						}
+						if (!empty($hrefParts['host']) && $currentHost !== '' && strtolower($hrefParts['host']) !== $currentHost) {
+							return $linkMatch[0];
+						}
+
+						$hrefPath = strtolower(rtrim($hrefParts['path'], '/'));
+						if ($hrefPath !== $currentPath) {
+							return $linkMatch[0];
+						}
+
+						$isRowActive = true;
+						$attrs = $linkMatch[1] . 'href=' . $linkMatch[2] . $linkMatch[3] . $linkMatch[2] . $linkMatch[4];
+						if (stripos($attrs, 'aria-current') === false) {
+							$attrs .= ' aria-current="page"';
+						}
+						return '<a' . $attrs . '>';
+					},
+					$rowBody
+				);
+
+				if ($isRowActive) {
+					$tagAttrs = $this->_appendCssClass($tagAttrs, 'jp-policy-active');
+				}
+				return '<' . $tagName . $tagAttrs . '>' . $rowBody . '</' . $tagName . '>';
+			},
+			$content
+		);
+	}
+
+	/**
+	 * Append a CSS class token to tag attributes without duplicating existing classes.
+	 *
+	 * @param string $tagAttrs
+	 * @param string $className
+	 * @return string
+	 */
+	function _appendCssClass($tagAttrs, $className) {
+		if (preg_match('/\bclass=(["\'])([^"\']*)\1/i', $tagAttrs, $m)) {
+			$classes = preg_split('/\s+/', trim($m[2]));
+			if (in_array($className, $classes, true)) {
+				return $tagAttrs;
+			}
+			$updated = trim($m[2] . ' ' . $className);
+			return preg_replace(
+				'/\bclass=(["\'])([^"\']*)\1/i',
+				'class=' . $m[1] . $updated . $m[1],
+				$tagAttrs,
+				1
+			);
+		}
+		return $tagAttrs . ' class="' . $className . '"';
 	}
 }
 
