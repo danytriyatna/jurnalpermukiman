@@ -63,6 +63,7 @@ $updates = [
         'api_key' => $envOr('OJS_MQC_API_KEY', ''),
     ],
     'jp_insight' => [
+        'widget_enabled' => in_array(strtolower(trim($envOr('CHAT_JP', 'false'), " \t\n\r\0\x0B\"'")), ['1', 'true', 'on', 'yes'], true) ? 'On' : 'Off',
         'widget_endpoint' => $envOr('JP_INSIGHT_WIDGET_ENDPOINT', 'http://localhost:3001/api/widget/chat'),
     ],
 ];
@@ -75,6 +76,7 @@ $formatValue = static function (string $key, string $val): string {
     $bareKeys = [
         'installed', 'trust_x_forwarded_for', 'restful_urls', 'port',
         'charset_normalization', 'force_ssl', 'force_login_ssl', 'session_check_ip',
+        'widget_enabled',
     ];
     if (in_array($key, $bareKeys, true) && preg_match('/^(On|Off|[0-9]+)$/i', $val)) {
         return $val;

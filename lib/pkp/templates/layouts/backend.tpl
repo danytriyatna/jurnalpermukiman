@@ -2874,6 +2874,8 @@
 		</div>
 	</div>
 
+	{if !empty($chatJpEnabled)}
 	<script src="{$baseUrl}/js/jp-chat-widget.js?v=20261118_callout2" data-endpoint="{if $jpInsightWidgetEndpoint}{$jpInsightWidgetEndpoint|escape}{else}{$baseUrl|escape}/widget-chat.php{/if}"></script>
+	{/if}
 </body>
 </html>

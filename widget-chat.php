@@ -198,6 +198,52 @@ function jp_widget_resolve_upstream_targets(array $ini = [], ?bool $inDockerOver
     return $targets;
 }
 
+/**
+ * Mengonversi nilai konfigurasi boolean (.env / INI) menjadi bool secara aman.
+ *
+ * @param mixed $raw
+ */
+function jp_widget_parse_bool($raw): bool {
+    if (is_bool($raw)) {
+        return $raw;
+    }
+    if (is_int($raw) || is_float($raw)) {
+        return (int) $raw === 1;
+    }
+    if (!is_string($raw)) {
+        return false;
+    }
+    $clean = strtolower(trim($raw, " \t\n\r\0\x0B\"'"));
+    return in_array($clean, ['1', 'true', 'on', 'yes'], true);
+}
+
+/**
+ * Mengecek apakah widget chat JP-Insight diaktifkan melalui env CHAT_JP
+ * atau config.inc.php [jp_insight].widget_enabled (default: false).
+ *
+ * @param array<string, mixed> $ini
+ */
+function jp_widget_is_enabled(array $ini = []): bool {
+    $rawEnv = getenv('CHAT_JP');
+    if ($rawEnv === false && isset($_ENV['CHAT_JP'])) {
+        $rawEnv = (string) $_ENV['CHAT_JP'];
+    }
+    if (is_string($rawEnv) && trim($rawEnv) !== '') {
+        return jp_widget_parse_bool($rawEnv);
+    }
+
+    if (
+        isset($ini['jp_insight'])
+        && is_array($ini['jp_insight'])
+        && array_key_exists('widget_enabled', $ini['jp_insight'])
+        && $ini['jp_insight']['widget_enabled'] !== null
+    ) {
+        return jp_widget_parse_bool($ini['jp_insight']['widget_enabled']);
+    }
+
+    return false;
+}
+
 function jp_widget_send_json(int $status, array $payload, array $extraHeaders = []): void {
     http_response_code($status);
     header('Content-Type: application/json; charset=utf-8');
@@ -212,6 +258,11 @@ function jp_widget_send_json(int $status, array $payload, array $extraHeaders = 
 function jp_widget_handle_request(): void {
     $method = strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET'));
     $ini = jp_widget_read_ojs_ini();
+
+    if (!jp_widget_is_enabled($ini)) {
+        jp_widget_send_json(503, ['error' => 'Widget chat JP-Insight sedang dinonaktifkan.']);
+        return;
+    }
 
     $originCheck = jp_widget_evaluate_same_origin($_SERVER, $ini);
     if (!$originCheck['allowed']) {

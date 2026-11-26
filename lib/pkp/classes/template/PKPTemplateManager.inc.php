@@ -122,6 +122,24 @@ class PKPTemplateManager extends Smarty {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_COMMON);
 		$currentContext = $request->getContext();
 
+		if (!function_exists('jp_widget_is_enabled')) {
+			if (!defined('JP_WIDGET_PROXY_LIBRARY_ONLY')) {
+				define('JP_WIDGET_PROXY_LIBRARY_ONLY', true);
+			}
+			$widgetProxyPath = Core::getBaseDir() . '/widget-chat.php';
+			if (is_file($widgetProxyPath)) {
+				require_once($widgetProxyPath);
+			}
+		}
+
+		$chatJpEnabled = function_exists('jp_widget_is_enabled')
+			? jp_widget_is_enabled([
+				'jp_insight' => [
+					'widget_enabled' => Config::getVar('jp_insight', 'widget_enabled'),
+				],
+			])
+			: false;
+
 		$basePath = rtrim((string) parse_url((string) $request->getBaseUrl(), PHP_URL_PATH), '/');
 		$jpInsightWidgetEndpoint = getenv('OJS_BROWSER_WIDGET_ENDPOINT')
 			?: ($_ENV['OJS_BROWSER_WIDGET_ENDPOINT'] ?? '')
@@ -134,6 +152,7 @@ class PKPTemplateManager extends Smarty {
 			'currentLocale' => $locale,
 			'currentLocaleLangDir' => AppLocale::getLocaleDirection($locale),
 			'applicationName' => __($application->getNameKey()),
+			'chatJpEnabled' => $chatJpEnabled,
 			'jpInsightWidgetEndpoint' => $jpInsightWidgetEndpoint,
 		]);
 
